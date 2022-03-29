@@ -5,3 +5,12 @@ testingGit = () => {
 };
 
 testingGit();
+
+
+testingGitChange = () => {
+  console.log(
+    'This is the second merge'
+  )
+};
+
+testingGitChange();
