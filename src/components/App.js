@@ -22,12 +22,16 @@ class App extends React.Component {
   // }
   // addToCartHandler() <---- pass this to overview section
 
+  componentDidMount() {
+    console.log(process.env.TOKEN);
+  }
+
   render() {
     return (
       <div className="app">
         <h1>Hello World</h1>
-        <RelatedProducts />
-        <YourOutfit />
+        {/* <RelatedProducts /> */}
+        {/* <YourOutfit /> */}
         <Review />
         <Overview />
         <QuestionList />
