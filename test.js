@@ -13,4 +13,8 @@ testingGitChange = () => {
   )
 };
 
+const addingAnotherFunction = (aRandomString) => {
+  console.log(`This is my random string: ${aRandomString}`);
+}
+
 testingGitChange();
