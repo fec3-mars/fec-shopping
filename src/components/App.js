@@ -1,11 +1,11 @@
 import React from "react";
 import Review from "./review/Review.js";
-import Overview from './OverviewComponents/Overview.js';
-import QuestionList from './Q&A/QuestionList'
+import Overview from "./OverviewComponents/Overview.js";
+import QuestionList from "./Q&A/QuestionList";
 
-const axios = require('axios');
-axios.defaults.headers.common['Authorization'] = process.env.TOKEN;
-axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/rfc2202/"
+const axios = require("axios");
+axios.defaults.headers.common["Authorization"] = process.env.TOKEN;
+axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe";
 
 class App extends React.Component {
   constructor(props) {
@@ -27,10 +27,9 @@ class App extends React.Component {
   // addToCartHandler() <---- pass this to overview section
 
   componentDidMount() {
-    axios.get('/products')
-    .then((results) => {
-      console.log('results are:', results);
-    })
+    axios.get("/reviews/?product_id=37311").then((results) => {
+      console.log("results are:", results.data);
+    });
   }
 
   render() {
@@ -42,7 +41,6 @@ class App extends React.Component {
         <Review />
         <Overview />
         <QuestionList />
-
       </div>
     );
   }
