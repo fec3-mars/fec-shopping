@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Review from "./review/Review.js";
 import Overview from './OverviewComponents/Overview.js';
 import QuestionList from './Q&A/QuestionList'
 
@@ -10,8 +11,7 @@ class App extends React.Component {
       totalReviews: 0,
       avgRating: 0,
       relatedProducts: [],
-
-    }
+    };
     // bind reviewPasser
   }
 
@@ -22,16 +22,16 @@ class App extends React.Component {
   // }
   // addToCartHandler() <---- pass this to overview section
 
-
   render() {
     return (
-      <div className='app'>
+      <div className="app">
         <h1>Hello World</h1>
+        <Review />
         <Overview />
         <QuestionList />
       </div>
     );
   }
-};
+}
 
 export default App;
