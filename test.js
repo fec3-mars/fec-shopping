@@ -17,4 +17,6 @@ const addingAnotherFunction = (aRandomString) => {
   console.log(`This is my random string: ${aRandomString}`);
 }
 
+addingAnotherFunction('Zachs string');
+
 testingGitChange();
