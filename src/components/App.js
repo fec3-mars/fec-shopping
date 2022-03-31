@@ -26,9 +26,12 @@ class App extends React.Component {
     return (
       <div className="app">
         <h1>Hello World</h1>
+        <RelatedProducts />
+        <YourOutfit />
         <Review />
         <Overview />
         <QuestionList />
+
       </div>
     );
   }
