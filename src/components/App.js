@@ -1,4 +1,5 @@
 import React from 'react';
+import Overview from './OverviewComponents/Overview.js';
 import QuestionList from './Q&A/QuestionList'
 
 class App extends React.Component {
@@ -26,6 +27,7 @@ class App extends React.Component {
     return (
       <div className='app'>
         <h1>Hello World</h1>
+        <Overview />
         <QuestionList />
       </div>
     );
