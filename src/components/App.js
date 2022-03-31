@@ -1,4 +1,5 @@
 import React from 'react';
+import Overview from './OverviewComponents/Overview.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class App extends React.Component {
     return (
       <div className='app'>
         <h1>Hello World</h1>
+        <Overview />
       </div>
     );
   }
