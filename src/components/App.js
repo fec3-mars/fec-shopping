@@ -2,10 +2,13 @@ import React from "react";
 import Review from "./review/Review.js";
 import Overview from './OverviewComponents/Overview.js';
 import QuestionList from './Q&A/QuestionList'
+import axios from './axios'
 
-const axios = require('axios');
-axios.defaults.headers.common['Authorization'] = process.env.TOKEN;
-axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/"
+// const axios = require('axios');
+// axios.defaults.headers.common['Authorization'] = process.env.TOKEN;
+// axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/"
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +32,7 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    axios.get('/products/37311/styles')
+    axios.get('/products/')
       .then((results) => {
         console.log('results are:', results);
       }).catch(err => {
@@ -45,7 +48,7 @@ class App extends React.Component {
         {/* <YourOutfit /> */}
         <Review />
         <Overview />
-        <QuestionList />
+        <QuestionList curProduct={this.state.curProduct}/>
 
       </div>
     );
