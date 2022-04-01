@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.26.1",
+    "promise": "^8.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
