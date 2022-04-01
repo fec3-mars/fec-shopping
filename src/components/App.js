@@ -1,14 +1,13 @@
 import React from "react";
 import Review from "./review/Review.js";
+
 import Overview from './OverviewComponents/Overview.js';
 import QuestionList from './Q&A/QuestionList';
 import RelatedProducts from './RelatedProducts/RelatedProductsList.js';
 import OutfitList from './YourOutfit/OutfitList.js';
 
-var Promise = require('promise');
-const axios = require('axios');
-axios.defaults.headers.common['Authorization'] = process.env.TOKEN;
-axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/"
+import { axios, makeRequest } from "./axios";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +28,6 @@ class App extends React.Component {
   // }
   // addToCartHandler() <---- pass this to overview section
 
-
   componentDidMount() {
     Promise.all([
       axios.get('/products')
@@ -46,18 +44,21 @@ class App extends React.Component {
     ])
 
 
-
+  componentDidMount() {
+    makeRequest.call(this, 66642);
   }
 
   render() {
     return (
       <div className="app">
         <h1>Hello World</h1>
+
         <Overview />
         <RelatedProducts currProduct={this.state.currProduct}/>
         <OutfitList />
-        <Review />
-        <QuestionList />
+        <Review currentProductReview={this.state.curProduct} />
+        <QuestionList curProduct={this.state.curProduct} />
+
       </div>
     );
   }
