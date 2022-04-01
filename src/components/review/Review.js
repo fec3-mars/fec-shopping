@@ -7,28 +7,17 @@ export default class Review extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      currentProductReview: {},
+    };
   }
 
-  // renderProductReviewData = () => {
-  //   axios
-  //     .get("/reviews/?product_id=66643")
-  //     .then((results) => {
-  //       this.setState({
-  //         currentProduct: results.data,
-  //       });
-  //       console.log(this.state.currentProduct);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
   render(props) {
-    // console.log("Result in Review.js are: ", this.props.currentProductReview);
+    // console.log("Result in Review.js are: ", this.props.curProduct.data);
+
     return (
       <div>
-        <ReviewList currentProductReview={this.props.currentProductReview} />
+        <ReviewList currentProductReview={this.props.curProduct.data} />
         {/* TODO: Make Breakdown go on left side */}
         <Breakdown />
       </div>

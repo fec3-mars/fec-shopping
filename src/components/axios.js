@@ -17,6 +17,20 @@ export function makeRequest() {
     });
 }
 
+export function makeReviewRequest() {
+  const id = arguments[0];
+
+  axios
+    .get(`/reviews/?product_id=${id}`)
+    .then((results) => {
+      this.setState({
+        curProductReview: results,
+      });
+    })
+    .catch((err) => {
+      console.log("error in axios.js makeRequest", err);
+    });
+}
 
 export function getProductStyles() {
   const product = arguments[0];

@@ -1,8 +1,8 @@
-import React from 'react';
-import IndividualQuestion from './IndividualQuestion';
-import AddQuestion from './AddQuestion';
-import AddAnswer from './AddAnswer';
-import axios from '../axios'
+import React from "react";
+import IndividualQuestion from "./IndividualQuestion";
+import AddQuestion from "./AddQuestion";
+import AddAnswer from "./AddAnswer";
+import axios from "../axios";
 
 // '/qa/questions/?product_id=66642'
 const dummyCurrProduct = {
@@ -11,12 +11,12 @@ const dummyCurrProduct = {
   category: "Jackets",
   created_at: "2022-03-31T21:13:15.875Z",
   default_price: "140.00",
-  description: "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+  description:
+    "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
   name: "Camo Onesie",
   slogan: "Blend in to your crowd",
   updated_at: "2022-03-31T21:13:15.875Z",
-}
-
+};
 
 class QuestionList extends React.Component {
   constructor(props) {
@@ -24,21 +24,26 @@ class QuestionList extends React.Component {
     this.state = {
       currProduct: {},
       questions: [],
-    }
+    };
   }
 
   createAllQuestions() {
     const allQuestions = this.state.questions.map((question) => {
-      <IndividualQuestion question={question} />
+
+      <IndividualQuestion question={question} />;
+
     });
   }
 
   populateState() {
-    this.setState({
-      currProduct: dummyCurrProduct,
-    }, () => {
-      this.retrieveData();
-    });
+    this.setState(
+      {
+        currProduct: dummyCurrProduct,
+      },
+      () => {
+        this.retrieveData();
+      }
+    );
   }
 
   populateQuestions() {
@@ -49,7 +54,6 @@ class QuestionList extends React.Component {
 
   retrieveData() {
     const { id } = this.state.currProduct;
-
 
     axios.get(`/qa/questions/?product_id=${id}`)
       .then((response) => {
@@ -64,6 +68,7 @@ class QuestionList extends React.Component {
       .catch(err => {
         console.log('error in get for qa', err);
       })
+
   }
 
   componentDidMount() {
@@ -76,12 +81,15 @@ class QuestionList extends React.Component {
 
   render() {
     return (
-      <div className='questionList'>
-        <h5>{'Questions & Answers'}</h5>
-        <input type="text" placeholder="Have a question? Search for answers..."></input>
+      <div className="questionList">
+        <h5>{"Questions & Answers"}</h5>
+        <input
+          type="text"
+          placeholder="Have a question? Search for answers..."
+        ></input>
         <button type="button">Add a Question </button>
       </div>
-    )
+    );
   }
 }
 
