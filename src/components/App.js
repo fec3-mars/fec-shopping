@@ -33,8 +33,8 @@ class App extends React.Component {
         <h1>Hello World</h1>
         {/* <RelatedProducts /> */}
         {/* <YourOutfit /> */}
+        <Overview curProduct={this.state.curProduct} />
         <Review currentProductReview={this.state.curProduct} />
-        <Overview />
         <QuestionList curProduct={this.state.curProduct} />
       </div>
     );

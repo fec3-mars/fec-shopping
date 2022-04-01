@@ -5,6 +5,7 @@ import ProductSlogan from './ProductSlogan.js';
 import ProductInfo from './ProductInfo.js';
 import Styles from './Styles.js';
 import SocialMedia from './SocialMedia.js';
+import { getProductStyles, axios } from '../axios.js';
 import './Overview.css';
 
 
@@ -12,31 +13,25 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      curProduct: {},
-      curStyles: [],
-      curSelectedStyle: {}
+      styles: [],
+      selectedStyle: {}
     }
   }
 
   // '/products/37311/styles'
   // '/products/37311'
 
-  componentDidMount() {
-
-    // fetch curStyles
-
-    // this.setState({
-    //   curProduct: this.props.curProduct,
-    //   curStyles: curStyles,
-    //   curSelectedStyle: curStyles[0]
-    // })
+  componentDidUpdate(prevProps) {
+    if (this.props.curProduct.id !== prevProps.curProduct.id) {
+      getProductStyles.call(this, this.props.curProduct.data);
+    }
   }
 
   render() {
     return (
       <div className="overview-container">
         <div className="image-gallery-container">
-          <ImageGallery className="image-gallery" />
+          <ImageGallery selectedStyle={this.state.selectedStyle} className="image-gallery" />
         </div>
         <div className=" preferences-container">
           <ProductInfo className="product-info" />

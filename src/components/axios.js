@@ -17,4 +17,22 @@ export function makeRequest() {
     });
 }
 
+
+export function getProductStyles() {
+  debugger;
+  const product = arguments[0];
+  axios
+    .get(`/products/${product.id}/styles`)
+    .then((results) => {
+      this.setState({
+        product: product,
+        styles: results,
+        selectedStyle: results
+      });
+    })
+    .catch((err) => {
+      console.log("error in axios.js makeRequest", err);
+    });
+}
+
 export default axios;
