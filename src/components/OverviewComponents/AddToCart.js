@@ -24,8 +24,8 @@ class AddToCart extends React.Component {
 
   render() {
     return (
-      <div className="container image-gallery">
-        <h1>AddToCart!</h1>
+      <div className="add-to-cart">
+        <p>AddToCart!</p>
       </div>
     )
   }

@@ -1,12 +1,12 @@
 import React from "react";
 import Review from "./review/Review.js";
+
 import Overview from './OverviewComponents/Overview.js';
-import QuestionList from './Q&A/QuestionList'
+import QuestionList from './Q&A/QuestionList';
+import RelatedProducts from './RelatedProducts/RelatedProductsList.js';
+import OutfitList from './YourOutfit/OutfitList.js';
 
-const axios = require('axios');
-axios.defaults.headers.common['Authorization'] = process.env.TOKEN;
-axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/."
-
+import { axios, makeRequest } from "./axios";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -27,25 +27,20 @@ class App extends React.Component {
   // addToCartHandler() <---- pass this to overview section
 
   componentDidMount() {
-    axios.get('/products/66644')
-    // axios.get('/products')
-    .then((res) => {
-      console.log('responses are:', res.data);
-    })
-    .catch(err => {
-      console.log('this is an error: ', err);
-    })
+    makeRequest.call(this, 66642);
+
   }
 
   render() {
     return (
       <div className="app">
         <h1>Hello World</h1>
-        {/* <RelatedProducts /> */}
-        {/* <YourOutfit /> */}
-        <Review />
+
         <Overview />
-        <QuestionList />
+        <RelatedProducts currProduct={this.state.curProduct}/>
+        <OutfitList />
+        <Review currentProductReview={this.state.curProduct} />
+        <QuestionList curProduct={this.state.curProduct} />
 
       </div>
     );
