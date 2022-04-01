@@ -2,12 +2,7 @@ import React from "react";
 import Review from "./review/Review.js";
 import Overview from "./OverviewComponents/Overview.js";
 import QuestionList from "./Q&A/QuestionList";
-import axios from "./axios";
-import makeRequest from "./axios.js";
-
-// const axios = require("axios");
-// axios.defaults.headers.common["Authorization"] = process.env.TOKEN;
-// axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/";
+import { axios, makeRequest } from "./axios";
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +24,16 @@ class App extends React.Component {
   // addToCartHandler() <---- pass this to overview section
 
   componentDidMount() {
-    makeRequest.call(this);
+    makeRequest.call(this, 66642);
+
+    axios
+      .get("/products/66642/styles")
+      .then((results) => {
+        console.log("results are:", results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -40,7 +44,7 @@ class App extends React.Component {
         {/* <YourOutfit /> */}
         <Review currentProductReview={this.state.curProduct} />
         <Overview />
-        <QuestionList />
+        <QuestionList curProduct={this.state.curProduct} />
       </div>
     );
   }

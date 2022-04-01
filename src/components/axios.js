@@ -3,18 +3,18 @@ axios.defaults.headers.common["Authorization"] = process.env.TOKEN;
 axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/";
 
 export function makeRequest() {
+  const id = arguments[0];
+
   axios
-    .get("/products/66643")
+    .get(`/products/${id}`)
     .then((results) => {
-      console.log("Results in axios.js are:", results.data);
       this.setState({
-        curProduct: results.data,
+        curProduct: results,
       });
     })
     .catch((err) => {
-      console.log(err);
+      console.log("error in axios.js makeRequest", err);
     });
 }
 
 export default axios;
-// export default getProductData;
