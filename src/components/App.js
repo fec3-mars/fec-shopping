@@ -3,9 +3,6 @@ import Review from "./review/Review.js";
 import Overview from './OverviewComponents/Overview.js';
 import QuestionList from './Q&A/QuestionList'
 
-const axios = require('axios');
-axios.defaults.headers.common['Authorization'] = process.env.TOKEN;
-axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/"
 
 class App extends React.Component {
   constructor(props) {
@@ -15,36 +12,21 @@ class App extends React.Component {
       totalReviews: 0,
       avgRating: 0,
       relatedProducts: [],
+      curStyles: []
     };
     // bind reviewPasser
   }
 
-  // API Calls:
-  // -GET /products <-----  set state with first result
-  // reviewsPasser(avgRating, totalReviews) { <------ pass this to review section
-  // setState with both parameters
-  // }
-  // addToCartHandler() <---- pass this to overview section
-
-
-
-  componentDidMount() {
-    axios.get('/products/66642/styles')
-      .then((results) => {
-        console.log('results are:', results);
-      }).catch(err => {
-        console.log(err)
-      })
-  }
 
   render() {
     return (
       <div className="app">
+        {console.log(this.state)}
         <h1>Hello World</h1>
         {/* <RelatedProducts /> */}
         {/* <YourOutfit /> */}
         <Review />
-        <Overview />
+        <Overview curStyles={this.state.curProduct} />
         <QuestionList />
 
       </div>

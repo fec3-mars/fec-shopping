@@ -12,35 +12,36 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      curProduct: {},
-      curStyles: [],
-      curSelectedStyle: {}
+      product: {},
+      styles: [],
+      selectedStyle: {}
     }
   }
 
   // '/products/37311/styles'
   // '/products/37311'
 
-  componentDidMount() {
-
-    // fetch curStyles
-
-    // this.setState({
-    //   curProduct: this.props.curProduct,
-    //   curStyles: curStyles,
-    //   curSelectedStyle: curStyles[0]
-    // })
+  getDerivedStateInProps() {
+    axios.get('/products/66642/styles')
+      .then((results) => {
+        this.setState({
+          curStyles: results.data.results
+        })
+        console.log('results are:', results);
+      }).catch(err => {
+        console.log(err)
+      })
   }
 
   render() {
     return (
       <div className="overview-container">
         <div className="image-gallery-container">
-          <ImageGallery className="image-gallery" />
+          <ImageGallery curStyles={this.state.selectedStyle} className="image-gallery" />
         </div>
         <div className=" preferences-container">
           <ProductInfo className="product-info" />
-          <Styles className="styles" />
+          <Styles className="styles" styles={this.state.styles} />
           <AddToCart className="add-to-cart" />
         </div>
         <div className="product-slogan-container">
