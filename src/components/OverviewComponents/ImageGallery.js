@@ -24,14 +24,26 @@ class ImageGallery extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedStyle.style_id !== this.props.selectedStyle.style_id) {
+      this.setState({
+        styleImages: this.props.selectedStyle.photos,
+        mainImageIdx: 0,
+        expanded: false
+      })
+    }
+  }
+
   render() {
     // let backgroundStyling = {
     //   backgroundImage: `url(${this.state.styleImages[this.state.mainImageIdx]})`,
     //   backgroundRepeat: 'no-repeat',
     // }
+    console.log(this.props.selectedStyle)
+    console.log(this.state)
     return (
       <div className="container image-gallery" >
-        {console.log(this.state)}
+
         <h1>Image Gallery!</h1>
       </div>
     )

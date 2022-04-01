@@ -20,12 +20,18 @@ class Overview extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.curProduct.id !== prevProps.curProduct.id) {
+    debugger;
+    if (this.props.curProduct.data?.id !== prevProps.curProduct.data?.id) {
       getProductStyles.call(this, this.props.curProduct.data);
     }
   }
+  // componentDidMount(prevProps) {
+  //   getProductStyles.call(this, this.props.curProduct.data);
+  // }
 
   render() {
+    console.log(this.props.curProduct.data?.id)
+    console.log('this is the state in overview', this.state)
     return (
       <div className="overview-container">
         <div className="image-gallery-container">

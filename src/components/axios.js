@@ -19,16 +19,16 @@ export function makeRequest() {
 
 
 export function getProductStyles() {
-  debugger;
   const product = arguments[0];
   axios
     .get(`/products/${product.id}/styles`)
     .then((results) => {
       console.log(results)
+      debugger;
       this.setState({
-        product: arguments[1],
-        styles: results,
-        selectedStyle: results
+        product: product,
+        styles: results.data.results,
+        selectedStyle: results.data.results[0]
       });
     })
     .catch((err) => {
