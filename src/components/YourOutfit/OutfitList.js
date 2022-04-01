@@ -10,7 +10,10 @@ class OutfitList extends React.Component {
 
   render() {
     return(
-      <div></div>
+      <div>
+        <h1>YOUR OUTFIT</h1>
+        <button>Add Current Product to Outfit List</button>
+      </div>
     )
   }
 }

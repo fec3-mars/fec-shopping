@@ -24,23 +24,11 @@ class ImageGallery extends React.Component {
     }
   }
 
-  //componentReceiveProps(prevProps, newProps){}
-
-  componentDidMount() {
-
-    // fetch curStyles
-
-    this.setState({
-      styleImages: this.props.curStyles
-    })
-  }
-
   render() {
-    console.log(this.props.curStyles)
-    let backgroundStyling = {
-      backgroundImage: `url(${this.state.styleImages[this.state.mainImageIdx]})`,
-      backgroundRepeat: 'no-repeat',
-    }
+    // let backgroundStyling = {
+    //   backgroundImage: `url(${this.state.styleImages[this.state.mainImageIdx]})`,
+    //   backgroundRepeat: 'no-repeat',
+    // }
     return (
       <div className="container image-gallery" >
         {console.log(this.state)}
