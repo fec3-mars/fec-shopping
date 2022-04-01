@@ -8,10 +8,12 @@ export default class ReviewList extends Component {
   }
 
   render(props) {
-    console.log(
-      "Result in ReviewList.js are ",
-      this.props.currentProductReview.results
-    );
+    if (this.props.currentProductReview) {
+      console.log(
+        "Result in ReviewList.js are ",
+        this.props.currentProductReview.results
+      );
+    }
     return (
       <div>
         <h1>ReviewList</h1>
@@ -26,3 +28,5 @@ export default class ReviewList extends Component {
     );
   }
 }
+
+// returns

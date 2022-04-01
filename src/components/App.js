@@ -1,14 +1,18 @@
 import React from "react";
 import Review from "./review/Review.js";
+
 import Overview from "./OverviewComponents/Overview.js";
 import QuestionList from "./Q&A/QuestionList";
-import { axios, makeRequest } from "./axios";
+import RelatedProducts from "./RelatedProducts/RelatedProductsList.js";
+import OutfitList from "./YourOutfit/OutfitList.js";
 
+import { axios, makeRequest, makeReviewRequest } from "./axios";
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       curProduct: {},
+      curProductReview: {},
       totalReviews: 0,
       avgRating: 0,
       relatedProducts: [],
@@ -25,16 +29,18 @@ class App extends React.Component {
 
   componentDidMount() {
     makeRequest.call(this, 66642);
+    makeReviewRequest.call(this, 66643);
   }
 
   render() {
     return (
       <div className="app">
         <h1>Hello World</h1>
-        {/* <RelatedProducts /> */}
-        {/* <YourOutfit /> */}
+
         <Overview />
-        <Review curProduct={this.state.curProduct} />
+        <RelatedProducts currProduct={this.state.curProduct} />
+        <OutfitList />
+        <Review curProduct={this.state.curProductReview} />
         <QuestionList curProduct={this.state.curProduct} />
       </div>
     );
