@@ -21,12 +21,23 @@ const dummyCurrProduct = {
 class QuestionList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      currProduct: {},
+      questions: [],
+    }
   }
 
   createAllQuestions() {
-    allQuestions = this.state.questions.map((question) => {
+    const allQuestions = this.state.questions.map((question) => {
       <IndividualQuestion question={question}/>
+    });
+  }
+
+  populateState() {
+    this.setState({
+      currProduct: dummyCurrProduct,
+    }, () => {
+      this.retrieveData();
     });
   }
 
@@ -36,8 +47,32 @@ class QuestionList extends React.Component {
     }
   }
 
-  componentDidMount() {
+  retrieveData() {
+    const {id} = this.state.currProduct;
 
+
+    axios.get(`/qa/questions/?product_id=${id}`)
+    .then((response) => {
+      const {results} = response.data;
+      console.log('results', results);
+
+      this.setState({
+        questions: results
+      }, () => {
+        this.populateQuestions();
+      });
+    })
+    .catch(err => {
+      console.log('error in get for qa', err);
+    })
+  }
+
+  componentDidMount() {
+    const currProduct = this.props.currProduct;
+
+    if (!currProduct || Object.keys(currProduct).length === 0) {
+      this.populateState();
+    }
   }
 
   render() {

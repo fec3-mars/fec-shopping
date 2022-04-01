@@ -2,7 +2,7 @@ import React from "react";
 import Review from "./review/Review.js";
 import Overview from './OverviewComponents/Overview.js';
 import QuestionList from './Q&A/QuestionList'
-import axios from './axios'
+import {axios, makeRequest}  from './axios'
 
 // const axios = require('axios');
 // axios.defaults.headers.common['Authorization'] = process.env.TOKEN;
@@ -32,15 +32,11 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    axios.get('/products/')
-      .then((results) => {
-        console.log('results are:', results);
-      }).catch(err => {
-        console.log(err)
-      })
+    makeRequest.call(this, 66642);
   }
 
   render() {
+
     return (
       <div className="app">
         <h1>Hello World</h1>
