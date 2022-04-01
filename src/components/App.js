@@ -5,7 +5,7 @@ import QuestionList from "./Q&A/QuestionList";
 
 const axios = require("axios");
 axios.defaults.headers.common["Authorization"] = process.env.TOKEN;
-axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe";
+axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/";
 
 class App extends React.Component {
   constructor(props) {
@@ -27,9 +27,14 @@ class App extends React.Component {
   // addToCartHandler() <---- pass this to overview section
 
   componentDidMount() {
-    axios.get("/reviews/?product_id=37311").then((results) => {
-      console.log("results are:", results.data);
-    });
+    axios
+      .get("/reviews/?page=1")
+      .then((results) => {
+        console.log("results are:", results.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {

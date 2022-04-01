@@ -17,6 +17,9 @@ class Overview extends React.Component {
     }
   }
 
+  // '/products/37311/styles'
+  // '/products/37311'
+
   componentDidMount() {
 
     // fetch curStyles
