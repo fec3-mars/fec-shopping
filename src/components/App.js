@@ -10,6 +10,11 @@ import {axios, makeRequest}  from './axios'
 
 
 
+const axios = require('axios');
+axios.defaults.headers.common['Authorization'] = process.env.TOKEN;
+axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/"
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +37,16 @@ class App extends React.Component {
 
 
   componentDidMount() {
+
     makeRequest.call(this, 66642);
+
+    axios.get('/products/66642/styles')
+      .then((results) => {
+        console.log('results are:', results);
+      }).catch(err => {
+        console.log(err)
+      })
+
   }
 
   render() {
