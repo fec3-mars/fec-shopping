@@ -28,9 +28,12 @@ class App extends React.Component {
 
   componentDidMount() {
     axios
-      .get("/reviews/?page=1")
+      .get("/reviews/?product_id=66643")
       .then((results) => {
-        console.log("results are:", results.data);
+        console.log("Results in App.js are:", results.data);
+        this.setState({
+          curProduct: results.data,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -43,7 +46,7 @@ class App extends React.Component {
         <h1>Hello World</h1>
         {/* <RelatedProducts /> */}
         {/* <YourOutfit /> */}
-        <Review />
+        <Review currentProductReview={this.state.curProduct} />
         <Overview />
         <QuestionList />
       </div>
