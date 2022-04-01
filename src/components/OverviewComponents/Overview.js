@@ -5,6 +5,7 @@ import ProductSlogan from './ProductSlogan.js';
 import ProductInfo from './ProductInfo.js';
 import Styles from './Styles.js';
 import SocialMedia from './SocialMedia.js';
+import './Overview.css';
 
 
 class Overview extends React.Component {
@@ -33,17 +34,21 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div className="container overview">
-        <div className="container variable" >
+      <div className="overview-container">
+        <div className="image-gallery-container">
           <ImageGallery className="image-gallery" />
-          <div className="container preferences">
-            <ProductInfo />
-            <Styles />
-            <AddToCart />
-          </div>
         </div>
-        <ProductSlogan />
-        <SocialMedia />
+        <div className=" preferences-container">
+          <ProductInfo className="product-info" />
+          <Styles className="styles" />
+          <AddToCart className="add-to-cart" />
+        </div>
+        <div className="product-slogan-container">
+          <ProductSlogan className="product-slogan" />
+        </div>
+        <div className="social-media-container">
+          <SocialMedia className="social-media" />
+        </div>
       </div>
     )
   }

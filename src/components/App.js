@@ -5,7 +5,7 @@ import QuestionList from './Q&A/QuestionList'
 
 const axios = require('axios');
 axios.defaults.headers.common['Authorization'] = process.env.TOKEN;
-axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/"
+axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/"
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    axios.get('/products/37311/styles')
+    axios.get('/products/66642/styles')
       .then((results) => {
         console.log('results are:', results);
       }).catch(err => {
