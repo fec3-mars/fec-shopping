@@ -29,7 +29,9 @@ class QuestionList extends React.Component {
 
   createAllQuestions() {
     const allQuestions = this.state.questions.map((question) => {
+
       <IndividualQuestion question={question} />;
+
     });
   }
 
@@ -53,24 +55,20 @@ class QuestionList extends React.Component {
   retrieveData() {
     const { id } = this.state.currProduct;
 
-    axios
-      .get(`/qa/questions/?product_id=${id}`)
+    axios.get(`/qa/questions/?product_id=${id}`)
       .then((response) => {
         const { results } = response.data;
-        // console.log('results', results);
 
-        this.setState(
-          {
-            questions: results,
-          },
-          () => {
-            this.populateQuestions();
-          }
-        );
+        this.setState({
+          questions: results
+        }, () => {
+          this.populateQuestions();
+        });
       })
-      .catch((err) => {
-        console.log("error in get for qa", err);
-      });
+      .catch(err => {
+        console.log('error in get for qa', err);
+      })
+
   }
 
   componentDidMount() {
