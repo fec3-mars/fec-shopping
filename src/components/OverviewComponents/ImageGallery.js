@@ -39,8 +39,6 @@ class ImageGallery extends React.Component {
     //   backgroundImage: `url(${this.state.styleImages[this.state.mainImageIdx]})`,
     //   backgroundRepeat: 'no-repeat',
     // }
-    console.log(this.props.selectedStyle)
-    console.log(this.state)
     return (
       <div className="container image-gallery" >
 

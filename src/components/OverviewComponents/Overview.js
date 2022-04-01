@@ -20,7 +20,6 @@ class Overview extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    debugger;
     if (this.props.curProduct.data?.id !== prevProps.curProduct.data?.id) {
       getProductStyles.call(this, this.props.curProduct.data);
     }
@@ -30,8 +29,6 @@ class Overview extends React.Component {
   // }
 
   render() {
-    console.log(this.props.curProduct.data?.id)
-    console.log('this is the state in overview', this.state)
     return (
       <div className="overview-container">
         <div className="image-gallery-container">

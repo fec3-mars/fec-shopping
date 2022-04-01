@@ -23,8 +23,6 @@ export function getProductStyles() {
   axios
     .get(`/products/${product.id}/styles`)
     .then((results) => {
-      console.log(results)
-      debugger;
       this.setState({
         product: product,
         styles: results.data.results,

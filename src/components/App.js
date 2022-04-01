@@ -24,7 +24,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('this should be the state in App.js: ', this.state);
     return (
       <div className="app">
         <h1>Hello World</h1>
