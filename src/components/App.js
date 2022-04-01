@@ -2,10 +2,12 @@ import React from "react";
 import Review from "./review/Review.js";
 import Overview from "./OverviewComponents/Overview.js";
 import QuestionList from "./Q&A/QuestionList";
+import axios from "./axios";
+import makeRequest from "./axios.js";
 
-const axios = require("axios");
-axios.defaults.headers.common["Authorization"] = process.env.TOKEN;
-axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/";
+// const axios = require("axios");
+// axios.defaults.headers.common["Authorization"] = process.env.TOKEN;
+// axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/";
 
 class App extends React.Component {
   constructor(props) {
@@ -27,17 +29,7 @@ class App extends React.Component {
   // addToCartHandler() <---- pass this to overview section
 
   componentDidMount() {
-    axios
-      .get("/reviews/?product_id=66643")
-      .then((results) => {
-        console.log("Results in App.js are:", results.data);
-        this.setState({
-          curProduct: results.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    makeRequest.call(this);
   }
 
   render() {
