@@ -1,11 +1,12 @@
 import React from 'react';
 
-const ProductSlogan = () => {
+const ProductSlogan = ({ slogan, handleClick }) => {
 
 
   return (
-    <div className="container product-slogan">
-      <p>ProductSlogan!</p>
+    <div data-testid="product-slogan" className="container product-slogan">
+      <p onClick={() => handleClick(2)}>{slogan}</p>
+
     </div>
   )
 }
