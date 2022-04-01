@@ -25,15 +25,6 @@ class App extends React.Component {
 
   componentDidMount() {
     makeRequest.call(this, 66642);
-
-    axios
-      .get("/products/66642/styles")
-      .then((results) => {
-        console.log("results are:", results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   render() {
