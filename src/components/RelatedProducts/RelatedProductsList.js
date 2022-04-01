@@ -5,16 +5,14 @@ import App from '../App.js'
 //this list should gather all elements/component of related products to be rendered
 
 const RelatedProducts = (props) => {
-  const { currProduct } = props;
-
-  console.log('current props:', props.currProduct.name);
+  const { curProduct } = props;
 
   return (
     <div>
       <h1>RELATED PRODUCTS</h1>
-      <div className='related category'>{props.currProduct.category}</div>
-      <div className='related name'>{props.currProduct.name}</div>
-      <div className='related category'>${props.currProduct.default_price}</div>
+      <div className='related category'>{props.curProduct.category}</div>
+      <div className='related name'>{props.curProduct.name}</div>
+      <div className='related category'>${props.curProduct.default_price}</div>
     </div>
   )
 }
