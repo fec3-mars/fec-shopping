@@ -1,5 +1,6 @@
 import React from 'react';
 import "./ImageGallery.css"
+import ImageThumbnail from "./ImageThumbnail.js"
 
 // const ImageGallery = ({curStyles}) => {
 //   const [expanded, setExapanded] = useState(false)
@@ -24,7 +25,7 @@ class ImageGallery extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.selectedStyle.style_id !== this.props.selectedStyle.style_id) {
       this.setState({
         styleImages: this.props.selectedStyle.photos,
@@ -34,16 +35,36 @@ class ImageGallery extends React.Component {
     }
   }
 
-  render() {
-    // let backgroundStyling = {
-    //   backgroundImage: `url(${this.state.styleImages[this.state.mainImageIdx]})`,
-    //   backgroundRepeat: 'no-repeat',
-    // }
-    return (
-      <div className="container image-gallery" >
+  // static getDerivedStateFromProps(props, state) {
+  //   debugger;
+  //   if (props.selectedStyle !== state.selectedStyle) {
+  //     return {
+  //       styleImages: this.props.selectedStyle.photos,
+  //       mainImageIdx: 0,
+  //       expanded: false
+  //     }
+  //   }
+  //   // if (props.name !== state.name) {
+  //   //   //Change in props
+  //   //   return {
+  //   //     name: props.name
+  //   //   };
+  //   // }
+  //   return null; // No change to state
+  // }
 
-        <h1>Image Gallery!</h1>
-      </div>
+  render() {
+    console.log(this.state)
+
+    return (
+      <div style={{ backgroundImage: `url('${this.state.styleImages[this.state.mainImageIdx]?.url}')` }} className="container image-gallery">
+        <ul className="thumbnail-list">
+          {this.state.styleImages.map((img, idx) => {
+            return <ImageThumbnail idx={this.state.mainImageIdx === idx} thumbnail={img.thumbnail_url} />
+          })
+          }
+        </ul>
+      </div >
     )
   }
 }

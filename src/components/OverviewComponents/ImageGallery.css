@@ -1,0 +1,11 @@
+.image-gallery {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+
+.thumbnail-list {
+  padding: 2rem;
+}
