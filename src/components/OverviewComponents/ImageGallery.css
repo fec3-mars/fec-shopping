@@ -1,9 +1,11 @@
 .image-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   height: 100%;
   width: 100%;
   background-size: cover;
-  background-repeat: no-repeat;
-
+  background-position: center;
 }
 
 .thumbnail-list {

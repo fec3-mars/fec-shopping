@@ -42,7 +42,7 @@ class ImageGallery extends React.Component {
   //       styleImages: this.props.selectedStyle.photos,
   //       mainImageIdx: 0,
   //       expanded: false
-  //     }
+  //     }`
   //   }
   //   // if (props.name !== state.name) {
   //   //   //Change in props
@@ -58,12 +58,14 @@ class ImageGallery extends React.Component {
 
     return (
       <div style={{ backgroundImage: `url('${this.state.styleImages[this.state.mainImageIdx]?.url}')` }} className="container image-gallery">
-        <ul className="thumbnail-list">
-          {this.state.styleImages.map((img, idx) => {
-            return <ImageThumbnail idx={this.state.mainImageIdx === idx} thumbnail={img.thumbnail_url} />
-          })
-          }
-        </ul>
+        <div className="thumbnail-list-container">
+          <ul className="thumbnail-list">
+            {this.state.styleImages.map((img, idx) => {
+              return <ImageThumbnail idx={this.state.mainImageIdx === idx} thumbnail={img.thumbnail_url} />
+            })
+            }
+          </ul>
+        </div>
       </div >
     )
   }
