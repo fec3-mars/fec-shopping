@@ -18,7 +18,6 @@ class QuestionList extends React.Component {
 
   createAllQuestions() {
     const allQuestions = this.state.questions.map((question, idx) => {
-
       return <IndividualQuestion question={question} key={idx}/>;
     });
 
@@ -57,7 +56,7 @@ class QuestionList extends React.Component {
   render() {
     return (
       <div className="questionList">
-        <h5>{"Questions & Answers"}</h5>
+        <h2>{"Questions & Answers"}</h2>
         <input
           type="text"
           placeholder="Have a question? Search for answers..."
