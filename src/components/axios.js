@@ -40,7 +40,7 @@ export function getProductStyles() {
       this.setState({
         product: product,
         styles: results.data.results,
-        selectedStyle: results.data.results[0]
+        selectedStyle: results.data.results[0],
       });
     })
     .catch((err) => {
@@ -59,6 +59,7 @@ export function getProductStyles() {
  */
 export function getQuestionsAndAnswers(id) {
   axios.get(`/qa/questions/?product_id=${id}`)
+
       .then((response) => {
         const { results } = response.data;
 
@@ -71,6 +72,7 @@ export function getQuestionsAndAnswers(id) {
       .catch(err => {
         console.log('error in get for qa', err);
       });
+
 }
 
 export default axios;

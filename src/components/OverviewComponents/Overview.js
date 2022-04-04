@@ -35,7 +35,7 @@ class Overview extends React.Component {
           <ImageGallery selectedStyle={this.state.selectedStyle} className="image-gallery" />
         </div>
         <div className=" preferences-container">
-          <ProductInfo className="product-info" />
+          <ProductInfo selectedStyle={this.state.selectedStyle} product={this.state.product} className="product-info" />
           <Styles className="styles" styles={this.state.styles} />
           <AddToCart className="add-to-cart" />
         </div>

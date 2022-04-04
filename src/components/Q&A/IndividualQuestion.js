@@ -29,6 +29,7 @@ class IndividualQuestion extends React.Component {
 
 
   render() {
+
     const {
       answers,
       asker_name,
@@ -41,8 +42,11 @@ class IndividualQuestion extends React.Component {
 
     this.formatAnswers(answers);
 
+    console.log('props in indQuestion', this.props);
+
 
     return(
+
       <div className="individual-question">
         <h6>Q: {question_body}</h6>
         <h6>A:</h6>
