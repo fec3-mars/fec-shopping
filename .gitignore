@@ -103,6 +103,11 @@ dist
 # TernJS port file
 .tern-port
 
+<<<<<<< HEAD
 
 # yarn.lock
 yarn.lock
+=======
+# yarn.lock
+yarn.lock
+>>>>>>> main
