@@ -1,10 +1,10 @@
 import React from 'react';
 import './ImageThumbnail.css'
 
-const ImageThumbnail = ({ idx, thumbnail }) => {
-  let className = idx ? 'img-thumbnail-container selected' : 'img-thumbnail-container';
+const ImageThumbnail = ({ updateMainImageHandler, idx, main, thumbnail }) => {
+  let className = main ? 'img-thumbnail-container selected' : 'img-thumbnail-container';
   return (
-    <div className={className}>
+    <div onClick={() => { updateMainImageHandler(idx) }} className={className}>
       <img className="img-thumbnail" src={thumbnail} />
     </div>
   )

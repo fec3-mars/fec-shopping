@@ -9,5 +9,21 @@
 }
 
 .thumbnail-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
+}
+
+.thumbnail-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn__pan {
+  background-color: transparent;
+  border: none;
 }
