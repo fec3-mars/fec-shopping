@@ -72,9 +72,7 @@ class IndividualQuestion extends React.Component {
       reported,
     } = this.props.question;
 
-<<<<<<< HEAD
-    return (
-=======
+
     if (this.state.answers.length === 0) {
       return(
         <div className="individual-question">
@@ -94,7 +92,7 @@ class IndividualQuestion extends React.Component {
         </div>
       )
     }
->>>>>>> main
+
 
     return (
       <div className="individual-question">

@@ -128,9 +128,6 @@ export function getQuestionsAndAnswers(id) {
     .catch(err => {
       console.log('error in get for qa', err);
     });
-    .catch (err => {
-    console.log('error in get for qa', err);
-  });
 
 }
 
