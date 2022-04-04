@@ -1,6 +1,11 @@
 import React from 'react';
 import "./ImageGallery.css"
 import ImageThumbnail from "./ImageThumbnail.js"
+import {
+  faChevronCircleUp,
+  faChevronCircleDown,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // const ImageGallery = ({curStyles}) => {
 //   const [expanded, setExapanded] = useState(false)
@@ -31,10 +36,10 @@ class ImageGallery extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.selectedStyle.style_id !== this.props.selectedStyle.style_id) {
-      // const photos = [...this.props.selectedStyle.photos, ...this.props.selectedStyle.photos];
+      const photos = [...this.props.selectedStyle.photos, ...this.props.selectedStyle.photos];
       this.setState({
-        styleImages: this.props.selectedStyle.photos,
-        // styleImages: photos,
+        // styleImages: this.props.selectedStyle.photos,
+        styleImages: photos,
         mainImageIdx: 0,
         thumbnailStart: 0,
         thumbailEnd: 6,
@@ -65,27 +70,24 @@ class ImageGallery extends React.Component {
   }
 
   render() {
-    console.log(this.state)
-
     return (
-      <div style={{ backgroundImage: `url('${this.state.styleImages[this.state.mainImageIdx]?.url}')` }} className="container image-gallery">
+      <div className="container image-gallery">
+        <img style={{ height: "auto", width: "100%" }} src={`${this.state.styleImages[this.state.mainImageIdx]?.url}`} />
         <div className="thumbnail-list-container">
-          {this.state.thumbnailStart > 0 && <button onClick={() => { this.scrollThumbnails('up') }} className="btn__pan">{'(up)'}</button>}
+          {this.state.thumbnailStart > 0 && <FontAwesomeIcon icon={faChevronCircleUp} color="black" size="2x" onClick={() => { this.scrollThumbnails('up') }} className="btn__pan"></FontAwesomeIcon>}
           <ul className="thumbnail-list">
             {this.state.styleImages.map((img, idx) => {
               if (this.state.styleImages.length > 7) { // identifies if there is a need to have scrolling
                 if (this.state.thumbnailStart <= idx && this.state.thumbnailEnd >= idx) { //ensures that if scrolling is needed, the correct pictures are showing
-                  console.log(idx, idx + this.state.thumbnailStart)
-                  return <ImageThumbnail key={img.thumbnail_url} updateMainImageHandler={this.updateMainImageHandler} idx={idx} main={this.state.mainImageIdx === idx} thumbnail={img.thumbnail_url} />
+                  return <ImageThumbnail key={idx} updateMainImageHandler={this.updateMainImageHandler} idx={idx} main={this.state.mainImageIdx === idx} thumbnail={img.thumbnail_url} />
                 }
               } else {
-                return <ImageThumbnail key={img.thumbnail_url} main={this.state.mainImageIdx === idx} idx={idx} updateMainImageHandler={this.updateMainImageHandler} totalIdx={this.state.mainImageIdx === idx} thumbnail={img.thumbnail_url} /> //if scrolling is not needed
+                return <ImageThumbnail key={idx} main={this.state.mainImageIdx === idx} idx={idx} updateMainImageHandler={this.updateMainImageHandler} totalIdx={this.state.mainImageIdx === idx} thumbnail={img.thumbnail_url} /> //if scrolling is not needed
               }
             })
             }
           </ul>
-          {console.log(this.state.thumbnailStart, this.state.thumbnailEnd, this.state.styleImages.length)}
-          {this.state.thumbnailEnd < this.state.styleImages.length - 1 && <button onClick={() => { this.scrollThumbnails('down') }} className="btn__pan">{'(down)'}</button>}
+          {this.state.thumbnailEnd < this.state.styleImages.length - 1 && <FontAwesomeIcon icon={faChevronCircleDown} color="black" size="2x" onClick={() => { this.scrollThumbnails('down') }} className="btn__pan"></FontAwesomeIcon>}
         </div>
       </div >
     )
