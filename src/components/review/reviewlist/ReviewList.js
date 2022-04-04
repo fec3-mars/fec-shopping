@@ -38,7 +38,7 @@ export default class ReviewList extends Component {
     return (
       <div>
         <h1>Reviews</h1>
-        <li>
+        <li className="review-list">
           {this.props.currentProductReview
             .slice(0, this.state.visible)
             .map((review, index) => {
@@ -46,7 +46,7 @@ export default class ReviewList extends Component {
             })}
         </li>
         <button>Submit New Review</button>
-        <div>
+        <div className="view-more-button">
           {this.state.hideReviewButton ? null : (
             <button className="moreReviews" onClick={this.showMoreItems}>
               View more...
