@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Review from "../Review.js";
-// require("babel-polyfill");
 
 export default class ReviewList extends Component {
   constructor(props) {
@@ -9,6 +8,7 @@ export default class ReviewList extends Component {
       currentProductReview: [],
       visible: 2,
       hideReviewButton: false,
+      averageRating: 0,
     };
   }
 
@@ -24,17 +24,8 @@ export default class ReviewList extends Component {
     }
   };
 
-  // hideReviewButton = () => {
-  //   if (this.state.visible >= this.state.currentProductReview.length) {
-  //     this.setState({
-  //       hideReviewButton: true,
-  //     });
-  //   }
-  // };
-
   render(props) {
-    console.log("Review List state: ", this.state.visible);
-
+    // console.log(this.props.currentProductReview);
     return (
       <div>
         <h1>Reviews</h1>
@@ -42,10 +33,17 @@ export default class ReviewList extends Component {
           {this.props.currentProductReview
             .slice(0, this.state.visible)
             .map((review, index) => {
-              return <ul key={index}>{review.summary}</ul>;
+              return (
+                <ul key={index}>
+                  {review.summary}
+                  <br></br>
+                  Rating: {review.rating}
+                  <br></br>
+                  Reviewer_ID: {review.reviewer_name}
+                </ul>
+              );
             })}
         </li>
-        <button>Submit New Review</button>
         <div className="view-more-button">
           {this.state.hideReviewButton ? null : (
             <button className="moreReviews" onClick={this.showMoreItems}>
