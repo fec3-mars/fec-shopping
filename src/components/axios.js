@@ -40,7 +40,7 @@ export function getProductStyles() {
       this.setState({
         product: product,
         styles: results.data.results,
-        selectedStyle: results.data.results[0]
+        selectedStyle: results.data.results[0],
       });
     })
     .catch((err) => {
