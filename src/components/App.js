@@ -8,7 +8,7 @@ import RelatedProducts from "./RelatedProducts/RelatedProductsList.js";
 import OutfitList from "./YourOutfit/OutfitList.js";
 
 
-import { axios, makeRequest, makeReviewRequest } from "./axios";
+import { axios, makeRequest, makeReviewRequest, getRelatedProducts, getRelatedDetail } from "./axios";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -35,9 +35,9 @@ class App extends React.Component {
       <div className="app">
         <h1>Hello World</h1>
         <Overview curProduct={this.state.curProduct} />
-        <RelatedProducts curProduct={this.state.curProduct} />
+        <RelatedProducts relatedProducts={this.state.relatedProducts} curProduct={this.state.curProduct}/>
         <OutfitList />
-        <Review curProduct={this.state.curProductReview} />
+        <Review curProduct={this.state.curProduct} />
         <QuestionList curProduct={this.state.curProduct} />
       </div>
     );
