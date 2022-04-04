@@ -56,25 +56,18 @@ class ImageGallery extends React.Component {
   }
 
   scrollThumbnails(direction) {
-    if (direction === 'up') {
-      this.setState({
-        thumbnailStart: this.state.thumbnailStart - 1,
-        thumbnailEnd: this.state.thumbnailEnd - 1
-      })
-    } else {
-      this.setState({
-        thumbnailStart: this.state.thumbnailStart + 1,
-        thumbnailEnd: this.state.thumbnailEnd + 1
-      })
-    }
+    this.setState({
+      thumbnailStart: this.state.thumbnailStart + direction,
+      thumbnailEnd: this.state.thumbnailEnd + direction
+    })
   }
 
   render() {
     return (
       <div className="container image-gallery">
-        <img style={{ height: "auto", width: "100%" }} src={`${this.state.styleImages[this.state.mainImageIdx]?.url}`} />
+        <img style={{ height: "auto", width: "100%" }} src={`${this.state.styleImages[this.state.mainImageIdx]?.url}`} className="main-img" />
         <div className="thumbnail-list-container">
-          {this.state.thumbnailStart > 0 && <FontAwesomeIcon icon={faChevronCircleUp} color="black" size="2x" onClick={() => { this.scrollThumbnails('up') }} className="btn__pan"></FontAwesomeIcon>}
+          {this.state.thumbnailStart > 0 && <FontAwesomeIcon icon={faChevronCircleUp} color="black" size="2x" onClick={() => { this.scrollThumbnails(-1) }} className="btn__pan-up"></FontAwesomeIcon>}
           <ul className="thumbnail-list">
             {this.state.styleImages.map((img, idx) => {
               if (this.state.styleImages.length > 7) { // identifies if there is a need to have scrolling
@@ -87,7 +80,7 @@ class ImageGallery extends React.Component {
             })
             }
           </ul>
-          {this.state.thumbnailEnd < this.state.styleImages.length - 1 && <FontAwesomeIcon icon={faChevronCircleDown} color="black" size="2x" onClick={() => { this.scrollThumbnails('down') }} className="btn__pan"></FontAwesomeIcon>}
+          {this.state.thumbnailEnd < this.state.styleImages.length - 1 && <FontAwesomeIcon icon={faChevronCircleDown} color="black" size="2x" onClick={() => { this.scrollThumbnails(1) }} className="btn__pan-down"></FontAwesomeIcon>}
         </div>
       </div >
     )
