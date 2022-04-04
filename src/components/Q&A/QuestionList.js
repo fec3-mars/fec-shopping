@@ -18,15 +18,9 @@ class QuestionList extends React.Component {
 
   createAllQuestions() {
     const allQuestions = this.state.questions.map((question, idx) => {
-<<<<<<< HEAD
 
       return <IndividualQuestion question={question} key={idx} />;
     });
-=======
-      return <IndividualQuestion question={question} key={idx}/>;
-    });
-
->>>>>>> main
 
     this.setState({
       allQuestions: [...allQuestions],
