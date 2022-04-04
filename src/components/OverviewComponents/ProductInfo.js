@@ -2,9 +2,6 @@ import React from 'react';
 import './ProductInfo.css';
 
 const ProductInfo = ({ product, selectedStyle }) => {
-
-  console.log(product)
-  console.log(selectedStyle)
   const discount = selectedStyle.sale_price ? true : false;
   let priceClass = discount ? "price slashed" : "price";
 

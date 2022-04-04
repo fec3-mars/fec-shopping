@@ -2,6 +2,8 @@ import React from 'react';
 import "./ImageGallery.css"
 import ImageThumbnail from "./ImageThumbnail.js"
 import {
+  faArrowCircleLeft,
+  faArrowCircleRight,
   faChevronCircleUp,
   faChevronCircleDown,
 } from "@fortawesome/free-solid-svg-icons";
@@ -31,6 +33,7 @@ class ImageGallery extends React.Component {
       mainImageIdx: 0
     }
     this.scrollThumbnails = this.scrollThumbnails.bind(this);
+    this.scrollMainImages = this.scrollMainImages.bind(this);
     this.updateMainImageHandler = this.updateMainImageHandler.bind(this);
   }
 
@@ -53,6 +56,20 @@ class ImageGallery extends React.Component {
       mainImageIdx: imageIdx
     })
 
+  }
+
+  scrollMainImages(direction) {
+    if ((this.state.mainImageIdx === this.state.thumbnailEnd && direction === 1) || (this.state.mainImageIdx === this.state.thumbnailStart && direction === -1)) {
+      this.setState({
+        mainImageIdx: this.state.mainImageIdx + direction,
+        thumbnailStart: this.state.thumbnailStart + direction,
+        thumbnailEnd: this.state.thumbnailEnd + direction
+      })
+    } else {
+      this.setState({
+        mainImageIdx: this.state.mainImageIdx + direction
+      })
+    }
   }
 
   scrollThumbnails(direction) {
@@ -82,6 +99,8 @@ class ImageGallery extends React.Component {
           </ul>
           {this.state.thumbnailEnd < this.state.styleImages.length - 1 && <FontAwesomeIcon icon={faChevronCircleDown} color="black" size="2x" onClick={() => { this.scrollThumbnails(1) }} className="btn__pan-down"></FontAwesomeIcon>}
         </div>
+        {this.state.mainImageIdx > 0 && <FontAwesomeIcon icon={faArrowCircleLeft} color="black" size="2x" onClick={() => { this.scrollMainImages(-1) }} className="btn__arrow-left"></FontAwesomeIcon>}
+        {this.state.styleImages.length - 1 > this.state.mainImageIdx && <FontAwesomeIcon icon={faArrowCircleRight} color="black" size="2x" onClick={() => { this.scrollMainImages(1) }} className="btn__arrow-right"></FontAwesomeIcon>}
       </div >
     )
   }
