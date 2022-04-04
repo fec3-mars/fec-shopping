@@ -29,6 +29,7 @@ class Overview extends React.Component {
   // }
 
   render() {
+
     return (
       <div className="overview-container">
         <div className="image-gallery-container">
@@ -39,9 +40,9 @@ class Overview extends React.Component {
           <Styles className="styles" styles={this.state.styles} />
           <AddToCart className="add-to-cart" />
         </div>
-        <div className="product-slogan-container">
-          <ProductSlogan className="product-slogan" />
-        </div>
+        {this.state.product.slogan && <div className="product-slogan-container">
+          <ProductSlogan product={this.state.product} selectedStyle={this.state.selectedStyle} className="product-slogan" />
+        </div>}
         <div className="social-media-container">
           <SocialMedia className="social-media" />
         </div>

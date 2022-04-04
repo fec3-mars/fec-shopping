@@ -68,7 +68,7 @@ export function getRelatedProducts() {
 export function getRelatedDetail() {
   const product = arguments[0]; //array of product ids
   for (var i = 0; i < product.length; i++) {
-    var allDetails=[];
+    var allDetails = [];
     axios.get(`/products/${product[i]}`)
       .then((results) => {
         allDetails.push(results.data);
@@ -87,7 +87,7 @@ export function getRelatedImage() {
   const product = arguments[0];
 
   for (var i = 0; i < product.length; i++) {
-    var imageUrl=[];
+    var imageUrl = [];
     axios.get(`/products/${product[i]}/styles`)
       .then((results) => {
         // console.log('product at related image', results.data.results[0].photos[0].thumbnail_url);
@@ -116,19 +116,21 @@ export function getRelatedImage() {
  */
 export function getQuestionsAndAnswers(id) {
   axios.get(`/qa/questions/?product_id=${id}`)
+    .then((response) => {
+      const { results } = response.data;
 
-      .then((response) => {
-        const { results } = response.data;
-
-        this.setState({
-          questions: results
-        }, () => {
-          this.populateQuestions();
-        });
-      })
-      .catch(err => {
-        console.log('error in get for qa', err);
+      this.setState({
+        questions: results
+      }, () => {
+        this.populateQuestions();
       });
+    })
+    .catch(err => {
+      console.log('error in get for qa', err);
+    });
+    .catch (err => {
+    console.log('error in get for qa', err);
+  });
 
 }
 
