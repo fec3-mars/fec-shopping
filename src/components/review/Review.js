@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReviewList from "./reviewlist/ReviewList.js";
 import Breakdown from "./breakdown/Breakdown.js";
 import axios from "axios";
+import "./Review.css";
 
 export default class Review extends Component {
   constructor(props) {
@@ -31,10 +32,14 @@ export default class Review extends Component {
     }
 
     return (
-      <div>
-        <ReviewList currentProductReview={this.state.reviews} />
-        {/* TODO: Make Breakdown go on left side */}
-        <Breakdown />
+      <div className="review-container">
+        <div>
+          <Breakdown className="breakdown-container" />
+          <ReviewList
+            className="review-container"
+            currentProductReview={this.state.reviews}
+          />
+        </div>
       </div>
     );
   }
