@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Styles = () => {
+const Styles = ({ styles }) => {
+  console.log(styles)
 
 
   return (
