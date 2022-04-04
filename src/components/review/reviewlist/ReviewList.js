@@ -9,13 +9,6 @@ export default class ReviewList extends Component {
 
   render(props) {
 
-    if (this.props.currentProductReview) {
-      console.log(
-        "Result in ReviewList.js are ",
-        this.props.currentProductReview.results
-      );
-    }
-
     return (
       <div>
         <h1>ReviewList</h1>
