@@ -119,7 +119,7 @@ export function getQuestionsAndAnswers(id) {
 
       .then((response) => {
         const { results } = response.data;
-        console.log('results', results)
+
         this.setState({
           questions: results
         }, () => {
