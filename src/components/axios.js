@@ -59,17 +59,20 @@ export function getProductStyles() {
  */
 export function getQuestionsAndAnswers(id) {
   axios.get(`/qa/questions/?product_id=${id}`)
-    .then((response) => {
-      const { results } = response.data;
-      this.setState({
-        questions: results
-      }, () => {
-        this.populateQuestions();
+
+      .then((response) => {
+        const { results } = response.data;
+        console.log('results', results)
+        this.setState({
+          questions: results
+        }, () => {
+          this.populateQuestions();
+        });
+      })
+      .catch(err => {
+        console.log('error in get for qa', err);
       });
-    })
-    .catch(err => {
-      console.log('error in get for qa', err);
-    });
+
 }
 
 export default axios;
