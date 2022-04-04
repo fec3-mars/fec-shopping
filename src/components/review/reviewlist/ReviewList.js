@@ -33,7 +33,6 @@ export default class ReviewList extends Component {
   // };
 
   render(props) {
-    console.log("Review List state: ", this.state.visible);
 
     return (
       <div>
