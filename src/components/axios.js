@@ -49,6 +49,63 @@ export function getProductStyles() {
 }
 
 
+export function getRelatedProducts() {
+  const product = arguments[0];
+
+  axios.get(`/products/${product}/related`)
+    .then((results) => {
+      // console.log(results.data);
+      this.setState({
+        curProduct: this.props.curProduct,
+        relatedProducts: results.data,
+      });
+    })
+    .catch((err) => {
+      console.log("error in axios.js getRelatedProducts req", err);
+    });
+}
+
+export function getRelatedDetail() {
+  const product = arguments[0]; //array of product ids
+  for (var i = 0; i < product.length; i++) {
+    var allDetails = [];
+    axios.get(`/products/${product[i]}`)
+      .then((results) => {
+        allDetails.push(results.data);
+        this.setState({
+          curProduct: this.props.curProduct,
+          relatedProductDetail: allDetails,
+        });
+      })
+      .catch((err) => {
+        console.log("error in axios.js getRelatedProducts req", err);
+      });
+  }
+};
+
+export function getRelatedImage() {
+  const product = arguments[0];
+
+  for (var i = 0; i < product.length; i++) {
+    var imageUrl = [];
+    axios.get(`/products/${product[i]}/styles`)
+      .then((results) => {
+        // console.log('product at related image', results.data.results[0].photos[0].thumbnail_url);
+        imageUrl.push(results.data.results[0].photos[0].thumbnail_url);
+        this.setState({
+          curProduct: this.props.curProduct,
+          relatedProductImage: imageUrl,
+        });
+      })
+      .catch((err) => {
+        console.log("error in axios.js getRelatedProducts req", err);
+      });
+  }
+
+};
+
+
+
 /**
  * getQuestionsAndAnswers takes a product id as an argument
  * and populates QuestionList with questions related to product id ||
@@ -59,9 +116,9 @@ export function getProductStyles() {
  */
 export function getQuestionsAndAnswers(id) {
   axios.get(`/qa/questions/?product_id=${id}`)
-
     .then((response) => {
       const { results } = response.data;
+
       this.setState({
         questions: results
       }, () => {
@@ -73,5 +130,6 @@ export function getQuestionsAndAnswers(id) {
     });
 
 }
+
 
 export default axios;

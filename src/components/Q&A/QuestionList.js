@@ -56,7 +56,7 @@ class QuestionList extends React.Component {
   render() {
     return (
       <div className="questionList">
-        <h5>{"Questions & Answers"}</h5>
+        <h2>{"Questions & Answers"}</h2>
         <input
           type="text"
           placeholder="Have a question? Search for answers..."
