@@ -96,30 +96,44 @@ class IndividualQuestion extends React.Component {
       addAnswer,
     } = this.state;
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-    let answersText = answers; //default is answer html elements
-    let expandButton = <button onClick={this.changeExpanded.bind(this)}> Collapse answers </button>; //defaults to expanded
+    let answersText = answers; //default is all answer html elements
+    let expandButton = <button onClick={this.changeExpanded.bind(this)}> Collapse answers </button>;
+    let answerStyle = {};
 
-    if (!expanded) {
+    answerStyle = {
+      'overflow-y': 'scroll',
+      height: '315px'
+    }
+
+    if (!expanded) { //default, state starts as false
       answersText = answers.slice(0, 2) //if 'Expanded' answers not hit, show only two
       expandButton = <button onClick={this.changeExpanded.bind(this)}> See more answers </button>
+      answerStyle = {
+        height: '315px'
+      }
     }
 
     if (answers.length === 0) {
       answersText = <h3> No answers, yet </h3>; //if no answers present yet, show 'No answers, yet
       expandButton = null;
+      answerStyle = {};
     }
 
-    let style = {
-      border: "solid white",
+    let questionStyle = {
+      border: 'solid white',
     }
+
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------
       if (!addAnswer) {
-        return (<div className="individual-question" style={style}>
+        return (<div className="individual-question" style={questionStyle}>
 
           <h3>Q: {question_body}</h3>
-          <h3>A: </h3>
+          <div className="answer" style={answerStyle}>
+            <h3>A: </h3>
 
-          {answersText}
+            {answersText}
+          </div>
           {expandButton}
 
           <button onClick={this.changeAddAnswer.bind(this)}> Add an Answer </button>
@@ -137,7 +151,7 @@ class IndividualQuestion extends React.Component {
           <p><i>for privacy reasons do not use your full name or address</i></p>
 
           <h4>*Your email</h4>
-          <input placeholder="Example: jack@email.com"></input>
+          <input placeholder="Example: jack@email.com" style={{'width':'250px'}}></input>
           <p><i>for authentication reasons, you will not be emailed</i></p>
           <button> Add Photos </button>
           <button onClick={this.changeAddAnswer.bind(this)}> Submit Answer </button>
