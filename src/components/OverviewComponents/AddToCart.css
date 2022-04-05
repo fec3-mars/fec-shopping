@@ -1,0 +1,11 @@
+.add-to-cart {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.addToCart-Rate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -3,8 +3,6 @@ import './Styles.css';
 import SingleStyle from './SingleStyle.js';
 
 const Styles = ({ styles, selectedStyle, styleChangeHandler }) => {
-  console.log(styles)
-
 
   return (
     <div className="styles-container">
@@ -14,7 +12,7 @@ const Styles = ({ styles, selectedStyle, styleChangeHandler }) => {
       </div>
       <div className="styles">
         {styles.map(style => {
-          return <SingleStyle style={style} selectedStyle={style.name === selectedStyle.name} styleChangeHandler={styleChangeHandler} />
+          return <SingleStyle key={style.style_id} style={style} selectedStyle={style.name === selectedStyle.name} styleChangeHandler={styleChangeHandler} />
         })}
       </div>
     </div>
