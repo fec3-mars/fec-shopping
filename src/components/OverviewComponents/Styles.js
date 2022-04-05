@@ -16,7 +16,7 @@ const Styles = ({ styles, selectedStyle, styleChangeHandler }) => {
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Styles;
