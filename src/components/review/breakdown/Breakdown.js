@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "./Breakdown.css";
+import StarRating from "../star/Star.js";
 
 export default class Breakdown extends Component {
   constructor(props) {
@@ -18,14 +20,33 @@ export default class Breakdown extends Component {
     return temp;
   };
 
-  render() {
+  componentDidUpdate() {
+    try {
+      let temp = 0;
+      for (let i = 0; i < this.props.currentProductRating.length; i++) {
+        temp += this.props.currentProductRating[i].rating;
+      }
+      temp = temp / this.props.currentProductRating.length;
+      this.setState({
+        averageRating: temp,
+      });
+      // console.log("Changed State");
+    } catch (e) {
+      // console.log("Error");
+    }
+  }
+
+  render(props) {
     // console.log("Rating", this.props.currentProductRating.length);
     return (
-      <div>
+      <div className="breakdown-container">
         <h1>Breakdown</h1>
         <span>
-          Average Rating: {this.getAverageRating()} {this.temp}
+          {/* Average Rating: {this.getAverageRating()} */}
+          {this.temp}
         </span>
+        <br></br>
+        <StarRating averageRating={this.state.averageRating} />
       </div>
     );
   }

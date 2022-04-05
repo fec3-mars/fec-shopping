@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReviewList from "./reviewlist/ReviewList.js";
 import Breakdown from "./breakdown/Breakdown.js";
 import SubmitReview from "./submitReview/SubmitReview.js";
-import Star from "./star/Star.js";
+
 import axios from "axios";
 import "./Review.css";
 
@@ -35,17 +35,11 @@ export default class Review extends Component {
 
     return (
       <div className="review-container">
-        <div>
-          <Breakdown
-            className="breakdown-container"
-            currentProductRating={this.state.reviews}
-          />
-          <ReviewList
-            className="review-container"
-            currentProductReview={this.state.reviews}
-          />
-          <SubmitReview />
+        <div className="breakdown-reviewlist">
+          <Breakdown currentProductRating={this.state.reviews} />
+          <ReviewList currentProductReview={this.state.reviews} />
         </div>
+        <SubmitReview />
       </div>
     );
   }
