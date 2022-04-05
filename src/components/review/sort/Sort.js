@@ -1,14 +1,27 @@
 import React, { Component } from "react";
 
 export default class Sort extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayed: false,
+      sortOrder: this.props.sortOrder,
+    };
+  }
+
+  sortOption = () => {
+    this.setState({
+      displayed: false,
+      sortOrder: sort,
+    });
+  };
   render() {
     return (
       <div>
-        <select>
-          <option value="1">Sort By</option>
-          <option value="1">Helpful</option>
-          <option value="2">Newest</option>
-          <option value="3">Relevant</option>
+        <select defaultValue="Relevant">
+          <option value="Helpful">Helpful</option>
+          <option value="Newest">Newest</option>
+          <option value="Relevant">Relevant</option>
         </select>
       </div>
     );
