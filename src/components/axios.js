@@ -40,13 +40,14 @@ export function getProductStyles() {
       this.setState({
         product: product,
         styles: results.data.results,
-        selectedStyle: results.data.results[0]
+        selectedStyle: results.data.results[0],
       });
     })
     .catch((err) => {
       console.log("error in axios.js makeRequest", err);
     });
 }
+
 
 export function getRelatedProducts() {
   const product = arguments[0];
@@ -98,6 +99,34 @@ export function getRelatedImage() {
   }
 
 };
+
+
+
+/**
+ * getQuestionsAndAnswers takes a product id as an argument
+ * and populates QuestionList with questions related to product id ||
+ * there is no explicit return value
+ * || 'this' within this function references the QuestionList component
+ * @param {*} id getQuestionsAndAnswers -> takes product id -> sets QuestionList component state
+ *
+ */
+export function getQuestionsAndAnswers(id) {
+  axios.get(`/qa/questions/?product_id=${id}`)
+
+      .then((response) => {
+        const { results } = response.data;
+        console.log('results', results)
+        this.setState({
+          questions: results
+        }, () => {
+          this.populateQuestions();
+        });
+      })
+      .catch(err => {
+        console.log('error in get for qa', err);
+      });
+
+}
 
 
 export default axios;
