@@ -53,7 +53,9 @@ class Overview extends React.Component {
         </div>}
         {this.state.product.features && <ul className="features-list">
           {this.state.product.features.map((item, idx) => {
-            return <Feature key={idx} item={item} />
+            if (item.feature !== null && item.value !== null) {
+              return <Feature key={idx} item={item} />
+            }
           })}
         </ul>}
         <div className="social-media-container">
