@@ -1,14 +1,17 @@
 import React from 'react';
+import './ProductSlogan.css';
 
-const ProductSlogan = ({ slogan, handleClick }) => {
+const ProductSlogan = ({ product }) => {
+  const features = product.features;
 
 
   return (
     <div data-testid="product-slogan" className="container product-slogan">
 
-      <h1> Product Slogan</h1>
-      <p onClick={() => handleClick(2)}>{slogan}</p>
-
+      <div className="slogan-description">
+        <h2>{product.slogan}</h2>
+        <p>{product.description}</p>
+      </div>
     </div>
   )
 }

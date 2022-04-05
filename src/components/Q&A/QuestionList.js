@@ -19,9 +19,8 @@ class QuestionList extends React.Component {
   createAllQuestions() {
     const allQuestions = this.state.questions.map((question, idx) => {
 
-      return <IndividualQuestion question={question} key={idx}/>;
+      return <IndividualQuestion question={question} key={idx} />;
     });
-    console.log('questions', allQuestions);
 
     this.setState({
       allQuestions: [...allQuestions],
@@ -42,12 +41,12 @@ class QuestionList extends React.Component {
 
   componentDidUpdate(prevProps) {
 
-    const curProduct = {...this.props.curProduct};
+    const curProduct = { ...this.props.curProduct };
 
     if (curProduct.data?.id !== prevProps.curProduct.data?.id) {
       this.setState({
-        curProduct: {...curProduct.data},
-      }, function() {
+        curProduct: { ...curProduct.data },
+      }, function () {
 
         this.retrieveData();
       });
@@ -57,7 +56,7 @@ class QuestionList extends React.Component {
   render() {
     return (
       <div className="questionList">
-        <h5>{"Questions & Answers"}</h5>
+        <h2>{"Questions & Answers"}</h2>
         <input
           type="text"
           placeholder="Have a question? Search for answers..."
