@@ -2,7 +2,7 @@ import React from 'react';
 import './Styles.css';
 import SingleStyle from './SingleStyle.js';
 
-const Styles = ({ styles, selectedStyle }) => {
+const Styles = ({ styles, selectedStyle, styleChangeHandler }) => {
   console.log(styles)
 
 
@@ -14,7 +14,7 @@ const Styles = ({ styles, selectedStyle }) => {
       </div>
       <div className="styles">
         {styles.map(style => {
-          return <SingleStyle style={style} />
+          return <SingleStyle style={style} selectedStyle={style.name === selectedStyle.name} styleChangeHandler={styleChangeHandler} />
         })}
       </div>
     </div>
