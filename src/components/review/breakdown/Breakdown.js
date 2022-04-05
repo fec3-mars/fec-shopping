@@ -11,14 +11,14 @@ export default class Breakdown extends Component {
     };
   }
 
-  getAverageRating = () => {
-    let temp = 0;
-    for (let i = 0; i < this.props.currentProductRating.length; i++) {
-      temp += this.props.currentProductRating[i].rating;
-    }
-    temp = temp / this.props.currentProductRating.length;
-    return temp;
-  };
+  // getAverageRating = () => {
+  //   let temp = 0;
+  //   for (let i = 0; i < this.props.currentProductRating.length; i++) {
+  //     temp += this.props.currentProductRating[i].rating;
+  //   }
+  //   temp = temp / this.props.currentProductRating.length;
+  //   return temp;
+  // };
 
   componentDidUpdate() {
     try {

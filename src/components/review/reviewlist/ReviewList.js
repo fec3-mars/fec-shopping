@@ -27,22 +27,31 @@ export default class ReviewList extends Component {
   };
 
   render(props) {
-    // console.log(this.props.currentProductReview);
+    // console.log("CurrentList: ", this.props.currentProductReview);
     return (
       <div className="reviewlist-container">
         <h1>Reviews</h1>
-        <Sort className="sort-container" />
+        <Sort
+          className="sort-container"
+          // SORT BY HELPFULNESS, DATE
+        />
         <ul className="review-list">
           {this.props.currentProductReview
+            // TODO: Add images : .photos[0].url
             .slice(0, this.state.visible)
             .map((review, index) => {
               return (
                 <ul key={index}>
+                  <b>{review.body}</b>
+                  <br></br>
                   {review.summary}
                   <br></br>
                   Rating: {review.rating}
                   <br></br>
                   Reviewer_ID: {review.reviewer_name}
+                  <br></br>
+                  Photo:
+                  <img src={review.photos[index]} alt="photo" />
                 </ul>
               );
             })}

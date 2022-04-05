@@ -11,3 +11,7 @@
   width: 100%;
   display: flex;
 }
+
+.submitReview {
+  position: absolute;
+}
