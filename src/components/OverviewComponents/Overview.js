@@ -37,7 +37,6 @@ class Overview extends React.Component {
   // }
 
   render() {
-    console.log(this.state)
     return (
       <div className="overview-container">
         <div className="image-gallery-container">
