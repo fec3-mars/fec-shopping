@@ -3,6 +3,7 @@ import './Feature.css';
 
 const Feature = ({ item }) => {
   let { feature, value } = item;
+  console.log(item)
 
   return (
     <div className="feature">

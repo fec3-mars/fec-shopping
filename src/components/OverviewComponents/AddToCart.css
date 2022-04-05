@@ -64,6 +64,15 @@
   font-size: 1.2rem;
 }
 
+.out-of-stock {
+  text-align: center;
+  width: 85%;
+  color: red;
+  border: 2px solid #fff;
+  padding: 1rem;
+  margin: 0;
+}
+
 .size-input,
 .qty-input,
 .btn__add-to-bag:hover {
