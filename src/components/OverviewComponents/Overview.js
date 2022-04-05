@@ -46,7 +46,7 @@ class Overview extends React.Component {
         <div className=" preferences-container">
           <ProductInfo selectedStyle={this.state.selectedStyle} product={this.state.product} className="product-info" />
           <Styles styles={this.state.styles} selectedStyle={this.state.selectedStyle} styleChangeHandler={this.styleChangeHandler} />
-          <AddToCart className="add-to-cart" />
+          {this.state.selectedStyle.skus && <AddToCart className="add-to-cart" selectedStyle={this.state.selectedStyle} />}
         </div>
         {this.state.product.slogan && <div className="product-slogan-container">
           <ProductSlogan product={this.state.product} className="product-slogan" />
