@@ -4,13 +4,11 @@
   justify-content: flex-start;
   height: 100%;
   width: 100%;
-  /* background-size: cover; */
   position: relative;
   overflow: hidden;
 }
 
 .main-img {
-  /* object-fit: cover; */
   object-fit: contain;
   height: 100%;
 }
@@ -35,7 +33,7 @@
   transform: translateX(-50%);
   background-color: #fff;
   border-radius: 50%;
-  /* background-color: transparent; */
+  box-shadow: 2px 2px 4px #000;
   border: none;
 }
 
@@ -46,7 +44,7 @@
   bottom: 0;
   background-color: #fff;
   border-radius: 50%;
-  /* background-color: transparent; */
+  box-shadow: 2px 2px 4px #000;
   border: none;
 }
 
@@ -57,7 +55,7 @@
   left: 14%;
   background-color: #fff;
   border-radius: 50%;
-  /* background-color: transparent; */
+  box-shadow: 2px 2px 4px #000;
   border: none;
 }
 
@@ -68,6 +66,7 @@
   right: 5%;
   background-color: #fff;
   border-radius: 50%;
+  box-shadow: 2px 2px 4px #000;
   border: none;
 }
 

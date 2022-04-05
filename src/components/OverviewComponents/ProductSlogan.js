@@ -1,9 +1,7 @@
 import React from 'react';
+import './ProductSlogan.css';
 
-const ProductSlogan = ({ product, selectedStyle }) => {
-
-  // console.log(product)
-  // console.log(selectedStyle)
+const ProductSlogan = ({ product }) => {
   const features = product.features;
 
 
@@ -14,12 +12,6 @@ const ProductSlogan = ({ product, selectedStyle }) => {
         <h2>{product.slogan}</h2>
         <p>{product.description}</p>
       </div>
-      <ul className="features">
-        {/* create a feature component */}
-
-
-      </ul>
-
     </div>
   )
 }
