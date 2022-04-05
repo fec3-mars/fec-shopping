@@ -39,7 +39,7 @@ export default class Review extends Component {
           <Breakdown currentProductRating={this.state.reviews} />
           <ReviewList currentProductReview={this.state.reviews} />
         </div>
-        <SubmitReview />
+        <SubmitReview className="submitReview" />
       </div>
     );
   }

@@ -4,21 +4,31 @@ export default class Sort extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayed: false,
-      sortOrder: this.props.sortOrder,
+      value: "",
     };
   }
 
-  sortOption = () => {
+  handleChange = (event) => {
     this.setState({
-      displayed: false,
-      sortOrder: sort,
+      value: event.target.value,
     });
   };
+
   render() {
+    if (this.state.value === "Relevant") {
+      //TODO:
+    } else if (this.state.value === "Newest") {
+      //TODO:
+    } else if (this.state.value === "Helpful") {
+      //TODO:
+    }
     return (
       <div>
-        <select defaultValue="Relevant">
+        <select
+          defaultValue="Relevant"
+          onChange={this.handleChange}
+          value={this.state.value}
+        >
           <option value="Helpful">Helpful</option>
           <option value="Newest">Newest</option>
           <option value="Relevant">Relevant</option>

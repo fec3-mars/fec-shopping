@@ -18,14 +18,14 @@ export default class StarRating extends Component {
   componentDidUpdate(prevProps) {
     setTimeout(() => {
       if (this.props.averageRating !== prevProps.averageRating) {
-        console.log("working", this.props.averageRating);
+        // console.log("working", this.props.averageRating);
         this.setState({
           rating: this.props.averageRating,
         });
       } else {
         // console.log("error");
       }
-    }, 2000);
+    }, 1000);
   }
   render(props) {
     // console.log("Average Rating: ", this.state.rating);
