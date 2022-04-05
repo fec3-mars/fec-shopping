@@ -8,6 +8,7 @@ class IndividualQuestion extends React.Component {
     this.state = {
       answers: [],
       expanded: false,
+      addAnswer: false,
     };
   }
 
@@ -62,6 +63,14 @@ class IndividualQuestion extends React.Component {
     });
   }
 
+  changeAddAnswer() {
+    //TODO
+    //does not actually submit answer yet
+    this.setState({
+      addAnswer: !this.state.addAnswer,
+    });
+  }
+
   render() {
     const {
       asker_name,
@@ -72,36 +81,60 @@ class IndividualQuestion extends React.Component {
       reported,
     } = this.props.question;
 
+    const {
+      answers,
+      expanded,
+      addAnswer,
+    } = this.state;
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+    let answersText = answers; //default is answer html elements
+    let expandButton = <button onClick={this.changeExpanded.bind(this)}> Collapse answers </button>; //defaults to expanded
 
-    if (this.state.answers.length === 0) {
-      return(
-        <div className="individual-question">
-          <h3>Q: {question_body}</h3>
-          <h3>No answers, yet</h3>
-        </div>
-      )
+    if (!expanded) {
+      answersText = answers.slice(0, 2) //if 'Expanded' answers not hit, show only two
+      expandButton = <button onClick={this.changeExpanded.bind(this)}> See more answers </button>
     }
 
-    if (!this.state.expanded) {
-      return(
-        <div className="individual-question">
-          <h3>Q: {question_body}</h3>
-          <h3>A: </h3>
-          {this.state.answers.slice(0, 2)}
-          <button onClick={this.changeExpanded.bind(this)}>See more answers</button>
-        </div>
-      )
+    if (answers.length === 0) {
+      answersText = <h3> No answers, yet </h3>; //if no answers present yet, show 'No answers, yet
     }
 
+    let style = {
+      border: "solid white",
+    }
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+      if (!addAnswer) {
+        return (<div className="individual-question" style={style}>
 
-    return (
-      <div className="individual-question">
           <h3>Q: {question_body}</h3>
           <h3>A: </h3>
-          {this.state.answers}
-          <button onClick={this.changeExpanded.bind(this)}>Collapse answers</button>
-      </div>
-    )
+
+          {answersText}
+          {expandButton}
+
+          <button onClick={this.changeAddAnswer.bind(this)}> Add an Answer </button>
+        </div>)
+      }
+      return (
+        <div className="add-an-answer">
+          <h3>Submit your answer</h3>
+
+          <h4>*Your answer</h4>
+          <textarea name="textarea" style={{'width':'250px', 'height':'150px'}}></textarea>
+
+          <h4>*What is your nickname?</h4>
+          <input placeholder="Example: jack545!"></input>
+          <p><i>for privacy reasons do not use your full name or address</i></p>
+
+          <h4>*Your email</h4>
+          <input placeholder="Example: jack@email.com"></input>
+          <p><i>for authentication reasons, you will not be emailed</i></p>
+          <button> Add Photos </button>
+          <button onClick={this.changeAddAnswer.bind(this)}> Submit Answer </button>
+        </div>
+      )
+
+
   }
 };
 

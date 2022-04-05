@@ -38,9 +38,6 @@ class IndividualAnswer extends React.Component {
       report,
     } = this.state;
 
-    let style = {
-      display: 'inline',
-    }
 
     const formattedDate = new Date(date);
 
@@ -66,7 +63,7 @@ class IndividualAnswer extends React.Component {
     }
 
     return(
-      <div className='answers' style={style}>
+      <div className='answers'>
         <p className='answer-body'>{body}</p>
         <p>by {name}, {formattedDate.toDateString()}</p>
         <button className='helpful' onClick={this.change.bind(this)}>Helpful? </button>
