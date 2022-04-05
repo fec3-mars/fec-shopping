@@ -37,7 +37,6 @@ class Overview extends React.Component {
   // }
 
   render() {
-    console.log(this.state)
     return (
       <div className="overview-container">
         <div className="image-gallery-container">
@@ -46,14 +45,16 @@ class Overview extends React.Component {
         <div className=" preferences-container">
           <ProductInfo selectedStyle={this.state.selectedStyle} product={this.state.product} className="product-info" />
           <Styles styles={this.state.styles} selectedStyle={this.state.selectedStyle} styleChangeHandler={this.styleChangeHandler} />
-          <AddToCart className="add-to-cart" />
+          {this.state.selectedStyle.skus && <AddToCart className="add-to-cart" selectedStyle={this.state.selectedStyle} />}
         </div>
         {this.state.product.slogan && <div className="product-slogan-container">
           <ProductSlogan product={this.state.product} className="product-slogan" />
         </div>}
         {this.state.product.features && <ul className="features-list">
           {this.state.product.features.map((item, idx) => {
-            return <Feature key={idx} item={item} />
+            if (item.feature !== null && item.value !== null) {
+              return <Feature key={idx} item={item} />
+            }
           })}
         </ul>}
         <div className="social-media-container">
