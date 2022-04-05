@@ -57,6 +57,15 @@ class IndividualQuestion extends React.Component {
     this.formatAnswers(answers);
   }
 
+  componentDidUpdate(prevProps) {
+    const {answers} = this.props.question;
+
+    if (answers !== prevProps.question.answers) {
+      this.formatAnswers(answers)
+    }
+  }
+
+
   changeExpanded() {
     this.setState({
       expanded: !this.state.expanded,
@@ -97,6 +106,7 @@ class IndividualQuestion extends React.Component {
 
     if (answers.length === 0) {
       answersText = <h3> No answers, yet </h3>; //if no answers present yet, show 'No answers, yet
+      expandButton = null;
     }
 
     let style = {

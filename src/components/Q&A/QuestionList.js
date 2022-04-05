@@ -12,14 +12,22 @@ class QuestionList extends React.Component {
     this.state = {
       curProduct: {},
       questions: [],
+      filteredQuestions: [],
       allQuestions: [],
       addQuestion: false,
+      searchTerm: "",
     };
   }
 
   createAllQuestions() {
-    const allQuestions = this.state.questions.map((question, idx) => {
+    const {
+      questions,
+      filteredQuestions,
+    } = this.state;
 
+    const collection = filteredQuestions.length === 0 ? questions : filteredQuestions;
+
+    const allQuestions = collection.map((question, idx) => {
       return <IndividualQuestion question={question} key={idx} />;
     });
 
@@ -59,6 +67,41 @@ class QuestionList extends React.Component {
     })
   }
 
+  handleSearch(e) {
+    const searchTerm = e.target.value;
+
+    if (searchTerm.length >= 3) {
+      this.setState({
+        searchTerm: searchTerm,
+      })
+      return this.filterQuestions();
+    }
+
+    this.setState({
+      searchTerm: '',
+    })
+    this.filterQuestions();
+  }
+
+  filterQuestions() {
+    const {
+      questions,
+      searchTerm,
+    } = this.state;
+
+    const filtered = questions.filter((question) => {
+      let regex = new RegExp(searchTerm, 'i');
+      return question.question_body.search(regex) !== -1;
+    })
+
+
+    this.setState({
+      filteredQuestions: [...filtered],
+    }, function() {
+      this.createAllQuestions();
+    })
+  }
+
   render() {
     const {
       curProduct,
@@ -79,6 +122,7 @@ class QuestionList extends React.Component {
           <input
             type="text"
             placeholder="Have a question? Search for answers..."
+            onChange={this.handleSearch.bind(this)}
           ></input>
           {allQuestions}
           <button onClick={this.changeAddQuestion.bind(this)}type="button">Add a Question </button>

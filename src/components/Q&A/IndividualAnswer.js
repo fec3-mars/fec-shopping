@@ -63,7 +63,7 @@ class IndividualAnswer extends React.Component {
     }
 
     return(
-      <div className='answers'>
+      <div className='answers' style={{border: 'solid white'}}>
         <p className='answer-body'>{body}</p>
         <p>by {name}, {formattedDate.toDateString()}</p>
         <button className='helpful' onClick={this.change.bind(this)}>Helpful? </button>
