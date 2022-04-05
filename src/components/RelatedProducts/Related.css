@@ -2,3 +2,42 @@ html {
   font-size: 62.5%;
 }
 
+.relatedProducts{
+  width: 100%;
+  align-items: center;
+  display:table-cell
+}
+
+.individualCard{
+  border: solid 2px black;
+
+}
+
+.relatedButton {
+  border: none;
+  padding: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  width: 10px;
+  height: 10px;
+  display:inline-block;
+  position:relative;
+  transform: translate(-50%, -50%);
+}
+
+.relatedCard{
+
+  display: grid;
+  background-color:white;
+  color: brown;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  gap: 2px;
+  grid-auto-flow: column;
+}
+
+.relatedImage {
+  width: 80%;
+}
