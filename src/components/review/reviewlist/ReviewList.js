@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Review from "../Review.js";
 import "./ReviewList.css";
+import Sort from "../sort/Sort.js";
 
 export default class ReviewList extends Component {
   constructor(props) {
@@ -30,7 +31,8 @@ export default class ReviewList extends Component {
     return (
       <div className="reviewlist-container">
         <h1>Reviews</h1>
-        <li className="review-list">
+        <Sort className="sort-container" />
+        <ul className="review-list">
           {this.props.currentProductReview
             .slice(0, this.state.visible)
             .map((review, index) => {
@@ -44,7 +46,7 @@ export default class ReviewList extends Component {
                 </ul>
               );
             })}
-        </li>
+        </ul>
         <div className="view-more-button">
           {this.state.hideReviewButton ? null : (
             <button className="moreReviews" onClick={this.showMoreItems}>
