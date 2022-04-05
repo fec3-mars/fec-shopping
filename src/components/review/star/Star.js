@@ -18,9 +18,9 @@ export default class StarRating extends Component {
   // componentDidUpdate(prevProps) {
   //   if (this.props.averageRating !== prevProps.averageRating) {
   //     console.log("working", this.props.averageRating);
-  //     // this.setState({
-  //     //   rating: this.props.averageRating,
-  //     // });
+  //     this.setState({
+  //       rating: this.props.averageRating,
+  //     });
   //   } else {
   //     // console.log("error");
   //   }

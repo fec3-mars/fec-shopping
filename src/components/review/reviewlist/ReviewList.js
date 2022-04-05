@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Review from "../Review.js";
 import "./ReviewList.css";
+import Sort from "../sort/Sort.js";
 
 export default class ReviewList extends Component {
   constructor(props) {
@@ -30,6 +31,7 @@ export default class ReviewList extends Component {
     return (
       <div className="reviewlist-container">
         <h1>Reviews</h1>
+        <Sort className="sort-container" />
         <li className="review-list">
           {this.props.currentProductReview
             .slice(0, this.state.visible)
