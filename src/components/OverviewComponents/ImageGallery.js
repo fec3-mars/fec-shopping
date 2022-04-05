@@ -45,7 +45,7 @@ class ImageGallery extends React.Component {
         styleImages: photos,
         mainImageIdx: 0,
         thumbnailStart: 0,
-        thumbailEnd: 6,
+        thumbnailEnd: 6,
         expanded: false
       })
     }
