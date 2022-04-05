@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Review from "../Review.js";
+import "./ReviewList.css";
 
 export default class ReviewList extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class ReviewList extends Component {
   render(props) {
     // console.log(this.props.currentProductReview);
     return (
-      <div>
+      <div className="reviewlist-container">
         <h1>Reviews</h1>
         <li className="review-list">
           {this.props.currentProductReview
