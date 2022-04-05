@@ -8,6 +8,7 @@ export function makeRequest() {
   axios
     .get(`/products/${id}`)
     .then((results) => {
+      // console.log('results at get', results);
       this.setState({
         curProduct: results,
       });
@@ -19,7 +20,6 @@ export function makeRequest() {
 
 export function makeReviewRequest() {
   const id = arguments[0];
-
   axios
     .get(`/reviews/?product_id=${id}`)
     .then((results) => {
@@ -51,12 +51,9 @@ export function getProductStyles() {
 
 export function getRelatedProducts() {
   const product = arguments[0];
-
   axios.get(`/products/${product}/related`)
     .then((results) => {
-      // console.log(results.data);
       this.setState({
-        curProduct: this.props.curProduct,
         relatedProducts: results.data,
       });
     })
@@ -67,13 +64,13 @@ export function getRelatedProducts() {
 
 export function getRelatedDetail() {
   const product = arguments[0]; //array of product ids
+  // console.log('argument at getrelatedDetail', arguments);
   for (var i = 0; i < product.length; i++) {
     var allDetails = [];
     axios.get(`/products/${product[i]}`)
       .then((results) => {
         allDetails.push(results.data);
         this.setState({
-          curProduct: this.props.curProduct,
           relatedProductDetail: allDetails,
         });
       })
@@ -85,7 +82,7 @@ export function getRelatedDetail() {
 
 export function getRelatedImage() {
   const product = arguments[0];
-
+  // console.log('product at getimage', arguments);
   for (var i = 0; i < product.length; i++) {
     var imageUrl = [];
     axios.get(`/products/${product[i]}/styles`)
@@ -93,12 +90,11 @@ export function getRelatedImage() {
         // console.log('product at related image', results.data.results[0].photos[0].thumbnail_url);
         imageUrl.push(results.data.results[0].photos[0].thumbnail_url);
         this.setState({
-          curProduct: this.props.curProduct,
           relatedProductImage: imageUrl,
         });
       })
       .catch((err) => {
-        console.log("error in axios.js getRelatedProducts req", err);
+        console.log("error in axios.js getRelatedImage req", err);
       });
   }
 
