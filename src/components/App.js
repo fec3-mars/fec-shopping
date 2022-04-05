@@ -35,8 +35,8 @@ class App extends React.Component {
       <div className="app">
         <h1>Hello World</h1>
         <Overview curProduct={this.state.curProduct} />
-        <RelatedProducts relatedProducts={this.state.relatedProducts} curProduct={this.state.curProduct}/>
-        <OutfitList />
+        <RelatedProducts curProduct={this.state.curProduct} />
+        <OutfitList curProduct={this.state.curProduct} />
         <Review curProduct={this.state.curProduct} />
         <QuestionList curProduct={this.state.curProduct} />
       </div>
