@@ -1,0 +1,10 @@
+.style-container {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.style-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
