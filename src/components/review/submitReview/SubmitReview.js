@@ -1,41 +1,18 @@
 import React, { Component } from "react";
-import Form from "./Form.js";
-import "./SubmitReview.css";
+import { useState } from "react";
+import Modal from "./Modal.js";
 
-export default class SubmitReview extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      buttonPopup: false,
-      setButtonPopup: false,
-    };
-  }
-
-  handleClick = () => {
-    this.setState({
-      buttonPopup: !this.buttonPopup,
-      // setButtonPopup: !this.buttonPopup,
-    });
-  };
-  render() {
-    return (
+export default function submitReview() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
       <div>
-        <button
-          onClick={() => {
-            this.handleClick();
-          }}
-        >
-          Submit Review
-        </button>
-        <Form
-          trigger={this.state.buttonPopup}
-          setTrigger={this.state.setButtonPopup}
-        >
-          <h3>Review</h3>
-          <p>This is my review submit form</p>
-        </Form>
+        <button onClick={() => setIsOpen(true)}>Open Modal</button>
+        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+          <br></br>
+          PLACEHOLDER
+        </Modal>
       </div>
-    );
-  }
+    </>
+  );
 }
