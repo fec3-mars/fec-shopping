@@ -2,6 +2,7 @@ import React from 'react';
 import "./ImageGallery.css"
 import ImageThumbnail from "./ImageThumbnail.js"
 import Arrow from './Arrow.js';
+import NoImage from '../styles/NoImage.js';
 import {
   faArrowCircleLeft,
   faArrowCircleRight,
@@ -71,25 +72,28 @@ class ImageGallery extends React.Component {
     const { expanded, styleImages, thumbnailStart, thumbnailEnd, mainImageIdx } = this.state;
     return (
       <div className="container image-gallery">
-        <img src={`${styleImages[mainImageIdx]?.url}`} className="main-img" />
-        <div className="thumbnail-list-container">
-          {thumbnailStart > 0 && <Arrow type={'up'} scrollThumbnails={this.scrollThumbnails} />}
-          <ul className="thumbnail-list">
-            {styleImages.map((img, idx) => {
-              if (styleImages.length > 7) { // identifies if there is a need to have scrolling
-                if (thumbnailStart <= idx && thumbnailEnd >= idx) { //ensures that if scrolling is needed, the correct pictures are showing
-                  return <ImageThumbnail key={idx} updateMainImageHandler={this.updateMainImageHandler} idx={idx} isMain={mainImageIdx === idx} thumbnail={img.thumbnail_url} />
+        {(styleImages[0]?.url && <>
+          <img src={`${styleImages[mainImageIdx]?.url}`} className="main-img" />
+          <div className="thumbnail-list-container">
+            {thumbnailStart > 0 && <Arrow type={'up'} scrollThumbnails={this.scrollThumbnails} />}
+            <ul className="thumbnail-list">
+              {styleImages.map((img, idx) => {
+                if (styleImages.length > 7) { // identifies if there is a need to have scrolling
+                  if (thumbnailStart <= idx && thumbnailEnd >= idx) { //ensures that if scrolling is needed, the correct pictures are showing
+                    return <ImageThumbnail key={idx} updateMainImageHandler={this.updateMainImageHandler} idx={idx} isMain={mainImageIdx === idx} thumbnail={img.thumbnail_url} />
+                  }
+                } else {
+                  return <ImageThumbnail key={idx} isMain={mainImageIdx === idx} idx={idx} updateMainImageHandler={this.updateMainImageHandler} thumbnail={img.thumbnail_url} /> //if scrolling is not needed
                 }
-              } else {
-                return <ImageThumbnail key={idx} isMain={mainImageIdx === idx} idx={idx} updateMainImageHandler={this.updateMainImageHandler} thumbnail={img.thumbnail_url} /> //if scrolling is not needed
+              })
               }
-            })
-            }
-          </ul>
-          {thumbnailEnd < styleImages.length - 1 && <Arrow type={'down'} scrollThumbnails={this.scrollThumbnails} />}
-        </div>
-        {mainImageIdx > 0 && <Arrow type={'left'} scrollMainImages={this.scrollMainImages} />}
-        {styleImages.length - 1 > mainImageIdx && <Arrow type={'right'} scrollMainImages={this.scrollMainImages} />}
+            </ul>
+            {thumbnailEnd < styleImages.length - 1 && <Arrow type={'down'} scrollThumbnails={this.scrollThumbnails} />}
+          </div>
+          {mainImageIdx > 0 && <Arrow type={'left'} scrollMainImages={this.scrollMainImages} />}
+          {styleImages.length - 1 > mainImageIdx && <Arrow type={'right'} scrollMainImages={this.scrollMainImages} />}
+        </>
+        ) || <NoImage big={true} message={'Sorry, but there are no images available for this product.'} />}
       </div >
     )
   }
