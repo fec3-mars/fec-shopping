@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -20,6 +21,7 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 export default function Modal({ open, children, onClose }) {
+  const [nickname, setNickname] = useState("");
   if (!open) return null;
   return (
     <>
@@ -27,8 +29,22 @@ export default function Modal({ open, children, onClose }) {
       <div style={MODAL_STYLES}>
         <form>
           <label>
-            Name:
+            Review Summary:
             <input type="text" name="name" />
+          </label>
+          <br></br>
+          <label>
+            Review Body:
+            <input type="text" name="name" />
+          </label>
+          <br></br>
+          <label>
+            What is your nickname?
+            <input
+              type="text"
+              name="name"
+              onChange={(e) => setNickname(e.target.value)}
+            />
           </label>
         </form>
         <br></br>
