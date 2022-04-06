@@ -2,7 +2,6 @@ import React from 'react';
 import App from '../App.js'
 import { axios, makeRequest, getRelatedProducts, getRelatedDetail, getRelatedImage } from '../axios.js';
 import './Related.css';
-import './star.jpeg';
 
 // this RelatedProductsList should stay the same for each currentproduct, thus shld be stored in global state
 //this list should gather all elements/component of related products to be rendered
@@ -12,7 +11,6 @@ class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      curProduct: this.props.curProduct,
       relatedProducts: [],
       relatedProductDetail: {},
       relatedProductImage: {}
@@ -35,7 +33,8 @@ class RelatedProducts extends React.Component {
     }
   }
 
-  comparisonModal() {
+  comparisonModal(element) {
+    console.log('everything going inside modal', element );
     const openModalButtons = document.querySelectorAll('[data-modal-target]');
     const closeModalButtons = document.querySelectorAll('[data-close-button]');
     const overlay = document.getElementById('overlay');
@@ -76,7 +75,7 @@ class RelatedProducts extends React.Component {
 
   render() {
     if (this.state.relatedProductDetail.length === this.state.relatedProducts.length & this.state.relatedProductImage.length === this.state.relatedProducts.length) {
-      // console.log('related state to be rendered', this.state)
+      console.log('related state to be rendered', this.state)
       return (
         <div className='relatedProducts'>
           <h1>RELATED PRODUCTS</h1>
@@ -85,14 +84,14 @@ class RelatedProducts extends React.Component {
               <div key={element.id} element={element} className='individualCard'>
                 <img className='relatedImage' src={this.state.relatedProductImage[index]}></img>
                 {/* blow is popup */}
-                <button data-modal-target='#modal' className='relatedButton' onClick={this.comparisonModal} ><img src='http://imgur.com/I0EwG.png' /></button>
+                <button data-modal-target='#modal' className='relatedButton' onClick={() => {this.comparisonModal(element)}} ><img src='http://imgur.com/I0EwG.png' /></button>
                 <div className='modal' id='modal'>
                   <div className='modal-header'>
                     <h3 className='title'>Comparison Modal</h3>
                     <button data-close-button className='close-button'>&times;</button>
                   </div>
                   <div className='modal-body'>
-                    Helloooooo
+                    {element.category}
                   </div>
                 </div>
                 <div id='overlay'></div>
