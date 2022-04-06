@@ -1,0 +1,30 @@
+.no-image-message {
+  width: 4rem;
+  height: 4rem;
+  font-size: 8px;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  color: #fff;
+
+}
+
+.no-image-container {
+  width: 4.5rem;
+  height: 4.5rem;
+  position: relative;
+}
+
+.missing-image-icon {
+  font-size: 4rem;
+  position: absolute;
+  top: 0;
+  color: red;
+}
+
+.style-selector {
+  font-size: 1.4rem;
+  top: 0;
+  right: 0;
+  position: absolute;
+}
