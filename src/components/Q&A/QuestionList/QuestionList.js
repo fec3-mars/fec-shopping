@@ -53,13 +53,7 @@ class QuestionList extends React.Component {
 
     const regex = new RegExp(searchTerm, 'i');
 
-    // if (text.search(regex) === -1) {
-    //   return;
-    // }
-
     let regIdx = text.search(regex);
-    console.log(searchTerm);
-
 
     let beginningOfStr = text.slice(0, regIdx);
     let highlight = text.slice(regIdx, regIdx + searchTerm.length);
