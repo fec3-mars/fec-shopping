@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import App from "../App.js";
 import {
@@ -8,6 +9,12 @@ import {
   getRelatedImage,
 } from "../axios.js";
 import "./Related.css";
+=======
+import React from 'react';
+import App from '../App.js'
+import { axios, makeRequest, getRelatedProducts, getRelatedDetail, getRelatedImage } from '../axios.js';
+import './Related.css';
+>>>>>>> 5c2dcb3900381db5b36729eac9f62fc00be68092
 
 // this RelatedProductsList should stay the same for each currentproduct, thus shld be stored in global state
 //this list should gather all elements/component of related products to be rendered
