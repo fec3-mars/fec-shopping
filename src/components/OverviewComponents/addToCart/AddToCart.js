@@ -13,7 +13,6 @@ class AddToCart extends React.Component {
     this.state = {
       selectedSize: 'Select Size',
       qty: '-',
-      outOfStock: true,
       selectSize: false
     }
     this.addToBagHandler = this.addToBagHandler.bind(this)
@@ -42,6 +41,11 @@ class AddToCart extends React.Component {
         selectSize: true
       })
     }
+
+    if (this.state.qty > 0) {
+      console.log('post: ', "style", "size", this.state.qty)
+      // POST API
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -49,35 +53,35 @@ class AddToCart extends React.Component {
       this.setState({
         selectedSize: 'Select Size',
         qty: '-',
-        outOfStock: true,
         selectSize: false
       })
     }
   }
 
   render() {
-    const { selectedSize, qty, outOfStock, selectSize } = this.state;
-    const { selectedStyle } = this.props
-    const skus = Object.entries(this.props.selectedStyle.skus);
-    let quantity = this.props.selectedStyle.skus[selectedSize]?.quantity;
+    const { selectedSize, qty, selectSize } = this.state;
+    const { skus } = this.props.selectedStyle
+    const nameClassAddToBag = skus?.null?.quantity === null ? "btn__add-to-bag hide" : "btn__add-to-bag";
+    let quantity = skus[selectedSize]?.quantity;
     quantity = quantity >= 15 ? 15 : quantity;
     const purchaseQtys = Array.from({ length: quantity }, (_, i) => i + 1);
 
     return (
       <form className="add-to-cart">
+        {console.log(skus)}
         <div className="select-menus" >
-          <div className="size-select-container">
-            {selectSize && <p className="size-warning">Please select size</p>}
-            {(skus[0][1].size !== null && <select value={selectedSize} name="size" className="size-input" onChange={(e) => { this.changeState(e) }} >
-              <option>SELECT SIZE</option>
-              {skus.map(option => {
-                if (option[1].size !== null) {
-                  return <option key={option[0]} value={option[0]}>{option[1].size}</option>
-                }
-              })}
-            </select>) || <h3 className="out-of-stock">OUT OF STOCK</h3>}
-          </div>
-          <select value={qty} className="qty-input" name="quantity" onChange={(e) => { this.changeState(e) }}>
+          <SelectSize
+            handleChange={this.changeState}
+            skus={Object.entries(skus).filter(([_, v]) => v?.size)}
+            selectSize={selectSize}
+            selectedSize={selectedSize}
+          />
+          <select
+            value={qty}
+            className="qty-input"
+            name="quantity"
+            onChange={this.changeState}
+          >
             {(selectedSize !== 'Select Size' &&
               purchaseQtys.map(quantity => {
                 return <option key={quantity} value={quantity}>{quantity}</option>
@@ -86,14 +90,31 @@ class AddToCart extends React.Component {
           </select>
         </div>
         <div className="addToBag-Rate">
-          {skus[0][1].size !== null && <button onClick={(e) => { this.addToBagHandler(e) }} className="btn__add-to-bag"><span>ADD TO BAG</span><FontAwesomeIcon icon={faPlus} color="black" ></FontAwesomeIcon></button>}
+          <button onClick={this.addToBagHandler} className={nameClassAddToBag}>
+            <span>ADD TO BAG</span>
+            <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
+          </button>
           <button className="star-container">
-            <FontAwesomeIcon icon={faStar} color="black" className="icon__star"></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faStar} className="icon__star"></FontAwesomeIcon>
           </button>
         </div>
       </form >
     )
   }
 }
+
+const SelectSize = ({ handleChange, selectSize, skus, selectedSize }) => (
+  <div className="size-select-container">
+    {selectSize && <p className="size-warning">Please select size</p>}
+    {(skus.length && <select value={selectedSize} name="size" className="size-input" onChange={handleChange} >
+      <option>SELECT SIZE</option>
+      {skus.map(option => {
+        if (option[1].size !== null) {
+          return <option key={option[0]} value={option[0]}>{option[1].size}</option>
+        }
+      })}
+    </select>) || <h3 className="out-of-stock">OUT OF STOCK</h3>}
+  </div>
+)
 
 export default AddToCart;
