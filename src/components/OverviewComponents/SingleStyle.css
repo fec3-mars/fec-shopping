@@ -25,3 +25,8 @@
 .relative {
   position: relative;
 }
+
+.missing-image {
+  font-size: 3.5rem;
+
+}

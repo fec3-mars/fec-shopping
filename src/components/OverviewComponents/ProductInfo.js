@@ -1,5 +1,6 @@
 import React from 'react';
 import './ProductInfo.css';
+// import StarRating from '../OverviewComponents/review/star/Star.js';
 
 const ProductInfo = ({ product, selectedStyle }) => {
   const discount = selectedStyle.sale_price ? true : false;

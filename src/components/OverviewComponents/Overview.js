@@ -37,21 +37,23 @@ class Overview extends React.Component {
   // }
 
   render() {
+    const { product, styles, selectedStyle } = this.state;
+
     return (
       <div className="overview-container">
         <div className="image-gallery-container">
-          <ImageGallery selectedStyle={this.state.selectedStyle} className="image-gallery" />
+          <ImageGallery selectedStyle={selectedStyle} className="image-gallery" />
         </div>
         <div className=" preferences-container">
-          <ProductInfo selectedStyle={this.state.selectedStyle} product={this.state.product} className="product-info" />
-          <Styles styles={this.state.styles} selectedStyle={this.state.selectedStyle} styleChangeHandler={this.styleChangeHandler} />
-          {this.state.selectedStyle.skus && <AddToCart className="add-to-cart" selectedStyle={this.state.selectedStyle} />}
+          <ProductInfo selectedStyle={selectedStyle} product={product} className="product-info" />
+          <Styles styles={styles} selectedStyle={selectedStyle} styleChangeHandler={this.styleChangeHandler} />
+          {selectedStyle.skus && <AddToCart className="add-to-cart" selectedStyle={selectedStyle} />}
         </div>
-        {this.state.product.slogan && <div className="product-slogan-container">
-          <ProductSlogan product={this.state.product} className="product-slogan" />
+        {product.slogan && <div className="product-slogan-container">
+          <ProductSlogan product={product} className="product-slogan" />
         </div>}
-        {this.state.product.features && <ul className="features-list">
-          {this.state.product.features.map((item, idx) => {
+        {product.features && <ul className="features-list">
+          {product.features.map((item, idx) => {
             if (item.feature !== null && item.value !== null) {
               return <Feature key={idx} item={item} />
             }
