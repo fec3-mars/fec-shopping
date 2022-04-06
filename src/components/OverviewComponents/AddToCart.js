@@ -57,8 +57,9 @@ class AddToCart extends React.Component {
 
   render() {
     const { selectedSize, qty, outOfStock, selectSize } = this.state;
+    const { selectedStyle } = this.props
     const skus = Object.entries(this.props.selectedStyle.skus);
-    let quantity = this.props.selectedStyle.skus[this.state.selectedSize]?.quantity;
+    let quantity = this.props.selectedStyle.skus[selectedSize]?.quantity;
     quantity = quantity >= 15 ? 15 : quantity;
     console.log(skus[0][1].size);
     console.log(quantity);
@@ -66,8 +67,8 @@ class AddToCart extends React.Component {
       <form className="add-to-cart">
         <div className="select-menus" >
           <div className="size-select-container">
-            {this.state.selectSize && <p className="size-warning">Please select size</p>}
-            {(skus[0][1].size !== null && <select value={this.state.selectedSize} name="size" className="size-input" onChange={(e) => { this.changeState(e) }} >
+            {selectSize && <p className="size-warning">Please select size</p>}
+            {(skus[0][1].size !== null && <select value={selectedSize} name="size" className="size-input" onChange={(e) => { this.changeState(e) }} >
               <option>SELECT SIZE</option>
               {skus.map(option => {
                 if (option[1].size !== null) {
@@ -76,8 +77,8 @@ class AddToCart extends React.Component {
               })}
             </select>) || <h3 className="out-of-stock">OUT OF STOCK</h3>}
           </div>
-          <select value={this.state.qty} className="qty-input" name="quantity" onChange={(e) => { this.changeState(e) }}>
-            {(this.state.selectedSize !== 'Select Size' &&
+          <select value={qty} className="qty-input" name="quantity" onChange={(e) => { this.changeState(e) }}>
+            {(selectedSize !== 'Select Size' &&
               Array.from({ length: quantity }, (_, i) => i + 1).map(quantity => {
                 return <option key={quantity} value={quantity}>{quantity}</option>
               })) || <option>-</option>

@@ -80,27 +80,28 @@ class ImageGallery extends React.Component {
   }
 
   render() {
+    const { expanded, styleImages, thumbnailStart, thumbnailEnd, mainImageIdx } = this.state;
     return (
       <div className="container image-gallery">
-        <img style={{ height: "auto", width: "100%" }} src={`${this.state.styleImages[this.state.mainImageIdx]?.url}`} className="main-img" />
+        <img style={{ height: "auto", width: "100%" }} src={`${styleImages[mainImageIdx]?.url}`} className="main-img" />
         <div className="thumbnail-list-container">
-          {this.state.thumbnailStart > 0 && <FontAwesomeIcon icon={faChevronCircleUp} color="black" size="2x" onClick={() => { this.scrollThumbnails(-1) }} className="btn__pan-up"></FontAwesomeIcon>}
+          {thumbnailStart > 0 && <FontAwesomeIcon icon={faChevronCircleUp} color="black" size="2x" onClick={() => { this.scrollThumbnails(-1) }} className="btn__pan-up"></FontAwesomeIcon>}
           <ul className="thumbnail-list">
-            {this.state.styleImages.map((img, idx) => {
-              if (this.state.styleImages.length > 7) { // identifies if there is a need to have scrolling
-                if (this.state.thumbnailStart <= idx && this.state.thumbnailEnd >= idx) { //ensures that if scrolling is needed, the correct pictures are showing
-                  return <ImageThumbnail key={idx} updateMainImageHandler={this.updateMainImageHandler} idx={idx} main={this.state.mainImageIdx === idx} thumbnail={img.thumbnail_url} />
+            {styleImages.map((img, idx) => {
+              if (styleImages.length > 7) { // identifies if there is a need to have scrolling
+                if (thumbnailStart <= idx && thumbnailEnd >= idx) { //ensures that if scrolling is needed, the correct pictures are showing
+                  return <ImageThumbnail key={idx} updateMainImageHandler={this.updateMainImageHandler} idx={idx} main={mainImageIdx === idx} thumbnail={img.thumbnail_url} />
                 }
               } else {
-                return <ImageThumbnail key={idx} main={this.state.mainImageIdx === idx} idx={idx} updateMainImageHandler={this.updateMainImageHandler} totalIdx={this.state.mainImageIdx === idx} thumbnail={img.thumbnail_url} /> //if scrolling is not needed
+                return <ImageThumbnail key={idx} main={mainImageIdx === idx} idx={idx} updateMainImageHandler={this.updateMainImageHandler} totalIdx={mainImageIdx === idx} thumbnail={img.thumbnail_url} /> //if scrolling is not needed
               }
             })
             }
           </ul>
-          {this.state.thumbnailEnd < this.state.styleImages.length - 1 && <FontAwesomeIcon icon={faChevronCircleDown} color="black" size="2x" onClick={() => { this.scrollThumbnails(1) }} className="btn__pan-down"></FontAwesomeIcon>}
+          {thumbnailEnd < styleImages.length - 1 && <FontAwesomeIcon icon={faChevronCircleDown} color="black" size="2x" onClick={() => { this.scrollThumbnails(1) }} className="btn__pan-down"></FontAwesomeIcon>}
         </div>
-        {this.state.mainImageIdx > 0 && <FontAwesomeIcon icon={faArrowCircleLeft} color="black" size="2x" onClick={() => { this.scrollMainImages(-1) }} className="btn__arrow-left"></FontAwesomeIcon>}
-        {this.state.styleImages.length - 1 > this.state.mainImageIdx && <FontAwesomeIcon icon={faArrowCircleRight} color="black" size="2x" onClick={() => { this.scrollMainImages(1) }} className="btn__arrow-right"></FontAwesomeIcon>}
+        {mainImageIdx > 0 && <FontAwesomeIcon icon={faArrowCircleLeft} color="black" size="2x" onClick={() => { this.scrollMainImages(-1) }} className="btn__arrow-left"></FontAwesomeIcon>}
+        {styleImages.length - 1 > mainImageIdx && <FontAwesomeIcon icon={faArrowCircleRight} color="black" size="2x" onClick={() => { this.scrollMainImages(1) }} className="btn__arrow-right"></FontAwesomeIcon>}
       </div >
     )
   }
