@@ -61,8 +61,8 @@ class AddToCart extends React.Component {
     const skus = Object.entries(this.props.selectedStyle.skus);
     let quantity = this.props.selectedStyle.skus[selectedSize]?.quantity;
     quantity = quantity >= 15 ? 15 : quantity;
-    console.log(skus[0][1].size);
-    console.log(quantity);
+    const purchaseQtys = Array.from({ length: quantity }, (_, i) => i + 1);
+
     return (
       <form className="add-to-cart">
         <div className="select-menus" >
@@ -79,7 +79,7 @@ class AddToCart extends React.Component {
           </div>
           <select value={qty} className="qty-input" name="quantity" onChange={(e) => { this.changeState(e) }}>
             {(selectedSize !== 'Select Size' &&
-              Array.from({ length: quantity }, (_, i) => i + 1).map(quantity => {
+              purchaseQtys.map(quantity => {
                 return <option key={quantity} value={quantity}>{quantity}</option>
               })) || <option>-</option>
             }

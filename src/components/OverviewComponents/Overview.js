@@ -1,11 +1,11 @@
 import React from 'react';
-import ImageGallery from './ImageGallery.js';
-import AddToCart from './AddToCart.js';
-import ProductSlogan from './ProductSlogan.js';
-import ProductInfo from './ProductInfo.js';
-import Styles from './Styles.js';
-import SocialMedia from './SocialMedia.js';
-import Feature from './Feature.js';
+import ImageGallery from './imageGallery/ImageGallery.js';
+import AddToCart from './addToCart/AddToCart.js';
+import ProductSlogan from './productInfo/ProductSlogan.js';
+import ProductInfo from './productInfo/ProductInfo.js';
+import Styles from './styles/Styles.js';
+import SocialMedia from './socialMedia/SocialMedia.js';
+import Feature from './productInfo/Feature.js';
 import { getProductStyles, axios } from '../axios.js';
 import './Overview.css';
 

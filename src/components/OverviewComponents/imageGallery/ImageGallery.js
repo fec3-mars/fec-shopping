@@ -9,19 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// const ImageGallery = ({curStyles}) => {
-//   const [expanded, setExapanded] = useState(false)
-//   const [styleImagess, setStyleImages] = useState([])
-//   const [mainImageIdx, setMainImageIdx] = useState(0)
-
-//   useEffect(() => {
-//     setStyleImages(curStyles)
-//     setMainImageIdx(0)
-//   }, [curStyles])
-
-//   return
-// }
-
 class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
@@ -83,7 +70,7 @@ class ImageGallery extends React.Component {
     const { expanded, styleImages, thumbnailStart, thumbnailEnd, mainImageIdx } = this.state;
     return (
       <div className="container image-gallery">
-        <img style={{ height: "auto", width: "100%" }} src={`${styleImages[mainImageIdx]?.url}`} className="main-img" />
+        <img src={`${styleImages[mainImageIdx]?.url}`} className="main-img" />
         <div className="thumbnail-list-container">
           {thumbnailStart > 0 && <FontAwesomeIcon icon={faChevronCircleUp} color="black" size="2x" onClick={() => { this.scrollThumbnails(-1) }} className="btn__pan-up"></FontAwesomeIcon>}
           <ul className="thumbnail-list">
