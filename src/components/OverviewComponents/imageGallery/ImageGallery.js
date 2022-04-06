@@ -1,6 +1,7 @@
 import React from 'react';
 import "./ImageGallery.css"
 import ImageThumbnail from "./ImageThumbnail.js"
+import Arrow from './Arrow.js';
 import {
   faArrowCircleLeft,
   faArrowCircleRight,
@@ -72,23 +73,23 @@ class ImageGallery extends React.Component {
       <div className="container image-gallery">
         <img src={`${styleImages[mainImageIdx]?.url}`} className="main-img" />
         <div className="thumbnail-list-container">
-          {thumbnailStart > 0 && <FontAwesomeIcon icon={faChevronCircleUp} color="black" size="2x" onClick={() => { this.scrollThumbnails(-1) }} className="btn__pan-up"></FontAwesomeIcon>}
+          {thumbnailStart > 0 && <Arrow type={'up'} scrollThumbnails={this.scrollThumbnails} />}
           <ul className="thumbnail-list">
             {styleImages.map((img, idx) => {
               if (styleImages.length > 7) { // identifies if there is a need to have scrolling
                 if (thumbnailStart <= idx && thumbnailEnd >= idx) { //ensures that if scrolling is needed, the correct pictures are showing
-                  return <ImageThumbnail key={idx} updateMainImageHandler={this.updateMainImageHandler} idx={idx} main={mainImageIdx === idx} thumbnail={img.thumbnail_url} />
+                  return <ImageThumbnail key={idx} updateMainImageHandler={this.updateMainImageHandler} idx={idx} isMain={mainImageIdx === idx} thumbnail={img.thumbnail_url} />
                 }
               } else {
-                return <ImageThumbnail key={idx} main={mainImageIdx === idx} idx={idx} updateMainImageHandler={this.updateMainImageHandler} totalIdx={mainImageIdx === idx} thumbnail={img.thumbnail_url} /> //if scrolling is not needed
+                return <ImageThumbnail key={idx} isMain={mainImageIdx === idx} idx={idx} updateMainImageHandler={this.updateMainImageHandler} thumbnail={img.thumbnail_url} /> //if scrolling is not needed
               }
             })
             }
           </ul>
-          {thumbnailEnd < styleImages.length - 1 && <FontAwesomeIcon icon={faChevronCircleDown} color="black" size="2x" onClick={() => { this.scrollThumbnails(1) }} className="btn__pan-down"></FontAwesomeIcon>}
+          {thumbnailEnd < styleImages.length - 1 && <Arrow type={'down'} scrollThumbnails={this.scrollThumbnails} />}
         </div>
-        {mainImageIdx > 0 && <FontAwesomeIcon icon={faArrowCircleLeft} color="black" size="2x" onClick={() => { this.scrollMainImages(-1) }} className="btn__arrow-left"></FontAwesomeIcon>}
-        {styleImages.length - 1 > mainImageIdx && <FontAwesomeIcon icon={faArrowCircleRight} color="black" size="2x" onClick={() => { this.scrollMainImages(1) }} className="btn__arrow-right"></FontAwesomeIcon>}
+        {mainImageIdx > 0 && <Arrow type={'left'} scrollMainImages={this.scrollMainImages} />}
+        {styleImages.length - 1 > mainImageIdx && <Arrow type={'right'} scrollMainImages={this.scrollMainImages} />}
       </div >
     )
   }
