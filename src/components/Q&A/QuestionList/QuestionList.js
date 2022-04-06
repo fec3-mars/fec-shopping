@@ -1,9 +1,9 @@
 import React from "react";
-import IndividualQuestion from "./IndividualQuestion";
-import AddQuestion from "./AddQuestion";
-import AddAnswer from "./AddAnswer";
+import IndividualQuestion from "../IndividualQuestion/IndividualQuestion";
+import AddQuestion from "../AddQuestion/AddQuestion";
+import AddAnswer from "../AddAnswer/AddAnswer";
 
-import { getQuestionsAndAnswers } from "../axios";
+import { getQuestionsAndAnswers } from "../../axios";
 
 
 class QuestionList extends React.Component {
@@ -23,12 +23,13 @@ class QuestionList extends React.Component {
     const {
       questions,
       filteredQuestions,
+      searchTerm,
     } = this.state;
 
-    const collection = filteredQuestions.length === 0 ? questions : filteredQuestions;
+    const collection = filteredQuestions.length === 0 && searchTerm.length === 0? questions : filteredQuestions;
 
     const allQuestions = collection.map((question, idx) => {
-      return <IndividualQuestion question={question} key={idx} />;
+      return <IndividualQuestion question={question} key={idx} highlight={this.highlighter.bind(this)} searchTerm={this.state.searchTerm}/>;
     });
 
     this.setState({
@@ -47,9 +48,30 @@ class QuestionList extends React.Component {
     getQuestionsAndAnswers.call(this, id);
   }
 
+  highlighter(text) {
+    const {searchTerm} = this.state;
 
-  componentDidUpdate(prevProps) {
+    const regex = new RegExp(searchTerm, 'i');
+
+    // if (text.search(regex) === -1) {
+    //   return;
+    // }
+
+    let regIdx = text.search(regex);
+
+
+
+    let beginningOfStr = text.slice(0, regIdx);
+    let highlight = text.slice(regIdx, regIdx + searchTerm.length - 1);
+    let endOfStr = text.slice(regIdx + searchTerm.length - 1, text.length)
+    let arr = [beginningOfStr, React.createElement('span', {className: 'highlight'}, highlight), endOfStr]
+
+    return <div>{arr}</div>;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
     const curProduct = { ...this.props.curProduct };
+    const {searchTerm} = this.state;
 
     if (curProduct.data?.id !== prevProps.curProduct.data?.id) {
       this.setState({
@@ -71,16 +93,20 @@ class QuestionList extends React.Component {
     const searchTerm = e.target.value;
 
     if (searchTerm.length >= 3) {
+
       this.setState({
         searchTerm: searchTerm,
+      }, function() {
+        return this.filterQuestions();
       })
-      return this.filterQuestions();
+      return;
     }
 
     this.setState({
       searchTerm: '',
-    })
-    this.filterQuestions();
+    }, function() {
+      this.filterQuestions();
+    });
   }
 
   filterQuestions() {
@@ -90,9 +116,13 @@ class QuestionList extends React.Component {
     } = this.state;
 
     const filtered = questions.filter((question) => {
+      const {
+        question_body,
+      } = question;
+
       let regex = new RegExp(searchTerm, 'i');
-      return question.question_body.search(regex) !== -1;
-    })
+      return question_body.search(regex) !== -1;
+    });
 
 
     this.setState({
@@ -114,7 +144,9 @@ class QuestionList extends React.Component {
     const {
       name
     } = curProduct;
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
+    //default display
     if (!addQuestion) {
       return (
         <div className="questionList">
@@ -130,6 +162,7 @@ class QuestionList extends React.Component {
       );
     }
 
+    //add question display
     return (
       <div className="add-a-question">
           <h3>Ask your question</h3>
@@ -148,8 +181,6 @@ class QuestionList extends React.Component {
           <button onClick={this.changeAddQuestion.bind(this)}> Submit Answer </button>
         </div>
     )
-
-
   }
 }
 

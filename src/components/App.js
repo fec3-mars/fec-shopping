@@ -2,7 +2,7 @@ import React from "react";
 import Review from "./review/Review.js";
 
 import Overview from "./OverviewComponents/Overview.js";
-import QuestionList from "./Q&A/QuestionList";
+import QuestionList from "./Q&A/QuestionList/QuestionList";
 import RelatedProducts from "./RelatedProducts/RelatedProductsList.js";
 import OutfitList from "./YourOutfit/OutfitList.js";
 
