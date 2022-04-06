@@ -53,6 +53,13 @@
   padding: 1rem;
   letter-spacing: 1px;
   width: 75%;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hide {
+  visibility: hidden;
 }
 
 .star-container {
@@ -62,6 +69,7 @@
 
 .icon__star {
   font-size: 1.2rem;
+  color: black;
 }
 
 .out-of-stock {

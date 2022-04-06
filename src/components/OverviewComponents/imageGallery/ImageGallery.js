@@ -2,7 +2,7 @@ import React from 'react';
 import "./ImageGallery.css"
 import ImageThumbnail from "./ImageThumbnail.js"
 import Arrow from './Arrow.js';
-import NoImage from '../styles/NoImage.js';
+import NoImage from '../noImageWarning/NoImage.js';
 import {
   faArrowCircleLeft,
   faArrowCircleRight,

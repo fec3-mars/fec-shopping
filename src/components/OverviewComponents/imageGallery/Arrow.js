@@ -1,10 +1,10 @@
 import React from 'react';
 import './Arrow.css';
 import {
-  faArrowCircleLeft,
-  faArrowCircleRight,
-  faChevronCircleUp,
-  faChevronCircleDown,
+  faArrowLeft,
+  faArrowRight,
+  faChevronUp,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -12,10 +12,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Arrow = ({ type, scrollThumbnails, scrollMainImages }) => {
   return (
     <>
-      {type === 'up' && <FontAwesomeIcon icon={faChevronCircleUp} color="black" size="2x" onClick={() => { scrollThumbnails(-1) }} className="btn__pan-up"></FontAwesomeIcon>}
-      {type === 'down' && <FontAwesomeIcon icon={faChevronCircleDown} color="black" size="2x" onClick={() => { scrollThumbnails(1) }} className="btn__pan-down"></FontAwesomeIcon>}
-      {type === 'right' && <FontAwesomeIcon icon={faArrowCircleRight} color="black" size="2x" onClick={() => { scrollMainImages(1) }} className="btn__arrow-right"></FontAwesomeIcon>}
-      {type === 'left' && <FontAwesomeIcon icon={faArrowCircleLeft} color="black" size="2x" onClick={() => { scrollMainImages(-1) }} className="btn__arrow-left"></FontAwesomeIcon>}
+      {type === 'up' &&
+        <FontAwesomeIcon
+          icon={faChevronUp}
+          inverse={true}
+          onClick={() => { scrollThumbnails(-1) }}
+          className="btn__pan-up btn__icon" />
+      }
+      {type === 'down' &&
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          inverse={true}
+          onClick={() => { scrollThumbnails(1) }}
+          className="btn__pan-down btn__icon" />
+      }
+      {type === 'right' &&
+        <FontAwesomeIcon
+          icon={faArrowRight}
+          inverse={true}
+          onClick={() => { scrollMainImages(1) }}
+          className="btn__arrow-right btn__icon" />
+      }
+      {type === 'left' &&
+        <FontAwesomeIcon
+          icon={faArrowLeft}
+          inverse={true}
+          onClick={() => { scrollMainImages(-1) }}
+          className="btn__arrow-left btn__icon" />}
     </>
   )
 }
