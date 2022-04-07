@@ -39,7 +39,7 @@ export default class ReviewList extends Component {
   };
 
   render(props) {
-    console.log("CurrentList: ", this.props.currentProductReview);
+    // console.log("CurrentList: ", this.props.currentProductReview);
     return (
       <div className="reviewlist-container">
         <h1>Reviews</h1>
