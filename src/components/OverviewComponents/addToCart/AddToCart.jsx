@@ -1,10 +1,11 @@
 import React from 'react';
 import './AddToCart.css';
-import { faPlus, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { postToBag } from '../../axios';
 import SelectSize from './SelectSize.jsx';
 import SelectQty from './SelectQty.jsx';
+import ButtonAddToBag from './ButtonAddToBag.jsx';
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class AddToCart extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { styleId } = this.props.selectedStyle;
+    const { style_id: styleId } = this.props.selectedStyle;
     const { style_id: prevStyleId } = prevProps.selectedStyle;
     if (styleId !== prevStyleId) {
       this.setState({
@@ -73,7 +74,6 @@ class AddToCart extends React.Component {
       purchased,
     } = this.state;
     const { skus } = this.props.selectedStyle;
-    const nameClassAddToBag = skus?.null?.quantity === null ? 'btn__add-to-bag hide' : 'btn__add-to-bag';
     let quantity = skus[selectedSize]?.quantity;
     quantity = quantity >= 15 ? 15 : quantity;
     const purchaseQtys = Array.from({ length: quantity }, (_, i) => i + 1);
@@ -95,12 +95,13 @@ class AddToCart extends React.Component {
           />
         </div>
         <div className="addToBag-Rate">
-          {(!purchased && (
-            <button type="submit" onClick={(e) => { this.addToBagHandler(e, selectedSize, qty); }} className={nameClassAddToBag}>
-              <span>ADD TO BAG</span>
-              <FontAwesomeIcon icon={faPlus} />
-            </button>
-          )) || <p className="thank-you">Thank you for Purchase!</p>}
+          <ButtonAddToBag
+            isHidden={skus?.null?.quantity === null}
+            selectedSize={selectedSize}
+            qty={qty}
+            purchased={purchased}
+            addToBagHandler={this.addToBagHandler}
+          />
           <button type="submit" className="btn__favorite">
             <FontAwesomeIcon icon={faStar} className="icon__star" />
           </button>

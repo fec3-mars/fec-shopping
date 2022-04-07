@@ -41,10 +41,12 @@ export function getProductStyles() {
         product: product,
         styles: results.data.results,
         selectedStyle: results.data.results[0],
+        loaded: true,
       });
     })
     .catch((err) => {
       console.log("error in axios.js makeRequest", err);
+      this.setState({ loaded: true });
     });
 }
 
