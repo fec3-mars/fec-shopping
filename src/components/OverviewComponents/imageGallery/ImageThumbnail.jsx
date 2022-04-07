@@ -1,14 +1,18 @@
 import React from 'react';
 import './ImageThumbnail.css';
 
-const ImageThumbnail = ({ updateMainImageHandler, idx, isMain, thumbnail }) => {
-  let className = isMain ? 'img-thumbnail-container selected' : 'img-thumbnail-container';
+function ImageThumbnail({
+  updateMainImageHandler,
+  idx,
+  isMain,
+  thumbnail
+}) {
+  const className = isMain ? 'img-thumbnail-container selected' : 'img-thumbnail-container';
   return (
     <div onClick={() => { updateMainImageHandler(idx) }} className={className}>
-      <img className="img-thumbnail" src={thumbnail} />
+      <img className="img-thumbnail" alt="" src={thumbnail} />
     </div>
-  )
+  );
+};
 
-}
-
-export default ImageThumbnail
+export default ImageThumbnail;

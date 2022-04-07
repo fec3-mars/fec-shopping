@@ -20,9 +20,9 @@ class AddToCart extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { style_id } = this.props.selectedStyle;
-    const { style_id: prevStyle_id } = prevProps.selectedStyle;
-    if (style_id !== prevStyle_id) {
+    const { styleId } = this.props.selectedStyle;
+    const { style_id: prevStyleId } = prevProps.selectedStyle;
+    if (styleId !== prevStyleId) {
       this.setState({
         selectedSize: 'SELECT SIZE',
         qty: '-',
@@ -36,7 +36,7 @@ class AddToCart extends React.Component {
       this.setState({
         selectedSize: e.target.value,
         selectSize: false,
-        qty: e.target.value === 'SELECT SIZE' ? '-' : 1
+        qty: e.target.value === 'SELECT SIZE' ? '-' : 1,
       });
     } else {
       this.setState({
@@ -72,7 +72,7 @@ class AddToCart extends React.Component {
       selectSize,
       purchased,
     } = this.state;
-    const { skus } = this.props.selectedStyle
+    const { skus } = this.props.selectedStyle;
     const nameClassAddToBag = skus?.null?.quantity === null ? 'btn__add-to-bag hide' : 'btn__add-to-bag';
     let quantity = skus[selectedSize]?.quantity;
     quantity = quantity >= 15 ? 15 : quantity;
@@ -82,7 +82,7 @@ class AddToCart extends React.Component {
       <form className="add-to-cart">
         <div className="select-menus">
           <SelectSize
-            handleChange={this.changeState}
+            changeState={this.changeState}
             skus={Object.entries(skus).filter(([_, v]) => v?.size)}
             selectSize={selectSize}
             selectedSize={selectedSize}
@@ -95,16 +95,18 @@ class AddToCart extends React.Component {
           />
         </div>
         <div className="addToBag-Rate">
-          {(!purchased && <button type="submit" onClick={(e) => { window.confirm('Are you sure that you want to purchase item(s)?') && this.addToBagHandler(e, selectedSize, qty) }} className={nameClassAddToBag}>
-            <span>ADD TO BAG</span>
-            <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
-          </button>) || <p className="thank-you">Thank you for Purchase!</p>}
-          <button className="btn__favorite">
-            <FontAwesomeIcon icon={faStar} className="icon__star"></FontAwesomeIcon>
+          {(!purchased && (
+            <button type="submit" onClick={(e) => { this.addToBagHandler(e, selectedSize, qty); }} className={nameClassAddToBag}>
+              <span>ADD TO BAG</span>
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
+          )) || <p className="thank-you">Thank you for Purchase!</p>}
+          <button type="submit" className="btn__favorite">
+            <FontAwesomeIcon icon={faStar} className="icon__star" />
           </button>
         </div>
-      </form >
-    )
+      </form>
+    );
   }
 }
 
