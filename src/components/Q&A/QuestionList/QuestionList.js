@@ -16,6 +16,7 @@ class QuestionList extends React.Component {
       addQuestion: false,
       searchTerm: '',
       show: false,
+      showAllQ: false,
     };
     // this.showModal = this.showModal.bind(this);
     // this.hideModal = this.hideModal.bind(this);
@@ -125,6 +126,18 @@ class QuestionList extends React.Component {
 
     const collection = filteredQuestions.length === 0 && searchTerm.length === 0? questions : filteredQuestions;
 
+    collection.sort((a, b) => {
+      if (a.question_helpfulness > b.question_helpfulness) {
+        return -1;
+      }
+
+      if (a.question_helpfulness < b.question_helpfulness) {
+        return 1;
+      }
+
+      return 0;
+    });
+
     const allQuestions = collection.map((question, idx) => {
       return <IndividualQuestion question={question} key={idx} highlight={this.highlighter.bind(this)} searchTerm={this.state.searchTerm}/>;
     });
@@ -157,17 +170,31 @@ class QuestionList extends React.Component {
     })
   }
 
+  revealAllQuestions() {
+    this.setState({
+      showAllQ: !this.state.showAllQ,
+    });
+  }
+
   render() {
     const {
       curProduct,
       questions,
       allQuestions,
       addQuestion,
+      showAllQ,
     } = this.state;
 
     const {
       name,
     } = curProduct;
+
+    let displayQuestions = allQuestions.slice(0, 4);
+    let answerButtonText = 'More Answered Questions';
+    if (showAllQ) {
+      displayQuestions = allQuestions;
+      answerButtonText = 'Less Answered Questions';
+    }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -181,12 +208,13 @@ class QuestionList extends React.Component {
             placeholder="Have a question? Search for answers..."
             onChange={this.handleSearch.bind(this)}
           ></input>
-          {allQuestions}
+          {displayQuestions}
 
           {/* <Modal show={this.state.show} handleClose={this.hideModal}>
             <p>worked</p>
 
           </Modal> */}
+          <button onClick={this.revealAllQuestions.bind(this)} type="button">{answerButtonText} </button>
           <button onClick={this.changeAddQuestion.bind(this)} type="button">Add a Question </button>
         </div>
       );

@@ -125,7 +125,7 @@ export function getQuestionsAndAnswers(id) {
   axios.get(`/qa/questions/?product_id=${id}&count=100`)
     .then((response) => {
       const { results } = response.data;
-      console.log(response);
+
       this.setState({
         questions: results,
       }, () => {

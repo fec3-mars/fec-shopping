@@ -116,7 +116,7 @@ class IndividualQuestion extends React.Component {
       body: this.bodyNode.value,
       name: this.nameNode.value,
       email: this.emailNode.value,
-      photos: ['https://static.wikia.nocookie.net/adventuresofjimmyneutron/images/2/28/Goddard.jpg/revision/latest/scale-to-width-down/200?cb=20130423152543'],
+      photos: [],
     };
     postAnswer(postRequest);
   }
@@ -184,6 +184,8 @@ class IndividualQuestion extends React.Component {
 
             {answersText}
           </div>
+          <button className='helpful' >Question is helpful? </button>
+          <p>Yes({question_helpfulness})</p>
           {expandButton}
 
           <button onClick={this.changeAddAnswer.bind(this)}> Add an Answer </button>
