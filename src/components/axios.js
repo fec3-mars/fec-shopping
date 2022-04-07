@@ -112,7 +112,7 @@ export function getRelatedImage() {
 };
 
 
-
+  //--------------------------------------Q&A------------------------------
 /**
  * getQuestionsAndAnswers takes a product id as an argument
  * and populates QuestionList with questions related to product id ||
@@ -138,5 +138,17 @@ export function getQuestionsAndAnswers(id) {
 
 }
 
+export function postAnswer(obj) {
+  axios.post(`/qa/questions/${obj.question_id}/answers`, obj)
+    .then((response) => {
+      console.log('in post answer', response);
+    })
+    .catch(err => {
+      console.log('error in get for qa', err);
+    });
+
+}
+
+    //--------------------------------------Q&A------------------------------
 
 export default axios;

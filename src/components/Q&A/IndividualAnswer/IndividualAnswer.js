@@ -31,7 +31,7 @@ class IndividualAnswer extends React.Component {
       id,
       photos,
     } = this.props.answer;
-    console.log('photos', photos);
+
     const {
       helpful,
       report,
@@ -64,9 +64,9 @@ class IndividualAnswer extends React.Component {
 
     let photoGallery;
     if (photos) {
-      photoGallery = photos.map((photo) => {
+      photoGallery = photos.map((photo, idx) => {
         return(
-          <img className="review-photos" src={photo}></img>
+          <img className="review-photos" src={photo} key={idx}></img>
         )
       });
     }

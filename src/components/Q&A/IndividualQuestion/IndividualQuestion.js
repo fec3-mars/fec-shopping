@@ -1,6 +1,7 @@
 import React from 'react';
 import IndividualAnswer from "../IndividualAnswer/IndividualAnswer";
 import "./IndividualQuestion.css";
+import { postAnswer } from "../../axios";
 
 class IndividualQuestion extends React.Component {
   constructor(props) {
@@ -46,6 +47,11 @@ class IndividualQuestion extends React.Component {
   }
 
   buildAnswers(arr) {
+    const {
+      question_id,
+    } = this.props.question;
+
+
     const answers = arr.map((answer, idx) => {
       return <IndividualAnswer answer={answer} key={idx} />
     });
@@ -81,7 +87,6 @@ class IndividualQuestion extends React.Component {
     }
   }
 
-
   changeExpanded() {
     this.setState({
       expanded: !this.state.expanded,
@@ -91,9 +96,29 @@ class IndividualQuestion extends React.Component {
   changeAddAnswer() {
     //TODO
     //does not actually submit answer yet
+    if (this.state.addAnswer) {
+      this.handleSubmit();
+    }
+
+
     this.setState({
       addAnswer: !this.state.addAnswer,
     });
+  }
+
+  handleSubmit() {
+    const {
+      question_id,
+    } = this.props.question;
+
+    const postRequest = {
+      question_id,
+      body: this.bodyNode.value,
+      name: this.nameNode.value,
+      email: this.emailNode.value,
+      photos: ['https://static.wikia.nocookie.net/adventuresofjimmyneutron/images/2/28/Goddard.jpg/revision/latest/scale-to-width-down/200?cb=20130423152543'],
+    };
+    postAnswer(postRequest);
   }
 
   render() {
@@ -171,14 +196,14 @@ class IndividualQuestion extends React.Component {
           <h3>Submit your answer</h3>
 
           <h4>*Your answer</h4>
-          <textarea name="textarea" style={{'width':'250px', 'height':'150px'}}></textarea>
+          <textarea  ref={node => (this.bodyNode = node)} name="textarea" style={{'width':'250px', 'height':'150px'}} ></textarea>
 
           <h4>*What is your nickname?</h4>
-          <input placeholder="Example: jack545!"></input>
+          <input  ref={node => (this.nameNode = node)} placeholder="Example: jack545!"></input>
           <p><i>for privacy reasons do not use your full name or address</i></p>
 
           <h4>*Your email</h4>
-          <input placeholder="Example: jack@email.com" style={{'width':'250px'}}></input>
+          <input  ref={node => (this.emailNode = node)} placeholder="Example: jack@email.com" style={{'width':'250px'}}></input>
           <p><i>for authentication reasons, you will not be emailed</i></p>
           <button> Add Photos </button>
           <button onClick={this.changeAddAnswer.bind(this)}> Submit Answer </button>
