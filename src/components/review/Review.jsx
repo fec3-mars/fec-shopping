@@ -1,7 +1,8 @@
+/* eslint-disable */
 import React, { Component } from "react";
-import ReviewList from "./reviewlist/ReviewList.js";
-import Breakdown from "./breakdown/Breakdown.js";
-import SubmitReview from "./submitReview/SubmitReview.js";
+import ReviewList from "./reviewlist/ReviewList.jsx";
+import Breakdown from "./breakdown/Breakdown.jsx";
+import SubmitReview from "./submitReview/SubmitReview.jsx";
 
 import axios from "axios";
 import "./Review.css";
@@ -35,7 +36,7 @@ export default class Review extends Component {
 
     return (
       <div className="review-container">
-        <div className="breakdown-reviewlist">
+        <div className="breakdown-reviewList">
           <Breakdown currentProductRating={this.state.reviews} />
           <ReviewList currentProductReview={this.state.reviews} />
         </div>

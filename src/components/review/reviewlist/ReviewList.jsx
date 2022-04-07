@@ -1,8 +1,17 @@
 import React, { Component } from "react";
-import Review from "../Review.js";
+import Review from "../Review.jsx";
 import "./ReviewList.css";
-import Sort from "../sort/Sort.js";
+import Sort from "../sort/Sort.jsx";
 
+const ColoredLine = ({ color }) => (
+  <hr
+    style={{
+      color: color,
+      backgroundColor: color,
+      height: 5,
+    }}
+  />
+);
 export default class ReviewList extends Component {
   constructor(props) {
     super(props);
@@ -42,15 +51,16 @@ export default class ReviewList extends Component {
             .map((review, index) => {
               return (
                 <ul key={index}>
-                  <b>{review.body}</b>
+                  <span>{review.body}</span>
                   <br></br>
-                  {review.summary}
+                  <span>{review.summary}</span>
                   <br></br>
                   Rating: {review.rating}
                   <br></br>
                   Reviewer_ID: {review.reviewer_name}
                   <br></br>
                   Photo: {review.review}
+                  <hr />
                   {/* <img src={review.photos[index]} alt="photo" /> */}
                 </ul>
               );

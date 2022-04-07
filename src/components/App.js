@@ -1,5 +1,5 @@
 import React from "react";
-import Review from "./review/Review.js";
+import Review from "./review/Review.jsx";
 
 import Overview from "./OverviewComponents/Overview.js";
 import QuestionList from "./Q&A/QuestionList/QuestionList";

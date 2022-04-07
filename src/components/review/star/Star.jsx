@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from "react";
 import StarRatings from "react-star-ratings";
 
@@ -18,26 +19,26 @@ export default class StarRating extends Component {
   componentDidUpdate(prevProps) {
     setTimeout(() => {
       if (this.props.averageRating !== prevProps.averageRating) {
-        // console.log("working", this.props.averageRating);
+        // console.log('working', this.props.averageRating);
         this.setState({
           rating: this.props.averageRating,
         });
       } else {
-        // console.log("error");
+        // console.log('error');
       }
     }, 1000);
   }
   render(props) {
-    // console.log("Average Rating: ", this.state.rating);
+    // console.log('Average Rating: ', this.state.rating);
 
     return (
       <StarRatings
         rating={this.state.rating}
-        starRatedColor="black"
+        starRatedColor="yellow"
         numberOfStars={5}
         name="rating"
         starDimension="20px"
-        starSpacing="10px"
+        starSpacing="7px"
       />
     );
   }

@@ -1,6 +1,7 @@
+/* eslint-disable */
 import React, { Component } from "react";
 import { useState } from "react";
-import Modal from "./Modal.js";
+import Modal from "./Modal.jsx";
 
 export default function submitReview() {
   const [isOpen, setIsOpen] = useState(false);
