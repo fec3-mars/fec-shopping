@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './NoImage.css';
 
 const NoImage = ({ message, selectedStyle, big }) => {
-  console.log(big);
 
   let nameClassIcon = big ? "missing-image-icon big" : "missing-image-icon"
   let nameClassMessage = big ? "missing-image-message big" : "missing-image-message"

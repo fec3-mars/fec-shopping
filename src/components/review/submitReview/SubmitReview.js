@@ -7,10 +7,10 @@ export default function submitReview() {
   return (
     <>
       <div>
-        <button onClick={() => setIsOpen(true)}>Open Modal</button>
+        <button onClick={() => setIsOpen(true)}>Submit New Review</button>
         <Modal open={isOpen} onClose={() => setIsOpen(false)}>
           <br></br>
-          PLACEHOLDER
+          DONT PUT PERSONAL INFO IN HERE!
         </Modal>
       </div>
     </>
