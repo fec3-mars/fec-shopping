@@ -1,8 +1,20 @@
+/* eslint-disable */
 import React, { Component } from "react";
-import Review from "../Review.js";
+import Review from "../Review.jsx";
 import "./ReviewList.css";
-import Sort from "../sort/Sort.js";
+import Sort from "../sort/Sort.jsx";
+import StarRatings from "react-star-ratings";
+import moment from "moment";
 
+const ColoredLine = ({ color }) => (
+  <hr
+    style={{
+      color: color,
+      backgroundColor: color,
+      height: 5,
+    }}
+  />
+);
 export default class ReviewList extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +39,7 @@ export default class ReviewList extends Component {
   };
 
   render(props) {
-    // console.log("CurrentList: ", this.props.currentProductReview);
+    console.log("CurrentList: ", this.props.currentProductReview);
     return (
       <div className="reviewlist-container">
         <h1>Reviews</h1>
@@ -37,21 +49,34 @@ export default class ReviewList extends Component {
         /> */}
         <ul className="review-list">
           {this.props.currentProductReview
-            // TODO: Add images : .photos[0].url
             .slice(0, this.state.visible)
             .map((review, index) => {
               return (
                 <ul key={index}>
-                  <b>{review.body}</b>
+                  <span className="reviewer_name">
+                    {review.reviewer_name}
+                    <br></br>
+                    {moment(review.date).utc().format("YYYY-MM-DD")}
+                  </span>
                   <br></br>
-                  {review.summary}
+                  <StarRatings
+                    rating={review.rating}
+                    starRatedColor="yellow"
+                    numberOfStars={5}
+                    name="rating"
+                    starDimension="15px"
+                    starSpacing="3px"
+                  />
                   <br></br>
-                  Rating: {review.rating}
+                  <span className="review-body">{review.body}</span>
                   <br></br>
-                  Reviewer_ID: {review.reviewer_name}
+                  <span>{review.summary}</span>
                   <br></br>
-                  Photo:
-                  <img src={review.photos[index]} alt="photo" />
+                  Helpful? Yes ({review.helpfulness})<br></br>
+                  Report
+                  <br></br>
+                  Photo: <img src={review.photos[0]} alt="photo" />
+                  <hr />
                 </ul>
               );
             })}

@@ -8,7 +8,6 @@ export function makeRequest() {
   axios
     .get(`/products/${id}`)
     .then((results) => {
-      // console.log('results at get', results);
       this.setState({
         curProduct: results,
       });
@@ -20,6 +19,7 @@ export function makeRequest() {
 
 export function makeReviewRequest() {
   const id = arguments[0];
+
   axios
     .get(`/reviews/?product_id=${id}`)
     .then((results) => {
@@ -49,20 +49,23 @@ export function getProductStyles() {
 }
 
 export function postToBag(data, selectedSize) {
-  axios.post('/cart', data).then((result) => {
-    axios.get('/cart').then(res => {
-      console.log(res);
+  axios
+    .post("/cart", data)
+    .then((result) => {
+      axios.get("/cart").then((res) => {
+        console.log(res);
+      });
+      console.log(result);
     })
-    console.log(result)
-  }).catch((err) => {
-    console.log(err);
-  })
+    .catch((err) => {
+      console.log(err);
+    });
 }
-
 
 export function getRelatedProducts() {
   const product = arguments[0];
-  axios.get(`/products/${product}/related`)
+  axios
+    .get(`/products/${product}/related`)
     .then((results) => {
       this.setState({
         relatedProducts: results.data,
@@ -78,7 +81,8 @@ export function getRelatedDetail() {
   // console.log('argument at getrelatedDetail', arguments);
   for (var i = 0; i < product.length; i++) {
     var allDetails = [];
-    axios.get(`/products/${product[i]}`)
+    axios
+      .get(`/products/${product[i]}`)
       .then((results) => {
         allDetails.push(results.data);
         this.setState({
@@ -89,14 +93,15 @@ export function getRelatedDetail() {
         console.log("error in axios.js getRelatedProducts req", err);
       });
   }
-};
+}
 
 export function getRelatedImage() {
   const product = arguments[0];
   // console.log('product at getimage', arguments);
   for (var i = 0; i < product.length; i++) {
     var imageUrl = [];
-    axios.get(`/products/${product[i]}/styles`)
+    axios
+      .get(`/products/${product[i]}/styles`)
       .then((results) => {
         // console.log('product at related image', results.data.results[0].photos[0].thumbnail_url);
         imageUrl.push(results.data.results[0].photos[0].thumbnail_url);
@@ -108,10 +113,7 @@ export function getRelatedImage() {
         console.log("error in axios.js getRelatedImage req", err);
       });
   }
-
-};
-
-
+}
 
 /**
  * getQuestionsAndAnswers takes a product id as an argument
@@ -122,21 +124,23 @@ export function getRelatedImage() {
  *
  */
 export function getQuestionsAndAnswers(id) {
-  axios.get(`/qa/questions/?product_id=${id}`)
+  axios
+    .get(`/qa/questions/?product_id=${id}`)
     .then((response) => {
       const { results } = response.data;
 
-      this.setState({
-        questions: results
-      }, () => {
-        this.populateQuestions();
-      });
+      this.setState(
+        {
+          questions: results,
+        },
+        () => {
+          this.populateQuestions();
+        }
+      );
     })
-    .catch(err => {
-      console.log('error in get for qa', err);
+    .catch((err) => {
+      console.log("error in get for qa", err);
     });
-
 }
-
 
 export default axios;
