@@ -54,6 +54,7 @@ export function getRelatedProducts() {
   axios.get(`/products/${product}/related`)
     .then((results) => {
       this.setState({
+        curProduct: this.props.curProduct,
         relatedProducts: results.data,
       });
     })
@@ -69,7 +70,8 @@ export function getRelatedDetail() {
     var allDetails = [];
     axios.get(`/products/${product[i]}`)
       .then((results) => {
-        allDetails.push(results.data);
+        // console.log('results at getrelateddetail', results);
+        allDetails.push(results);
         this.setState({
           relatedProductDetail: allDetails,
         });
