@@ -54,7 +54,7 @@ class IndividualQuestion extends React.Component {
 
 
     const answers = arr.map((answer, idx) => {
-      return <IndividualAnswer answer={answer} key={idx} />
+      return <IndividualAnswer answer={answer} key={idx} reloadPage={ this.props.reloadPage}/>
     });
 
     this.setState({

@@ -154,6 +154,14 @@ export function reportQuestion(id) {
   return axios.put(`/qa/questions/${id}/report`);
 }
 
+export function markAnswerHelpful(id) {
+  return axios.put(`/qa/answers/${id}/helpful`);
+}
+
+export function reportAnswer(id) {
+  return axios.put(`/qa/answers/${id}/report`);
+}
+
     //--------------------------------------Q&A------------------------------
 
 export default axios;
