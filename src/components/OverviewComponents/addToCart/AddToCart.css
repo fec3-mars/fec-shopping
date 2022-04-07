@@ -54,3 +54,8 @@
 .btn__add-to-bag:hover {
   cursor: pointer;
 }
+
+.btn__favorite {
+  padding: 1rem;
+  width: 15%
+}

@@ -7,27 +7,29 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { postToBag, axios } from '../../axios.js';
 import SelectSize from './SelectSize.js';
+import SelectQty from './SelectQty.js';
 
 
 class AddToCart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedSize: 'Select Size',
+      selectedSize: 'SELECT SIZE',
       qty: '-',
-      selectSize: false
+      selectSize: false,
+      purchased: false
     }
     this.addToBagHandler = this.addToBagHandler.bind(this)
     this.changeState = this.changeState.bind(this)
   }
 
   changeState(e) {
-    console.log(e.target.value)
     if (e.target.name === 'size') {
+      console.log(e.target.value)
       this.setState({
         selectedSize: e.target.value,
         selectSize: false,
-        qty: 1
+        qty: e.target.value === 'SELECT SIZE' ? '-' : 1
       })
     } else {
       this.setState({
@@ -36,16 +38,16 @@ class AddToCart extends React.Component {
     }
   }
 
-  addToBagHandler(e, style, selectedSize, qty) {
+  addToBagHandler(e, selectedSize, qty) {
     e.preventDefault()
-    if (this.state.selectedSize === 'Select Size') {
+    if (this.state.selectedSize === 'SELECT SIZE') {
       this.setState({
         selectSize: true
       })
+      return
     }
 
     if (this.state.qty > 0) {
-      console.log(style.style_id, style.skus[selectedSize].size, qty)
       const data = {
         sku_id: `${selectedSize}`,
         count: `${qty}`
@@ -57,7 +59,7 @@ class AddToCart extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.selectedStyle.style_id !== prevProps.selectedStyle.style_id) {
       this.setState({
-        selectedSize: 'Select Size',
+        selectedSize: 'SELECT SIZE',
         qty: '-',
         selectSize: false
       })
@@ -74,7 +76,6 @@ class AddToCart extends React.Component {
 
     return (
       <form className="add-to-cart">
-        {console.log(skus)}
         <div className="select-menus" >
           <SelectSize
             handleChange={this.changeState}
@@ -82,25 +83,19 @@ class AddToCart extends React.Component {
             selectSize={selectSize}
             selectedSize={selectedSize}
           />
-          <select
-            value={qty}
-            className="qty-input"
-            name="quantity"
-            onChange={this.changeState}
-          >
-            {(selectedSize !== 'Select Size' &&
-              purchaseQtys.map(quantity => {
-                return <option key={quantity} value={quantity}>{quantity}</option>
-              })) || <option>-</option>
-            }
-          </select>
+          <SelectQty
+            qty={qty}
+            changeState={this.changeState}
+            purchaseQtys={purchaseQtys}
+            selectedSize={selectedSize}
+          />
         </div>
         <div className="addToBag-Rate">
-          <button onClick={(e) => { this.addToBagHandler(e, this.props.selectedStyle, selectedSize, qty) }} className={nameClassAddToBag}>
+          <button onClick={(e) => { this.addToBagHandler(e, selectedSize, qty) }} className={nameClassAddToBag}>
             <span>ADD TO BAG</span>
             <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
           </button>
-          <button className="star-container">
+          <button className="btn__favorite">
             <FontAwesomeIcon icon={faStar} className="icon__star"></FontAwesomeIcon>
           </button>
         </div>
