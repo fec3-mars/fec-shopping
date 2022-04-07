@@ -31,10 +31,10 @@ export default class ReviewList extends Component {
     return (
       <div className="reviewlist-container">
         <h1>Reviews</h1>
-        <Sort
+        {/* <Sort
           className="sort-container"
           // SORT BY HELPFULNESS, DATE
-        />
+        /> */}
         <ul className="review-list">
           {this.props.currentProductReview
             // TODO: Add images : .photos[0].url

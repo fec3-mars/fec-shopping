@@ -48,6 +48,17 @@ export function getProductStyles() {
     });
 }
 
+export function postToBag(data, selectedSize) {
+  axios.post('/cart', data).then((result) => {
+    axios.get('/cart').then(res => {
+      console.log(res);
+    })
+    console.log(result)
+  }).catch((err) => {
+    console.log(err);
+  })
+}
+
 
 export function getRelatedProducts() {
   const product = arguments[0];
