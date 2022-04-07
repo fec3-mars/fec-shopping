@@ -1,7 +1,10 @@
+/* eslint-disable */
 import React, { Component } from "react";
 import Review from "../Review.jsx";
 import "./ReviewList.css";
 import Sort from "../sort/Sort.jsx";
+import StarRatings from "react-star-ratings";
+import moment from "moment";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -46,22 +49,34 @@ export default class ReviewList extends Component {
         /> */}
         <ul className="review-list">
           {this.props.currentProductReview
-            // TODO: Add images : .photos[0].url
             .slice(0, this.state.visible)
             .map((review, index) => {
               return (
                 <ul key={index}>
-                  <span>{review.body}</span>
+                  <span className="reviewer_name">
+                    {review.reviewer_name}
+                    <br></br>
+                    {moment(review.date).utc().format("YYYY-MM-DD")}
+                  </span>
+                  <br></br>
+                  <StarRatings
+                    rating={review.rating}
+                    starRatedColor="yellow"
+                    numberOfStars={5}
+                    name="rating"
+                    starDimension="15px"
+                    starSpacing="3px"
+                  />
+                  <br></br>
+                  <span className="review-body">{review.body}</span>
                   <br></br>
                   <span>{review.summary}</span>
                   <br></br>
-                  Rating: {review.rating}
+                  Helpful? Yes ({review.helpfulness})<br></br>
+                  Report
                   <br></br>
-                  Reviewer_ID: {review.reviewer_name}
-                  <br></br>
-                  Photo: {review.review}
+                  Photo: <img src={review.photos[0]} alt="photo" />
                   <hr />
-                  {/* <img src={review.photos[index]} alt="photo" /> */}
                 </ul>
               );
             })}

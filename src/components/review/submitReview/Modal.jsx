@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import { useState } from "react";
+import RadioBtn from "./RadioBtn.jsx";
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -21,10 +22,17 @@ const OVERLAY_STYLES = {
   backgroundColor: "rgba(0, 0, 0, .7)",
   zIndex: 1000,
 };
-export default function Modal({ open, children, onClose }) {
-  const [reviewSummary, setReviewSummary] = useState("");
-  const [reviewBody, setReviewBody] = useState("");
-  const [nickname, setNickname] = useState("");
+export default function Modal({
+  open,
+  children,
+  onClose,
+  setReviewSummary,
+  setReviewBody,
+  setNickname,
+  setRating,
+}) {
+  // const [reviewSummary, setReviewSummary] = useState("");
+
   if (!open) return null;
   return (
     <>
@@ -63,9 +71,9 @@ export default function Modal({ open, children, onClose }) {
           <label>Star Rating ------- BLANK</label>
           <br></br>
           <button>Submit Review</button>
+          <RadioBtn setRating={setRating} />
         </form>
         <br></br>
-
         {children}
       </div>
     </>
