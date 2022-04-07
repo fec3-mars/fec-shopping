@@ -38,6 +38,7 @@ class IndividualAnswer extends React.Component {
       report,
     } = this.state;
 
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
     const formattedDate = new Date(date);
 
@@ -61,6 +62,7 @@ class IndividualAnswer extends React.Component {
       //for now just visual
       helpfulnessScore = <p>Yes({helpfulness + 1})</p>;
     }
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 
     return(
       <div className='answers' style={{border: 'solid white'}}>

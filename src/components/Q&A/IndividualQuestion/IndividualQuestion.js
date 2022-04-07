@@ -1,5 +1,6 @@
 import React from 'react';
-import IndividualAnswer from "./IndividualAnswer";
+import IndividualAnswer from "../IndividualAnswer/IndividualAnswer";
+import "./IndividualQuestion.css";
 
 class IndividualQuestion extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class IndividualQuestion extends React.Component {
 
     this.state = {
       answers: [],
+      questionBody: '',
       expanded: false,
       addAnswer: false,
     };
@@ -39,6 +41,7 @@ class IndividualQuestion extends React.Component {
       }
       return 0;
     })
+
     this.buildAnswers(answerArr);
   }
 
@@ -53,15 +56,28 @@ class IndividualQuestion extends React.Component {
   }
 
   componentDidMount() {
-    const {answers} = this.props.question;
+    const {answers, question_body} = this.props.question;
     this.formatAnswers(answers);
+
+    this.setState({
+      question_body: question_body,
+    })
   }
 
   componentDidUpdate(prevProps) {
-    const {answers} = this.props.question;
+    const {answers, question_body} = this.props.question;
+    const {searchTerm} = this.props;
 
     if (answers !== prevProps.question.answers) {
       this.formatAnswers(answers)
+    }
+
+    if (searchTerm.length >= 3 && searchTerm !== prevProps.searchTerm) {
+      const body = this.props.highlight(question_body);
+
+      this.setState({
+        questionBody: body,
+      })
     }
   }
 
@@ -83,17 +99,22 @@ class IndividualQuestion extends React.Component {
   render() {
     const {
       asker_name,
-      question_body,
       question_date,
       question_helpfulness,
       question_id,
       reported,
+      question_body,
     } = this.props.question;
+
+    const {
+      searchTerm,
+    } = this.props;
 
     const {
       answers,
       expanded,
       addAnswer,
+      questionBody
     } = this.state;
 //---------------------------------------------------------------------------------------------------------------------------------------------------
     let answersText = answers; //default is all answer html elements
@@ -119,16 +140,20 @@ class IndividualQuestion extends React.Component {
       answerStyle = {};
     }
 
-    let questionStyle = {
-      border: 'solid white',
+    let body = question_body;
+    if (questionBody !== '') {
+      body = questionBody;
     }
 
-
+    if (searchTerm.length < 3) {
+      body = question_body;
+    }
 //---------------------------------------------------------------------------------------------------------------------------------------------------
+      //default display
       if (!addAnswer) {
-        return (<div className="individual-question" style={questionStyle}>
+        return (<div className='individual-question'>
 
-          <h3>Q: {question_body}</h3>
+          <h3>Q: {body}</h3>
           <div className="answer" style={answerStyle}>
             <h3>A: </h3>
 
@@ -139,6 +164,8 @@ class IndividualQuestion extends React.Component {
           <button onClick={this.changeAddAnswer.bind(this)}> Add an Answer </button>
         </div>)
       }
+
+      //add answer form
       return (
         <div className="add-an-answer">
           <h3>Submit your answer</h3>
