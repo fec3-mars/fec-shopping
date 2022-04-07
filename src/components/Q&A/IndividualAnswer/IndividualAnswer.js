@@ -16,12 +16,10 @@ class IndividualAnswer extends React.Component {
       alert('Already voted');
     }
 
-
-    let obj = {};
+    const obj = {};
     obj[`${target}`] = true;
     this.setState(obj);
   }
-
 
   render() {
     const {
@@ -38,7 +36,7 @@ class IndividualAnswer extends React.Component {
       report,
     } = this.state;
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
 
     const formattedDate = new Date(date);
 
@@ -62,9 +60,9 @@ class IndividualAnswer extends React.Component {
       //for now just visual
       helpfulnessScore = <p>Yes({helpfulness + 1})</p>;
     }
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------
 
-    return(
+    return (
       <div className='answers' style={{border: 'solid white'}}>
         <p className='answer-body'>{body}</p>
         <p>by {name}, {formattedDate.toDateString()}</p>
@@ -72,7 +70,7 @@ class IndividualAnswer extends React.Component {
         {helpfulnessScore}
         {reportDisplay}
       </div>
-    )
+    );
   }
 }
 

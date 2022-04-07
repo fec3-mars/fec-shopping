@@ -114,27 +114,27 @@ class IndividualQuestion extends React.Component {
       answers,
       expanded,
       addAnswer,
-      questionBody
+      questionBody,
     } = this.state;
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------
     let answersText = answers; //default is all answer html elements
     let expandButton = <button onClick={this.changeExpanded.bind(this)}> Collapse answers </button>;
     let answerStyle = {};
 
     answerStyle = {
-      'overflow-y': 'scroll',
-      height: '315px'
+      overflowY: 'scroll',
+      height: '315px',
     }
 
     if (!expanded) { //default, state starts as false
       answersText = answers.slice(0, 2) //if 'Expanded' answers not hit, show only two
       expandButton = <button onClick={this.changeExpanded.bind(this)}> See more answers </button>
       answerStyle = {
-        height: '315px'
-      }
+        height: '315px',
+      };
     }
 
-    if (answers.length === 0) {
+    if (answers.length === 0 || answers.length === 1) {
       answersText = <h3> No answers, yet </h3>; //if no answers present yet, show 'No answers, yet
       expandButton = null;
       answerStyle = {};
@@ -148,7 +148,7 @@ class IndividualQuestion extends React.Component {
     if (searchTerm.length < 3) {
       body = question_body;
     }
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------
       //default display
       if (!addAnswer) {
         return (<div className='individual-question'>
@@ -183,9 +183,7 @@ class IndividualQuestion extends React.Component {
           <button> Add Photos </button>
           <button onClick={this.changeAddAnswer.bind(this)}> Submit Answer </button>
         </div>
-      )
-
-
+    )
   }
 };
 
@@ -197,7 +195,6 @@ export default IndividualQuestion;
 </div>
 
 */
-
 
 /*
 answerer_name: "dschulman"

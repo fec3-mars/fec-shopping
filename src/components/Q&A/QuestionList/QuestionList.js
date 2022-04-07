@@ -19,23 +19,7 @@ class QuestionList extends React.Component {
     };
   }
 
-  createAllQuestions() {
-    const {
-      questions,
-      filteredQuestions,
-      searchTerm,
-    } = this.state;
 
-    const collection = filteredQuestions.length === 0 && searchTerm.length === 0? questions : filteredQuestions;
-
-    const allQuestions = collection.map((question, idx) => {
-      return <IndividualQuestion question={question} key={idx} highlight={this.highlighter.bind(this)} searchTerm={this.state.searchTerm}/>;
-    });
-
-    this.setState({
-      allQuestions: [...allQuestions],
-    });
-  }
 
   populateQuestions() {
     if (this.state.questions) {
@@ -103,6 +87,24 @@ class QuestionList extends React.Component {
     });
   }
 
+  createAllQuestions() {
+    const {
+      questions,
+      filteredQuestions,
+      searchTerm,
+    } = this.state;
+
+    const collection = filteredQuestions.length === 0 && searchTerm.length === 0? questions : filteredQuestions;
+
+    const allQuestions = collection.map((question, idx) => {
+      return <IndividualQuestion question={question} key={idx} highlight={this.highlighter.bind(this)} searchTerm={this.state.searchTerm}/>;
+    });
+
+    this.setState({
+      allQuestions: [...allQuestions],
+    });
+  }
+
   filterQuestions() {
     const {
       questions,
@@ -134,9 +136,8 @@ class QuestionList extends React.Component {
       addQuestion,
     } = this.state;
 
-
     const {
-      name
+      name,
     } = curProduct;
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
