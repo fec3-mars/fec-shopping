@@ -1,6 +1,7 @@
 import React from 'react';
 import IndividualAnswer from "../IndividualAnswer/IndividualAnswer";
 import "./IndividualQuestion.css";
+import { postAnswer, markQuestionHelpful, reportQuestion } from "../../axios";
 
 class IndividualQuestion extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class IndividualQuestion extends React.Component {
       questionBody: '',
       expanded: false,
       addAnswer: false,
+      qReported: false,
     };
   }
 
@@ -46,8 +48,13 @@ class IndividualQuestion extends React.Component {
   }
 
   buildAnswers(arr) {
+    const {
+      question_id,
+    } = this.props.question;
+
+
     const answers = arr.map((answer, idx) => {
-      return <IndividualAnswer answer={answer} key={idx} />
+      return <IndividualAnswer answer={answer} key={idx} reloadPage={ this.props.reloadPage}/>
     });
 
     this.setState({
@@ -69,7 +76,7 @@ class IndividualQuestion extends React.Component {
     const {searchTerm} = this.props;
 
     if (answers !== prevProps.question.answers) {
-      this.formatAnswers(answers)
+      this.formatAnswers(answers);
     }
 
     if (searchTerm.length >= 3 && searchTerm !== prevProps.searchTerm) {
@@ -81,7 +88,6 @@ class IndividualQuestion extends React.Component {
     }
   }
 
-
   changeExpanded() {
     this.setState({
       expanded: !this.state.expanded,
@@ -91,9 +97,68 @@ class IndividualQuestion extends React.Component {
   changeAddAnswer() {
     //TODO
     //does not actually submit answer yet
+    if (this.state.addAnswer) {
+      this.handleSubmit();
+    }
+
+
     this.setState({
       addAnswer: !this.state.addAnswer,
     });
+  }
+
+  handleSubmit() {
+    const {
+      question_id,
+    } = this.props.question;
+
+    const postRequest = {
+      question_id,
+      body: this.bodyNode.value,
+      name: this.nameNode.value,
+      email: this.emailNode.value,
+      photos: [],
+    };
+    postAnswer(postRequest)
+      .then((response) => {
+        console.log('in post answer', response);
+      })
+      .then(() => {
+        this.props.reloadPage();
+      })
+      .catch((err) => {
+        console.log('error in post answer', err);
+      })
+  }
+
+  questionHelpful() {
+    const {question_id} = this.props.question;
+
+    markQuestionHelpful(question_id)
+      .then((result) => {
+        console.log('success marking question helpful');
+      })
+      .then(() => {
+        this.props.reloadPage();
+      })
+      .catch((err) => {
+        console.log('err in mark question helpful', err);
+      })
+  }
+
+  questionReport() {
+    const {question_id} = this.props.question;
+
+    reportQuestion(question_id)
+      .then((result) => {
+        console.log('success reporting question');
+      })
+      .then(() => {
+        this.props.reloadPage();
+      })
+      .catch((err) => {
+        console.log('err in reporting a question', err);
+      })
   }
 
   render() {
@@ -114,27 +179,28 @@ class IndividualQuestion extends React.Component {
       answers,
       expanded,
       addAnswer,
-      questionBody
+      questionBody,
+      qReported,
     } = this.state;
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------
     let answersText = answers; //default is all answer html elements
     let expandButton = <button onClick={this.changeExpanded.bind(this)}> Collapse answers </button>;
     let answerStyle = {};
 
     answerStyle = {
-      'overflow-y': 'scroll',
-      height: '315px'
+      overflowY: 'scroll',
+      height: '315px',
     }
 
     if (!expanded) { //default, state starts as false
       answersText = answers.slice(0, 2) //if 'Expanded' answers not hit, show only two
       expandButton = <button onClick={this.changeExpanded.bind(this)}> See more answers </button>
       answerStyle = {
-        height: '315px'
-      }
+        height: '315px',
+      };
     }
 
-    if (answers.length === 0) {
+    if (answers.length === 0 || answers.length === 1) {
       answersText = <h3> No answers, yet </h3>; //if no answers present yet, show 'No answers, yet
       expandButton = null;
       answerStyle = {};
@@ -148,7 +214,9 @@ class IndividualQuestion extends React.Component {
     if (searchTerm.length < 3) {
       body = question_body;
     }
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+    //------------------------------------------------------------------------------------------
       //default display
       if (!addAnswer) {
         return (<div className='individual-question'>
@@ -159,6 +227,9 @@ class IndividualQuestion extends React.Component {
 
             {answersText}
           </div>
+          <button className='helpful' onClick={this.questionHelpful.bind(this)}>Mark Question Helpful </button>
+          <p>Yes({question_helpfulness})</p>
+          <button className='helpful' onClick={this.questionReport.bind(this)}>Report this Question</button>
           {expandButton}
 
           <button onClick={this.changeAddAnswer.bind(this)}> Add an Answer </button>
@@ -171,21 +242,19 @@ class IndividualQuestion extends React.Component {
           <h3>Submit your answer</h3>
 
           <h4>*Your answer</h4>
-          <textarea name="textarea" style={{'width':'250px', 'height':'150px'}}></textarea>
+          <textarea  ref={node => (this.bodyNode = node)} name="textarea" style={{'width':'250px', 'height':'150px'}} ></textarea>
 
           <h4>*What is your nickname?</h4>
-          <input placeholder="Example: jack545!"></input>
+          <input  ref={node => (this.nameNode = node)} placeholder="Example: jack545!"></input>
           <p><i>for privacy reasons do not use your full name or address</i></p>
 
           <h4>*Your email</h4>
-          <input placeholder="Example: jack@email.com" style={{'width':'250px'}}></input>
+          <input  ref={node => (this.emailNode = node)} placeholder="Example: jack@email.com" style={{'width':'250px'}}></input>
           <p><i>for authentication reasons, you will not be emailed</i></p>
           <button> Add Photos </button>
           <button onClick={this.changeAddAnswer.bind(this)}> Submit Answer </button>
         </div>
-      )
-
-
+    )
   }
 };
 
@@ -197,7 +266,6 @@ export default IndividualQuestion;
 </div>
 
 */
-
 
 /*
 answerer_name: "dschulman"
