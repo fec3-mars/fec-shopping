@@ -122,12 +122,12 @@ export function getRelatedImage() {
  *
  */
 export function getQuestionsAndAnswers(id) {
-  axios.get(`/qa/questions/?product_id=${id}`)
+  axios.get(`/qa/questions/?product_id=${id}&count=100`)
     .then((response) => {
       const { results } = response.data;
-
+      console.log(response);
       this.setState({
-        questions: results
+        questions: results,
       }, () => {
         this.populateQuestions();
       });
@@ -152,7 +152,7 @@ export function postAnswer(obj) {
 export function postQuestion(obj) {
   axios.post(`/qa/questions`, obj)
     .then((response) => {
-      console.log('in post answer', response);
+      console.log('in post question', response);
     })
     .catch(err => {
       console.log('error in get for qa', err);

@@ -54,6 +54,7 @@ class QuestionList extends React.Component {
     const curProduct = { ...this.props.curProduct };
 
     if (curProduct.data?.id !== prevProps.curProduct.data?.id) {
+
       this.setState({
         curProduct: { ...curProduct.data },
       }, function () {
