@@ -1,11 +1,10 @@
 import React from 'react';
 import './AddToCart.css';
-import { faPlus, faStar } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { postToBag, axios } from '../../axios.js';
-import SelectSize from './SelectSize.js';
-import SelectQty from './SelectQty.js';
-
+import { faPlus, faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { postToBag } from '../../axios';
+import SelectSize from './SelectSize.jsx';
+import SelectQty from './SelectQty.jsx';
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -14,10 +13,22 @@ class AddToCart extends React.Component {
       selectedSize: 'SELECT SIZE',
       qty: '-',
       selectSize: false,
-      purchased: false
+      purchased: false,
+    };
+    this.addToBagHandler = this.addToBagHandler.bind(this);
+    this.changeState = this.changeState.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { style_id } = this.props.selectedStyle;
+    const { style_id: prevStyle_id } = prevProps.selectedStyle;
+    if (style_id !== prevStyle_id) {
+      this.setState({
+        selectedSize: 'SELECT SIZE',
+        qty: '-',
+        selectSize: false,
+      });
     }
-    this.addToBagHandler = this.addToBagHandler.bind(this)
-    this.changeState = this.changeState.bind(this)
   }
 
   changeState(e) {
@@ -26,55 +37,50 @@ class AddToCart extends React.Component {
         selectedSize: e.target.value,
         selectSize: false,
         qty: e.target.value === 'SELECT SIZE' ? '-' : 1
-      })
+      });
     } else {
       this.setState({
-        qty: e.target.value
-      })
+        qty: e.target.value,
+      });
     }
   }
 
   addToBagHandler(e, selectedSize, qty) {
-    e.preventDefault()
-    if (this.state.selectedSize === 'SELECT SIZE') {
+    e.preventDefault();
+    if (selectedSize === 'SELECT SIZE') {
       this.setState({
-        selectSize: true
-      })
-      return
+        selectSize: true,
+      });
+      return;
     }
-    if (this.state.qty > 0) {
+    if (qty > 0) {
       const data = {
         sku_id: `${selectedSize}`,
-        count: `${qty}`
-      }
-      postToBag(data, selectedSize)
+        count: `${qty}`,
+      };
+      postToBag(data, selectedSize);
       this.setState({
-        purchased: true
-      })
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.selectedStyle.style_id !== prevProps.selectedStyle.style_id) {
-      this.setState({
-        selectedSize: 'SELECT SIZE',
-        qty: '-',
-        selectSize: false
-      })
+        purchased: true,
+      });
     }
   }
 
   render() {
-    const { selectedSize, qty, selectSize, purchased } = this.state;
+    const {
+      selectedSize,
+      qty,
+      selectSize,
+      purchased,
+    } = this.state;
     const { skus } = this.props.selectedStyle
-    const nameClassAddToBag = skus?.null?.quantity === null ? "btn__add-to-bag hide" : "btn__add-to-bag";
+    const nameClassAddToBag = skus?.null?.quantity === null ? 'btn__add-to-bag hide' : 'btn__add-to-bag';
     let quantity = skus[selectedSize]?.quantity;
     quantity = quantity >= 15 ? 15 : quantity;
     const purchaseQtys = Array.from({ length: quantity }, (_, i) => i + 1);
 
     return (
       <form className="add-to-cart">
-        <div className="select-menus" >
+        <div className="select-menus">
           <SelectSize
             handleChange={this.changeState}
             skus={Object.entries(skus).filter(([_, v]) => v?.size)}
@@ -89,7 +95,7 @@ class AddToCart extends React.Component {
           />
         </div>
         <div className="addToBag-Rate">
-          {(!purchased && <button onClick={(e) => { window.confirm('Are you sure that you want to purchase item(s)?') && this.addToBagHandler(e, selectedSize, qty) }} className={nameClassAddToBag}>
+          {(!purchased && <button type="submit" onClick={(e) => { window.confirm('Are you sure that you want to purchase item(s)?') && this.addToBagHandler(e, selectedSize, qty) }} className={nameClassAddToBag}>
             <span>ADD TO BAG</span>
             <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
           </button>) || <p className="thank-you">Thank you for Purchase!</p>}

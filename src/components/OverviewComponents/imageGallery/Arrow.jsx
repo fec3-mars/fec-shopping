@@ -5,9 +5,8 @@ import {
   faArrowRight,
   faChevronUp,
   faChevronDown,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Arrow = ({ type, scrollThumbnails, scrollMainImages }) => {
   return (

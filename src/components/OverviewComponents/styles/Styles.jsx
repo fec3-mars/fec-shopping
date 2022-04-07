@@ -1,6 +1,6 @@
 import React from 'react';
 import './Styles.css';
-import SingleStyle from './SingleStyle.js';
+import SingleStyle from './SingleStyle.jsx';
 
 const Styles = ({ styles, selectedStyle, styleChangeHandler }) => {
 

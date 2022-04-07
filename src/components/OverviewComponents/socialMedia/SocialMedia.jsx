@@ -1,6 +1,11 @@
 import React from 'react';
-import { faFacebookSquare, faTwitterSquare, faInstagramSquare, faPinterestSquare } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookSquare,
+  faTwitterSquare,
+  faInstagramSquare,
+  faPinterestSquare,
+} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SocialMedia.css';
 
 const SocialMedia = () => {

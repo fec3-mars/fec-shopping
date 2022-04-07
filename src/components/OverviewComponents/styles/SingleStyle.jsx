@@ -1,8 +1,8 @@
 import React from 'react';
 import './SingleStyle.css';
-import NoImage from '../noImageWarning/NoImage.js';
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NoImage from '../noImageWarning/NoImage.jsx';
 
 const SingleStyle = ({ style, selectedStyle, styleChangeHandler }) => {
   const isNull = style.photos[0].url;

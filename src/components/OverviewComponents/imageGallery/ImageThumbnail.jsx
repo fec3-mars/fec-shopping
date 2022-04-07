@@ -1,5 +1,5 @@
 import React from 'react';
-import './ImageThumbnail.css'
+import './ImageThumbnail.css';
 
 const ImageThumbnail = ({ updateMainImageHandler, idx, isMain, thumbnail }) => {
   let className = isMain ? 'img-thumbnail-container selected' : 'img-thumbnail-container';

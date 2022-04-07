@@ -1,15 +1,8 @@
 import React from 'react';
-import "./ImageGallery.css"
-import ImageThumbnail from "./ImageThumbnail.js"
-import Arrow from './Arrow.js';
-import NoImage from '../noImageWarning/NoImage.js';
-import {
-  faArrowCircleLeft,
-  faArrowCircleRight,
-  faChevronCircleUp,
-  faChevronCircleDown,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import './ImageGallery.css';
+import ImageThumbnail from './ImageThumbnail.jsx';
+import Arrow from './Arrow.jsx';
+import NoImage from '../noImageWarning/NoImage.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {

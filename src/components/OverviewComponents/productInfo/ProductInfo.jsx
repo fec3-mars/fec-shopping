@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProductInfo.css';
-import StarRatings from "react-star-ratings";
+import StarRatings from 'react-star-ratings';
 
 const ProductInfo = ({ product, selectedStyle }) => {
   const discount = selectedStyle.sale_price ? true : false;
