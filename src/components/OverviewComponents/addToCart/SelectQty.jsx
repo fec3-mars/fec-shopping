@@ -5,7 +5,7 @@ function SelectQty({
   qty,
   changeState,
   purchaseQtys,
-  selectedSize
+  selectedSize,
 }) {
   return (
     <select
@@ -16,7 +16,10 @@ function SelectQty({
     >
       {(selectedSize !== 'SELECT SIZE'
         && purchaseQtys.map((quantity, idx) =>
-          <option key={idx} value={quantity}>{quantity}</option>
+          <option key={quantity} value={quantity}>
+            {console.log(quantity)}
+            {quantity}
+          </option>
         ))
         || <option>-</option>
       }
