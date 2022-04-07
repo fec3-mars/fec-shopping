@@ -1,7 +1,13 @@
 /* eslint-disable */
 import React from "react";
 import { useState } from "react";
-import RadioBtn from "./RadioBtn.jsx";
+import StarRatings from "react-star-ratings";
+import RadioBtn_Size from "./RadioBtn/Size.jsx";
+import RadioBtn_Width from "./RadioBtn/Width.jsx";
+import RadioBtn_Comfort from "./RadioBtn/Comfort.jsx";
+import RadioBtn_Quality from "./RadioBtn/Quality.jsx";
+import RadioBtn_Length from "./RadioBtn/Length.jsx";
+import RadioBtn_Fit from "./RadioBtn/Fit.jsx";
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -29,7 +35,13 @@ export default function Modal({
   setReviewSummary,
   setReviewBody,
   setNickname,
-  setRating,
+  setRatingSize,
+  setRatingWidth,
+  setRatingComfort,
+  setRatingQuality,
+  setRatingLength,
+  setRatingFit,
+  setStarRating,
 }) {
   // const [reviewSummary, setReviewSummary] = useState("");
 
@@ -41,6 +53,31 @@ export default function Modal({
         <form>
           <button onClick={onClose}>Close</button>
           <br></br>
+          <label>
+            Overall Rating:{" "}
+            <StarRatings
+              // rating={setStarRating}
+              starRatedColor="yellow"
+              numberOfStars={5}
+              name="rating"
+              changeRating={setStarRating}
+              starDimension="20px"
+              starSpacing="7px"
+            />
+          </label>
+          <br></br>
+          <label>Do you recommend this product? //TODO: YES or NO</label>
+          <br></br>
+          <label>
+            Characteristics:
+            <br></br>
+            <RadioBtn_Size setRating={setRatingSize} />
+            <RadioBtn_Width setRating={setRatingWidth} />
+            <RadioBtn_Comfort setRating={setRatingComfort} />
+            <RadioBtn_Quality setRating={setRatingQuality} />
+            <RadioBtn_Length setRating={setRatingLength} />
+            <RadioBtn_Fit setRating={setRatingFit} />
+          </label>
           <label>
             Review Summary:
             <input
@@ -68,10 +105,8 @@ export default function Modal({
             />
           </label>
           <br></br>
-          <label>Star Rating ------- BLANK</label>
-          <br></br>
+
           <button>Submit Review</button>
-          <RadioBtn setRating={setRating} />
         </form>
         <br></br>
         {children}

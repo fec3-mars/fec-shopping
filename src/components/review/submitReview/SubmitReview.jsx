@@ -8,7 +8,13 @@ export default function submitReview() {
   const [reviewSummary, setReviewSummary] = useState("");
   const [reviewBody, setReviewBody] = useState("");
   const [nickname, setNickname] = useState("");
-  const [rating, setRating] = useState();
+  const [ratingSize, setRatingSize] = useState();
+  const [ratingWidth, setRatingWidth] = useState();
+  const [ratingComfort, setRatingComfort] = useState();
+  const [ratingQuality, setRatingQuality] = useState();
+  const [ratingLength, setRatingLength] = useState();
+  const [ratingFit, setRatingFit] = useState();
+  const [starRating, setStarRating] = useState();
 
   return (
     <>
@@ -20,7 +26,13 @@ export default function submitReview() {
           setReviewSummary={setReviewSummary}
           setReviewBody={setReviewBody}
           setNickname={setNickname}
-          setRating={setRating}
+          setRatingSize={setRatingSize}
+          setRatingWidth={setRatingWidth}
+          setRatingComfort={setRatingComfort}
+          setRatingQuality={setRatingQuality}
+          setRatingLength={setRatingLength}
+          setRatingFit={setRatingFit}
+          setStarRating={setStarRating}
         >
           <br></br>
           DONT PUT PERSONAL INFO IN HERE!
