@@ -1,9 +1,6 @@
 import React from 'react';
 import './AddToCart.css';
-import {
-  faPlus,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { postToBag, axios } from '../../axios.js';
 import SelectSize from './SelectSize.js';
@@ -25,7 +22,6 @@ class AddToCart extends React.Component {
 
   changeState(e) {
     if (e.target.name === 'size') {
-      console.log(e.target.value)
       this.setState({
         selectedSize: e.target.value,
         selectSize: false,
@@ -46,13 +42,15 @@ class AddToCart extends React.Component {
       })
       return
     }
-
     if (this.state.qty > 0) {
       const data = {
         sku_id: `${selectedSize}`,
         count: `${qty}`
       }
       postToBag(data, selectedSize)
+      this.setState({
+        purchased: true
+      })
     }
   }
 
@@ -67,7 +65,7 @@ class AddToCart extends React.Component {
   }
 
   render() {
-    const { selectedSize, qty, selectSize } = this.state;
+    const { selectedSize, qty, selectSize, purchased } = this.state;
     const { skus } = this.props.selectedStyle
     const nameClassAddToBag = skus?.null?.quantity === null ? "btn__add-to-bag hide" : "btn__add-to-bag";
     let quantity = skus[selectedSize]?.quantity;
@@ -91,10 +89,10 @@ class AddToCart extends React.Component {
           />
         </div>
         <div className="addToBag-Rate">
-          <button onClick={(e) => { this.addToBagHandler(e, selectedSize, qty) }} className={nameClassAddToBag}>
+          {(!purchased && <button onClick={(e) => { window.confirm('Are you sure that you want to purchase item(s)?') && this.addToBagHandler(e, selectedSize, qty) }} className={nameClassAddToBag}>
             <span>ADD TO BAG</span>
             <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
-          </button>
+          </button>) || <p className="thank-you">Thank you for Purchase!</p>}
           <button className="btn__favorite">
             <FontAwesomeIcon icon={faStar} className="icon__star"></FontAwesomeIcon>
           </button>

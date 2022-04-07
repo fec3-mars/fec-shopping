@@ -1,4 +1,5 @@
 import React from 'react';
+import './SelectQty.css'
 
 const SelectQty = ({ qty, changeState, purchaseQtys, selectedSize }) => {
   return (
