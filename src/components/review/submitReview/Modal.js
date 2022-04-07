@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -20,19 +21,50 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 export default function Modal({ open, children, onClose }) {
+  const [reviewSummary, setReviewSummary] = useState("");
+  const [reviewBody, setReviewBody] = useState("");
+  const [nickname, setNickname] = useState("");
   if (!open) return null;
   return (
     <>
       <div style={OVERLAY_STYLES} />
       <div style={MODAL_STYLES}>
         <form>
+          <button onClick={onClose}>Close</button>
+          <br></br>
           <label>
-            Name:
-            <input type="text" name="name" />
+            Review Summary:
+            <input
+              type="text"
+              name="name"
+              onChange={(e) => setReviewSummary(e.target.value)}
+            />
           </label>
+          <br></br>
+          <label>
+            Review Body:
+            <input
+              type="text"
+              name="name"
+              onChange={(e) => setReviewBody(e.target.value)}
+            />
+          </label>
+          <br></br>
+          <label>
+            What is your nickname?
+            <input
+              type="text"
+              name="name"
+              onChange={(e) => setNickname(e.target.value)}
+            />
+          </label>
+          <br></br>
+          <label>Star Rating ------- BLANK</label>
+          <br></br>
+          <button>Submit Review</button>
         </form>
         <br></br>
-        <button onClick={onClose}>Close Modal</button>
+
         {children}
       </div>
     </>
