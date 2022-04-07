@@ -75,7 +75,7 @@ class IndividualQuestion extends React.Component {
     const {searchTerm} = this.props;
 
     if (answers !== prevProps.question.answers) {
-      this.formatAnswers(answers)
+      this.formatAnswers(answers);
     }
 
     if (searchTerm.length >= 3 && searchTerm !== prevProps.searchTerm) {

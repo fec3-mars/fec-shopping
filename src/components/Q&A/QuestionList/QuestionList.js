@@ -3,7 +3,7 @@ import IndividualQuestion from "../IndividualQuestion/IndividualQuestion";
 import AddQuestion from "../AddQuestion/AddQuestion";
 import AddAnswer from "../AddAnswer/AddAnswer";
 import Modal from '../Modal/Modal.js';
-import { getQuestionsAndAnswers } from "../../axios";
+import { getQuestionsAndAnswers, postQuestion } from "../../axios";
 
 class QuestionList extends React.Component {
   constructor(props) {
@@ -20,6 +20,7 @@ class QuestionList extends React.Component {
     // this.showModal = this.showModal.bind(this);
     // this.hideModal = this.hideModal.bind(this);
   }
+
 
   showModal = () => {
     this.setState({ show: true });
@@ -49,9 +50,8 @@ class QuestionList extends React.Component {
     return <div>{arr}</div>;
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     const curProduct = { ...this.props.curProduct };
-    const {searchTerm} = this.state;
 
     if (curProduct.data?.id !== prevProps.curProduct.data?.id) {
       this.setState({
@@ -64,9 +64,29 @@ class QuestionList extends React.Component {
   }
 
   changeAddQuestion() {
+    if (this.state.addQuestion) {
+      this.handleSubmit();
+    }
+
     this.setState({
       addQuestion: !this.state.addQuestion,
     })
+  }
+
+  handleSubmit() {
+    const {
+      curProduct,
+    } = this.state;
+
+    const {id} = curProduct;
+    console.log('id', id);
+    const postRequest = {
+      body: this.bodyNode.value,
+      name: this.nameNode.value,
+      email: this.emailNode.value,
+      product_id: id,
+    }
+    postQuestion(postRequest)
   }
 
   handleSearch(e) {
@@ -147,6 +167,7 @@ class QuestionList extends React.Component {
     const {
       name,
     } = curProduct;
+
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
     //default display
@@ -177,16 +198,16 @@ class QuestionList extends React.Component {
           <h3><i>About the {name}</i></h3>
 
           <h4>*Your Question</h4>
-          <textarea name="textarea" style={{'width':'250px', 'height':'150px'}}></textarea>
+          <textarea ref={node => (this.bodyNode = node)} name="textarea" style={{'width':'250px', 'height':'150px'}}></textarea>
 
           <h4>*What is your nickname?</h4>
-          <input placeholder="Example jackson11!"></input>
+          <input ref={node => (this.nameNode = node)} placeholder="Example jackson11!"></input>
           <p><i>for privacy reasons do not use your full name or address</i></p>
 
           <h4>*Your email</h4>
-          <input placeholder="Why did you like the product or not?" style={{'width':'250px'}}></input>
+          <input ref={node => (this.emailNode = node)} placeholder="Why did you like the product or not?" style={{'width':'250px'}}></input>
           <p><i>for authentication reasons, you will not be emailed</i></p>
-          <button onClick={this.changeAddQuestion.bind(this)}> Submit Answer </button>
+          <button onClick={this.changeAddQuestion.bind(this)}> Submit Question </button>
         </div>
     )
   }

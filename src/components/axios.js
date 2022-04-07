@@ -149,6 +149,17 @@ export function postAnswer(obj) {
 
 }
 
+export function postQuestion(obj) {
+  axios.post(`/qa/questions`, obj)
+    .then((response) => {
+      console.log('in post answer', response);
+    })
+    .catch(err => {
+      console.log('error in get for qa', err);
+    });
+
+}
+
     //--------------------------------------Q&A------------------------------
 
 export default axios;
