@@ -48,4 +48,99 @@ export function getProductStyles() {
     });
 }
 
+export function postToBag(data, selectedSize) {
+  axios
+    .post("/cart", data)
+    .then((result) => {
+      axios.get("/cart").then((res) => {
+        console.log(res);
+      });
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+export function getRelatedProducts() {
+  const product = arguments[0];
+  axios
+    .get(`/products/${product}/related`)
+    .then((results) => {
+      this.setState({
+        relatedProducts: results.data,
+      });
+    })
+    .catch((err) => {
+      console.log("error in axios.js getRelatedProducts req", err);
+    });
+}
+
+export function getRelatedDetail() {
+  const product = arguments[0]; //array of product ids
+  // console.log('argument at getrelatedDetail', arguments);
+  for (var i = 0; i < product.length; i++) {
+    var allDetails = [];
+    axios
+      .get(`/products/${product[i]}`)
+      .then((results) => {
+        allDetails.push(results.data);
+        this.setState({
+          relatedProductDetail: allDetails,
+        });
+      })
+      .catch((err) => {
+        console.log("error in axios.js getRelatedProducts req", err);
+      });
+  }
+}
+
+export function getRelatedImage() {
+  const product = arguments[0];
+  // console.log('product at getimage', arguments);
+  for (var i = 0; i < product.length; i++) {
+    var imageUrl = [];
+    axios
+      .get(`/products/${product[i]}/styles`)
+      .then((results) => {
+        // console.log('product at related image', results.data.results[0].photos[0].thumbnail_url);
+        imageUrl.push(results.data.results[0].photos[0].thumbnail_url);
+        this.setState({
+          relatedProductImage: imageUrl,
+        });
+      })
+      .catch((err) => {
+        console.log("error in axios.js getRelatedImage req", err);
+      });
+  }
+}
+
+/**
+ * getQuestionsAndAnswers takes a product id as an argument
+ * and populates QuestionList with questions related to product id ||
+ * there is no explicit return value
+ * || 'this' within this function references the QuestionList component
+ * @param {*} id getQuestionsAndAnswers -> takes product id -> sets QuestionList component state
+ *
+ */
+export function getQuestionsAndAnswers(id) {
+  axios
+    .get(`/qa/questions/?product_id=${id}`)
+    .then((response) => {
+      const { results } = response.data;
+
+      this.setState(
+        {
+          questions: results,
+        },
+        () => {
+          this.populateQuestions();
+        }
+      );
+    })
+    .catch((err) => {
+      console.log("error in get for qa", err);
+    });
+}
+
 export default axios;
