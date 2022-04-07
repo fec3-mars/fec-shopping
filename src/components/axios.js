@@ -141,24 +141,10 @@ export function getQuestionsAndAnswers(id) {
       }, () => {
         this.populateQuestions();
       });
-
-  axios
-    .get(`/qa/questions/?product_id=${id}`)
-    .then((response) => {
-      const { results } = response.data;
-
-      this.setState(
-        {
-          questions: results,
-        },
-        () => {
-          this.populateQuestions();
-        }
-      );
     })
     .catch((err) => {
-      console.log("error in get for qa", err);
-    });
+      console.log('error in get questions');
+    })
 }
 
 
