@@ -16,7 +16,6 @@ class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      curProduct: this.props.curProduct,
       relatedProducts: [],
       relatedProductDetail: {},
       relatedProductImage: {},
@@ -39,10 +38,12 @@ class RelatedProducts extends React.Component {
     }
   }
 
-  comparisonModal() {
-    const openModalButtons = document.querySelectorAll("[data-modal-target]");
-    const closeModalButtons = document.querySelectorAll("[data-close-button]");
-    const overlay = document.getElementById("overlay");
+
+  comparisonModal(element) {
+    console.log('everything going inside modal', element );
+    const openModalButtons = document.querySelectorAll('[data-modal-target]');
+    const closeModalButtons = document.querySelectorAll('[data-close-button]');
+    const overlay = document.getElementById('overlay');
 
     openModalButtons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -79,6 +80,7 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
+
     if (
       (this.state.relatedProductDetail.length ===
         this.state.relatedProducts.length) &
@@ -86,40 +88,27 @@ class RelatedProducts extends React.Component {
         this.state.relatedProducts.length)
     ) {
       // console.log('related state to be rendered', this.state)
+
       return (
         <div className="relatedProducts">
           <h1>RELATED PRODUCTS</h1>
-          <div className="relatedCard">
-            {this.state.relatedProductDetail.map((element, index) => {
-              return (
-                <div
-                  key={element.id}
-                  element={element}
-                  className="individualCard"
-                >
-                  <img
-                    className="relatedImage"
-                    src={this.state.relatedProductImage[index]}
-                  ></img>
-                  {/* blow is popup */}
-                  <button
-                    data-modal-target="#modal"
-                    className="relatedButton"
-                    onClick={this.comparisonModal}
-                  >
-                    <img src="http://imgur.com/I0EwG.png" />
-                  </button>
-                  <div className="modal" id="modal">
-                    <div className="modal-header">
-                      <h3 className="title">Comparison Modal</h3>
-                      <button data-close-button className="close-button">
-                        &times;
-                      </button>
-                    </div>
-                    <div className="modal-body">Helloooooo</div>
+          <div className='relatedCard'>{this.state.relatedProductDetail.map((element, index) => {
+            return (
+              <div key={element.id} element={element} className='individualCard'>
+                <img className='relatedImage' src={this.state.relatedProductImage[index]}></img>
+                {/* blow is popup */}
+                <button data-modal-target='#modal' className='relatedButton' onClick={() => {this.comparisonModal(element)}} ><img src='http://imgur.com/I0EwG.png' /></button>
+                <div className='modal' id='modal'>
+                  <div className='modal-header'>
+                    <h3 className='title'>Comparison Modal</h3>
+                    <button data-close-button className='close-button'>&times;</button>
                   </div>
-                  <div id="overlay"></div>
-                  {/* above is popup */}
+                  <div className='modal-body'>
+                    {element.category}
+                  </div>
+                </div>
+                <div id='overlay'></div>
+                {/* above is popup */}
 
                   <h2 className="relatedCategory">{element.category}</h2>
                   <div className="relatedName">{element.name}</div>

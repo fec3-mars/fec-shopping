@@ -21,7 +21,7 @@ class OutfitList extends React.Component {
     this.setState({
       allOutfits: outfitList,
     })
-    // console.log('outfitlist at handleclick', outfitList);
+    console.log('outfitlist at handleclick', outfitList);
     // console.log('state at handleclick', this.state);
   }
 
