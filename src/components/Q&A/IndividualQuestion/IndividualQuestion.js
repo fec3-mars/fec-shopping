@@ -1,7 +1,7 @@
 import React from 'react';
 import IndividualAnswer from "../IndividualAnswer/IndividualAnswer";
 import "./IndividualQuestion.css";
-import { postAnswer } from "../../axios";
+import { postAnswer, markQuestionHelpful, reportQuestion } from "../../axios";
 
 class IndividualQuestion extends React.Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class IndividualQuestion extends React.Component {
       questionBody: '',
       expanded: false,
       addAnswer: false,
+      qReported: false,
     };
   }
 
@@ -119,16 +120,45 @@ class IndividualQuestion extends React.Component {
       photos: [],
     };
     postAnswer(postRequest)
-    .then((response) => {
-      console.log('in post answer', response);
-    })
-    .then(() => {
-      this.props.reloadPage();
-    })
-    .catch((err) => {
-      console.log('error in post answer', err);
-    })
+      .then((response) => {
+        console.log('in post answer', response);
+      })
+      .then(() => {
+        this.props.reloadPage();
+      })
+      .catch((err) => {
+        console.log('error in post answer', err);
+      })
+  }
 
+  questionHelpful() {
+    const {question_id} = this.props.question;
+
+    markQuestionHelpful(question_id)
+      .then((result) => {
+        console.log('success marking question helpful');
+      })
+      .then(() => {
+        this.props.reloadPage();
+      })
+      .catch((err) => {
+        console.log('err in mark question helpful', err);
+      })
+  }
+
+  questionReport() {
+    const {question_id} = this.props.question;
+
+    reportQuestion(question_id)
+      .then((result) => {
+        console.log('success reporting question');
+      })
+      .then(() => {
+        this.props.reloadPage();
+      })
+      .catch((err) => {
+        console.log('err in reporting a question', err);
+      })
   }
 
   render() {
@@ -150,6 +180,7 @@ class IndividualQuestion extends React.Component {
       expanded,
       addAnswer,
       questionBody,
+      qReported,
     } = this.state;
     //---------------------------------------------------------------------------------------------
     let answersText = answers; //default is all answer html elements
@@ -183,6 +214,8 @@ class IndividualQuestion extends React.Component {
     if (searchTerm.length < 3) {
       body = question_body;
     }
+
+
     //------------------------------------------------------------------------------------------
       //default display
       if (!addAnswer) {
@@ -194,8 +227,9 @@ class IndividualQuestion extends React.Component {
 
             {answersText}
           </div>
-          <button className='helpful' >Question is helpful? </button>
+          <button className='helpful' onClick={this.questionHelpful.bind(this)}>Mark Question Helpful </button>
           <p>Yes({question_helpfulness})</p>
+          <button className='helpful' onClick={this.questionReport.bind(this)}>Report this Question</button>
           {expandButton}
 
           <button onClick={this.changeAddAnswer.bind(this)}> Add an Answer </button>

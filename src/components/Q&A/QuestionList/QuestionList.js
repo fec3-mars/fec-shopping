@@ -53,7 +53,7 @@ class QuestionList extends React.Component {
 
   componentDidUpdate(prevProps) {
     const curProduct = { ...this.props.curProduct };
-    console.log(curProduct);
+
     if (curProduct.data?.id !== prevProps.curProduct.data?.id) {
       this.setState({
         curProduct: { ...curProduct.data },
@@ -87,15 +87,15 @@ class QuestionList extends React.Component {
       product_id: id,
     }
     postQuestion(postRequest)
-    .then((result) => {
-      console.log('post question result', result);
-    })
-    .then(() => {
-      this.retrieveData();
-    })
-    .catch((err) => {
-      console.log('error in post question', err);
-    })
+      .then((result) => {
+        console.log('post question result', result);
+      })
+      .then(() => {
+        this.retrieveData();
+      })
+      .catch((err) => {
+        console.log('error in post question', err);
+      })
 
   }
 
@@ -174,7 +174,7 @@ class QuestionList extends React.Component {
       filteredQuestions: [...filtered],
     }, function() {
       this.createAllQuestions();
-    })
+    });
   }
 
   revealAllQuestions() {

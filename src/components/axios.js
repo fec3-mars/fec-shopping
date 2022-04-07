@@ -146,6 +146,14 @@ export function postQuestion(obj) {
   return axios.post(`/qa/questions`, obj);
 }
 
+export function markQuestionHelpful(id) {
+  return axios.put(`/qa/questions/${id}/helpful`);
+}
+
+export function reportQuestion(id) {
+  return axios.put(`/qa/questions/${id}/report`);
+}
+
     //--------------------------------------Q&A------------------------------
 
 export default axios;
