@@ -2,9 +2,8 @@ import React from "react";
 import IndividualQuestion from "../IndividualQuestion/IndividualQuestion";
 import AddQuestion from "../AddQuestion/AddQuestion";
 import AddAnswer from "../AddAnswer/AddAnswer";
-
+import Modal from '../Modal/Modal.js';
 import { getQuestionsAndAnswers } from "../../axios";
-
 
 class QuestionList extends React.Component {
   constructor(props) {
@@ -15,17 +14,20 @@ class QuestionList extends React.Component {
       filteredQuestions: [],
       allQuestions: [],
       addQuestion: false,
-      searchTerm: "",
+      searchTerm: '',
+      show: false,
     };
+    // this.showModal = this.showModal.bind(this);
+    // this.hideModal = this.hideModal.bind(this);
   }
 
+  showModal = () => {
+    this.setState({ show: true });
+  };
 
-
-  populateQuestions() {
-    if (this.state.questions) {
-      return this.createAllQuestions();
-    }
-  }
+  hideModal = () => {
+    this.setState({ show: false });
+  };
 
   retrieveData() {
     const { id } = this.state.curProduct;
@@ -85,6 +87,12 @@ class QuestionList extends React.Component {
     }, function() {
       this.filterQuestions();
     });
+  }
+
+  populateQuestions() {
+    if (this.state.questions) {
+      return this.createAllQuestions();
+    }
   }
 
   createAllQuestions() {
@@ -152,7 +160,12 @@ class QuestionList extends React.Component {
             onChange={this.handleSearch.bind(this)}
           ></input>
           {allQuestions}
-          <button onClick={this.changeAddQuestion.bind(this)}type="button">Add a Question </button>
+
+          {/* <Modal show={this.state.show} handleClose={this.hideModal}>
+            <p>worked</p>
+
+          </Modal> */}
+          <button onClick={this.changeAddQuestion.bind(this)} type="button">Add a Question </button>
         </div>
       );
     }

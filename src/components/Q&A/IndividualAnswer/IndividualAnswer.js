@@ -1,4 +1,5 @@
 import React from 'react';
+import './IndividualAnswer.css';
 
 class IndividualAnswer extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class IndividualAnswer extends React.Component {
       id,
       photos,
     } = this.props.answer;
-
+    console.log('photos', photos);
     const {
       helpful,
       report,
@@ -60,6 +61,16 @@ class IndividualAnswer extends React.Component {
       //for now just visual
       helpfulnessScore = <p>Yes({helpfulness + 1})</p>;
     }
+
+    let photoGallery;
+    if (photos) {
+      photoGallery = photos.map((photo) => {
+        return(
+          <img className="review-photos" src={photo}></img>
+        )
+      });
+    }
+
     //------------------------------------------------------------
 
     return (
@@ -69,6 +80,7 @@ class IndividualAnswer extends React.Component {
         <button className='helpful' onClick={this.change.bind(this)}>Helpful? </button>
         {helpfulnessScore}
         {reportDisplay}
+        {photoGallery}
       </div>
     );
   }
