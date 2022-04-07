@@ -1,19 +1,22 @@
+
 import React from 'react';
 import App from '../App.js'
 import { axios, makeRequest, getRelatedProducts, getRelatedDetail, getRelatedImage } from '../axios.js';
 import './Related.css';
 
+
 // this RelatedProductsList should stay the same for each currentproduct, thus shld be stored in global state
 //this list should gather all elements/component of related products to be rendered
 
 class RelatedProducts extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       relatedProducts: [],
-      relatedProductDetail: [],
-      relatedProductImage: {}
+
+      relatedProductDetail: {},
+      relatedProductImage: {},
+
     };
     this.comparisonModal = this.comparisonModal.bind(this);
     // this.resetCurProduct = this.resetCurProduct.bind(this);
@@ -29,34 +32,37 @@ class RelatedProducts extends React.Component {
     }
   }
 
+
   comparisonModal(element) {
     // console.log('everything going inside modal', element );
     const openModalButtons = document.querySelectorAll('[data-modal-target]');
     const closeModalButtons = document.querySelectorAll('[data-close-button]');
     const overlay = document.getElementById('overlay');
 
-    openModalButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const modal = document.querySelector(button.dataset.modalTarget)
-        openModal(modal)
-      })
-    })
 
-    overlay.addEventListener('click', () => {
-      const modals = document.querySelectorAll('.modal.active')
-      modals.forEach(modal => {
-        closeModal(modal)
-      })
-    })
+    openModalButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const modal = document.querySelector(button.dataset.modalTarget);
+        openModal(modal);
+      });
+    });
 
-    closeModalButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const modal = button.closest('.modal')
-        closeModal(modal)
-      })
-    })
+    overlay.addEventListener("click", () => {
+      const modals = document.querySelectorAll(".modal.active");
+      modals.forEach((modal) => {
+        closeModal(modal);
+      });
+    });
+
+    closeModalButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const modal = button.closest(".modal");
+        closeModal(modal);
+      });
+    });
 
     function openModal(modal) {
+
       if (modal === null) return
       modal.classList.add('active')
       overlay.classList.add('active')
@@ -66,6 +72,7 @@ class RelatedProducts extends React.Component {
       if (modal === null) return
       modal.classList.remove('active')
       overlay.classList.remove('active')
+
     }
   }
 
@@ -74,7 +81,7 @@ class RelatedProducts extends React.Component {
   //   console.log('props at reset', this.props);
   // }
 
-  render() {
+render() {
     if (this.state.relatedProductDetail.length === this.state.relatedProducts.length & this.state.relatedProductImage.length === this.state.relatedProducts.length) {
       console.log('state to be rendered', this.state)
       return (

@@ -1,0 +1,13 @@
+.feature {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.key {
+  margin: 0;
+}
+
+.value {
+  margin: 0;
+}
