@@ -27,7 +27,7 @@ export default class ReviewList extends Component {
   };
 
   render(props) {
-    // console.log("CurrentList: ", this.props.currentProductReview);
+    console.log("CurrentList: ", this.props.currentProductReview);
     return (
       <div className="reviewlist-container">
         <h1>Reviews</h1>
@@ -50,8 +50,8 @@ export default class ReviewList extends Component {
                   <br></br>
                   Reviewer_ID: {review.reviewer_name}
                   <br></br>
-                  Photo:
-                  <img src={review.photos[index]} alt="photo" />
+                  Photo: {review.review}
+                  {/* <img src={review.photos[index]} alt="photo" /> */}
                 </ul>
               );
             })}

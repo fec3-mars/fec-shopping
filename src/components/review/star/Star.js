@@ -37,7 +37,7 @@ export default class StarRating extends Component {
         numberOfStars={5}
         name="rating"
         starDimension="20px"
-        starSpacing="5px"
+        starSpacing="10px"
       />
     );
   }
