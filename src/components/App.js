@@ -28,7 +28,6 @@ class App extends React.Component {
 
   componentDidMount() {
     makeRequest.call(this, 66642);
-
     makeReviewRequest.call(this, 66643);
   }
 
