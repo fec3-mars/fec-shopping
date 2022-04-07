@@ -1,6 +1,6 @@
 .product-info-reviews-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 3rem;
 }
@@ -38,4 +38,9 @@
 
 .category {
   margin: 0 0 1rem 0;
+}
+
+.star-container {
+  padding-right: 1rem;
+  width: 15%
 }

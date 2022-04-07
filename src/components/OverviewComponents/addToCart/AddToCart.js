@@ -5,6 +5,8 @@ import {
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { postToBag, axios } from '../../axios.js';
+import SelectSize from './SelectSize.js';
 
 
 class AddToCart extends React.Component {
@@ -34,7 +36,7 @@ class AddToCart extends React.Component {
     }
   }
 
-  addToBagHandler(e) {
+  addToBagHandler(e, style, selectedSize, qty) {
     e.preventDefault()
     if (this.state.selectedSize === 'Select Size') {
       this.setState({
@@ -43,8 +45,12 @@ class AddToCart extends React.Component {
     }
 
     if (this.state.qty > 0) {
-      console.log('post: ', "style", "size", this.state.qty)
-      // POST API
+      console.log(style.style_id, style.skus[selectedSize].size, qty)
+      const data = {
+        sku_id: `${selectedSize}`,
+        count: `${qty}`
+      }
+      postToBag(data, selectedSize)
     }
   }
 
@@ -90,7 +96,7 @@ class AddToCart extends React.Component {
           </select>
         </div>
         <div className="addToBag-Rate">
-          <button onClick={this.addToBagHandler} className={nameClassAddToBag}>
+          <button onClick={(e) => { this.addToBagHandler(e, this.props.selectedStyle, selectedSize, qty) }} className={nameClassAddToBag}>
             <span>ADD TO BAG</span>
             <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
           </button>
@@ -102,19 +108,5 @@ class AddToCart extends React.Component {
     )
   }
 }
-
-const SelectSize = ({ handleChange, selectSize, skus, selectedSize }) => (
-  <div className="size-select-container">
-    {selectSize && <p className="size-warning">Please select size</p>}
-    {(skus.length && <select value={selectedSize} name="size" className="size-input" onChange={handleChange} >
-      <option>SELECT SIZE</option>
-      {skus.map(option => {
-        if (option[1].size !== null) {
-          return <option key={option[0]} value={option[0]}>{option[1].size}</option>
-        }
-      })}
-    </select>) || <h3 className="out-of-stock">OUT OF STOCK</h3>}
-  </div>
-)
 
 export default AddToCart;
