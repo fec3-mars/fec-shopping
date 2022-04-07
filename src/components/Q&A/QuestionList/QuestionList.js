@@ -53,13 +53,11 @@ class QuestionList extends React.Component {
 
   componentDidUpdate(prevProps) {
     const curProduct = { ...this.props.curProduct };
-
+    console.log(curProduct);
     if (curProduct.data?.id !== prevProps.curProduct.data?.id) {
-
       this.setState({
         curProduct: { ...curProduct.data },
       }, function () {
-
         this.retrieveData();
       });
     }
@@ -89,13 +87,22 @@ class QuestionList extends React.Component {
       product_id: id,
     }
     postQuestion(postRequest)
+    .then((result) => {
+      console.log('post question result', result);
+    })
+    .then(() => {
+      this.retrieveData();
+    })
+    .catch((err) => {
+      console.log('error in post question', err);
+    })
+
   }
 
   handleSearch(e) {
     const searchTerm = e.target.value;
 
     if (searchTerm.length >= 3) {
-
       this.setState({
         searchTerm: searchTerm,
       }, function() {
@@ -139,7 +146,7 @@ class QuestionList extends React.Component {
     });
 
     const allQuestions = collection.map((question, idx) => {
-      return <IndividualQuestion question={question} key={idx} highlight={this.highlighter.bind(this)} searchTerm={this.state.searchTerm}/>;
+      return <IndividualQuestion question={question} key={idx} highlight={this.highlighter.bind(this)} searchTerm={this.state.searchTerm} reloadPage={this.retrieveData.bind(this)}/>;
     });
 
     this.setState({

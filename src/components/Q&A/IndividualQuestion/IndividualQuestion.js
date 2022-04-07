@@ -118,7 +118,17 @@ class IndividualQuestion extends React.Component {
       email: this.emailNode.value,
       photos: [],
     };
-    postAnswer(postRequest);
+    postAnswer(postRequest)
+    .then((response) => {
+      console.log('in post answer', response);
+    })
+    .then(() => {
+      this.props.reloadPage();
+    })
+    .catch((err) => {
+      console.log('error in post answer', err);
+    })
+
   }
 
   render() {

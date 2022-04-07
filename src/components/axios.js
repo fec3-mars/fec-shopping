@@ -139,25 +139,11 @@ export function getQuestionsAndAnswers(id) {
 }
 
 export function postAnswer(obj) {
-  axios.post(`/qa/questions/${obj.question_id}/answers`, obj)
-    .then((response) => {
-      console.log('in post answer', response);
-    })
-    .catch(err => {
-      console.log('error in get for qa', err);
-    });
-
+  return axios.post(`/qa/questions/${obj.question_id}/answers`, obj);
 }
 
 export function postQuestion(obj) {
-  axios.post(`/qa/questions`, obj)
-    .then((response) => {
-      console.log('in post question', response);
-    })
-    .catch(err => {
-      console.log('error in get for qa', err);
-    });
-
+  return axios.post(`/qa/questions`, obj);
 }
 
     //--------------------------------------Q&A------------------------------
