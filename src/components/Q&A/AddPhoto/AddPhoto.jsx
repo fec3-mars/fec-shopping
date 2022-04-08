@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from '../Modal/Modal.jsx';
+import './AddPhoto.css';
 
 class AddPhoto extends React.Component {
   constructor(props) {
@@ -7,18 +8,57 @@ class AddPhoto extends React.Component {
 
     this.state = {
       photos: [],
+      displayImages: [],
     };
 
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
   }
 
-  hideModal = () => {
-    this.setState({ show: false });
-  };
+  componentDidUpdate(prevProps, prevState) {
+    const {
+      photos,
+    } = this.state;
+
+    let newPhotos = [];
+    if (photos.length !== prevState.photos.length) {
+      newPhotos = photos.map((photo) => <img className="thumbnail" alt="Answer" src={photo} />);
+
+      this.setState({
+        displayImages: [...newPhotos],
+      });
+    }
+  }
+
+  onImageChange(e) {
+    const files = [...e.target.files];
+
+    if (files.length < 1) return;
+    if (files.length > 5) {
+      alert('No more than five photos please');
+      e.target.value = null;
+      this.setState({
+        photos: [],
+        displayImages: [],
+      });
+
+      return;
+    }
+
+    const images = [];
+    files.forEach((file) => images.push(URL.createObjectURL(file)));
+
+    this.setState({
+      photos: [...images],
+    });
+  }
 
   showModal = () => {
     this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
   };
 
   render() {
@@ -26,7 +66,9 @@ class AddPhoto extends React.Component {
       <div className="add-a-photo">
         <Modal show={this.state.show} handleClose={this.hideModal}>
           <div className="add-an-answer">
-            <h3>Add Photos</h3>
+            <h3>Choose up to five photos</h3>
+            <input id="fileInputId" type="file" multiple accept="image/*" onChange={this.onImageChange.bind(this)} />
+            {this.state.displayImages}
           </div>
         </Modal>
 
