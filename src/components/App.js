@@ -39,7 +39,7 @@ class App extends React.Component {
     // console.log('hello from handlechange', e);
     this.setState({
       curProduct: e,
-    })
+    });
   }
 
   componentDidMount() {
@@ -57,7 +57,10 @@ class App extends React.Component {
       <div className="app">
         <h1>Hello World</h1>
         <Overview curProduct={this.state.curProduct} />
-        <RelatedProducts curProduct={this.state.curProduct} handleChange={this.handleChange}/>
+        <RelatedProducts
+          curProduct={this.state.curProduct}
+          handleChange={this.handleChange}
+        />
         <OutfitList curProduct={this.state.curProduct} />
         <Review
           // passRating={() => {this.getRating(curRating)}}
