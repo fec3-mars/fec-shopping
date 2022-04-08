@@ -2,7 +2,8 @@ import React from "react";
 import IndividualQuestion from "../IndividualQuestion/IndividualQuestion";
 import AddQuestion from "../AddQuestion/AddQuestion";
 import AddAnswer from "../AddAnswer/AddAnswer";
-import Modal from '../Modal/Modal.js';
+import Modal from '../Modal/Modal.jsx';
+import './questionlist.css';
 import { getQuestionsAndAnswers, postQuestion } from "../../axios";
 
 class QuestionList extends React.Component {
@@ -13,13 +14,12 @@ class QuestionList extends React.Component {
       questions: [],
       filteredQuestions: [],
       allQuestions: [],
-      addQuestion: false,
       searchTerm: '',
       show: false,
       showAllQ: false,
     };
-    // this.showModal = this.showModal.bind(this);
-    // this.hideModal = this.hideModal.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   showModal = () => {
@@ -63,13 +63,8 @@ class QuestionList extends React.Component {
   }
 
   changeAddQuestion() {
-    if (this.state.addQuestion) {
-      this.handleSubmit();
-    }
-
-    this.setState({
-      addQuestion: !this.state.addQuestion,
-    })
+    this.handleSubmit();
+    this.hideModal();
   }
 
   handleSubmit() {
@@ -78,7 +73,7 @@ class QuestionList extends React.Component {
     } = this.state;
 
     const {id} = curProduct;
-    console.log('id', id);
+
     const postRequest = {
       body: this.bodyNode.value,
       name: this.nameNode.value,
@@ -104,7 +99,7 @@ class QuestionList extends React.Component {
     if (searchTerm.length >= 3) {
       this.setState({
         searchTerm: searchTerm,
-      }, function() {
+      }, () => {
         return this.filterQuestions();
       })
       return;
@@ -112,7 +107,7 @@ class QuestionList extends React.Component {
 
     this.setState({
       searchTerm: '',
-    }, function() {
+    }, () => {
       this.filterQuestions();
     });
   }
@@ -185,9 +180,7 @@ class QuestionList extends React.Component {
   render() {
     const {
       curProduct,
-      questions,
       allQuestions,
-      addQuestion,
       showAllQ,
     } = this.state;
 
@@ -203,48 +196,44 @@ class QuestionList extends React.Component {
     }
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //default display
-    if (!addQuestion) {
-      return (
-        <div className="questionList">
-          <h2>{"Questions & Answers"}</h2>
-          <input
-            type="text"
-            placeholder="Have a question? Search for answers..."
-            onChange={this.handleSearch.bind(this)}
-          ></input>
-          {displayQuestions}
-
-          {/* <Modal show={this.state.show} handleClose={this.hideModal}>
-            <p>worked</p>
-
-          </Modal> */}
-          <button onClick={this.revealAllQuestions.bind(this)} type="button">{answerButtonText} </button>
-          <button onClick={this.changeAddQuestion.bind(this)} type="button">Add a Question </button>
-        </div>
-      );
-    }
-
-    //add question display
     return (
+      <div className="questionList">
+        <h2>{"Questions & Answers"}</h2>
+        <input
+          type="text"
+          placeholder="Have a question? Search for answers..."
+          onChange={this.handleSearch.bind(this)}
+        />
+        {displayQuestions}
+
+      <Modal show={this.state.show} handleClose={this.hideModal}>
       <div className="add-a-question">
-          <h3>Ask your question</h3>
-          <h3><i>About the {name}</i></h3>
+        <h3>Ask your question</h3>
+        <h3><i>About the {name}</i></h3>
 
-          <h4>*Your Question</h4>
-          <textarea ref={node => (this.bodyNode = node)} name="textarea" style={{'width':'250px', 'height':'150px'}}></textarea>
+        <h4>*Your Question</h4>
+        <textarea ref={node => (this.bodyNode = node)} name="textarea" style={{'width':'250px', 'height':'150px'}}></textarea>
 
-          <h4>*What is your nickname?</h4>
-          <input ref={node => (this.nameNode = node)} placeholder="Example jackson11!"></input>
-          <p><i>for privacy reasons do not use your full name or address</i></p>
+        <h4>*What is your nickname?</h4>
+        <input ref={node => (this.nameNode = node)} placeholder="Example jackson11!"></input>
+        <p><i>for privacy reasons do not use your full name or address</i></p>
 
-          <h4>*Your email</h4>
-          <input ref={node => (this.emailNode = node)} placeholder="Why did you like the product or not?" style={{'width':'250px'}}></input>
-          <p><i>for authentication reasons, you will not be emailed</i></p>
-          <button onClick={this.changeAddQuestion.bind(this)}> Submit Question </button>
-        </div>
-    )
+        <h4>*Your email</h4>
+        <input ref={node => (this.emailNode = node)} placeholder="Why did you like the product or not?" style={{ width: '250px' }} />
+        <p><i>for authentication reasons, you will not be emailed</i></p>
+        <button type="button" onClick={this.changeAddQuestion.bind(this)}> Submit Question </button>
+      </div>
+      </Modal>
+
+        <button type="button" onClick={this.showModal}>
+          Add a Question
+        </button>
+
+        <button type="button" onClick={this.revealAllQuestions.bind(this)}>
+          {answerButtonText}
+        </button>
+      </div>
+    );
   }
 }
 
