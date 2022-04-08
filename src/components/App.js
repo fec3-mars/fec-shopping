@@ -2,9 +2,15 @@
 import React from "react";
 import Review from "./review/Review.jsx";
 
+<<<<<<< HEAD
+import Overview from "./OverviewComponents/Overview.js";
+import QuestionList from "./Q&A/QuestionList";
+import RelatedProducts from "./RelatedProducts/RelatedProductsList.jsx";
+=======
 import Overview from "./OverviewComponents/Overview.jsx";
 import QuestionList from "./Q&A/QuestionList/QuestionList";
 import RelatedProducts from "./RelatedProducts/RelatedProductsList.js";
+>>>>>>> 2a023ee91ab5dc5cb7a5a8a1053f73ab869952ac
 import OutfitList from "./YourOutfit/OutfitList.js";
 
 import {
@@ -24,6 +30,7 @@ class App extends React.Component {
       avgRating: 0,
       relatedProducts: [],
       curStyles: [],
+      allOutfits: []
     };
     this.handleChange = this.handleChange.bind(this);
   }

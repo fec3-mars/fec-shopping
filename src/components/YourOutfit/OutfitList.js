@@ -15,14 +15,11 @@ class OutfitList extends React.Component {
   handleClick(e, data) {
     // console.log('state at handleClick', this.props.curProduct.data);
     var outfitList = [];
-    // for (var i=0; i<outfitList.length; i++) {
-    //   if (outfitList[i].id !== this.props.curProduct.data.id){
     outfitList.push(this.props.curProduct.data)
     this.setState({
       allOutfits: outfitList,
     })
     console.log('outfitlist at handleclick', outfitList);
-    // console.log('state at handleclick', this.state);
   }
 
   render() {
