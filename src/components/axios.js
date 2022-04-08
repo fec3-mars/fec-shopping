@@ -177,7 +177,17 @@ export function reportAnswer(id) {
 //--------------------------------------Q&A------------------------------
 
 //--------------------------------------Reviews------------------------------
-
+export function getMetaData() {
+  axios
+    .get(`/reviews/meta/?product_id=66643`)
+    .then((response) => {
+      console.log("Got meta data: ", response);
+      const { metaData } = response.data;
+    })
+    .catch((err) => {
+      console.log("error in get MetaData");
+    });
+}
 //--------------------------------------Reviews------------------------------
 
 export default axios;
