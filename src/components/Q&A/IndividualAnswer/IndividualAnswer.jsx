@@ -1,6 +1,7 @@
 import React from 'react';
 import './IndividualAnswer.css';
-import {markAnswerHelpful, reportAnswer } from "../../axios";
+import IndividualPhoto from '../IndividualPhoto/IndividualPhoto';
+import { markAnswerHelpful, reportAnswer } from '../../axios';
 
 class IndividualAnswer extends React.Component {
   constructor(props) {
@@ -48,18 +49,12 @@ class IndividualAnswer extends React.Component {
 
   render() {
     const {
-      answerer_name,
       body,
       date,
       helpfulness,
-      id,
       photos,
+      answerer_name
     } = this.props.answer;
-
-    const {
-      helpful,
-      report,
-    } = this.state;
 
     //----------------------------------------------------------------------------------------------
 
@@ -67,40 +62,37 @@ class IndividualAnswer extends React.Component {
 
     let name = answerer_name;
     if (answerer_name === 'Seller') {
-      name = <b>Seller</b>
+      name = <b>Seller</b>;
     }
 
     let photoGallery;
     if (photos) {
-      photoGallery = photos.map((photo, idx) => {
-        return(
-          <img className="review-photos" src={photo} key={idx}></img>
-        )
-      });
+      photoGallery = photos.map((photo, idx) => <IndividualPhoto photo={photo} key={idx} />);
     }
 
     //------------------------------------------------------------
 
     return (
-      <div className='answers' style={{border: 'solid white'}}>
-        <p className='answer-body'>{body}</p>
-        <p>by {name}, {formattedDate.toDateString()}</p>
-        <button className='helpful' onClick={this.answerHelpful.bind(this)}>Helpful? </button>
-        <p>Yes({helpfulness})</p>;
-        <button className='report' onClick={this.answerReport.bind(this)}>Report</button>;
+      <div className="answers" style={{ border: 'solid white' }}>
+        <p className="answer-body">{body}</p>
+        <p>
+          by
+          {name}
+          ,
+          {formattedDate.toDateString()}
+        </p>
+        <button type="button" className="helpful" onClick={this.answerHelpful.bind(this)}>Helpful? </button>
+        <p>
+          Yes
+          (
+          { helpfulness }
+          )
+        </p>
+        <button type="button" className="report" onClick={this.answerReport.bind(this)}>Report</button>
         {photoGallery}
       </div>
     );
   }
 }
-
-/*
-answerer_name: "dschulman"
-body: "It runs small"
-date: "2019-11-17T00:00:00.000Z"
-helpfulness: 1
-id: 5448523
-photos: (2) ['https://images.unsplash.com/photo-14701168
-*/
 
 export default IndividualAnswer;

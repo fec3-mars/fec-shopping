@@ -36,8 +36,12 @@ class Overview extends React.Component {
   }
 
   render() {
-    const { product, styles, selectedStyle, loaded } = this.state;
-    // console.log(loaded, selectedStyle);
+    const {
+      product,
+      styles,
+      selectedStyle,
+      loaded,
+    } = this.state;
 
     return (
       <div className="overview-container">

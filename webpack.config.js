@@ -11,6 +11,9 @@ module.exports = {
   plugins: [
     new Dotenv(),
   ],
+  resolve: {
+    extensions: ["", ".webpack.js", ".web.js", ".js", ".json", ".jsx"],
+  },
   module: {
     rules: [
       {
