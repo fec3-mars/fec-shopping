@@ -22,6 +22,7 @@ class IndividualQuestion extends React.Component {
 
   componentDidMount() {
     const { answers, question_body } = this.props.question;
+
     this.formatAnswers(answers);
 
     this.setState({

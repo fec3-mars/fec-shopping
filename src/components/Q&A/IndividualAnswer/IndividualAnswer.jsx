@@ -1,5 +1,6 @@
 import React from 'react';
 import './IndividualAnswer.css';
+import IndividualPhoto from '../IndividualPhoto/IndividualPhoto';
 import { markAnswerHelpful, reportAnswer } from '../../axios';
 
 class IndividualAnswer extends React.Component {
@@ -66,7 +67,7 @@ class IndividualAnswer extends React.Component {
 
     let photoGallery;
     if (photos) {
-      photoGallery = photos.map((photo, idx) => <img alt="review" className="review-photos" src={photo} key={idx} />);
+      photoGallery = photos.map((photo, idx) => <IndividualPhoto photo={photo} key={idx} />);
     }
 
     //------------------------------------------------------------
