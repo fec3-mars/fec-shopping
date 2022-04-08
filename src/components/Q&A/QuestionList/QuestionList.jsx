@@ -1,7 +1,5 @@
 import React from 'react';
 import IndividualQuestion from '../IndividualQuestion/IndividualQuestion';
-import AddQuestion from '../AddQuestion/AddQuestion';
-import AddAnswer from '../AddAnswer/AddAnswer';
 import Modal from '../Modal/Modal.jsx';
 import './QuestionList.css';
 import { getQuestionsAndAnswers, postQuestion } from '../../axios';

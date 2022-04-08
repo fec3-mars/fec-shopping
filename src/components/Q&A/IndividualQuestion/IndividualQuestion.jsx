@@ -2,6 +2,7 @@ import React from 'react';
 import IndividualAnswer from '../IndividualAnswer/IndividualAnswer';
 import './IndividualQuestion.css';
 import Modal from '../Modal/Modal.jsx';
+import AddPhoto from '../AddPhoto/AddPhoto.jsx';
 import { postAnswer, markQuestionHelpful, reportQuestion } from '../../axios';
 
 class IndividualQuestion extends React.Component {
@@ -238,7 +239,7 @@ class IndividualQuestion extends React.Component {
             <h4>*Your email</h4>
             <input ref={node => (this.emailNode = node)} placeholder="Example: jack@email.com" style={{ width: '250px' }} />
             <p><i>for authentication reasons, you will not be emailed</i></p>
-            <button type="button"> Add Photos </button>
+            <AddPhoto />
             <button type="button" onClick={this.changeAddAnswer.bind(this)}> Submit Answer </button>
           </div>
         </Modal>

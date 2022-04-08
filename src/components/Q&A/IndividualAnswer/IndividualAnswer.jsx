@@ -1,6 +1,6 @@
 import React from 'react';
 import './IndividualAnswer.css';
-import {markAnswerHelpful, reportAnswer } from "../../axios";
+import { markAnswerHelpful, reportAnswer } from '../../axios';
 
 class IndividualAnswer extends React.Component {
   constructor(props) {
