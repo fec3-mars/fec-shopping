@@ -197,6 +197,7 @@ class QuestionList extends React.Component {
         <h2>{"Questions & Answers"}</h2>
         <input
           type="text"
+          className="question-search-bar"
           placeholder="Have a question? Search for answers..."
           onChange={this.handleSearch.bind(this)}
         />
