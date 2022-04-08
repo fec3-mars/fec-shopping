@@ -1,4 +1,6 @@
 import React from 'react';
+import './IndividualAnswer.css';
+import {markAnswerHelpful, reportAnswer } from "../../axios";
 
 class IndividualAnswer extends React.Component {
   constructor(props) {
@@ -10,18 +12,39 @@ class IndividualAnswer extends React.Component {
     };
   }
 
-  change(e) {
-    const target = e.target.className;
-    if (this.state[`${target}`]) {
-      alert('Already voted');
-    }
+  answerHelpful() {
+    const {
+      id
+    } = this.props.answer;
 
-
-    let obj = {};
-    obj[`${target}`] = true;
-    this.setState(obj);
+    markAnswerHelpful(id)
+      .then(() => {
+        console.log('answer marked helpful success');
+      })
+      .then(() => {
+        this.props.reloadPage();
+      })
+      .catch((err) => {
+        console.log('error in mark answer helpful', err);
+      });
   }
 
+  answerReport() {
+    const {
+      id,
+    } = this.props.answer;
+
+    reportAnswer(id)
+      .then(() => {
+        console.log('answer reported successfully');
+      })
+      .then(() => {
+        this.props.reloadPage();
+      })
+      .catch((err) => {
+        console.log('error in reporting answer', err);
+      });
+  }
 
   render() {
     const {
@@ -38,7 +61,7 @@ class IndividualAnswer extends React.Component {
       report,
     } = this.state;
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
 
     const formattedDate = new Date(date);
 
@@ -47,32 +70,27 @@ class IndividualAnswer extends React.Component {
       name = <b>Seller</b>
     }
 
-    let reportDisplay = <button className='report' onClick={this.change.bind(this)}>Report</button>;
-    if (report) {
-      //TODO
-      //must make post request to ACTUALLY change report state
-      //for now just visual
-      reportDisplay = <button className='report' onClick={this.change.bind(this)}>Reported</button>
+    let photoGallery;
+    if (photos) {
+      photoGallery = photos.map((photo, idx) => {
+        return(
+          <img className="review-photos" src={photo} key={idx}></img>
+        )
+      });
     }
 
-    let helpfulnessScore = <p>Yes({helpfulness})</p>;
-    if (helpful) {
-      //TODO
-      //must make post request to ACTUALLY change helpfulness score
-      //for now just visual
-      helpfulnessScore = <p>Yes({helpfulness + 1})</p>;
-    }
-//---------------------------------------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------
 
-    return(
+    return (
       <div className='answers' style={{border: 'solid white'}}>
         <p className='answer-body'>{body}</p>
         <p>by {name}, {formattedDate.toDateString()}</p>
-        <button className='helpful' onClick={this.change.bind(this)}>Helpful? </button>
-        {helpfulnessScore}
-        {reportDisplay}
+        <button className='helpful' onClick={this.answerHelpful.bind(this)}>Helpful? </button>
+        <p>Yes({helpfulness})</p>;
+        <button className='report' onClick={this.answerReport.bind(this)}>Report</button>;
+        {photoGallery}
       </div>
-    )
+    );
   }
 }
 

@@ -18,5 +18,8 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/prop-types': 0,
+    'react/destructuring-assignment': 0,
+    'import/extensions': 0,
   },
 };

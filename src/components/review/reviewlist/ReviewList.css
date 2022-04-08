@@ -1,5 +1,6 @@
 .reviewlist-container {
   background-color: red;
+  width: 100%;
 }
 
 .sort-container {
@@ -7,4 +8,13 @@
 
 .review-list {
   text-align: center;
+}
+
+.review-body {
+  font-weight: bold;
+  font-size: large;
+}
+
+.reviewer-name {
+  text-align: justify;
 }

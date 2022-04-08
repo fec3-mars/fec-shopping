@@ -1,6 +1,8 @@
+/* eslint-disable */
 import React, { Component } from "react";
 import "./Breakdown.css";
-import StarRating from "../star/Star.js";
+import StarRating from "../star/Star.jsx";
+import BarGraph from "./BarGraph.jsx";
 
 export default class Breakdown extends Component {
   constructor(props) {
@@ -38,13 +40,16 @@ export default class Breakdown extends Component {
 
   render(props) {
     // console.log("Rating", this.props.currentProductRating.length);
+
     return (
       <div className="breakdown-container">
-        <h1>Breakdown</h1>
+        <h1>Ratings & Reviews</h1>
         <span>
-          {/* Average Rating: {this.getAverageRating()} */}
+          <br></br>
+          <h2>{this.state.averageRating}</h2>
           {this.temp}
         </span>
+        <BarGraph />
         <br></br>
         <StarRating averageRating={this.state.averageRating} />
       </div>
