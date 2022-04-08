@@ -22,7 +22,9 @@ class AddPhoto extends React.Component {
 
     let newPhotos = [];
     if (photos.length !== prevState.photos.length) {
-      newPhotos = photos.map((photo) => <img className="thumbnail" alt="Answer" src={photo} />);
+      this.props.addPhotos(photos);
+
+      newPhotos = photos.map((photo, idx) => <img key={idx} className="thumbnail" alt="Answer" src={photo} />);
 
       this.setState({
         displayImages: [...newPhotos],

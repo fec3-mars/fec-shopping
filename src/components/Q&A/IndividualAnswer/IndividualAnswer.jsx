@@ -94,13 +94,4 @@ class IndividualAnswer extends React.Component {
   }
 }
 
-/*
-answerer_name: "dschulman"
-body: "It runs small"
-date: "2019-11-17T00:00:00.000Z"
-helpfulness: 1
-id: 5448523
-photos: (2) ['https://images.unsplash.com/photo-14701168
-*/
-
 export default IndividualAnswer;

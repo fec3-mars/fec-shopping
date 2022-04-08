@@ -11,6 +11,7 @@ class IndividualQuestion extends React.Component {
 
     this.state = {
       answers: [],
+      photos: [],
       questionBody: '',
       expanded: false,
     };
@@ -28,9 +29,10 @@ class IndividualQuestion extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps) {
-    const {answers, question_body} = this.props.question;
-    const {searchTerm} = this.props;
+  componentDidUpdate(prevProps, prevState) {
+    const { answers, question_body } = this.props.question;
+    const { searchTerm } = this.props;
+    const { photos } = this.state;
 
     if (answers !== prevProps.question.answers) {
       this.formatAnswers(answers);
@@ -43,17 +45,10 @@ class IndividualQuestion extends React.Component {
         questionBody: body,
       });
     }
-  }
 
-  changeExpanded() {
-    this.setState({
-      expanded: !this.state.expanded,
-    });
-  }
-
-  changeAddAnswer() {
-    this.handleSubmit();
-    this.hideModal();
+    if (photos.length !== prevState.photos.length && photos.length === 5) {
+      alert('Photos added successfully');
+    }
   }
 
   handleSubmit() {
@@ -61,12 +56,14 @@ class IndividualQuestion extends React.Component {
       question_id,
     } = this.props.question;
 
+    const { photos } = this.state;
+
     const postRequest = {
       question_id,
       body: this.bodyNode.value,
       name: this.nameNode.value,
       email: this.emailNode.value,
-      photos: [],
+      photos,
     };
     postAnswer(postRequest)
       .then((response) => {
@@ -77,6 +74,32 @@ class IndividualQuestion extends React.Component {
       })
       .catch((err) => {
         console.log('error in post answer', err);
+      });
+  }
+
+  hideModal = () => {
+    this.setState({
+      show: false,
+      photos: [],
+    });
+  };
+
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  questionReport() {
+    const {question_id} = this.props.question;
+
+    reportQuestion(question_id)
+      .then(() => {
+        console.log('success reporting question');
+      })
+      .then(() => {
+        this.props.reloadPage();
+      })
+      .catch((err) => {
+        console.log('err in reporting a question', err);
       })
   }
 
@@ -95,28 +118,16 @@ class IndividualQuestion extends React.Component {
       });
   }
 
-  questionReport() {
-    const {question_id} = this.props.question;
-
-    reportQuestion(question_id)
-      .then(() => {
-        console.log('success reporting question');
-      })
-      .then(() => {
-        this.props.reloadPage();
-      })
-      .catch((err) => {
-        console.log('err in reporting a question', err);
-      })
+  changeAddAnswer() {
+    this.handleSubmit();
+    this.hideModal();
   }
 
-  hideModal = () => {
-    this.setState({ show: false });
-  };
-
-  showModal = () => {
-    this.setState({ show: true });
-  };
+  changeExpanded() {
+    this.setState({
+      expanded: !this.state.expanded,
+    });
+  }
 
   buildAnswers(arr) {
     const answers = arr.map((answer, idx) =>
@@ -157,6 +168,12 @@ class IndividualQuestion extends React.Component {
     this.buildAnswers(answerArr);
   }
 
+  addPhotos(newPhotos) {
+    this.setState({
+      photos: [...newPhotos],
+    });
+  }
+
   render() {
     const {
       question_helpfulness,
@@ -171,6 +188,7 @@ class IndividualQuestion extends React.Component {
       answers,
       expanded,
       questionBody,
+      photos,
     } = this.state;
     //---------------------------------------------------------------------------------------------
     let answersText = answers;
@@ -203,6 +221,11 @@ class IndividualQuestion extends React.Component {
 
     if (searchTerm.length < 3) {
       body = question_body;
+    }
+
+    let addPhotoButton = <AddPhoto addPhotos={this.addPhotos.bind(this) }/>;
+    if (photos.length === 5) {
+      addPhotoButton = null;
     }
 
     //------------------------------------------------------------------------------------------
@@ -239,7 +262,7 @@ class IndividualQuestion extends React.Component {
             <h4>*Your email</h4>
             <input ref={node => (this.emailNode = node)} placeholder="Example: jack@email.com" style={{ width: '250px' }} />
             <p><i>for authentication reasons, you will not be emailed</i></p>
-            <AddPhoto />
+            {addPhotoButton}
             <button type="button" onClick={this.changeAddAnswer.bind(this)}> Submit Answer </button>
           </div>
         </Modal>
