@@ -1,0 +1,32 @@
+.size-select-container {
+  width: 60%;
+}
+
+.size-input {
+  padding: 1rem;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+.size-warning {
+  color: red;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 0;
+  position: absolute;
+  top: -1.5rem;
+}
+
+.out-of-stock {
+  text-align: center;
+  width: 85%;
+  color: red;
+  border: 2px solid #fff;
+  padding: 1rem;
+  margin: 0;
+}
+
+.size-input:hover {
+  cursor: pointer;
+}

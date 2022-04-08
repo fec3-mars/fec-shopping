@@ -1,0 +1,44 @@
+.btn__pan-up {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn__pan-down {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+.btn__arrow-left {
+  top: 50%;
+  left: 14%;
+  transform: translateY(-50%);
+}
+
+.btn__arrow-right {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5%;
+}
+
+.btn__pan-down,
+.btn__pan-up,
+.btn__arrow-left,
+.btn__arrow-right {
+  position: absolute;
+  padding: .5rem;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #000;
+  box-shadow: 2px 2px 4px #000;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+
+.btn__pan-down,
+.btn__pan-up,
+.btn__arrow-left,
+.btn__arrow-right:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,62 @@
+.add-to-cart {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.select-menus {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.addToBag-Rate {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 2rem;
+}
+
+.btn__add-to-bag {
+  padding: 1rem;
+  letter-spacing: 1px;
+  width: 75%;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+}
+
+.thank-you {
+  padding: 1rem;
+  letter-spacing: 1px;
+  font-size: 1.6rem;
+  width: 75%;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.icon__star {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.btn__add-to-bag:hover {
+  cursor: pointer;
+}
+
+.btn__favorite {
+  padding: 1rem;
+  width: 15%
+}
