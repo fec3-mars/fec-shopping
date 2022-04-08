@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import Review from "./review/Review.jsx";
+
 import Overview from "./OverviewComponents/Overview.jsx";
 import QuestionList from "./Q&A/QuestionList/QuestionList";
 import RelatedProducts from "./RelatedProducts/RelatedProductsList.jsx";
@@ -23,7 +24,7 @@ class App extends React.Component {
       avgRating: 0,
       relatedProducts: [],
       curStyles: [],
-      allOutfits: []
+      allOutfits: [],
     };
     this.handleChange = this.handleChange.bind(this);
   }
