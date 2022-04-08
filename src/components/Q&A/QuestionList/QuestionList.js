@@ -1,10 +1,10 @@
-import React from "react";
-import IndividualQuestion from "../IndividualQuestion/IndividualQuestion";
-import AddQuestion from "../AddQuestion/AddQuestion";
-import AddAnswer from "../AddAnswer/AddAnswer";
+import React from 'react';
+import IndividualQuestion from '../IndividualQuestion/IndividualQuestion';
+import AddQuestion from '../AddQuestion/AddQuestion';
+import AddAnswer from '../AddAnswer/AddAnswer';
 import Modal from '../Modal/Modal.jsx';
-import './questionlist.css';
-import { getQuestionsAndAnswers, postQuestion } from "../../axios";
+import './QuestionList.css';
+import { getQuestionsAndAnswers, postQuestion } from '../../axios';
 
 class QuestionList extends React.Component {
   constructor(props) {
@@ -22,13 +22,74 @@ class QuestionList extends React.Component {
     this.hideModal = this.hideModal.bind(this);
   }
 
-  showModal = () => {
-    this.setState({ show: true });
-  };
+  componentDidUpdate(prevProps) {
+    const curProduct = { ...this.props.curProduct };
+
+    if (curProduct.data?.id !== prevProps.curProduct.data?.id) {
+      this.setState({
+        curProduct: { ...curProduct.data },
+      }, () => {
+        this.retrieveData();
+      });
+    }
+  }
+
+  handleSubmit() {
+    const {
+      curProduct,
+    } = this.state;
+
+    const { id } = curProduct;
+
+    const postRequest = {
+      body: this.bodyNode.value,
+      name: this.nameNode.value,
+      email: this.emailNode.value,
+      product_id: id,
+    };
+
+    postQuestion(postRequest)
+      .then((result) => {
+        console.log('post question result', result);
+      })
+      .then(() => {
+        this.retrieveData();
+      })
+      .catch((err) => {
+        console.log('error in post question', err);
+      });
+  }
+
+  handleSearch(e) {
+    const searchTerm = e.target.value;
+
+    if (searchTerm.length >= 3) {
+      this.setState({
+        searchTerm,
+      }, () => this.filterQuestions());
+      return;
+    }
+
+    this.setState({
+      searchTerm: '',
+    }, () => {
+      this.filterQuestions();
+    });
+  }
 
   hideModal = () => {
     this.setState({ show: false });
   };
+
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  populateQuestions() {
+    if (this.state.questions) {
+      return this.createAllQuestions();
+    }
+  }
 
   retrieveData() {
     const { id } = this.state.curProduct;
@@ -50,72 +111,9 @@ class QuestionList extends React.Component {
     return <div> {arr} </div>;
   }
 
-  componentDidUpdate(prevProps) {
-    const curProduct = { ...this.props.curProduct };
-
-    if (curProduct.data?.id !== prevProps.curProduct.data?.id) {
-      this.setState({
-        curProduct: { ...curProduct.data },
-      }, () => {
-        this.retrieveData();
-      });
-    }
-  }
-
   changeAddQuestion() {
     this.handleSubmit();
     this.hideModal();
-  }
-
-  handleSubmit() {
-    const {
-      curProduct,
-    } = this.state;
-
-    const {id} = curProduct;
-
-    const postRequest = {
-      body: this.bodyNode.value,
-      name: this.nameNode.value,
-      email: this.emailNode.value,
-      product_id: id,
-    }
-    postQuestion(postRequest)
-      .then((result) => {
-        console.log('post question result', result);
-      })
-      .then(() => {
-        this.retrieveData();
-      })
-      .catch((err) => {
-        console.log('error in post question', err);
-      })
-
-  }
-
-  handleSearch(e) {
-    const searchTerm = e.target.value;
-
-    if (searchTerm.length >= 3) {
-      this.setState({
-        searchTerm: searchTerm,
-      }, () => {
-        return this.filterQuestions();
-      })
-      return;
-    }
-
-    this.setState({
-      searchTerm: '',
-    }, () => {
-      this.filterQuestions();
-    });
-  }
-
-  populateQuestions() {
-    if (this.state.questions) {
-      return this.createAllQuestions();
-    }
   }
 
   createAllQuestions() {
