@@ -4,7 +4,7 @@ import Review from "./review/Review.js";
 
 import Overview from "./OverviewComponents/Overview.js";
 import QuestionList from "./Q&A/QuestionList";
-import RelatedProducts from "./RelatedProducts/RelatedProductsList.js";
+import RelatedProducts from "./RelatedProducts/RelatedProductsList.jsx";
 import OutfitList from "./YourOutfit/OutfitList.js";
 
 import {
@@ -24,6 +24,7 @@ class App extends React.Component {
       avgRating: 0,
       relatedProducts: [],
       curStyles: [],
+      allOutfits: []
     };
     this.handleChange = this.handleChange.bind(this);
   }

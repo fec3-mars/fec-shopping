@@ -1,6 +1,7 @@
 import React from 'react';
 import App from '../App.js'
 import { axios, makeRequest, getRelatedProducts, getRelatedDetail, getRelatedImage } from '../axios.js';
+import IndividualProduct from './IndividualProduct.js';
 import './Related.css';
 import Modal from './Modal.js';
 
@@ -12,7 +13,7 @@ class RelatedProducts extends React.Component {
     super(props);
     this.state = {
       relatedProducts: [],
-      relatedProductDetail: [],
+      relatedProductDetail: [2],
       relatedProductImage: {},
       show: false
     };
@@ -20,12 +21,21 @@ class RelatedProducts extends React.Component {
     this.hideModal = this.hideModal.bind(this);
   }
 
-  showModal = () => {
-    this.setState({ show: true });
+  showModal = (e) => {
+    console.log('e at shgowmodal', e);
+    this.setState({
+      show: true,
+      clickedItem: e,
+    });
   };
 
-  hideModal = () => {
-    this.setState({ show: false });
+  hideModal = (e) => {
+    console.log('state at hide', this.state);
+    console.log('e at hidemodal', e);
+    this.setState({
+      show: false,
+      clickedItem: this.state.clickedItem
+    });
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -34,41 +44,41 @@ class RelatedProducts extends React.Component {
     }
     if (this.state.relatedProducts !== prevState.relatedProducts) {
       getRelatedDetail.call(this, this.state.relatedProducts);
+    }
+    if (this.state.relatedProducts !== prevState.relatedProducts) {
       getRelatedImage.call(this, this.state.relatedProducts);
     }
   }
 
   render() {
-    if (this.state.relatedProductDetail.length === this.state.relatedProducts.length & this.state.relatedProductImage.length === this.state.relatedProducts.length) {
+    // console.log('state to be rendered', this.state)
+    if (this.state.relatedProductDetail.length === this.state.relatedProducts.length && this.state.relatedProductImage.length === this.state.relatedProducts.length) {
       // console.log('state to be rendered', this.state)
+
       return (
         <div className='relatedProducts'>
           <h1>RELATED PRODUCTS</h1>
-          <div className='relatedCard'>{this.state.relatedProductDetail.map((element, index) => { console.log('element at map', element, index);
+
+          <div className='relatedCard'>{this.state.relatedProductDetail.map((element, index) => {
+            // console.log('element at map', element, index);
             return (
               <div key={element.data.id} element={element} className='individualCard'>
-                <img className='relatedImage' src={this.state.relatedProductImage[index]} onClick={() => { this.props.handleChange(element) }}
-                ></img>
 
-                <Modal show={this.state.show} handleClose={this.hideModal} element={element}>
-                  <p>Modal</p>
-                </Modal>
-
-                <button className='relatedButton' onClick={this.showModal}>
-                  <img src='http://imgur.com/I0EwG.png' />
-                </button>
-
-                <h2 className='relatedCategory'>{element.data.category}</h2>
-                <div className='relatedName' onClick={() => { this.props.handleChange(element) }}>{element.data.name}</div>
-                <div className='relatedPrice'>${element.data.default_price}</div>
-                <div className='relatedRating'>rating will go here</div>
+                {/* {element.data.id === this.state.relatedProductImage.id && <IndividualProduct
+                curCard={element}
+                curPic={this.state.relatedProductImage[index]}
+                handleChang={this.props.handleChange}/>} */}
+                <IndividualProduct
+                  curCard={element}
+                  curPic={this.state.relatedProductImage[index]}
+                  handleChang={this.props.handleChange}
+                  curProduct={this.props.curProduct} />
               </div>
             )
           })}
           </div>
         </div >
       )
-      // }
     }
   }
 }

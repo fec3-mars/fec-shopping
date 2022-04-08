@@ -37,22 +37,3 @@ html {
   width: 80%;
 }
 
-/* Below are css for modal comparison */
-
-* {
-  box-sizing: border-box;
-}
-
-.modal_container {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.modal_container.show {
-  pointer-events: auto;
-  opacity: 1;
-}
-
-.modal {
-  background-color: yellowgreen;
-}
