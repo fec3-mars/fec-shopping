@@ -26,7 +26,7 @@ class IndividualProduct extends React.Component {
   };
 
   render() {
-    console.log('props at individualcard', this.props);
+    // console.log('props at individualcard', this.props);
     return (
       <div>
         <img className='relatedImage' src={this.props.curPic} onClick={() => { this.props.handleChang(this.props.curCard) }}></img>
