@@ -44,6 +44,22 @@ export default function Modal({
   setStarRating,
 }) {
   // const [reviewSummary, setReviewSummary] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = { title, body };
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    };
+    fetch(
+      "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((res) => console.log("Post sent: ", res));
+  };
 
   if (!open) return null;
   return (
@@ -105,8 +121,7 @@ export default function Modal({
             />
           </label>
           <br></br>
-
-          <button>Submit Review</button>
+          <button onClick={() => this.handleSubmit}>Submit Review</button>
         </form>
         <br></br>
         {children}
