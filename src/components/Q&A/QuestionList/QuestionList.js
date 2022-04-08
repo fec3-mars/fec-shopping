@@ -22,7 +22,6 @@ class QuestionList extends React.Component {
     // this.hideModal = this.hideModal.bind(this);
   }
 
-
   showModal = () => {
     this.setState({ show: true });
   };
@@ -37,18 +36,18 @@ class QuestionList extends React.Component {
   }
 
   highlighter(text) {
-    const {searchTerm} = this.state;
+    const { searchTerm } = this.state;
 
     const regex = new RegExp(searchTerm, 'i');
 
-    let regIdx = text.search(regex);
+    const regIdx = text.search(regex);
 
-    let beginningOfStr = text.slice(0, regIdx);
-    let highlight = text.slice(regIdx, regIdx + searchTerm.length);
-    let endOfStr = text.slice(regIdx + searchTerm.length, text.length)
-    let arr = [beginningOfStr, React.createElement('span', {className: 'highlight'}, highlight), endOfStr]
+    const beginningOfStr = text.slice(0, regIdx);
+    const highlight = text.slice(regIdx, regIdx + searchTerm.length);
+    const endOfStr = text.slice(regIdx + searchTerm.length, text.length)
+    const arr = [beginningOfStr, React.createElement('span', {className: 'highlight'}, highlight), endOfStr]
 
-    return <div>{arr}</div>;
+    return <div> {arr} </div>;
   }
 
   componentDidUpdate(prevProps) {
@@ -57,7 +56,7 @@ class QuestionList extends React.Component {
     if (curProduct.data?.id !== prevProps.curProduct.data?.id) {
       this.setState({
         curProduct: { ...curProduct.data },
-      }, function () {
+      }, () => {
         this.retrieveData();
       });
     }
