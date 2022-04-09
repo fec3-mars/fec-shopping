@@ -1,36 +1,12 @@
 /* eslint-disable */
 import React, { Component } from "react";
+import Filler from "./Filler.jsx";
+import "./BarGraph.css";
 
 const BarGraph = (props) => {
-  const { bgcolor, completed } = props;
-
-  const containerStyles = {
-    height: 20,
-    width: "100%",
-    backgroundColor: "#e0e0de",
-    borderRadius: 50,
-    margin: 50,
-  };
-
-  const fillerStyles = {
-    height: "100%",
-    width: `${completed}%`,
-    backgroundColor: bgcolor,
-    borderRadius: "inherit",
-    textAlign: "right",
-  };
-
-  const labelStyles = {
-    padding: 5,
-    color: "white",
-    fontWeight: "bold",
-  };
-
   return (
-    <div>
-      <div>
-        <span>{`${completed}%`}</span>
-      </div>
+    <div className="progress-bar">
+      <Filler percentage={props.percentage} />
     </div>
   );
 };

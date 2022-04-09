@@ -12,21 +12,21 @@ export default class Breakdown extends Component {
     this.state = {
       averageRating: 0,
       ratings: {},
+      percentage: 60,
     };
   }
 
   getData() {
-    // getMetaData();
+    getMetaData().then((result) => {
+      this.setState({
+        ratings: result.data,
+      });
+    });
   }
-  // getAverageRating = () => {
-  //   let temp = 0;
-  //   for (let i = 0; i < this.props.currentProductRating.length; i++) {
-  //     temp += this.props.currentProductRating[i].rating;
-  //   }
-  //   temp = temp / this.props.currentProductRating.length;
-  //   return temp;
-  // };
 
+  componentDidMount() {
+    this.getData();
+  }
   componentDidUpdate() {
     try {
       let temp = 0;
@@ -45,6 +45,8 @@ export default class Breakdown extends Component {
 
   render(props) {
     // console.log("Rating", this.props.currentProductRating.length);
+    // this.getData();
+    console.log(this.state.ratings.ratings);
     if (this.state.averageRating) {
       return (
         <div className="breakdown-container">
@@ -65,7 +67,7 @@ export default class Breakdown extends Component {
             starSpacing="5px"
           />
           <br></br>
-          <BarGraph className="bar-graph" />
+          <BarGraph className="bar-graph" percentage={this.state.percentage} />
         </div>
       );
     }
