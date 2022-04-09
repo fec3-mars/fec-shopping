@@ -51,6 +51,18 @@
   @include bttn;
 }
 
+.answer-helpful:hover {
+  cursor: pointer,
+}
+
+.answer-helpful-clicked {
+  @include bttn;
+}
+
 .answer-report {
   @include bttn;
+}
+
+.answer-report:hover {
+  cursor: pointer,
 }

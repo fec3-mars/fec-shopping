@@ -9,14 +9,17 @@ class IndividualAnswer extends React.Component {
 
     this.state = {
       helpful: false,
-      report: false,
     };
   }
 
   answerHelpful() {
     const {
-      id
+      id,
     } = this.props.answer;
+
+    this.setState({
+      helpful: true,
+    });
 
     markAnswerHelpful(id)
       .then(() => {
@@ -60,6 +63,10 @@ class IndividualAnswer extends React.Component {
       idx,
     } = this.props;
 
+    const {
+      helpful,
+    } = this.state;
+
     //----------------------------------------------------------------------------------------------
 
     const formattedDate = new Date(date);
@@ -83,6 +90,30 @@ class IndividualAnswer extends React.Component {
       );
     }
 
+    let helpfulButton = (
+      <button type="button" className="answer-helpful" onClick={this.answerHelpful.bind(this)}>
+        Helpful?
+        Yes
+        (
+        { helpfulness }
+        )
+      </button>
+    );
+
+    if (helpful) {
+      helpfulButton = (
+        <button type="button" className="answer-helpful-clicked">
+          <b>
+            Helpful?
+            Yes
+            (
+            { helpfulness }
+            )
+          </b>
+        </button>
+      );
+    }
+
     //------------------------------------------------------------
 
     return (
@@ -99,13 +130,7 @@ class IndividualAnswer extends React.Component {
           ,
           {formattedDate.toDateString()}
         </p>
-        <button type="button" className="answer-helpful" onClick={this.answerHelpful.bind(this)}>
-          Helpful?
-          Yes
-          (
-          { helpfulness }
-          )
-        </button>
+        {helpfulButton}
         <button type="button" className="answer-report" onClick={this.answerReport.bind(this)}>Report</button>
         {photoGallery}
       </div>
