@@ -132,7 +132,7 @@ class IndividualQuestion extends React.Component {
 
   buildAnswers(arr) {
     const answers = arr.map((answer, idx) =>
-      <IndividualAnswer answer={answer} key={idx} reloadPage={ this.props.reloadPage }/>
+      <IndividualAnswer answer={answer} idx={idx} key={idx} reloadPage={ this.props.reloadPage }/>
     );
 
     this.setState({
@@ -204,13 +204,11 @@ class IndividualQuestion extends React.Component {
     if (!expanded) {
       answersText = answers.slice(0, 2);
       expandButton = <button type="button" onClick={this.changeExpanded.bind(this)}> See more answers </button>;
-      answerStyle = {
-        height: '315px',
-      };
+      answerStyle = {};
     }
 
     if (answers.length === 0 || answers.length === 1) {
-      answersText = <h3> No answers, yet </h3>;
+      answersText = <h3 className="no-answer-body"> No answers, yet </h3>;
       expandButton = null;
       answerStyle = {};
     }
@@ -249,7 +247,6 @@ class IndividualQuestion extends React.Component {
         </button>
         <button type="button" className="question-report-button" onClick={this.questionReport.bind(this)}>Report this Question</button>
         <div className="answer" style={answerStyle}>
-          <h3>A: </h3>
           {answersText}
         </div>
         {expandButton}

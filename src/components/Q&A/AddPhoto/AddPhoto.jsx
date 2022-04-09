@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from '../Modal/Modal.jsx';
-import './AddPhoto.css';
+import './AddPhoto.scss';
 
 class AddPhoto extends React.Component {
   constructor(props) {

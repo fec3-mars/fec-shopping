@@ -1,9 +1,34 @@
+@mixin spacing() {
+  letter-spacing: .5px;
+}
+
 @mixin bttn() {
+  @include spacing;
   background: none;
   border: none;
   color: white;
   font-size: 13px;
   margin-right: 3rem;
+}
+
+@mixin header() {
+  font-size: 15px;
+  display: inline-block;
+  margin-right: 20rem;
+  margin-top: 15px;
+  padding: 10px;
+  padding-bottom: 1px;
+  padding-top: 1px;
+}
+
+.no-answer-body {
+  @include spacing;
+  display: inline-block;
+  font-size: 13px;
+  border-radius: 10px;
+  padding: 10px;
+  padding-bottom: 4px;
+  padding-top: 1px;
 }
 
 div.add-an-answer {
@@ -20,10 +45,8 @@ span.highlight {
 }
 
 h3.question-header {
-  font-size: 15px;
-  display: inline;
-  margin-right: 20rem;
-  margin-top: 15px;
+  @include header;
+  @include spacing;
 }
 
 .question-helpful {
@@ -31,6 +54,7 @@ h3.question-header {
 }
 
 .question-helpful-text {
+  @include spacing;
   display: inline;
   margin-left: 1px;
   font-size: 13px;

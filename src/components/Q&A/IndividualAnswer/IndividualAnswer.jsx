@@ -56,6 +56,10 @@ class IndividualAnswer extends React.Component {
       answerer_name
     } = this.props.answer;
 
+    const {
+      idx,
+    } = this.props;
+
     //----------------------------------------------------------------------------------------------
 
     const formattedDate = new Date(date);
@@ -70,25 +74,39 @@ class IndividualAnswer extends React.Component {
       photoGallery = photos.map((photo, idx) => <IndividualPhoto photo={photo} key={idx} />);
     }
 
+    let header;
+    if (idx === 0) {
+      header = (
+        <h3 className="answer-header">
+          {'A: '}
+        </h3>
+      );
+    }
+
     //------------------------------------------------------------
 
     return (
-      <div className="answers" style={{ border: 'solid white' }}>
-        <p className="answer-body">{body}</p>
-        <p>
+      <div className="answer-block">
+        <div className="answer-header">
+          {header}
+          <p className="answer-body">
+            { body }
+          </p>
+        </div>
+        <p className="answerer-text">
           by
-          {name}
+          {` ${name}`}
           ,
           {formattedDate.toDateString()}
         </p>
-        <button type="button" className="helpful" onClick={this.answerHelpful.bind(this)}>Helpful? </button>
-        <p>
+        <button type="button" className="answer-helpful" onClick={this.answerHelpful.bind(this)}>
+          Helpful?
           Yes
           (
           { helpfulness }
           )
-        </p>
-        <button type="button" className="report" onClick={this.answerReport.bind(this)}>Report</button>
+        </button>
+        <button type="button" className="answer-report" onClick={this.answerReport.bind(this)}>Report</button>
         {photoGallery}
       </div>
     );
