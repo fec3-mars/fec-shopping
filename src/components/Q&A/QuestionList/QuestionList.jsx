@@ -222,12 +222,12 @@ class QuestionList extends React.Component {
       </div>
       </Modal>
 
-        <button type="button" onClick={this.showModal}>
-          Add a Question
+        <button className="large-style-button" type="button" onClick={this.revealAllQuestions.bind(this)}>
+          {answerButtonText}
         </button>
 
-        <button type="button" onClick={this.revealAllQuestions.bind(this)}>
-          {answerButtonText}
+        <button className="large-style-button" type="button" onClick={this.showModal}>
+          Add a Question
         </button>
       </div>
     );
