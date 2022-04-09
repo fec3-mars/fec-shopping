@@ -26,6 +26,7 @@
   border: solid white 1px;
   border-radius: 10px;
   padding: 10px;
+  margin-bottom: 5px;
 }
 
 .review-photos {
@@ -43,6 +44,7 @@
 .answerer-text {
   @include spacing;
   display: inline-flexbox;
+  font-size: 11px;
 }
 
 .answer-helpful {

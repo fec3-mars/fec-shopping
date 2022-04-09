@@ -193,7 +193,7 @@ class IndividualQuestion extends React.Component {
     } = this.state;
     //---------------------------------------------------------------------------------------------
     let answersText = answers;
-    let expandButton = <button type="button" onClick={this.changeExpanded.bind(this)}> Collapse answers </button>;
+    let expandButton = <button type="button" className="load-questions-button" onClick={this.changeExpanded.bind(this)}> Collapse answers </button>;
     let answerStyle = {};
 
     answerStyle = {
@@ -203,7 +203,7 @@ class IndividualQuestion extends React.Component {
 
     if (!expanded) {
       answersText = answers.slice(0, 2);
-      expandButton = <button type="button" onClick={this.changeExpanded.bind(this)}> See more answers </button>;
+      expandButton = <button className="load-questions-button" type="button" onClick={this.changeExpanded.bind(this)}> Load more answers </button>;
       answerStyle = {};
     }
 
