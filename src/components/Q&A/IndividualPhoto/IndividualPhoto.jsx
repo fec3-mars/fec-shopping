@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from '../Modal/Modal.jsx';
-import './IndividualPhoto.css';
+import './IndividualPhoto.scss';
 
 class IndividualPhoto extends React.Component {
   constructor(props) {

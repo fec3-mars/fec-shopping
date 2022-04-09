@@ -1,6 +1,6 @@
 import React from 'react';
 import IndividualAnswer from '../IndividualAnswer/IndividualAnswer';
-import './IndividualQuestion.css';
+import './IndividualQuestion.scss';
 import Modal from '../Modal/Modal.jsx';
 import AddPhoto from '../AddPhoto/AddPhoto.jsx';
 import { postAnswer, markQuestionHelpful, reportQuestion } from '../../axios';
@@ -232,21 +232,26 @@ class IndividualQuestion extends React.Component {
     //------------------------------------------------------------------------------------------
     return (
       <div className="individual-question">
-        <h3>
-          Q:
+        <h3 className="question-header">
+          { 'Q: ' }
           {body}
         </h3>
+        <div className="question-helpful">
+          <button type="button" className="question-helpful-button" onClick={this.questionHelpful.bind(this)}>
+            Helpful?
+            Yes (
+              { question_helpfulness }
+            )
+          </button>
+        </div>
+        <button className="question-add-answer-button" type="button" onClick={this.showModal}>
+          Add an answer
+        </button>
+        <button type="button" className="question-report-button" onClick={this.questionReport.bind(this)}>Report this Question</button>
         <div className="answer" style={answerStyle}>
           <h3>A: </h3>
           {answersText}
         </div>
-        <button type="button" className="helpful" onClick={this.questionHelpful.bind(this)}>Mark Question Helpful </button>
-        <p>
-          Yes(
-            { question_helpfulness }
-          )
-        </p>
-        <button type="button" className="helpful" onClick={this.questionReport.bind(this)}>Report this Question</button>
         {expandButton}
 
         <Modal show={this.state.show} handleClose={this.hideModal}>
@@ -267,10 +272,6 @@ class IndividualQuestion extends React.Component {
             <button type="button" onClick={this.changeAddAnswer.bind(this)}> Submit Answer </button>
           </div>
         </Modal>
-
-        <button type="button" onClick={this.showModal}>
-          Add an answer
-        </button>
       </div>
     );
   }

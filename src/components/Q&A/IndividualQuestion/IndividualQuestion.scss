@@ -1,0 +1,62 @@
+@mixin bttn() {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 13px;
+  margin-right: 3rem;
+}
+
+div.add-an-answer {
+  color: black;
+}
+
+div.individual_question {
+  border-style: solid white;
+}
+
+span.highlight {
+  background-color: yellow;
+  color: black;
+}
+
+h3.question-header {
+  font-size: 15px;
+  display: inline;
+  margin-right: 20rem;
+  margin-top: 15px;
+}
+
+.question-helpful {
+  display: inline;
+}
+
+.question-helpful-text {
+  display: inline;
+  margin-left: 1px;
+  font-size: 13px;
+}
+
+.question-helpful-button {
+  @include bttn;
+}
+
+.question-helpful-button:hover {
+  cursor: pointer;
+}
+
+.question-report-button {
+  @include bttn;
+}
+
+.question-report-button:hover {
+  cursor: pointer;
+}
+
+.question-add-answer-button {
+  @include bttn;
+  margin: auto;
+}
+
+.question-add-answer-button:hover {
+  cursor: pointer;
+}

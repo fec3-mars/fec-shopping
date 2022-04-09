@@ -1,5 +1,5 @@
 import React from 'react';
-import './IndividualAnswer.css';
+import './IndividualAnswer.scss';
 import IndividualPhoto from '../IndividualPhoto/IndividualPhoto';
 import { markAnswerHelpful, reportAnswer } from '../../axios';
 
