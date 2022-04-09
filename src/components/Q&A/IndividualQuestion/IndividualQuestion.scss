@@ -76,6 +76,10 @@ h3.question-header {
   cursor: pointer;
 }
 
+.question-helpful-button-clicked {
+  @include bttn;
+}
+
 .question-report-button {
   @include bttn;
 }

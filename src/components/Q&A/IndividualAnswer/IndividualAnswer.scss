@@ -52,7 +52,7 @@
 }
 
 .answer-helpful:hover {
-  cursor: pointer,
+  cursor: pointer;
 }
 
 .answer-helpful-clicked {
@@ -64,5 +64,10 @@
 }
 
 .answer-report:hover {
-  cursor: pointer,
+  cursor: pointer;
+}
+
+ul.thumbnails {
+  display: inline;
+  list-style: none;
 }

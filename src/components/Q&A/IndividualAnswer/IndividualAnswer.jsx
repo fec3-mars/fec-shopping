@@ -132,7 +132,9 @@ class IndividualAnswer extends React.Component {
         </p>
         {helpfulButton}
         <button type="button" className="answer-report" onClick={this.answerReport.bind(this)}>Report</button>
-        {photoGallery}
+        <ul className="thumbnails">
+          {photoGallery}
+        </ul>
       </div>
     );
   }

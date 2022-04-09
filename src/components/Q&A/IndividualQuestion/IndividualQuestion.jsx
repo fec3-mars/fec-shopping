@@ -14,6 +14,7 @@ class IndividualQuestion extends React.Component {
       photos: [],
       questionBody: '',
       expanded: false,
+      helpful: false,
     };
 
     this.showModal = this.showModal.bind(this);
@@ -107,6 +108,10 @@ class IndividualQuestion extends React.Component {
   questionHelpful() {
     const { question_id } = this.props.question;
 
+    this.setState({
+      helpful: true,
+    });
+
     markQuestionHelpful(question_id)
       .then(() => {
         console.log('success marking question helpful');
@@ -190,6 +195,7 @@ class IndividualQuestion extends React.Component {
       expanded,
       questionBody,
       photos,
+      helpful,
     } = this.state;
     //---------------------------------------------------------------------------------------------
     let answersText = answers;
@@ -227,6 +233,28 @@ class IndividualQuestion extends React.Component {
       addPhotoButton = null;
     }
 
+    let helpfulButton = (
+      <button type="button" className="question-helpful-button" onClick={this.questionHelpful.bind(this)}>
+        Helpful?
+        Yes (
+        { question_helpfulness }
+        )
+      </button>
+    );
+
+    if (helpful) {
+      helpfulButton = (
+        <button type="button" className="question-helpful-button-clicked">
+          <b>
+            Helpful?
+            Yes (
+            { question_helpfulness }
+            )
+          </b>
+        </button>
+      );
+    }
+
     //------------------------------------------------------------------------------------------
     return (
       <div className="individual-question">
@@ -235,12 +263,7 @@ class IndividualQuestion extends React.Component {
           {body}
         </h3>
         <div className="question-helpful">
-          <button type="button" className="question-helpful-button" onClick={this.questionHelpful.bind(this)}>
-            Helpful?
-            Yes (
-              { question_helpfulness }
-            )
-          </button>
+          {helpfulButton}
         </div>
         <button className="question-add-answer-button" type="button" onClick={this.showModal}>
           Add an answer
