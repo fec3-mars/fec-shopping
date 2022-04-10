@@ -5,7 +5,7 @@ function ImageThumbnail({
   updateMainImageHandler,
   idx,
   isMain,
-  thumbnail
+  thumbnail,
 }) {
   const className = isMain ? 'img-thumbnail-container selected' : 'img-thumbnail-container';
   return (

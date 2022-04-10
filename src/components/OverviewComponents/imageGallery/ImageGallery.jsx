@@ -1,8 +1,8 @@
 import React from 'react';
 import './ImageGallery.css';
-import ImageThumbnail from './ImageThumbnail.jsx';
-import Arrow from './Arrow.jsx';
 import NoImage from '../noImageWarning/NoImage.jsx';
+import DefaultView from './DefaultView.jsx';
+import ZoomModal from './ZoomModal.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -17,9 +17,10 @@ class ImageGallery extends React.Component {
     this.scrollThumbnails = this.scrollThumbnails.bind(this);
     this.scrollMainImages = this.scrollMainImages.bind(this);
     this.updateMainImageHandler = this.updateMainImageHandler.bind(this);
+    this.toggleExpanded = this.toggleExpanded.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     const { selectedStyle } = this.props;
     if (prevProps.selectedStyle.style_id !== selectedStyle.style_id) {
       const photos = [...selectedStyle.photos, ...selectedStyle.photos];
@@ -37,6 +38,14 @@ class ImageGallery extends React.Component {
   updateMainImageHandler(imageIdx) {
     this.setState({
       mainImageIdx: imageIdx,
+    });
+  }
+
+  toggleExpanded() {
+    console.log('toggled');
+    const { expanded } = this.state;
+    this.setState({
+      expanded: !expanded,
     });
   }
 
@@ -66,48 +75,31 @@ class ImageGallery extends React.Component {
 
   renderImages() {
     const {
+      expanded,
       styleImages,
-      thumbnailStart,
-      thumbnailEnd,
       mainImageIdx,
     } = this.state;
 
-    const byImageInInterval = (idx) => {
-      if (styleImages.length > 7) { // identifies if there is a need to have scrolling
-        if (thumbnailStart <= idx && thumbnailEnd >= idx) {
-          return true;
-        }
-      } else {
-        return true;
-      }
-      return false;
-    };
     return (
-      <>
-        <img src={`${styleImages[mainImageIdx]?.url}`} alt="" className="main-img" />
-        <div className="thumbnail-list-container">
-          {thumbnailStart > 0 && <Arrow type="up" scrollThumbnails={this.scrollThumbnails} />}
-          <ul className="thumbnail-list">
-            {styleImages
-              .filter((_, idx) => byImageInInterval(idx))
-              .map((img, idx) => (
-                <ImageThumbnail
-                  key={idx}
-                  isMain={mainImageIdx === idx}
-                  idx={idx}
-                  updateMainImageHandler={
-                    this.updateMainImageHandler
-                  }
-                  thumbnail={img.thumbnail_url}
-                />
-              ))}
-          </ul>
-          {thumbnailEnd < styleImages.length - 1 && <Arrow type="down" scrollThumbnails={this.scrollThumbnails} />}
-        </div>
-        {mainImageIdx > 0 && <Arrow type="left" scrollMainImages={this.scrollMainImages} />}
-        {styleImages.length - 1 > mainImageIdx && <Arrow type="right" scrollMainImages={this.scrollMainImages} />}
-      </>
-    );
+      (!expanded
+        ? (
+          <DefaultView
+            props={this.state}
+            toggleExpanded={this.toggleExpanded}
+            updateMainImageHandler={this.updateMainImageHandler}
+            scrollThumbnails={this.scrollThumbnails}
+            scrollMainImages={this.scrollMainImages}
+          />
+        )
+        : (
+          <ZoomModal
+            styleImages={styleImages}
+            mainImageIdx={mainImageIdx}
+            scrollMainImages={this.scrollMainImages}
+            updateMainImageHandler={this.updateMainImageHandler}
+          />
+        )
+      ));
   }
 
   render() {

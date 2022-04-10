@@ -42,7 +42,6 @@ class Overview extends React.Component {
       selectedStyle,
       loaded,
     } = this.state;
-    console.log(loaded, selectedStyle);
 
     return (
       <div className="overview-container">

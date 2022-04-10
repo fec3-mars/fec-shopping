@@ -1,0 +1,14 @@
+.small-image {
+  width: 1.5rem;
+  height: 2rem;
+}
+
+.small-image:hover {
+  width: 3rem;
+  height: 4rem;
+}
+
+.current {
+  width: 3rem;
+  height: 4rem;
+}
