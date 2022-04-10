@@ -13,6 +13,7 @@ class ImageGallery extends React.Component {
       thumbnailStart: 0,
       thumbnailEnd: 6,
       mainImageIdx: 0,
+      styleHistory: {},
     };
     this.scrollThumbnails = this.scrollThumbnails.bind(this);
     this.scrollMainImages = this.scrollMainImages.bind(this);
@@ -22,16 +23,30 @@ class ImageGallery extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { selectedStyle } = this.props;
+    const getIdx = (hist) => {
+      const nextID = selectedStyle.style_id;
+      if (hist[nextID]) {
+        return hist[nextID];
+      }
+      return 0;
+    };
+
     if (prevProps.selectedStyle.style_id !== selectedStyle.style_id) {
       const photos = [...selectedStyle.photos, ...selectedStyle.photos];
-      this.setState({
+      this.setState((prevState) => ({
         // styleImages: this.props.selectedStyle.photos,
         styleImages: photos,
-        mainImageIdx: 0,
+        mainImageIdx: getIdx(prevState.styleHistory),
+        styleHistory: {
+          ...prevState.styleHistory,
+          ...(prevProps.selectedStyle.style_id ? {
+            [prevProps.selectedStyle.style_id]: prevState.mainImageIdx,
+          } : {}),
+        },
         thumbnailStart: 0,
         thumbnailEnd: 6,
         expanded: false,
-      });
+      }));
     }
   }
 
@@ -42,7 +57,6 @@ class ImageGallery extends React.Component {
   }
 
   toggleExpanded() {
-    console.log('toggled');
     const { expanded } = this.state;
     this.setState({
       expanded: !expanded,
@@ -104,7 +118,6 @@ class ImageGallery extends React.Component {
   }
 
   render() {
-    // should come from props, not state
     const {
       styleImages,
     } = this.state;

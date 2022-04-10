@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  faCircleXmark
+  faCircleXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ZoomModal.css';
