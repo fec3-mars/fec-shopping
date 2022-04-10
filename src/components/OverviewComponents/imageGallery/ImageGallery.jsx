@@ -95,6 +95,7 @@ class ImageGallery extends React.Component {
           <ZoomModal
             styleImages={styleImages}
             mainImageIdx={mainImageIdx}
+            toggleExpanded={this.toggleExpanded}
             scrollMainImages={this.scrollMainImages}
             updateMainImageHandler={this.updateMainImageHandler}
           />

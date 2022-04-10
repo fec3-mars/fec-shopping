@@ -2,7 +2,8 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
+  width: 100%;
 }
 
 .price-container {
@@ -46,5 +47,9 @@
 }
 
 .star-ratings {
-  width: 60%;
+  width: 50%;
+}
+
+.read-all-review {
+  width: 40%;
 }
