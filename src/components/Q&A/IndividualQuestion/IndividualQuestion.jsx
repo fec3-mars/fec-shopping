@@ -1,6 +1,6 @@
 import React from 'react';
 import IndividualAnswer from '../IndividualAnswer/IndividualAnswer';
-import './IndividualQuestion.css';
+import './IndividualQuestion.scss';
 import Modal from '../Modal/Modal.jsx';
 import AddPhoto from '../AddPhoto/AddPhoto.jsx';
 import { postAnswer, markQuestionHelpful, reportQuestion } from '../../axios';
@@ -14,6 +14,7 @@ class IndividualQuestion extends React.Component {
       photos: [],
       questionBody: '',
       expanded: false,
+      helpful: false,
     };
 
     this.showModal = this.showModal.bind(this);
@@ -107,6 +108,10 @@ class IndividualQuestion extends React.Component {
   questionHelpful() {
     const { question_id } = this.props.question;
 
+    this.setState({
+      helpful: true,
+    });
+
     markQuestionHelpful(question_id)
       .then(() => {
         console.log('success marking question helpful');
@@ -132,7 +137,7 @@ class IndividualQuestion extends React.Component {
 
   buildAnswers(arr) {
     const answers = arr.map((answer, idx) =>
-      <IndividualAnswer answer={answer} key={idx} reloadPage={ this.props.reloadPage }/>
+      <IndividualAnswer answer={answer} idx={idx} key={idx} reloadPage={ this.props.reloadPage }/>
     );
 
     this.setState({
@@ -190,10 +195,11 @@ class IndividualQuestion extends React.Component {
       expanded,
       questionBody,
       photos,
+      helpful,
     } = this.state;
     //---------------------------------------------------------------------------------------------
     let answersText = answers;
-    let expandButton = <button type="button" onClick={this.changeExpanded.bind(this)}> Collapse answers </button>;
+    let expandButton = <button type="button" className="load-questions-button" onClick={this.changeExpanded.bind(this)}> Collapse answers </button>;
     let answerStyle = {};
 
     answerStyle = {
@@ -203,14 +209,12 @@ class IndividualQuestion extends React.Component {
 
     if (!expanded) {
       answersText = answers.slice(0, 2);
-      expandButton = <button type="button" onClick={this.changeExpanded.bind(this)}> See more answers </button>;
-      answerStyle = {
-        height: '315px',
-      };
+      expandButton = <button className="load-questions-button" type="button" onClick={this.changeExpanded.bind(this)}> Load more answers </button>;
+      answerStyle = {};
     }
 
     if (answers.length === 0 || answers.length === 1) {
-      answersText = <h3> No answers, yet </h3>;
+      answersText = <h3 className="no-answer-body"> No answers, yet </h3>;
       expandButton = null;
       answerStyle = {};
     }
@@ -229,24 +233,45 @@ class IndividualQuestion extends React.Component {
       addPhotoButton = null;
     }
 
+    let helpfulButton = (
+      <button type="button" className="question-helpful-button" onClick={this.questionHelpful.bind(this)}>
+        Helpful?
+        Yes (
+        { question_helpfulness }
+        )
+      </button>
+    );
+
+    if (helpful) {
+      helpfulButton = (
+        <button type="button" className="question-helpful-button-clicked">
+          <b>
+            Helpful?
+            Yes (
+            { question_helpfulness }
+            )
+          </b>
+        </button>
+      );
+    }
+
     //------------------------------------------------------------------------------------------
     return (
       <div className="individual-question">
-        <h3>
-          Q:
+        <h3 className="question-header">
+          { 'Q: ' }
           {body}
         </h3>
+        <div className="question-helpful">
+          {helpfulButton}
+        </div>
+        <button className="question-add-answer-button" type="button" onClick={this.showModal}>
+          Add an answer
+        </button>
+        <button type="button" className="question-report-button" onClick={this.questionReport.bind(this)}>Report this Question</button>
         <div className="answer" style={answerStyle}>
-          <h3>A: </h3>
           {answersText}
         </div>
-        <button type="button" className="helpful" onClick={this.questionHelpful.bind(this)}>Mark Question Helpful </button>
-        <p>
-          Yes(
-            { question_helpfulness }
-          )
-        </p>
-        <button type="button" className="helpful" onClick={this.questionReport.bind(this)}>Report this Question</button>
         {expandButton}
 
         <Modal show={this.state.show} handleClose={this.hideModal}>
@@ -267,10 +292,6 @@ class IndividualQuestion extends React.Component {
             <button type="button" onClick={this.changeAddAnswer.bind(this)}> Submit Answer </button>
           </div>
         </Modal>
-
-        <button type="button" onClick={this.showModal}>
-          Add an answer
-        </button>
       </div>
     );
   }
