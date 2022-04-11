@@ -25,13 +25,10 @@ export default class Review extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.curProduct !== prevProps.curProduct) {
-      // console.log("working", this.props.curProduct.data);
       this.setState({
         reviews: [...this.props.curProduct.data.results],
       });
-    } else {
-      // console.log("error");
-    }
+    } 
   }
 
   render(props) {
