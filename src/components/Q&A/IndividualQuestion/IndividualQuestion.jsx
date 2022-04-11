@@ -29,6 +29,8 @@ class IndividualQuestion extends React.Component {
     this.setState({
       question_body,
     });
+
+    this.props.reloadPage();
   }
 
   componentDidUpdate(prevProps, prevState) {
