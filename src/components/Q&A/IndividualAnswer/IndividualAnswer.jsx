@@ -129,6 +129,7 @@ class IndividualAnswer extends React.Component {
           {' '}
           {name}
           ,
+          {' '}
           {formattedDate.toDateString()}
         </p>
         {helpfulButton}

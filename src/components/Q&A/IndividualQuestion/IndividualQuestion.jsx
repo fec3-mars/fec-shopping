@@ -210,8 +210,8 @@ class IndividualQuestion extends React.Component {
     };
 
     if (!expanded) {
-      answersText = answers.slice(0, 2);
-      expandButton = <button className="load-questions-button" type="button" onClick={this.changeExpanded.bind(this)}> Load more answers </button>;
+      answersText = answers.length === 2 ? answers : answers.slice(0, 2);
+      expandButton = answers.length === 2 ? '' : <button className="load-questions-button" type="button" onClick={this.changeExpanded.bind(this)}> Load more answers </button>;
       answerStyle = {};
     }
 
