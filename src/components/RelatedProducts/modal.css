@@ -3,9 +3,9 @@
   background: white;
   width: 70%;
   height: 50%;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .display-block {
@@ -17,5 +17,5 @@
 }
 
 .button {
-  position: fixed
+  position: fixed;
 }

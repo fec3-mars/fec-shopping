@@ -41,11 +41,12 @@ class App extends React.Component {
     makeReviewRequest.call(this, 66643);
   }
 
-  // getRating = (curRating) => {
-  //   this.setState({
-  //     avgRating: curRating
-  //   })
-  // }
+  getRating = (curRating) => {
+    this.setState({
+      avgRating: curRating,
+    });
+  };
+
   render() {
     return (
       <div className="app">

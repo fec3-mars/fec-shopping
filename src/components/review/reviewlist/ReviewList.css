@@ -25,3 +25,8 @@
   align-items: center;
   font-weight: bold;
 }
+
+.photo {
+  height: 80px;
+  width: 80px;
+}
