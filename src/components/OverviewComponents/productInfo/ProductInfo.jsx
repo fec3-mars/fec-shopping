@@ -2,7 +2,7 @@ import React from 'react';
 import './ProductInfo.css';
 import StarRatings from 'react-star-ratings';
 
-function ProductInfo({ product, selectedStyle }) {
+function ProductInfo({ product, selectedStyle, reviewsInfo }) {
   const discount = selectedStyle.sale_price ? true : false;
   const priceClass = discount ? 'price slashed' : 'price';
 
@@ -10,7 +10,7 @@ function ProductInfo({ product, selectedStyle }) {
     <div className="container product-info">
       <div className="product-info-reviews-container">
         <StarRatings
-          rating={3.6}
+          rating={reviewsInfo.avgRating}
           starRatedColor="gold"
           numberOfStars={5}
           name="rating"
@@ -18,7 +18,7 @@ function ProductInfo({ product, selectedStyle }) {
           starSpacing="-10px"
           className="star-rating"
         />
-        <span className="read-all-review">READ ALL 5 REVIEWS </span>
+        <span className="read-all-review">READ ALL {reviewsInfo.totalReviews} REVIEWS </span>
       </div>
       <p className="category">
         CATEGORY:

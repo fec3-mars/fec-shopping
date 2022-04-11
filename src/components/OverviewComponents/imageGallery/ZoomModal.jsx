@@ -8,6 +8,7 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import Arrow from './Arrow.jsx';
 import SmallImage from './SmallImage.jsx';
+import { postInteraction } from '../../axios';
 
 class ZoomModal extends React.Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class ZoomModal extends React.Component {
   }
 
   toggleZoom(e) {
+    postInteraction(e, "Overview");
     // const { offsetWidth, offsetHeight } = e.target;
     // const newWidth = offsetWidth / offsetHeight * window.innerHeight;
     const { zoomedIn } = this.state;
@@ -51,7 +53,7 @@ class ZoomModal extends React.Component {
         <div className="modal-relative-positioning">
           <div className="relative-positioning">
             {!this.state.zoomedIn && mainImageIdx > 0 && <Arrow type="left" scrollMainImages={scrollMainImages} modal="yes" />}
-            <div onClick={this.toggleZoom} className="main-image-container">
+            <div onClick={e => this.toggleZoom(e)} className="main-image-container">
               <InnerImageZoom
                 src={`${styleImages[mainImageIdx]?.url}`}
                 zoomScale={2.5}
@@ -67,7 +69,7 @@ class ZoomModal extends React.Component {
           <div className="small-images-container">
             {!this.state.zoomedIn && styleImages.map((img, idx) => (
               <SmallImage
-                key={idx}
+                key={img.url}
                 img={img}
                 idx={idx}
                 mainImageIdx={mainImageIdx}

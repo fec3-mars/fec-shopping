@@ -9,10 +9,10 @@ function ImageThumbnail({
 }) {
   const className = isMain ? 'img-thumbnail-container selected' : 'img-thumbnail-container';
   return (
-    <div onClick={() => { updateMainImageHandler(idx) }} className={className}>
+    <div onClick={(e) => { updateMainImageHandler(e, idx) }} className={className}>
       <img className="img-thumbnail" alt="" src={thumbnail} />
     </div>
   );
-};
+}
 
 export default ImageThumbnail;
