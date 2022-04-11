@@ -7,7 +7,7 @@ html {
 .relatedProducts{
   width: 100%;
   align-items: center;
-  display:table-cell
+  /* display:table-cell */
 }
 
 .relatedButton {
