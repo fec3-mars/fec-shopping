@@ -123,6 +123,7 @@ class QuestionList extends React.Component {
 
     const collection = filteredQuestions.length === 0 && searchTerm.length === 0? questions : filteredQuestions;
 
+
     collection.sort((a, b) => {
       if (a.question_helpfulness > b.question_helpfulness) {
         return -1;
