@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-
+import App from '../App.js';
 //the outfitList should gather all componenet/element in the "Your Outfit" comoponent of the website
 //onClick, it should go to the detailed page of clicked target product
 
@@ -16,17 +16,29 @@ class OutfitList extends React.Component {
   }
 
   handleClick(e, data) {
-    var outfitList = [];
-    outfitList.push(this.props.curProduct.data)
-    this.setState({
-      allOutfits: outfitList,
-    })
-    console.log('outfitlist at handleclick', outfitList);
-    // console.log('state at handleClick', this.state);
+    // console.log('fasdfas', this.state);
+    var outfits = this.state.allOutfits;
+    if (outfits.indexOf(this.props.curProduct.data) !== -1) {
+      alert('Product already saved in Your Outfits');
+    } else {
+      outfits.unshift(this.props.curProduct.data)
+      this.setState({
+        allOutfits: outfits,
+      })
+    }
   }
 
-  removeCard(e){
-    console.log('hello from removeCard', e);
+  removeCard(e) {
+    // console.log('cur state at removeCard', this.state);
+    var curCollection = this.state.allOutfits;
+    for (var i = 0; i < this.state.allOutfits.length; i++) {
+      if (curCollection[i].id === e.element.id) {
+        curCollection.splice(i, 1);
+      }
+    }
+    this.setState({
+      allOutfits: curCollection
+    })
   }
 
   render() {
@@ -38,16 +50,19 @@ class OutfitList extends React.Component {
     return (
       <div>
         <h1>YOUR OUTFIT</h1>
-        <button onClick={this.handleClick}>Add Current Product to Outfit List</button>
+        <button onClick={this.handleClick}>
+          Add Current Product to Outfit List
+          </button>
         <div>{this.state.allOutfits.map(element => {
           return (
             <div key={element.id} element={element} className='individualCard'>
-              {/* <img className='image' src={this.state.relatedProductImage[index]}></img> */}
               <h2 className='category'>{element.category}</h2>
               <div className='name'>{element.name}</div>
               <div className='price'>${element.default_price}</div>
               <div className='rating'>rating will go here</div>
-              <button onClick={(element) => this.removeCard(element)}>&times;</button>
+              <button
+                onClick={() => this.removeCard({ element })}
+              >&times;</button>
             </div>
           )
         })}

@@ -118,10 +118,21 @@ export function getRelatedImage() {
     axios
       .get(`/products/${product[i]}/styles`)
       .then((results) => {
-        // console.log('product at related image', results.data.results[0].photos[0].thumbnail_url);
+        // console.log('product at related image', results.data.product_id);
+        // console.log('product at related image', results.data);
+        var imageObj=[{
+          product_id: '',
+          imageUrl: '',
+        }];
+        var key = product[i];
+        var value = results.data.product_id;
+        imageObj.product_id = results.data.product_id;
+        imageObj.picUrl = results.data.results[0].photos[0].thumbnail_url
+        // console.log(imageObj);
         imageUrl.push(results.data.results[0].photos[0].thumbnail_url);
         this.setState({
           relatedProductImage: imageUrl,
+          relatedImage: imageObj,
         });
       })
       .catch((err) => {
