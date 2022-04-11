@@ -39,57 +39,71 @@ export default class ReviewList extends Component {
   };
 
   render(props) {
-    // console.log("CurrentList: ", this.props.currentProductReview);
-    return (
-      <div className="reviewlist-container">
-        <h1>Reviews</h1>
-        {/* <Sort
-          className="sort-container"
-          // SORT BY HELPFULNESS, DATE
-        /> */}
-        <ul className="review-list">
-          {this.props.currentProductReview
-            .slice(0, this.state.visible)
-            .map((review, index) => {
-              return (
-                <ul key={index}>
-                  <span className="reviewer_name">
-                    {review.reviewer_name}
+    if (
+      this.props.currentProductReview &&
+      this.props.currentProductReview.length !== 0
+    ) {
+      // console.log(
+      //   "CurrentList: ",
+      //   this.props.currentProductReview[2].photos[0].url
+      // );
+      return (
+        <div className="reviewlist-container">
+          {/* <Sort
+            className="sort-container"
+            // SORT BY HELPFULNESS, DATE
+          /> */}
+          <ul className="review-list">
+            {this.props.currentProductReview
+              .slice(0, this.state.visible)
+              .map((review, index) => {
+                return (
+                  <ul key={index}>
+                    <span className="reviewer_name">
+                      {review.reviewer_name}
+                      <br></br>
+                      {moment(review.date).utc().format("YYYY-MM-DD")}
+                    </span>
                     <br></br>
-                    {moment(review.date).utc().format("YYYY-MM-DD")}
-                  </span>
-                  <br></br>
-                  <StarRatings
-                    rating={review.rating}
-                    starRatedColor="yellow"
-                    numberOfStars={5}
-                    name="rating"
-                    starDimension="15px"
-                    starSpacing="3px"
-                  />
-                  <br></br>
-                  <span className="review-body">{review.body}</span>
-                  <br></br>
-                  <span>{review.summary}</span>
-                  <br></br>
-                  Helpful? Yes ({review.helpfulness})<br></br>
-                  Report
-                  <br></br>
-                  Photo: <img src={review.photos[0]} alt="photo" />
-                  <hr />
-                </ul>
-              );
-            })}
-        </ul>
-        <div className="view-more-button">
-          {this.state.hideReviewButton ? null : (
-            <button className="moreReviews" onClick={this.showMoreItems}>
-              View more...
-            </button>
-          )}
+                    <StarRatings
+                      rating={review.rating}
+                      starRatedColor="yellow"
+                      numberOfStars={5}
+                      name="rating"
+                      starDimension="15px"
+                      starSpacing="1px"
+                    />
+                    <br></br>
+                    <span className="review-body">{review.body}</span>
+                    <br></br>
+                    <span>{review.summary}</span>
+                    <br></br>
+                    Helpful? Yes ({review.helpfulness})<br></br>
+                    Report
+                    <br></br>
+                    {review.photos[0] ? (
+                      <img
+                        className="photo"
+                        src={review.photos[0].url}
+                        alt="photo"
+                      />
+                    ) : null}
+                    {/* Photo: <img src={review.photos[0]} alt="photo" /> */}
+                    <hr />
+                  </ul>
+                );
+              })}
+          </ul>
+          <div className="view-more-button">
+            {this.state.hideReviewButton ? null : (
+              <button className="moreReviews" onClick={this.showMoreItems}>
+                View more...
+              </button>
+            )}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

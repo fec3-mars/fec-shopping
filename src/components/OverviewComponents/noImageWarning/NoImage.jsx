@@ -6,7 +6,7 @@ import './NoImage.css';
 function NoImage({
   message,
   selectedStyle,
-  big
+  big,
 }) {
   const nameClassIcon = big === 1 ? 'missing-image-icon big' : 'missing-image-icon';
   const nameClassMessage = big === 1 ? 'missing-image-message big' : 'missing-image-message';

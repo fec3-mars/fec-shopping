@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 
 //this removeOutfitButton is the action button for each outfit card

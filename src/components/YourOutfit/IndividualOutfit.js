@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 
 //IndividualOutfit produce the layout of a single outfit card in the website

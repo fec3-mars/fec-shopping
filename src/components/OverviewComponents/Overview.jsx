@@ -6,7 +6,7 @@ import ProductInfo from "./productInfo/ProductInfo.jsx";
 import Styles from "./styles/Styles.jsx";
 import SocialMedia from "./socialMedia/SocialMedia.jsx";
 import Feature from "./productInfo/Feature.jsx";
-import { getProductStyles } from "../axios";
+import { getProductStyles, postInteraction } from "../axios";
 import "./Overview.css";
 
 class Overview extends React.Component {
@@ -29,7 +29,8 @@ class Overview extends React.Component {
     }
   }
 
-  styleChangeHandler(style) {
+  styleChangeHandler(e, style) {
+    postInteraction(e, "Overview");
     this.setState({
       selectedStyle: style,
     });
@@ -53,6 +54,7 @@ class Overview extends React.Component {
             selectedStyle={selectedStyle}
             product={product}
             className="product-info"
+            reviewsInfo={this.props}
           />
           <Styles
             styles={styles}

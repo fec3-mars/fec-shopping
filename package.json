@@ -42,6 +42,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
@@ -51,7 +52,10 @@
     "webpack-dev-server": "^4.7.4"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "^.+\\.(css|less)$": "<rootDir>/config/CSSStub.js"
+    }
   },
   "scripts": {
     "start": "webpack --mode=development",

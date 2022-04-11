@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useNavigate } from "react-router-dom";
 import {
   faFacebookSquare,
   faTwitterSquare,
@@ -9,14 +8,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SocialMedia.css';
 
-function SocialMedia(media) {
-  // let navigate = useNavigate();
-  // const routeChange = () => {
-  //   if (media === "facebook") {
-  //     let path = 'https://www.facebook.com/sharer/sharer.php?u=#url';
-  //   }
-  //   navigate(path);
-  // }
+function SocialMedia() {
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
+  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${window.location.href}`;
+  const pinterestShareUrl = `https://pinterest.com/pin/create/button/?url=${window.location.href}`;
+
   return (
     <div className="container social-media-container">
       <FontAwesomeIcon
@@ -24,28 +20,27 @@ function SocialMedia(media) {
         color="black"
         size="4x"
         className="btn__twitter"
-      // onClick={() => { routeChange('twitter') }}
+        href={twitterShareUrl}
       />
       <FontAwesomeIcon
         icon={faFacebookSquare}
         color="black"
         size="4x"
         className="btn__facebook"
-      // onClick={() => { routeChange('facebook') }}
+        href={facebookShareUrl}
       />
       <FontAwesomeIcon
         icon={faInstagramSquare}
         color="black"
         size="4x"
         className="btn__instagram"
-      // onClick={() => { routeChange('instagram') }}
       />
       <FontAwesomeIcon
         icon={faPinterestSquare}
         color="black"
         size="4x"
         className="btn__pinterest"
-      // onClick={() => { routeChange('pinterest') }}
+        href={pinterestShareUrl}
       />
     </div>
   );

@@ -5,7 +5,7 @@ function SelectSize({
   changeState,
   selectSize,
   skus,
-  selectedSize
+  selectedSize,
 }) {
   return (
     <div className="size-select-container">

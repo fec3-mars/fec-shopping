@@ -10,7 +10,7 @@ function SmallImage({
   const nameClass = idx === mainImageIdx ? 'small-image current' : 'small-image';
   return (
     <div className="small-image-div">
-      <img className={nameClass} onClick={() => { updateMainImageHandler(idx) }} src={`${img.url}`} alt="" />
+      <img className={nameClass} onClick={(e) => { updateMainImageHandler(e, idx) }} src={`${img.url}`} alt="" />
     </div>
   );
 }
