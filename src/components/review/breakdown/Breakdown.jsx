@@ -46,7 +46,7 @@ export default class Breakdown extends Component {
   render(props) {
     // console.log("Rating", this.props.currentProductRating.length);
     // this.getData();
-    console.log(this.state.ratings.ratings);
+    // console.log(this.state.ratings.ratings);
     if (this.state.averageRating) {
       return (
         <div className="breakdown-container">
