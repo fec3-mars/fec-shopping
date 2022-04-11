@@ -3,7 +3,7 @@ import IndividualAnswer from '../IndividualAnswer/IndividualAnswer';
 import './IndividualQuestion.scss';
 import Modal from '../Modal/Modal.jsx';
 import AddPhoto from '../AddPhoto/AddPhoto.jsx';
-import { postAnswer, markQuestionHelpful, reportQuestion } from '../../axios';
+import { postAnswer, markQuestionHelpful, reportQuestion, getAnswers } from '../../axios';
 
 class IndividualQuestion extends React.Component {
   constructor(props) {
@@ -22,15 +22,13 @@ class IndividualQuestion extends React.Component {
   }
 
   componentDidMount() {
-    const { answers, question_body } = this.props.question;
+    const { answers, question_body, question_id } = this.props.question;
 
     this.formatAnswers(answers);
 
     this.setState({
       question_body,
-    });
-
-    this.props.reloadPage();
+    }, () => this.props.reloadPage());
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -104,7 +102,7 @@ class IndividualQuestion extends React.Component {
       })
       .catch((err) => {
         console.log('err in reporting a question', err);
-      })
+      });
   }
 
   questionHelpful() {
@@ -134,7 +132,7 @@ class IndividualQuestion extends React.Component {
   changeExpanded() {
     this.setState({
       expanded: !this.state.expanded,
-    });
+    }, () => this.props.reloadPage);
   }
 
   buildAnswers(arr) {
@@ -199,6 +197,8 @@ class IndividualQuestion extends React.Component {
       photos,
       helpful,
     } = this.state;
+
+
     //---------------------------------------------------------------------------------------------
     let answersText = answers;
     let expandButton = <button type="button" className="load-questions-button" onClick={this.changeExpanded.bind(this)}> Collapse answers </button>;
