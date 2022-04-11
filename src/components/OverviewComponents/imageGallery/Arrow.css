@@ -21,9 +21,27 @@
   right: 5%;
 }
 
+.btn__arrow-left-modal {
+  top: 50%;
+  left: -10%;
+  transform: translateY(-50%);
+}
+
+.btn__arrow-right-modal {
+  top: 50%;
+  transform: translateY(-50%);
+  right: -10%;
+}
+
+.modal-arrow {
+  left: 8%;
+}
+
 .btn__pan-down,
 .btn__pan-up,
 .btn__arrow-left,
+.btn__arrow-left-modal,
+.btn__arrow-right-modal,
 .btn__arrow-right {
   position: absolute;
   padding: .5rem;
@@ -35,10 +53,18 @@
   z-index: 2;
 }
 
+.btn__arrow-left-modal,
+.btn__arrow-right-modal {
+  color: #000;
+  background-color: #fff;
+}
+
 
 .btn__pan-down,
 .btn__pan-up,
 .btn__arrow-left,
+.btn__arrow-left-modal,
+.btn__arrow-right-modal,
 .btn__arrow-right:hover {
   cursor: pointer;
 }

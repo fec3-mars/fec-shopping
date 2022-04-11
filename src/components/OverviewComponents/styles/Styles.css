@@ -3,7 +3,7 @@
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
   justify-items: center;
-  grid-row-gap: 2rem;
+  grid-row-gap: 1rem;
 }
 
 .styles-container {

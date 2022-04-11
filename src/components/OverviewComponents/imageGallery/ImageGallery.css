@@ -12,6 +12,7 @@
   object-fit: contain;
   height: auto;
   width: 100%;
+  cursor: zoom-in;
 }
 
 .thumbnail-list {
@@ -26,4 +27,5 @@
 
 .thumbnail-list-container {
   position: absolute;
+  z-index: 2;
 }

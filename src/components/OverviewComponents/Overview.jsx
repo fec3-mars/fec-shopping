@@ -46,11 +46,7 @@ class Overview extends React.Component {
     return (
       <div className="overview-container">
         <div className="image-gallery-container">
-          <ImageGallery
-            loaded={loaded}
-            selectedStyle={selectedStyle}
-            className="image-gallery"
-          />
+          <ImageGallery loaded={loaded} productId={product.id} selectedStyle={selectedStyle} className="image-gallery" />
         </div>
         <div className=" preferences-container">
           <ProductInfo

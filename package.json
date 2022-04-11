@@ -20,6 +20,9 @@
     "react-chartjs-2": "^4.0.1",
     "react-dom": "^18.0.0",
     "react-dropdown": "^1.9.2",
+    "react-img-zoom": "^0.1.0",
+    "react-inner-image-zoom": "^3.0.0",
+    "react-medium-image-zoom": "^4.3.6",
     "react-native-star-rating-bar-graph": "^1.0.0",
     "react-star-ratings": "^2.3.0"
   },

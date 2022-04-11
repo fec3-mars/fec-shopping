@@ -11,7 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function Arrow({
   type,
   scrollThumbnails,
-  scrollMainImages
+  scrollMainImages,
+  modal,
 }) {
   return (
     <>
@@ -41,7 +42,7 @@ function Arrow({
             icon={faArrowRight}
             inverse
             onClick={() => scrollMainImages(1)}
-            className="btn__arrow-right btn__icon"
+            className={modal === 'yes' ? 'btn__arrow-right-modal btn__icon' : 'btn__arrow-right btn__icon'}
           />
         )
       }
@@ -51,7 +52,7 @@ function Arrow({
             icon={faArrowLeft}
             inverse
             onClick={() => scrollMainImages(-1)}
-            className="btn__arrow-left btn__icon"
+            className={modal === 'yes' ? 'btn__arrow-left-modal btn__icon' : 'btn__arrow-left btn__icon'}
           />
         )}
     </>
