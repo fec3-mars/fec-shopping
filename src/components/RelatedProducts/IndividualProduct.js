@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import RelatedProductsList from './RelatedProductsList.jsx'
 import Modal from './Modal.js';
@@ -26,7 +27,7 @@ class IndividualProduct extends React.Component {
   };
 
   render() {
-    // console.log('props at individualcard', this.props);
+    // console.log('props at individualcard', this.props.curCard.data);
     return (
       <div>
         <img className='relatedImage' src={this.props.curPic} onClick={() => { this.props.handleChang(this.props.curCard) }}></img>
@@ -35,8 +36,13 @@ class IndividualProduct extends React.Component {
         <div className='relatedPrice'>${this.props.curCard.data.default_price}</div>
         <div className='relatedRating'>rating will go here</div>
 
-        <Modal show={this.state.show} handleClose={this.hideModal} curProduct={this.props.curProduct} curCard={this.props.curCard}>
-          <p>{this.props.curCard.data.category}</p>
+        <Modal
+          show={this.state.show}
+          handleClose={this.hideModal}
+          curProduct={this.props.curProduct}
+          curCard={this.props.curCard}
+        >
+          <p>{this.props.curCard.data}</p>
         </Modal>
 
         <button type="button" onClick={this.showModal}>

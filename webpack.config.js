@@ -11,6 +11,9 @@ module.exports = {
   plugins: [
     new Dotenv(),
   ],
+  resolve: {
+    extensions: ["", ".webpack.js", ".web.js", ".js", ".json", ".jsx"],
+  },
   module: {
     rules: [
       {
@@ -21,6 +24,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,

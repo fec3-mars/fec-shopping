@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StarRatings from "react-star-ratings";
 import RadioBtn_Size from "./RadioBtn/Size.jsx";
 import RadioBtn_Width from "./RadioBtn/Width.jsx";
@@ -44,22 +44,40 @@ export default function Modal({
   setStarRating,
 }) {
   // const [reviewSummary, setReviewSummary] = useState("");
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    const data = { title, body };
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    };
-    fetch(
-      "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((res) => console.log("Post sent: ", res));
-  };
+  // const handleSubmit = (e) => {
+  //   console.log("It goes here");
+  //   e.preventDefault();
+
+  //   const data = { setReviewSummary };
+  //   const requestOptions = {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(data),
+  //   };
+  //   fetch(
+  //     "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/reviews",
+  //     requestOptions
+  //   )
+  //     .then((response) => response.json())
+  //     .then((res) => console.log("Post sent: ", res));
+  // };
+
+  // useEffect(() => {
+  //   const requestOptions = {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ title: "React Hooks POST Request Example" }),
+  //   };
+  //   fetch(
+  //     "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/reviews",
+  //     requestOptions
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => setPostId(data.id));
+
+  //   // empty dependency array means this effect will only run once (like componentDidMount in classes)
+  // }, []);
 
   if (!open) return null;
   return (
@@ -121,7 +139,7 @@ export default function Modal({
             />
           </label>
           <br></br>
-          <button onClick={() => this.handleSubmit}>Submit Review</button>
+          <button>Submit Review</button>
         </form>
         <br></br>
         {children}

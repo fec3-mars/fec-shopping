@@ -1,13 +1,13 @@
-import React from 'react';
-import ImageGallery from './imageGallery/ImageGallery.jsx';
-import AddToCart from './addToCart/AddToCart.jsx';
-import ProductSlogan from './productInfo/ProductSlogan.jsx';
-import ProductInfo from './productInfo/ProductInfo.jsx';
-import Styles from './styles/Styles.jsx';
-import SocialMedia from './socialMedia/SocialMedia.jsx';
-import Feature from './productInfo/Feature.jsx';
-import { getProductStyles } from '../axios';
-import './Overview.css';
+import React from "react";
+import ImageGallery from "./imageGallery/ImageGallery.jsx";
+import AddToCart from "./addToCart/AddToCart.jsx";
+import ProductSlogan from "./productInfo/ProductSlogan.jsx";
+import ProductInfo from "./productInfo/ProductInfo.jsx";
+import Styles from "./styles/Styles.jsx";
+import SocialMedia from "./socialMedia/SocialMedia.jsx";
+import Feature from "./productInfo/Feature.jsx";
+import { getProductStyles } from "../axios";
+import "./Overview.css";
 
 class Overview extends React.Component {
   constructor(props) {
@@ -42,19 +42,26 @@ class Overview extends React.Component {
       selectedStyle,
       loaded,
     } = this.state;
+
     return (
       <div className="overview-container">
         <div className="image-gallery-container">
           <ImageGallery loaded={loaded} productId={product.id} selectedStyle={selectedStyle} className="image-gallery" />
         </div>
         <div className=" preferences-container">
-          <ProductInfo selectedStyle={selectedStyle} product={product} className="product-info" />
+          <ProductInfo
+            selectedStyle={selectedStyle}
+            product={product}
+            className="product-info"
+          />
           <Styles
             styles={styles}
             selectedStyle={selectedStyle}
             styleChangeHandler={this.styleChangeHandler}
           />
-          {selectedStyle.skus && <AddToCart className="add-to-cart" selectedStyle={selectedStyle} />}
+          {selectedStyle.skus && (
+            <AddToCart className="add-to-cart" selectedStyle={selectedStyle} />
+          )}
         </div>
         {product.slogan && (
           <div className="product-slogan-container">
@@ -65,7 +72,9 @@ class Overview extends React.Component {
           <ul className="features-list">
             {product.features
               .filter((item) => item.feature !== null && item.value !== null)
-              .map((item) => <Feature key={item.feature} item={item} />)}
+              .map((item) => (
+                <Feature key={item.feature} item={item} />
+              ))}
           </ul>
         )}
         <div className="social-media-container">
