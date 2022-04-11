@@ -1,5 +1,5 @@
 .reviewlist-container {
-  background-color: red;
+  background-color: black;
   width: 100%;
 }
 
@@ -17,4 +17,11 @@
 
 .reviewer-name {
   text-align: justify;
+}
+
+.moreReviews {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
 }

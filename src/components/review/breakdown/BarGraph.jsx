@@ -1,11 +1,14 @@
 /* eslint-disable */
-
 import React, { Component } from "react";
+import Filler from "./Filler.jsx";
+import "./BarGraph.css";
 
-export class BarGraph extends Component {
-  render() {
-    return <div>BarGraph</div>;
-  }
-}
+const BarGraph = (props) => {
+  return (
+    <div className="progress-bar">
+      <Filler percentage={props.percentage} />
+    </div>
+  );
+};
 
 export default BarGraph;

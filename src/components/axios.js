@@ -177,7 +177,9 @@ export function reportAnswer(id) {
 //--------------------------------------Q&A------------------------------
 
 //--------------------------------------Reviews------------------------------
-
+export function getMetaData() {
+  return axios.get(`/reviews/meta/?product_id=66643`);
+}
 //--------------------------------------Reviews------------------------------
 
 export default axios;
