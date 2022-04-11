@@ -3,7 +3,7 @@ import Arrow from './Arrow.jsx';
 import ImageThumbnail from './ImageThumbnail.jsx';
 
 function DefaultView({
-  props,
+  parentState,
   updateMainImageHandler,
   scrollThumbnails,
   scrollMainImages,
@@ -14,12 +14,12 @@ function DefaultView({
     thumbnailStart,
     thumbnailEnd,
     mainImageIdx,
-  } = props;
+  } = parentState;
 
   return (
     (
       <>
-        <img onClick={toggleExpanded} src={`${styleImages[mainImageIdx]?.url}`} alt="" className="main-img" />
+        <img onClick={(e) => { toggleExpanded(e) }} src={`${styleImages[mainImageIdx]?.url}`} alt="" className="main-img" />
         <div className="thumbnail-list-container">
           {thumbnailStart > 0 && <Arrow type="up" scrollThumbnails={scrollThumbnails} />}
           <ul className="thumbnail-list">
@@ -38,7 +38,6 @@ function DefaultView({
                     thumbnail={img.thumbnail_url}
                   />
                 )
-
               ))}
           </ul>
           {thumbnailEnd < styleImages.length - 1 && <Arrow type="down" scrollThumbnails={scrollThumbnails} />}

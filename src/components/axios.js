@@ -35,6 +35,9 @@ export function makeReviewRequest() {
       console.log("error in axios.js makeRequest", err);
     });
 }
+///////////////////////////////////////////////////////////////
+//********Axios Requests for Product Overview Widget**********
+///////////////////////////////////////////////////////////////
 
 export function getProductStyles() {
   const product = arguments[0];
@@ -67,6 +70,10 @@ export function postToBag(data, selectedSize) {
       console.log(err);
     });
 }
+
+///////////////////////////////////////////////////////////////
+//********Axios Requests for Product Overview Widget**********
+///////////////////////////////////////////////////////////////
 
 export function getRelatedProducts() {
   const product = arguments[0];
@@ -184,5 +191,26 @@ export function getMetaData() {
   return axios.get(`/reviews/meta/?product_id=66643`);
 }
 //--------------------------------------Reviews------------------------------
+
+
+
+//--------------------------------------Interations------------------------------
+export function postInteraction(e, widget) {
+  const obj = {
+    element: e.target.outerHTML,
+    widget: widget,
+    time: `${new Date()}`
+  }
+  console.log(obj);
+  axios.post(`/interactions`, obj).then(res => {
+    console.log('posted interaction');
+  }).catch(err => {
+    console.log('error posting interaction');
+  })
+}
+//--------------------------------------Interations------------------------------
+
+
+
 
 export default axios;
