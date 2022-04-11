@@ -6,7 +6,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ImageModal = ({ handleClose, show, children }) => {
-  const showHideClassName = show ? "img modal qa-img-display-block" : "img modal qa-img-display-none";
+  const showHideClassName = show ? "img-modal qa-img-display-block" : "img-modal qa-img-display-none";
 
   return (
     <div className={showHideClassName}>
