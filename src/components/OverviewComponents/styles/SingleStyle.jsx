@@ -7,7 +7,7 @@ import NoImage from '../noImageWarning/NoImage.jsx';
 function SingleStyle({
   style,
   selectedStyle,
-  styleChangeHandler
+  styleChangeHandler,
 }) {
   const isNull = style.photos[0].url;
   const nameClass = selectedStyle ? 'style-container relative' : 'style-container';

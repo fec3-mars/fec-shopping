@@ -15,14 +15,12 @@ function SelectQty({
       onChange={changeState}
     >
       {(selectedSize !== 'SELECT SIZE'
-        && purchaseQtys.map((quantity, idx) =>
+        && purchaseQtys.map((quantity) => (
           <option key={quantity} value={quantity}>
-            {console.log(quantity)}
             {quantity}
           </option>
-        ))
-        || <option>-</option>
-      }
+        )))
+        || <option>-</option>}
     </select>
   );
 }
