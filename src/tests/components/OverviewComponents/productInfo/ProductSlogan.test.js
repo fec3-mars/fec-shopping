@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-import ProductSlogan from "../../../components/OverviewComponents/ProductSlogan.js";
+import ProductSlogan from '../../../../components/OverviewComponents/ProductSlogan.jsx';
 
 const testData = {
   "id": 1,

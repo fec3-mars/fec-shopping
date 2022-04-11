@@ -32,10 +32,9 @@ class ImageGallery extends React.Component {
     };
 
     if (prevProps.selectedStyle.style_id !== selectedStyle.style_id) {
-      const photos = [...selectedStyle.photos, ...selectedStyle.photos];
+      // const photos = [...selectedStyle.photos, ...selectedStyle.photos];
       this.setState((prevState) => ({
-        // styleImages: this.props.selectedStyle.photos,
-        styleImages: photos,
+        styleImages: selectedStyle.photos,
         mainImageIdx: getIdx(prevState.styleHistory),
         styleHistory: {
           ...prevState.styleHistory,

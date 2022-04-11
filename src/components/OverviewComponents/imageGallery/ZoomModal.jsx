@@ -67,7 +67,7 @@ class ZoomModal extends React.Component {
           <div className="small-images-container">
             {!this.state.zoomedIn && styleImages.map((img, idx) => (
               <SmallImage
-                key={idx}
+                key={img.url}
                 img={img}
                 idx={idx}
                 mainImageIdx={mainImageIdx}

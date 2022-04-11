@@ -13,6 +13,6 @@ function ImageThumbnail({
       <img className="img-thumbnail" alt="" src={thumbnail} />
     </div>
   );
-};
+}
 
 export default ImageThumbnail;
