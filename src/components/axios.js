@@ -24,7 +24,11 @@ export function makeReviewRequest() {
   axios
     .get(`/reviews/?product_id=${id}`)
     .then((results) => {
-      const avgRating = results.data.results.reduce((acc, item) => acc = acc + item.rating, 0) / results.data.count
+      const avgRating =
+        results.data.results.reduce(
+          (acc, item) => (acc = acc + item.rating),
+          0
+        ) / results.data.count;
       this.setState({
         totalReviews: results.data.count,
         curProductReview: results,
@@ -190,27 +194,29 @@ export function reportAnswer(id) {
 export function getMetaData() {
   return axios.get(`/reviews/meta/?product_id=66643`);
 }
+
+export function postReview(obj) {
+  return axios.post(`/reviews`, obj);
+}
 //--------------------------------------Reviews------------------------------
-
-
 
 //--------------------------------------Interations------------------------------
 export function postInteraction(e, widget) {
   const obj = {
     element: e.target.outerHTML,
     widget: widget,
-    time: `${new Date()}`
-  }
+    time: `${new Date()}`,
+  };
   console.log(obj);
-  axios.post(`/interactions`, obj).then(res => {
-    console.log('posted interaction');
-  }).catch(err => {
-    console.log('error posting interaction');
-  })
+  axios
+    .post(`/interactions`, obj)
+    .then((res) => {
+      console.log("posted interaction");
+    })
+    .catch((err) => {
+      console.log("error posting interaction");
+    });
 }
 //--------------------------------------Interations------------------------------
-
-
-
 
 export default axios;
