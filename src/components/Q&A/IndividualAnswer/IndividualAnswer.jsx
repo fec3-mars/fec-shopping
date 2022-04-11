@@ -126,7 +126,8 @@ class IndividualAnswer extends React.Component {
         </div>
         <p className="answerer-text">
           by
-          {` ${name}`}
+          {' '}
+          {name}
           ,
           {formattedDate.toDateString()}
         </p>
