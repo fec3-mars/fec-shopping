@@ -53,6 +53,7 @@ class Overview extends React.Component {
             selectedStyle={selectedStyle}
             product={product}
             className="product-info"
+            reviewsInfo={this.props}
           />
           <Styles
             styles={styles}

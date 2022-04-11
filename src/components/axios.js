@@ -24,8 +24,11 @@ export function makeReviewRequest() {
   axios
     .get(`/reviews/?product_id=${id}`)
     .then((results) => {
+      const avgRating = results.data.results.reduce((acc, item) => acc = acc + item.rating, 0) / results.data.count
       this.setState({
+        totalReviews: results.data.count,
         curProductReview: results,
+        avgRating: avgRating,
       });
     })
     .catch((err) => {
