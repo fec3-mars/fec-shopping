@@ -67,7 +67,15 @@ export default class Breakdown extends Component {
             starSpacing="5px"
           />
           <br></br>
+          1 Star:
+          <BarGraph className="bar-graph" percentage={40} />
+          2 Stars:
           <BarGraph className="bar-graph" percentage={this.state.percentage} />
+          3 Stars:
+          <BarGraph className="bar-graph" percentage={this.state.percentage} />
+          4 Stars:
+          <BarGraph className="bar-graph" percentage={80} />5 Stars:{" "}
+          <BarGraph className="bar-graph" percentage={10} />
         </div>
       );
     }
