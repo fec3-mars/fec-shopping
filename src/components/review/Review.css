@@ -15,3 +15,7 @@
 .submitReview {
   position: absolute;
 }
+
+.rating-header {
+  align-items: left;
+}

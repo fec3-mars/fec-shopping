@@ -21,7 +21,7 @@ function Arrow({
           <FontAwesomeIcon
             icon={faChevronUp}
             inverse
-            onClick={() => scrollThumbnails(-1)}
+            onClick={(e) => scrollThumbnails(e, -1)}
             className="btn__pan-up btn__icon"
           />
         )
@@ -31,7 +31,7 @@ function Arrow({
           <FontAwesomeIcon
             icon={faChevronDown}
             inverse
-            onClick={() => scrollThumbnails(1)}
+            onClick={(e) => scrollThumbnails(e, 1)}
             className="btn__pan-down btn__icon"
           />
         )
@@ -41,7 +41,7 @@ function Arrow({
           <FontAwesomeIcon
             icon={faArrowRight}
             inverse
-            onClick={() => scrollMainImages(1)}
+            onClick={(e) => scrollMainImages(e, 1)}
             className={modal === 'yes' ? 'btn__arrow-right-modal btn__icon' : 'btn__arrow-right btn__icon'}
           />
         )
@@ -51,7 +51,7 @@ function Arrow({
           <FontAwesomeIcon
             icon={faArrowLeft}
             inverse
-            onClick={() => scrollMainImages(-1)}
+            onClick={(e) => scrollMainImages(e, -1)}
             className={modal === 'yes' ? 'btn__arrow-left-modal btn__icon' : 'btn__arrow-left btn__icon'}
           />
         )}

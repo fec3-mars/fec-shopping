@@ -13,7 +13,7 @@ function SingleStyle({
   const nameClass = selectedStyle ? 'style-container relative' : 'style-container';
 
   return (
-    <div className={nameClass} onClick={() => { styleChangeHandler(style) }}>
+    <div className={nameClass} onClick={(e) => { styleChangeHandler(e, style) }}>
       {(isNull && <img src={isNull} alt="" className="style-img" />) || <NoImage message="no image" selectedStyle={selectedStyle} />}
       {(selectedStyle && isNull) && <FontAwesomeIcon icon={faCircleCheck} className="checkmark" />}
 

@@ -28,23 +28,23 @@ export default class Review extends Component {
       this.setState({
         reviews: [...this.props.curProduct.data.results],
       });
-    } 
+    }
   }
 
   render(props) {
     // if (this.state.curProductReview) {
-    //   console.log("Result in Review.js are: ", this.state.reviews);
+    // console.log("Result in Review.js are: ", this.state.reviews);
     // }
 
     return (
       <div className="review-container">
+        <h1 className="rating-header">Ratings & Reviews</h1>
         <div className="breakdown-reviewList">
           <Breakdown currentProductRating={this.state.reviews} />
           <ReviewList currentProductReview={this.state.reviews} />
         </div>
         {/* <AddReview className="AddReview" /> */}
-        <button onClick={this.openModal}>Display Modal Form</button>
-
+        <button onClick={this.openModal}>Submit New Review</button>
         {this.state.isOpen ? (
           <AddReview
             closeModal={this.closeModal}

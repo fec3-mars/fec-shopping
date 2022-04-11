@@ -1,4 +1,10 @@
 .breakdown-container {
-  background-color: blue;
-  display: flex;
+  background-color: black;
+}
+
+.ratingNum {
+  width: 60px;
+}
+
+.starNum {
 }

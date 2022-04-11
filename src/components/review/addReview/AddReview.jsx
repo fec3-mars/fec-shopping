@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/button";
 import React, { Component } from "react";
 import "./AddReview.css";
+import StarRatings from "react-star-ratings";
 
 export default class AddReview extends Component {
   state = {
@@ -15,6 +16,7 @@ export default class AddReview extends Component {
     UploadPhotos: null,
     NickName: null,
     Email: null,
+    rating: 0,
   };
 
   handleChange = (e) => {
@@ -64,6 +66,11 @@ export default class AddReview extends Component {
     });
   };
 
+  changeRating = (newRating, name) => {
+    this.setState({
+      rating: newRating,
+    });
+  };
   handleSubmit = () => {
     // POST this.state to /reviews
   };
@@ -81,12 +88,21 @@ export default class AddReview extends Component {
         <Modal.Body>
           <Form.Group>
             <Form.Label>What is the Overall rating? </Form.Label>
-            <Form.Control
+            <StarRatings
+              rating={this.state.rating}
+              starRatedColor="yellow"
+              numberOfStars={5}
+              changeRating={this.changeRating}
+              name="rating"
+              starDimension="10px"
+              starSpacing="5px"
+            />
+            {/* <Form.Control
               type="text"
               onChange={this.handleChangeOverallRating}
               value={this.state.OverallRating}
               placeholder="Make this into stars"
-            />
+            /> */}
             <br></br>
             <Form.Label>Do you recommend this product? </Form.Label>
             <Form.Control
