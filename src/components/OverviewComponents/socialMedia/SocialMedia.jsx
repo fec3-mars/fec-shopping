@@ -24,28 +24,28 @@ function SocialMedia(media) {
         color="black"
         size="4x"
         className="btn__twitter"
-        onClick={() => { routeChange('twitter') }}
+      // onClick={() => { routeChange('twitter') }}
       />
       <FontAwesomeIcon
         icon={faFacebookSquare}
         color="black"
         size="4x"
         className="btn__facebook"
-        onClick={() => { routeChange('facebook') }}
+      // onClick={() => { routeChange('facebook') }}
       />
       <FontAwesomeIcon
         icon={faInstagramSquare}
         color="black"
         size="4x"
         className="btn__instagram"
-        onClick={() => { routeChange('instagram') }}
+      // onClick={() => { routeChange('instagram') }}
       />
       <FontAwesomeIcon
         icon={faPinterestSquare}
         color="black"
         size="4x"
         className="btn__pinterest"
-        onClick={() => { routeChange('pinterest') }}
+      // onClick={() => { routeChange('pinterest') }}
       />
     </div>
   );
