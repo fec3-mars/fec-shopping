@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 
 //the outfitList should gather all componenet/element in the "Your Outfit" comoponent of the website
@@ -7,19 +8,25 @@ class OutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // curProduct: this.props.curProduct.data,
       allOutfits: []
     }
     this.handleClick = this.handleClick.bind(this);
+    this.removeCard = this.removeCard.bind(this);
   }
 
   handleClick(e, data) {
-    // console.log('state at handleClick', this.props.curProduct.data);
     var outfitList = [];
     outfitList.push(this.props.curProduct.data)
     this.setState({
       allOutfits: outfitList,
     })
     console.log('outfitlist at handleclick', outfitList);
+    // console.log('state at handleClick', this.state);
+  }
+
+  removeCard(e){
+    console.log('hello from removeCard', e);
   }
 
   render() {
@@ -40,6 +47,7 @@ class OutfitList extends React.Component {
               <div className='name'>{element.name}</div>
               <div className='price'>${element.default_price}</div>
               <div className='rating'>rating will go here</div>
+              <button onClick={(element) => this.removeCard(element)}>&times;</button>
             </div>
           )
         })}
