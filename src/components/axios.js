@@ -118,12 +118,9 @@ export function getRelatedImage() {
         console.log("error in axios.js getRelatedImage req", err);
       });
   }
+}
 
-
-};
-
-
-  //--------------------------------------Q&A------------------------------
+//--------------------------------------Q&A------------------------------
 
 /**
  * getQuestionsAndAnswers takes a product id as an argument
@@ -134,22 +131,24 @@ export function getRelatedImage() {
  *
  */
 export function getQuestionsAndAnswers(id) {
-
-  axios.get(`/qa/questions/?product_id=${id}&count=100`)
+  axios
+    .get(`/qa/questions/?product_id=${id}&count=100`)
     .then((response) => {
       const { results } = response.data;
 
-      this.setState({
-        questions: results,
-      }, () => {
-        this.populateQuestions();
-      });
+      this.setState(
+        {
+          questions: results,
+        },
+        () => {
+          this.populateQuestions();
+        }
+      );
     })
     .catch((err) => {
-      console.log('error in get questions');
-    })
+      console.log("error in get questions");
+    });
 }
-
 
 export function postAnswer(obj) {
   return axios.post(`/qa/questions/${obj.question_id}/answers`, obj);
@@ -175,7 +174,10 @@ export function reportAnswer(id) {
   return axios.put(`/qa/answers/${id}/report`);
 }
 
-    //--------------------------------------Q&A------------------------------
+//--------------------------------------Q&A------------------------------
 
+//--------------------------------------Reviews------------------------------
+
+//--------------------------------------Reviews------------------------------
 
 export default axios;
