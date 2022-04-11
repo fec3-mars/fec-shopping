@@ -43,7 +43,7 @@ export default class Review extends Component {
           <ReviewList currentProductReview={this.state.reviews} />
         </div>
         {/* <AddReview className="AddReview" /> */}
-        <button onClick={this.openModal}>Display Modal Form</button>
+        <button onClick={this.openModal}>Submit New Review</button>
 
         {this.state.isOpen ? (
           <AddReview
