@@ -111,3 +111,6 @@ package-lock.json
 # yarn-lock
 yarn.lock
 
+#ds store
+.DS_STORE
+
