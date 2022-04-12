@@ -6,7 +6,6 @@ import Overview from "./OverviewComponents/Overview.jsx";
 import QuestionList from "./Q&A/QuestionList/QuestionList.jsx";
 import RelatedProducts from "./RelatedProducts/RelatedProductsList.jsx";
 import OutfitList from "./YourOutfit/OutfitList.js";
-import Demo from './Demo.js';
 
 import {
   axios,
@@ -56,7 +55,6 @@ class App extends React.Component {
           curProduct={this.state.curProductReview}
         />
         <QuestionList curProduct={this.state.curProduct} />
-        <Demo />
       </div>
     );
   }

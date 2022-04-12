@@ -33,19 +33,15 @@ describe.only("ImageGallery", () => {
   };
 
   it('should toggle DefaultView and ModalZoom when clicked', async () => {
-    mount();
+    const { debug } = mount();
 
     const mainImage = screen.getByAltText("selected image");
 
     expect(screen.queryByAltText("zoomed image")).toBeNull();
 
     fireEvent.click(mainImage);
+    debug()
 
     await screen.findByAltText("zoomed image");
-  })
-  it("should close ZoomedModal when close button is clicked", () => {
-    const { container, debug } = mount({ expanded: true });
-    debug();
-
   })
 })

@@ -123,11 +123,7 @@ class ImageGallery extends React.Component {
   }
 
   render() {
-    // const {
-    //   styleImages,
-    // } = this.state;
     const { loaded, selectedStyle } = this.props;
-    // console.log(selected);
     return (
       <div className="container image-gallery">
         {selectedStyle?.photos && selectedStyle?.photos[0]?.url
