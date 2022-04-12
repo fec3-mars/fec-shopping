@@ -1,10 +1,12 @@
 html {
   font-size: 62.5%;
 }
-.individualCard{
+
+.individualCard {
   border: solid 2px black;
 }
-.relatedProducts{
+
+.relatedProducts {
   width: 100%;
   align-items: center;
   /* display:table-cell */
@@ -18,14 +20,14 @@ html {
   background: none;
   width: 10px;
   height: 10px;
-  display:inline-block;
-  position:relative;
+  display: inline-block;
+  position: relative;
   transform: translate(-50%, -50%);
 }
 
-.relatedCard{
+.relatedCard {
   display: grid;
-  background-color:white;
+  background-color: white;
   color: brown;
   justify-content: center;
   align-content: center;
@@ -36,4 +38,3 @@ html {
 .relatedImage {
   width: 80%;
 }
-

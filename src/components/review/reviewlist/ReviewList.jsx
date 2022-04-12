@@ -38,18 +38,19 @@ export default class ReviewList extends Component {
 
   componentDidMount() {
     this.getSortDataNewest();
+    this.getSortDataHelpful();
   }
-  // getSortDataHelpful = () => {
-  //   getSortHelpful().then((result) => {
-  //     this.setState({ sortHelpful: result.data.results });
-  //   });
-  // };
+  getSortDataHelpful = () => {
+    getSortHelpful().then((result) => {
+      this.setState({ sortHelpful: result.data.results });
+    });
+  };
 
-  // getSortDataRelevant = () => {
-  //   getSortRelevant().then((result) => {
-  //     this.setState({ sortRelevant: result.data.results });
-  //   });
-  // };
+  getSortDataRelevant = () => {
+    getSortRelevant().then((result) => {
+      this.setState({ sortRelevant: result.data.results });
+    });
+  };
 
   showMoreItems = () => {
     const updatedList = this.state.visible + 2;
@@ -75,29 +76,27 @@ export default class ReviewList extends Component {
               .slice(0, this.state.visible)
               .map((review, index) => {
                 return (
-                  <ul key={index}>
+                  <ul key={index} className="review-list-item">
                     <span className="reviewer_name">
                       {review.reviewer_name}
-                      <br></br>
                       {moment(review.date).utc().format("YYYY-MM-DD")}
                     </span>
-                    <br></br>
                     <StarRatings
                       rating={review.rating}
                       starRatedColor="yellow"
                       numberOfStars={5}
                       name="rating"
+                      width="75px"
                       starDimension="15px"
-                      starSpacing="1px"
+                      // starSpacing="-10px"
+                      className='stars'
                     />
-                    <br></br>
                     <span className="review-body">{review.body}</span>
-                    <br></br>
-                    <span>{review.summary}</span>
-                    <br></br>
-                    Helpful? Yes ({review.helpfulness})<br></br>
-                    Report
-                    <br></br>
+                    <span className="review-summary">{review.summary}</span>
+                    <div className='helpful-report-container'>
+                      <span className="helpful">Helpful? Yes ({review.helpfulness})</span>
+                      <a className="report-link">Report</a>
+                    </div>
                     {review.photos[0] ? (
                       <img
                         className="photo"
@@ -117,7 +116,7 @@ export default class ReviewList extends Component {
               </button>
             )}
           </div>
-        </div>
+        </div >
       );
     }
   }

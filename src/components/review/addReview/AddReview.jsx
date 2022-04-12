@@ -5,7 +5,7 @@ import Button from "react-bootstrap/button";
 import React, { Component } from "react";
 import "./AddReview.css";
 import StarRatings from "react-star-ratings";
-import { postReview } from "../../axios";
+import { postReview, postInteraction } from "../../axios";
 
 import RadioBtn_Size from "../submitReview/RadioBtn/Size.jsx";
 import RadioBtn_Width from "../submitReview/RadioBtn/Width.jsx";
@@ -161,86 +161,97 @@ export default class AddReview extends Component {
         </Modal.Header>
         <Modal.Body>
           <Form.Group>
-            <Form.Label>What is the Overall rating? </Form.Label>
-            <StarRatings
-              rating={this.state.rating}
-              starRatedColor="yellow"
-              numberOfStars={5}
-              changeRating={this.changeRating}
-              name="rating"
-              starDimension="10px"
-              starSpacing="5px"
-            />
-            {/* <Form.Control
+            <div className="overall-rating-container">
+              <Form.Label>What is the Overall rating? </Form.Label>
+              <StarRatings
+                rating={this.state.rating}
+                starRatedColor="yellow"
+                numberOfStars={5}
+                changeRating={this.changeRating}
+                name="rating"
+                starDimension="10px"
+                starSpacing="5px"
+              />
+              {/* <Form.Control
               type="text"
               onChange={this.handleChangeOverallRating}
               value={this.state.OverallRating}
               placeholder="Make this into stars"
             /> */}
-            <br></br>
-            <Form.Label>Do you recommend this product? </Form.Label>
-            <input
-              type="radio"
-              name="recommendation"
-              value="Yes"
-              onClick={this.handleChangeRecommendation}
-            />
-            Yes
-            <input
-              type="radio"
-              name="recommendation"
-              value="No"
-              onClick={this.handleChangeRecommendation}
-            />
-            No
-            <br></br>
-            <Form.Label>Characteristics? </Form.Label>
-            <RadioBtn_Size setChanged={this.setChangedSize} />
-            <RadioBtn_Width setChanged={this.setChangedWidth} />
-            <RadioBtn_Comfort setChanged={this.setChangedComfort} />
-            <RadioBtn_Quality setChanged={this.setChangedQuality} />
-            <RadioBtn_Length setChanged={this.setChangedLength} />
-            <RadioBtn_Fit setChanged={this.setChangedFit} />
-            <br></br>
-            <Form.Label>Review Summary </Form.Label>
-            <Form.Control
-              type="text"
-              onChange={this.handleChangeReviewSummary}
-              value={this.state.ReviewSummary}
-              placeholder="This product is great!"
-            />
-            <br></br>
-            <Form.Label>Review Body </Form.Label>
-            <Form.Control
-              type="text"
-              onChange={this.handleChangeReviewBody}
-              value={this.state.ReviewBody}
-              placeholder="It looks great, has great qualities, etc..."
-            />
-            <br></br>
-            <Form.Label>Upload Photos</Form.Label>
-            <Form.Control
-              type="text"
-              onChange={this.handleChangeUploadPhotos}
-              value={this.state.UploadPhotos}
-              placeholder="Save photo function"
-            />
-            <br></br>
-            <Form.Label>What is your nickname? </Form.Label>
-            <Form.Control
-              type="text"
-              onChange={this.handleChangeNickName}
-              value={this.state.NickName}
-              placeholder="Paul"
-            />
-            <br></br>
-            <Form.Label>What is your email? </Form.Label>
-            <Form.Control
-              type="text"
-              onChange={this.handleChangeEmail}
-              value={this.state.Email}
-              placeholder="Paul@Gmail.com"
-            />
+            </div>
+            <div className="recommend-container">
+              <Form.Label>Do you recommend this product? </Form.Label>
+              <input
+                type="radio"
+                name="recommendation"
+                value="Yes"
+                onClick={this.handleChangeRecommendation}
+              />
+              Yes
+              <input
+                type="radio"
+                name="recommendation"
+                value="No"
+                onClick={this.handleChangeRecommendation}
+              />
+              No
+            </div>
+            <div className="characteristic-container">
+              <Form.Label>Characteristics? </Form.Label>
+              <RadioBtn_Size setChanged={this.setChangedSize} />
+              <RadioBtn_Width setChanged={this.setChangedWidth} />
+              <RadioBtn_Comfort setChanged={this.setChangedComfort} />
+              <RadioBtn_Quality setChanged={this.setChangedQuality} />
+              <RadioBtn_Length setChanged={this.setChangedLength} />
+              <RadioBtn_Fit setChanged={this.setChangedFit} />
+            </div>
+            <div className="input-container">
+              <div className="input">
+                <Form.Label>Review Summary: </Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={this.handleChangeReviewSummary}
+                  value={this.state.ReviewSummary}
+                  placeholder="This product is great!"
+                />
+              </div>
+              <div className="input">
+                <Form.Label>Review Body: </Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={this.handleChangeReviewBody}
+                  value={this.state.ReviewBody}
+                  placeholder="It looks great, has great qualities, etc..."
+                />
+              </div>
+              <div className="input">
+                <Form.Label>Upload Photos:</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={this.handleChangeUploadPhotos}
+                  value={this.state.UploadPhotos}
+                  placeholder="Save photo function"
+                />
+              </div>
+              <div className="input">
+                <Form.Label>What is your nickname?: </Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={this.handleChangeNickName}
+                  value={this.state.NickName}
+                  placeholder="Paul"
+                />
+              </div>
+              <div className="input">
+                <Form.Label>What is your email?: </Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={this.handleChangeEmail}
+                  value={this.state.Email}
+                  placeholder="Paul@Gmail.com"
+                />
+              </div>
+            </div>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>

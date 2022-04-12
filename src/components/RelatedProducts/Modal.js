@@ -5,7 +5,7 @@ import React from 'react';
 function Modal({
   handleClose, show, children, curProduct, curCard,
 }) {
-  const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+  const showHideClassName = show ? 'related-modal display-block' : 'related-modal display-none';
 
   var arrayOfFeature = children.props.children.features;
   var curProductFeature = curProduct.data.features;
