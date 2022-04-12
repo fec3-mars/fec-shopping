@@ -124,14 +124,17 @@ export function getRelatedImage() {
       .then((results) => {
         // console.log('product at related image', results.data.product_id);
         // console.log('product at related image', results.data);
-        var imageObj = [{
-          product_id: '',
-          imageUrl: '',
-        }];
+        var imageObj = [
+          {
+            product_id: "",
+            imageUrl: "",
+          },
+        ];
+
         var key = product[i];
         var value = results.data.product_id;
         imageObj.product_id = results.data.product_id;
-        imageObj.picUrl = results.data.results[0].photos[0].thumbnail_url
+        imageObj.picUrl = results.data.results[0].photos[0].thumbnail_url;
         // console.log(imageObj);
         imageUrl.push(results.data.results[0].photos[0].thumbnail_url);
         this.setState({
@@ -208,6 +211,16 @@ export function getMetaData() {
 
 export function postReview(obj) {
   return axios.post(`/reviews`, obj);
+}
+
+export function getSortNewest(obj) {
+  return axios.get(`/reviews?count=50&sort=newest&product_id=66643`, obj);
+}
+export function getSortHelpful(obj) {
+  return axios.get(`/reviews?count=50&sort=helpful&product_id=66643`, obj);
+}
+export function getSortRelevant(obj) {
+  return axios.get(`/reviews?count=50&sort=relevant&product_id=66643`, obj);
 }
 //--------------------------------------Reviews------------------------------
 

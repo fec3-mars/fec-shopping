@@ -5,6 +5,7 @@ import "./ReviewList.css";
 import Sort from "../sort/Sort.jsx";
 import StarRatings from "react-star-ratings";
 import moment from "moment";
+import { getSortNewest, getSortHelpful, getSortRelevant } from "../../axios.js";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -23,8 +24,32 @@ export default class ReviewList extends Component {
       visible: 2,
       hideReviewButton: false,
       averageRating: 0,
+      sortNewest: {},
+      sortRelevant: {},
+      sortHelpful: {},
     };
   }
+
+  getSortDataNewest = () => {
+    getSortNewest().then((result) => {
+      this.setState({ sortNewest: result.data.results });
+    });
+  };
+
+  componentDidMount() {
+    this.getSortDataNewest();
+  }
+  // getSortDataHelpful = () => {
+  //   getSortHelpful().then((result) => {
+  //     this.setState({ sortHelpful: result.data.results });
+  //   });
+  // };
+
+  // getSortDataRelevant = () => {
+  //   getSortRelevant().then((result) => {
+  //     this.setState({ sortRelevant: result.data.results });
+  //   });
+  // };
 
   showMoreItems = () => {
     const updatedList = this.state.visible + 2;
@@ -43,16 +68,8 @@ export default class ReviewList extends Component {
       this.props.currentProductReview &&
       this.props.currentProductReview.length !== 0
     ) {
-      // console.log(
-      //   "CurrentList: ",
-      //   this.props.currentProductReview[2].photos[0].url
-      // );
       return (
         <div className="reviewlist-container">
-          {/* <Sort
-            className="sort-container"
-            // SORT BY HELPFULNESS, DATE
-          /> */}
           <ul className="review-list">
             {this.props.currentProductReview
               .slice(0, this.state.visible)
