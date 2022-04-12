@@ -10,7 +10,6 @@ class ImageGallery extends React.Component {
     super(props);
     this.state = {
       expanded: false,
-      styleImages: [],
       thumbnailStart: 0,
       thumbnailEnd: 6,
       mainImageIdx: 0,
@@ -33,9 +32,8 @@ class ImageGallery extends React.Component {
     };
 
     if (prevProps.selectedStyle.style_id !== selectedStyle.style_id) {
-      // const photos = [...selectedStyle.photos, ...selectedStyle.photos];
+      console.log('inside setState')
       this.setState((prevState) => ({
-        styleImages: selectedStyle.photos,
         mainImageIdx: getIdx(prevState.styleHistory),
         styleHistory: {
           ...prevState.styleHistory,
@@ -94,10 +92,9 @@ class ImageGallery extends React.Component {
     });
   }
 
-  renderImages() {
+  renderImages(styleImages) {
     const {
       expanded,
-      styleImages,
       mainImageIdx,
     } = this.state;
 
@@ -106,6 +103,7 @@ class ImageGallery extends React.Component {
         ? (
           <DefaultView
             parentState={this.state}
+            styleImages={styleImages}
             toggleExpanded={this.toggleExpanded}
             updateMainImageHandler={this.updateMainImageHandler}
             scrollThumbnails={this.scrollThumbnails}
@@ -125,14 +123,15 @@ class ImageGallery extends React.Component {
   }
 
   render() {
-    const {
-      styleImages,
-    } = this.state;
-    const { loaded } = this.props;
+    // const {
+    //   styleImages,
+    // } = this.state;
+    const { loaded, selectedStyle } = this.props;
+    // console.log(selected);
     return (
       <div className="container image-gallery">
-        {styleImages[0]?.url
-          ? this.renderImages()
+        {selectedStyle?.photos && selectedStyle?.photos[0]?.url
+          ? this.renderImages(selectedStyle.photos)
           : <NoImage big={1} message={loaded ? 'Sorry, but there are no images available for this product.' : 'Loading...'} />}
       </div>
     );

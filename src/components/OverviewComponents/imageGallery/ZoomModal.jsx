@@ -48,8 +48,10 @@ class ZoomModal extends React.Component {
       toggleExpanded,
       updateMainImageHandler,
     } = this.props;
+    console.log('vvvvvvvv')
+    console.log('inside zoom')
     return (
-      <div className="main-image-modal">
+      <div className="main-image-modal" >
         <div className="modal-relative-positioning">
           <div className="relative-positioning">
             {!this.state.zoomedIn && mainImageIdx > 0 && <Arrow type="left" scrollMainImages={scrollMainImages} modal="yes" />}
@@ -59,6 +61,7 @@ class ZoomModal extends React.Component {
                 zoomScale={2.5}
                 width={300}
                 // width={this.state.imageWidth}
+                imgAttributes={{ alt: "zoomed image" }}
                 hideHint
                 className="image-zoom"
                 afterZoomOut={this.toggleZoomMouseOut}
@@ -79,7 +82,7 @@ class ZoomModal extends React.Component {
           </div>
           <FontAwesomeIcon icon={faCircleXmark} onClick={toggleExpanded} className="btn__close-modal" />
         </div>
-      </div>
+      </div >
     );
   }
 }

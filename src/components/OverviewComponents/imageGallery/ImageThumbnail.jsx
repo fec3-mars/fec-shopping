@@ -10,7 +10,7 @@ function ImageThumbnail({
   const className = isMain ? 'img-thumbnail-container selected' : 'img-thumbnail-container';
   return (
     <div onClick={(e) => { updateMainImageHandler(e, idx) }} className={className}>
-      <img className="img-thumbnail" alt="" src={thumbnail} />
+      <img className="img-thumbnail" alt="thumbnail image" src={thumbnail} />
     </div>
   );
 }

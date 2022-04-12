@@ -25,7 +25,7 @@ class IndividualPhoto extends React.Component {
     return (
       <div className="add-a-photo">
         <Modal show={this.state.show} handleClose={this.hideModal}>
-          <img src={this.props.photo} alt="" className="full-photo" />
+          <img src={this.props.photo} alt="main-photo" className="full-photo" />
         </Modal>
 
         <li className="thumbnails">

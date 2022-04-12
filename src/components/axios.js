@@ -201,7 +201,6 @@ export function postInteraction(e, widget) {
     widget: widget,
     time: `${new Date()}`
   }
-  console.log(obj);
   axios.post(`/interactions`, obj).then(res => {
     console.log('posted interaction');
   }).catch(err => {
