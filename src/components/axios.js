@@ -124,7 +124,7 @@ export function getRelatedImage() {
       .then((results) => {
         // console.log('product at related image', results.data.product_id);
         // console.log('product at related image', results.data);
-        var imageObj=[{
+        var imageObj = [{
           product_id: '',
           imageUrl: '',
         }];
@@ -218,7 +218,6 @@ export function postInteraction(e, widget) {
     widget: widget,
     time: `${new Date()}`,
   };
-  console.log(obj);
   axios
     .post(`/interactions`, obj)
     .then((res) => {

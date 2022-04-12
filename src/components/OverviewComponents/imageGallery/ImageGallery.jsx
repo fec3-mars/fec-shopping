@@ -3,7 +3,6 @@ import './ImageGallery.css';
 import NoImage from '../noImageWarning/NoImage.jsx';
 import DefaultView from './DefaultView.jsx';
 import ZoomModal from './ZoomModal.jsx';
-import { postInteraction } from '../../axios';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -49,7 +48,6 @@ class ImageGallery extends React.Component {
   }
 
   updateMainImageHandler(e, imageIdx) {
-    postInteraction(e, "Overview");
     this.setState({
       mainImageIdx: imageIdx,
     });
@@ -57,7 +55,6 @@ class ImageGallery extends React.Component {
 
   toggleExpanded(e) {
     const { expanded } = this.state;
-    postInteraction(e, "Overview");
 
     this.setState({
       expanded: !expanded,
@@ -66,7 +63,6 @@ class ImageGallery extends React.Component {
 
   scrollMainImages(e, direction) {
     const { mainImageIdx, thumbnailEnd, thumbnailStart } = this.state;
-    postInteraction(e, "Overview");
 
     if ((mainImageIdx === thumbnailEnd && direction === 1)
       || (mainImageIdx === thumbnailStart && direction === -1)) {
@@ -84,7 +80,6 @@ class ImageGallery extends React.Component {
 
   scrollThumbnails(e, direction) {
     const { thumbnailStart, thumbnailEnd } = this.state;
-    postInteraction(e, "Overview");
 
     this.setState({
       thumbnailStart: thumbnailStart + direction,

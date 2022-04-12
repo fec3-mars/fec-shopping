@@ -6,7 +6,6 @@ import {
   faPinterestSquare,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { postInteraction } from '../../axios.js';
 import './SocialMedia.css';
 
 function SocialMedia({ productName }) {
@@ -17,7 +16,6 @@ function SocialMedia({ productName }) {
         icon={faTwitterSquare}
         className="btn__twitter"
         onClick={(e) => {
-          postInteraction(e, 'Overview');
           window.open(`https://twitter.com/intent/tweet?text=${productName}&url=${document.location.href}`, '_blank');
         }}
       />
@@ -25,7 +23,6 @@ function SocialMedia({ productName }) {
         icon={faFacebookSquare}
         className="btn__facebook"
         onClick={(e) => {
-          postInteraction(e, 'Overview');
           window.open(`https://www.facebook.com/sharer/sharer.php?u=${document.location.href}`, '_blank');
         }}
 
@@ -34,7 +31,6 @@ function SocialMedia({ productName }) {
         icon={faPinterestSquare}
         className="btn__pinterest"
         onClick={(e) => {
-          postInteraction(e, 'Overview');
           window.open(`https://www.pinterest.com/pin/create/button/?url=${document.location.href}&media=&description=${productName}`, '_blank');
         }}
       />
