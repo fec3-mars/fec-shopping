@@ -6,4 +6,21 @@
   border-bottom: 2px solid #000;
   padding: 0.5rem 0 0.5rem 0;
   width: 100%;
+  color: black;
+  font-size: 3.6rem;
+}
+
+.btn__twitter:hover {
+  color: #00ACEE;
+  cursor: pointer;
+}
+
+.btn__facebook:hover {
+  color: #3b5998;
+  cursor: pointer;
+}
+
+.btn__pinterest:hover {
+  color: #c8232c;
+  cursor: pointer;
 }

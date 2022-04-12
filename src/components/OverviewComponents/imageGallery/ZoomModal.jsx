@@ -49,7 +49,7 @@ class ZoomModal extends React.Component {
       updateMainImageHandler,
     } = this.props;
     return (
-      <div className="main-image-modal">
+      <div className="main-image-modal" role="main-image-modal" >
         <div className="modal-relative-positioning">
           <div className="relative-positioning">
             {!this.state.zoomedIn && mainImageIdx > 0 && <Arrow type="left" scrollMainImages={scrollMainImages} modal="yes" />}
@@ -59,6 +59,7 @@ class ZoomModal extends React.Component {
                 zoomScale={2.5}
                 width={300}
                 // width={this.state.imageWidth}
+                imgAttributes={{ alt: "zoomed image" }}
                 hideHint
                 className="image-zoom"
                 afterZoomOut={this.toggleZoomMouseOut}
@@ -66,7 +67,7 @@ class ZoomModal extends React.Component {
             </div>
             {!this.state.zoomedIn && styleImages.length - 1 > mainImageIdx && <Arrow type="right" scrollMainImages={scrollMainImages} modal="yes" />}
           </div>
-          <div className="small-images-container">
+          <div className="small-images-container" role="modal">
             {!this.state.zoomedIn && styleImages.map((img, idx) => (
               <SmallImage
                 key={img.url}
@@ -77,9 +78,9 @@ class ZoomModal extends React.Component {
               />
             ))}
           </div>
-          <FontAwesomeIcon icon={faCircleXmark} onClick={toggleExpanded} className="btn__close-modal" />
+          <FontAwesomeIcon icon={faCircleXmark} onClick={toggleExpanded} className="btn__close-modal" alt="close btn" />
         </div>
-      </div>
+      </div >
     );
   }
 }

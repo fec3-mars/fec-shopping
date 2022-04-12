@@ -24,9 +24,11 @@ class IndividualPhoto extends React.Component {
   render() {
     return (
       <div className="add-a-photo">
-        <ImageModal show={this.state.show} handleClose={this.hideModal}>
-          <img src={this.props.photo} alt="" className="full-photo" />
-        </ImageModal>
+
+        <Modal show={this.state.show} handleClose={this.hideModal}>
+          <img src={this.props.photo} alt="main-photo" className="full-photo" />
+        </Modal>
+
 
         <li className="thumbnails">
           <button className="photo-button" type="button" onClick={this.showModal}>
