@@ -8,7 +8,6 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import Arrow from './Arrow.jsx';
 import SmallImage from './SmallImage.jsx';
-import { postInteraction } from '../../axios';
 
 class ZoomModal extends React.Component {
   constructor(props) {
@@ -23,7 +22,6 @@ class ZoomModal extends React.Component {
   }
 
   toggleZoom(e) {
-    postInteraction(e, "Overview");
     // const { offsetWidth, offsetHeight } = e.target;
     // const newWidth = offsetWidth / offsetHeight * window.innerHeight;
     const { zoomedIn } = this.state;

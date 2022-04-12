@@ -38,22 +38,24 @@ class App extends React.Component {
 
   componentDidMount() {
     makeRequest.call(this, 66642);
-    makeReviewRequest.call(this, 66643);
+    makeReviewRequest.call(this, 66642);
   }
 
   render() {
     return (
       <div className="app">
         <h1>Hello World</h1>
-        <Overview curProduct={this.state.curProduct} totalReviews={this.state.totalReviews} avgRating={this.state.avgRating} />
+        <Overview
+          curProduct={this.state.curProduct}
+          totalReviews={this.state.totalReviews}
+          avgRating={this.state.avgRating}
+        />
         <RelatedProducts
           curProduct={this.state.curProduct}
           handleChange={this.handleChange}
         />
         <OutfitList curProduct={this.state.curProduct} />
-        <Review
-          curProduct={this.state.curProductReview}
-        />
+        <Review curProduct={this.state.curProductReview} />
         <QuestionList curProduct={this.state.curProduct} />
       </div>
     );

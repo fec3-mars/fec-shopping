@@ -103,8 +103,8 @@ class QuestionList extends React.Component {
 
     const beginningOfStr = text.slice(0, regIdx);
     const highlight = text.slice(regIdx, regIdx + searchTerm.length);
-    const endOfStr = text.slice(regIdx + searchTerm.length, text.length)
-    const arr = [beginningOfStr, React.createElement('span', {className: 'highlight'}, highlight), endOfStr];
+    const endOfStr = text.slice(regIdx + searchTerm.length, text.length);
+    const arr = [beginningOfStr, React.createElement('span', { className: 'highlight' }, highlight), endOfStr];
 
     return <div> {arr} </div>;
   }
@@ -159,7 +159,6 @@ class QuestionList extends React.Component {
       let regex = new RegExp(searchTerm, 'i');
       return question_body.search(regex) !== -1;
     });
-
 
     this.setState({
       filteredQuestions: [...filtered],

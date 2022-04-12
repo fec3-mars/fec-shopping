@@ -198,7 +198,6 @@ class IndividualQuestion extends React.Component {
       helpful,
     } = this.state;
 
-
     //---------------------------------------------------------------------------------------------
     let answersText = answers;
     let expandButton = <button type="button" className="load-questions-button" onClick={this.changeExpanded.bind(this)}> Collapse answers </button>;
@@ -265,17 +264,27 @@ class IndividualQuestion extends React.Component {
     //------------------------------------------------------------------------------------------
     return (
       <div className="individual-question">
-        <h3 className="question-header">
-          { 'Q: ' }
-          {body}
-        </h3>
-        <div className="question-helpful">
-          {helpfulButton}
+        <div className="top-question-line">
+          <h3 className="question-header">
+            { 'Q: ' }
+            {body}
+          </h3>
+          <div className="question-buttons">
+            <div className="question-helpful">
+              {helpfulButton}
+            </div>
+            <span className="divider">
+              { '|' }
+            </span>
+            <button className="question-add-answer-button" type="button" onClick={this.showModal}>
+              Add an answer
+            </button>
+            <span className="divider">
+              { '|' }
+            </span>
+            <button type="button" className="question-report-button" onClick={this.questionReport.bind(this)}>Report this Question</button>
+          </div>
         </div>
-        <button className="question-add-answer-button" type="button" onClick={this.showModal}>
-          Add an answer
-        </button>
-        <button type="button" className="question-report-button" onClick={this.questionReport.bind(this)}>Report this Question</button>
         <div className="answer" style={answerStyle}>
           {answersText}
         </div>
