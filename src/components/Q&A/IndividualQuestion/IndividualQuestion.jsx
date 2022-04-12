@@ -215,8 +215,13 @@ class IndividualQuestion extends React.Component {
       answerStyle = {};
     }
 
-    if (answers.length === 0 || answers.length === 1) {
+    if (answers.length === 0) {
       answersText = <h3 className="no-answer-body"> No answers, yet </h3>;
+      expandButton = null;
+      answerStyle = {};
+    }
+
+    if (answers.length === 1) {
       expandButton = null;
       answerStyle = {};
     }
