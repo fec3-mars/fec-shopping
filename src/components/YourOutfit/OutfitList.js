@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import App from '../App.js';
+import './OutfitList.css';
 //the outfitList should gather all componenet/element in the "Your Outfit" comoponent of the website
 //onClick, it should go to the detailed page of clicked target product
 
@@ -48,11 +49,11 @@ class OutfitList extends React.Component {
     // console.log('outfit props to be rendered', this.props);
     // console.log('outfit state to be rendered', this.state);
     return (
-      <div>
+      <div className="your-outfit">
         <h1>YOUR OUTFIT</h1>
         <button onClick={this.handleClick}>
           Add Current Product to Outfit List
-          </button>
+        </button>
         <div>{this.state.allOutfits.map(element => {
           return (
             <div key={element.id} element={element} className='individualCard'>

@@ -1,6 +1,6 @@
-.modal {
+.related-modal {
   position: fixed;
-  /* background: white; */
+  background: white;
   width: 50%;
   height: 50%;
   top: 50%;

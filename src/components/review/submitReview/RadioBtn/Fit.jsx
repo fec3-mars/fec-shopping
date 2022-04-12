@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function RadioBtn_Fit(props) {
   return (
-    <div>
+    <div >
       <input
         type="radio"
         name="fit"
