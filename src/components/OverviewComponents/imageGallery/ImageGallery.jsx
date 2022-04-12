@@ -3,14 +3,12 @@ import './ImageGallery.css';
 import NoImage from '../noImageWarning/NoImage.jsx';
 import DefaultView from './DefaultView.jsx';
 import ZoomModal from './ZoomModal.jsx';
-import { postInteraction } from '../../axios';
 
 class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       expanded: false,
-      styleImages: [],
       thumbnailStart: 0,
       thumbnailEnd: 6,
       mainImageIdx: 0,
@@ -33,9 +31,8 @@ class ImageGallery extends React.Component {
     };
 
     if (prevProps.selectedStyle.style_id !== selectedStyle.style_id) {
-      // const photos = [...selectedStyle.photos, ...selectedStyle.photos];
+      console.log('inside setState')
       this.setState((prevState) => ({
-        styleImages: selectedStyle.photos,
         mainImageIdx: getIdx(prevState.styleHistory),
         styleHistory: {
           ...prevState.styleHistory,
@@ -51,7 +48,6 @@ class ImageGallery extends React.Component {
   }
 
   updateMainImageHandler(e, imageIdx) {
-    postInteraction(e, "Overview");
     this.setState({
       mainImageIdx: imageIdx,
     });
@@ -59,7 +55,6 @@ class ImageGallery extends React.Component {
 
   toggleExpanded(e) {
     const { expanded } = this.state;
-    postInteraction(e, "Overview");
 
     this.setState({
       expanded: !expanded,
@@ -68,7 +63,6 @@ class ImageGallery extends React.Component {
 
   scrollMainImages(e, direction) {
     const { mainImageIdx, thumbnailEnd, thumbnailStart } = this.state;
-    postInteraction(e, "Overview");
 
     if ((mainImageIdx === thumbnailEnd && direction === 1)
       || (mainImageIdx === thumbnailStart && direction === -1)) {
@@ -86,7 +80,6 @@ class ImageGallery extends React.Component {
 
   scrollThumbnails(e, direction) {
     const { thumbnailStart, thumbnailEnd } = this.state;
-    postInteraction(e, "Overview");
 
     this.setState({
       thumbnailStart: thumbnailStart + direction,
@@ -94,18 +87,21 @@ class ImageGallery extends React.Component {
     });
   }
 
-  renderImages() {
-    const {
+  renderImages(styleImages) {
+    let {
       expanded,
-      styleImages,
       mainImageIdx,
     } = this.state;
+    const { expanded: propsExpanded } = this.props;
+
+    expanded = propsExpanded ? propsExpanded : expanded;
 
     return (
       (!expanded
         ? (
           <DefaultView
             parentState={this.state}
+            styleImages={styleImages}
             toggleExpanded={this.toggleExpanded}
             updateMainImageHandler={this.updateMainImageHandler}
             scrollThumbnails={this.scrollThumbnails}
@@ -125,14 +121,11 @@ class ImageGallery extends React.Component {
   }
 
   render() {
-    const {
-      styleImages,
-    } = this.state;
-    const { loaded } = this.props;
+    const { loaded, selectedStyle } = this.props;
     return (
       <div className="container image-gallery">
-        {styleImages[0]?.url
-          ? this.renderImages()
+        {selectedStyle?.photos && selectedStyle?.photos[0]?.url
+          ? this.renderImages(selectedStyle.photos)
           : <NoImage big={1} message={loaded ? 'Sorry, but there are no images available for this product.' : 'Loading...'} />}
       </div>
     );

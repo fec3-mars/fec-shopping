@@ -38,7 +38,7 @@ export default class Review extends Component {
   render(props) {
     // console.log("Render", this.state.sortNewest);
     return (
-      <div className="review-container">
+      <div className="review-container" id="reviewsID">
         <h1 className="rating-header">Ratings & Reviews</h1>
         <Sort className="sort-container" />
         <div className="breakdown-reviewList">

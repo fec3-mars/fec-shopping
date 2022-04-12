@@ -25,7 +25,7 @@
   @include spacing;
   display: inline-block;
   font-size: 13px;
-  border-radius: 10px;
+  // border-radius: 10px;
   padding: 10px;
   padding-bottom: 4px;
   padding-top: 1px;
@@ -43,8 +43,9 @@ div.add-an-answer {
   color: black;
 }
 
-div.individual_question {
+div.individual-question {
   border-style: solid white;
+  margin-bottom: 50px;
 }
 
 span.highlight {

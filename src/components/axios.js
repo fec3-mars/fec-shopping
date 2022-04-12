@@ -130,6 +130,7 @@ export function getRelatedImage() {
             imageUrl: "",
           },
         ];
+
         var key = product[i];
         var value = results.data.product_id;
         imageObj.product_id = results.data.product_id;
@@ -230,7 +231,6 @@ export function postInteraction(e, widget) {
     widget: widget,
     time: `${new Date()}`,
   };
-  console.log(obj);
   axios
     .post(`/interactions`, obj)
     .then((res) => {
