@@ -75,7 +75,7 @@ export default class Breakdown extends Component {
             starDimension="8px"
             starSpacing="5px"
           />
-          <h3>100% of reviews recommend this product</h3>
+          <h3>74% of reviews recommend this product</h3>
           <br></br>
           1 Star:
           <BarGraph className="bar-graph" percentage={this.state.one} />

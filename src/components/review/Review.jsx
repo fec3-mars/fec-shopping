@@ -4,9 +4,10 @@ import ReviewList from "./reviewlist/ReviewList.jsx";
 import Breakdown from "./breakdown/Breakdown.jsx";
 // import SubmitReview from "./submitReview/SubmitReview.jsx";
 import AddReview from "./addReview/AddReview.jsx";
-
+import Sort from "./sort/Sort.jsx";
 import axios from "axios";
 import "./Review.css";
+import { getSortNewest, getSortHelpful, getSortRelevant } from "../axios.js";
 
 export default class Review extends Component {
   constructor(props) {
@@ -17,6 +18,9 @@ export default class Review extends Component {
       reviews: [],
       averageRating: null,
       isOpen: false,
+      sortHelpful: {},
+      sortRelevant: {},
+      sortNewest: {},
     };
   }
 
@@ -32,13 +36,11 @@ export default class Review extends Component {
   }
 
   render(props) {
-    // if (this.state.curProductReview) {
-    // console.log("Result in Review.js are: ", this.state.reviews);
-    // }
-
+    // console.log("Render", this.state.sortNewest);
     return (
       <div className="review-container">
         <h1 className="rating-header">Ratings & Reviews</h1>
+        <Sort className="sort-container" />
         <div className="breakdown-reviewList">
           <Breakdown currentProductRating={this.state.reviews} />
           <ReviewList currentProductReview={this.state.reviews} />
