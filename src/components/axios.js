@@ -213,12 +213,13 @@ export function postReview(obj) {
 
 //--------------------------------------Interations------------------------------
 export function postInteraction(e, widget) {
+
   const obj = {
     element: e.target.outerHTML,
     widget: widget,
     time: `${new Date()}`,
   };
-  console.log(obj);
+
   axios
     .post(`/interactions`, obj)
     .then((res) => {

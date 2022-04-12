@@ -2,7 +2,7 @@ import React from 'react';
 import IndividualQuestion from '../IndividualQuestion/IndividualQuestion';
 import Modal from '../Modal/Modal.jsx';
 import './QuestionList.scss';
-import { getQuestionsAndAnswers, postQuestion } from '../../axios';
+import { getQuestionsAndAnswers, postQuestion, postInteraction } from '../../axios';
 
 class QuestionList extends React.Component {
   constructor(props) {
@@ -194,42 +194,44 @@ class QuestionList extends React.Component {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
     return (
-      <div className="questionList">
-        <h2>{"Questions & Answers"}</h2>
-        <input
-          type="text"
-          className="question-search-bar"
-          placeholder="Have a question? Search for answers..."
-          onChange={this.handleSearch.bind(this)}
-        />
-        {displayQuestions}
+      <div onClick={(e) => {postInteraction(e, 'Question and Answer')}}>
+        <div className="questionList">
+          <h2>{"Questions & Answers"}</h2>
+          <input
+            type="text"
+            className="question-search-bar"
+            placeholder="Have a question? Search for answers..."
+            onChange={this.handleSearch.bind(this)}
+          />
+          {displayQuestions}
 
-      <Modal show={this.state.show} handleClose={this.hideModal}>
-      <div className="add-a-question">
-        <h3>Ask your question</h3>
-        <h3><i>About the {name}</i></h3>
+        <Modal show={this.state.show} handleClose={this.hideModal}>
+        <div className="add-a-question">
+          <h3>Ask your question</h3>
+          <h3><i>About the {name}</i></h3>
 
-        <h4>*Your Question</h4>
-        <textarea ref={node => (this.bodyNode = node)} name="textarea" style={{'width':'250px', 'height':'150px'}}></textarea>
+          <h4>*Your Question</h4>
+          <textarea ref={node => (this.bodyNode = node)} name="textarea" style={{'width':'250px', 'height':'150px'}}></textarea>
 
-        <h4>*What is your nickname?</h4>
-        <input ref={node => (this.nameNode = node)} placeholder="Example jackson11!"></input>
-        <p><i>for privacy reasons do not use your full name or address</i></p>
+          <h4>*What is your nickname?</h4>
+          <input ref={node => (this.nameNode = node)} placeholder="Example jackson11!"></input>
+          <p><i>for privacy reasons do not use your full name or address</i></p>
 
-        <h4>*Your email</h4>
-        <input ref={node => (this.emailNode = node)} placeholder="Why did you like the product or not?" style={{ width: '250px' }} />
-        <p><i>for authentication reasons, you will not be emailed</i></p>
-        <button type="button" onClick={this.changeAddQuestion.bind(this)}> Submit Question </button>
-      </div>
-      </Modal>
+          <h4>*Your email</h4>
+          <input ref={node => (this.emailNode = node)} placeholder="Why did you like the product or not?" style={{ width: '250px' }} />
+          <p><i>for authentication reasons, you will not be emailed</i></p>
+          <button type="button" onClick={this.changeAddQuestion.bind(this)}> Submit Question </button>
+        </div>
+        </Modal>
 
-        <button className="large-style-button" type="button" onClick={this.revealAllQuestions.bind(this)}>
-          {answerButtonText}
-        </button>
+          <button className="large-style-button" type="button" onClick={this.revealAllQuestions.bind(this)}>
+            {answerButtonText}
+          </button>
 
-        <button className="large-style-button" type="button" onClick={this.showModal}>
-          Add a Question
-        </button>
+          <button className="large-style-button" type="button" onClick={this.showModal}>
+            Add a Question
+          </button>
+        </div>
       </div>
     );
   }
