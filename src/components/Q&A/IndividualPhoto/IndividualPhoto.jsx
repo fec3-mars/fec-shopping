@@ -29,6 +29,7 @@ class IndividualPhoto extends React.Component {
   render() {
     return (
       <div className="add-a-photo">
+
         <ImageModal show={this.state.show} handleClose={this.hideModal}>
           <img
             src={this.props.photo}

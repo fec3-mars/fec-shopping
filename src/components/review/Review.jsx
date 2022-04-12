@@ -37,7 +37,7 @@ export default class Review extends Component {
     // }
 
     return (
-      <div className="review-container">
+      <div className="review-container" id="reviewsID">
         <h1 className="rating-header">Ratings & Reviews</h1>
         <div className="breakdown-reviewList">
           <Breakdown currentProductRating={this.state.reviews} />
