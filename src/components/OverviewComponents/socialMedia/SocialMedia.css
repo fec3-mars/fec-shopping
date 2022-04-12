@@ -12,16 +12,15 @@
 
 .btn__twitter:hover {
   color: #00ACEE;
+  cursor: pointer;
 }
 
 .btn__facebook:hover {
   color: #3b5998;
+  cursor: pointer;
 }
 
 .btn__pinterest:hover {
   color: #c8232c;
-}
-
-.btn__instagram:hover {
-  color: #fbad50;
+  cursor: pointer;
 }
