@@ -43,14 +43,17 @@ describe.only("ImageGallery", () => {
     await screen.findByAltText("zoomed image");
   })
 
-  // it('should toggle from ModalZoom to DefaultView when closed', async () => {
-  //   const { container, debug } = mount({ expanded: true });
-  //   const closeBtn = container.getElementsByClassName("btn__close-modal")[0];
-  //   const modal = screen.getByRole("main-image-modal");
+  it('should toggle from ModalZoom to DefaultView when closed', async () => {
+    const { container, debug } = mount({ expanded: true });
+    // debug()
+    const closeBtn = container.getElementsByClassName("btn__close-modal")[0];
+    const modal = screen.getByRole("main-image-modal");
+    console.log(closeBtn)
+    console.log(modal)
 
-  //   fireEvent.click(closeBtn);
-  //   debug();
+    fireEvent.click(closeBtn);
+    debug();
 
-  //   await expect(screen.queryByRole("main-image-modal")).toBeTruthy();
-  // })
+    // await expect(screen.queryByRole("main-image-modal")).toBeTruthy();
+  })
 })

@@ -30,7 +30,6 @@ class Overview extends React.Component {
   }
 
   styleChangeHandler(e, style) {
-    postInteraction(e, "Overview");
     this.setState({
       selectedStyle: style,
     });
@@ -45,42 +44,45 @@ class Overview extends React.Component {
     } = this.state;
 
     return (
-      <div className="overview-container">
-        <div className="image-gallery-container">
-          <ImageGallery loaded={loaded} productId={product.id} selectedStyle={selectedStyle} className="image-gallery" />
-        </div>
-        <div className=" preferences-container">
-          <ProductInfo
-            selectedStyle={selectedStyle}
-            product={product}
-            className="product-info"
-            reviewsInfo={this.props}
-          />
-          <Styles
-            styles={styles}
-            selectedStyle={selectedStyle}
-            styleChangeHandler={this.styleChangeHandler}
-          />
-          {selectedStyle.skus && (
-            <AddToCart className="add-to-cart" selectedStyle={selectedStyle} />
-          )}
-        </div>
-        {product.slogan && (
-          <div className="product-slogan-container">
-            <ProductSlogan product={product} className="product-slogan" />
+      <div onClick={(e) => { postInteraction(e, 'Overview') }}>
+
+        <div className="overview-container">
+          <div className="image-gallery-container">
+            <ImageGallery loaded={loaded} productId={product.id} selectedStyle={selectedStyle} className="image-gallery" />
           </div>
-        )}
-        {product.features && (
-          <ul className="features-list">
-            {product.features
-              .filter((item) => item.feature !== null && item.value !== null)
-              .map((item) => (
-                <Feature key={item.feature} item={item} />
-              ))}
-          </ul>
-        )}
-        <div className="social-media-container">
-          <SocialMedia productName={product.name} className="social-media" />
+          <div className=" preferences-container">
+            <ProductInfo
+              selectedStyle={selectedStyle}
+              product={product}
+              className="product-info"
+              reviewsInfo={this.props}
+            />
+            <Styles
+              styles={styles}
+              selectedStyle={selectedStyle}
+              styleChangeHandler={this.styleChangeHandler}
+            />
+            {selectedStyle.skus && (
+              <AddToCart className="add-to-cart" selectedStyle={selectedStyle} />
+            )}
+          </div>
+          {product.slogan && (
+            <div className="product-slogan-container">
+              <ProductSlogan product={product} className="product-slogan" />
+            </div>
+          )}
+          {product.features && (
+            <ul className="features-list">
+              {product.features
+                .filter((item) => item.feature !== null && item.value !== null)
+                .map((item) => (
+                  <Feature key={item.feature} item={item} />
+                ))}
+            </ul>
+          )}
+          <div className="social-media-container">
+            <SocialMedia productName={product.name} className="social-media" />
+          </div>
         </div>
       </div>
     );
