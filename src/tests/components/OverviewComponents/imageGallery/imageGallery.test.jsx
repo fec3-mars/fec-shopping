@@ -12,7 +12,6 @@ const sleep = (ms) => new Promise((res, rej) => {
 describe.only("ImageGallery", () => {
   const mount = (overrides = {}) => {
     const testData = {
-      expanded: false,
       selectedStyle: { photos: [{ url: 'asdf', thumbnail_url: 'lkjh' }, { url: 'qwer', thumbnail_url: 'poiu' }, { url: 'zxcv', thumbnail_url: 'mnbv' }], style_id: 'not equal' },
       thumbnailStart: 0,
       thumbnailEnd: 6,
@@ -40,8 +39,18 @@ describe.only("ImageGallery", () => {
     expect(screen.queryByAltText("zoomed image")).toBeNull();
 
     fireEvent.click(mainImage);
-    debug()
 
     await screen.findByAltText("zoomed image");
   })
+
+  // it('should toggle from ModalZoom to DefaultView when closed', async () => {
+  //   const { container, debug } = mount({ expanded: true });
+  //   const closeBtn = container.getElementsByClassName("btn__close-modal")[0];
+  //   const modal = screen.getByRole("main-image-modal");
+
+  //   fireEvent.click(closeBtn);
+  //   debug();
+
+  //   await expect(screen.queryByRole("main-image-modal")).toBeTruthy();
+  // })
 })

@@ -80,7 +80,7 @@ class Overview extends React.Component {
           </ul>
         )}
         <div className="social-media-container">
-          <SocialMedia className="social-media" />
+          <SocialMedia productName={product.name} className="social-media" />
         </div>
       </div>
     );

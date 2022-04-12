@@ -93,10 +93,13 @@ class ImageGallery extends React.Component {
   }
 
   renderImages(styleImages) {
-    const {
+    let {
       expanded,
       mainImageIdx,
     } = this.state;
+    const { expanded: propsExpanded } = this.props;
+
+    expanded = propsExpanded ? propsExpanded : expanded;
 
     return (
       (!expanded
