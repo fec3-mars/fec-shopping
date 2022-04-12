@@ -14,17 +14,22 @@
   background: none;
   border: none;
   color: white;
-  font-size: 13px;
-  margin-right: 3rem;
+  font-size: 12px;
+  margin-right: .5rem;
 }
 
 .answer-header {
   @include header;
 }
 
+.divider {
+  font-size: 15px;
+  font-weight: 500;
+  margin-right: .5rem;
+}
+
 .answer-block {
   border: solid white 1px;
-  // border-radius: 10px;
   padding: 10px;
   margin-bottom: 5px;
 }
@@ -43,8 +48,14 @@
 
 .answerer-text {
   @include spacing;
-  display: inline-flexbox;
-  font-size: 11px;
+  display: inline;
+  font-size: 12px;
+  margin-right: .9rem;
+}
+
+.bottom-of-answer {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .answer-helpful {
