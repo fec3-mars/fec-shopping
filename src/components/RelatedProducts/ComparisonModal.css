@@ -1,11 +1,12 @@
 .modal {
   position: fixed;
-  background: white;
-  width: 70%;
+  /* background: white; */
+  width: 50%;
   height: 50%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-style: inset;
 }
 
 .display-block {

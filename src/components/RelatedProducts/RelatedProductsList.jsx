@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import App from '../App.js';
 import {
@@ -52,9 +53,10 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
-    // console.log('state to be rendered', this.state)
-    if (this.state.relatedProductDetail.length === this.state.relatedProducts.length && this.state.relatedProductImage.length === this.state.relatedProducts.length) {
+    console.log('state to be rendered', this.state)
+    if (this.state.relatedProductDetail.length === this.state.relatedProducts.length && this.state.relatedProductImage.length === this.state.relatedProducts.length ) {
       // console.log('state to be rendered', this.state)
+      // console.log('props to be rendered', this.props)
 
       return (
         <div className="relatedProducts">
@@ -64,12 +66,7 @@ class RelatedProducts extends React.Component {
             {this.state.relatedProductDetail.map((element, index) =>
             // console.log('element at map', element, index);
               (
-                <div key={element.data.id} element={element} className="individualCard">
-
-                  {/* {element.data.id === this.state.relatedProductImage.id && <IndividualProduct
-                curCard={element}
-                curPic={this.state.relatedProductImage[index]}
-                handleChang={this.props.handleChange}/>} */}
+                <div key={index} element={element} className="individualCard">
                   <IndividualProduct
                     curCard={element}
                     curPic={this.state.relatedProductImage[index]}

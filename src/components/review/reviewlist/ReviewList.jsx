@@ -88,7 +88,6 @@ export default class ReviewList extends Component {
                         alt="photo"
                       />
                     ) : null}
-                    {/* Photo: <img src={review.photos[0]} alt="photo" /> */}
                     <hr />
                   </ul>
                 );

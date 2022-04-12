@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from '../Modal/Modal.jsx';
+import ImageModal from '../ImageModal/ImageModal.jsx';
 import './IndividualPhoto.scss';
 
 class IndividualPhoto extends React.Component {
@@ -24,9 +24,11 @@ class IndividualPhoto extends React.Component {
   render() {
     return (
       <div className="add-a-photo">
+
         <Modal show={this.state.show} handleClose={this.hideModal}>
           <img src={this.props.photo} alt="main-photo" className="full-photo" />
         </Modal>
+
 
         <li className="thumbnails">
           <button className="photo-button" type="button" onClick={this.showModal}>
