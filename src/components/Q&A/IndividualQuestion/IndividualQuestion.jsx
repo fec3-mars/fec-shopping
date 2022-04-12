@@ -3,7 +3,7 @@ import IndividualAnswer from '../IndividualAnswer/IndividualAnswer';
 import './IndividualQuestion.scss';
 import Modal from '../Modal/Modal.jsx';
 import AddPhoto from '../AddPhoto/AddPhoto.jsx';
-import { postAnswer, markQuestionHelpful, reportQuestion, getAnswers } from '../../axios';
+import { postAnswer, markQuestionHelpful, reportQuestion } from '../../axios';
 
 class IndividualQuestion extends React.Component {
   constructor(props) {
