@@ -1,13 +1,10 @@
-html {
-  font-size: 62.5%;
-}
-
 .individualCard {
   border: solid 2px white;
   position: relative;
+
 }
 
-.relatedProducts {
+.productContainer {
   width: 100%;
   align-items: center;
   /* display:table-cell */
@@ -51,6 +48,7 @@ html {
 .relatedCard {
   display: grid;
   /* background-color: white; */
+
   color: white;
   border: solid 2px #fff;
   justify-content: center;
@@ -64,8 +62,8 @@ html {
 
 .relatedImage {
   object-fit: cover;
-  width: 230px;
-  height: 230px;
+  width: 200px;
+  height: 200px;
 }
 
 .relatedName:hover {

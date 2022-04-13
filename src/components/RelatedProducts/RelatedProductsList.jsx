@@ -23,6 +23,7 @@ class RelatedProducts extends React.Component {
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.scroll = this.scroll.bind(this);
   }
 
   showModal = (e) => {
@@ -42,6 +43,25 @@ class RelatedProducts extends React.Component {
     });
   };
 
+  scroll() {
+    const productContainers = [...document.querySelectorAll('.productContainer')];
+    const nxtBtn = [...document.querySelectorAll('.nxt-btn')];
+    const preBtn = [...document.querySelectorAll('.pre-btn')];
+
+    productContainers.forEach((item, i) => {
+      let containerDimensions = item.getBoundingClientRect();
+      let containerWidth = containerDimensions.width;
+
+      nxtBtn[i].addEventListener('click', () => {
+        item.scrollLeft += containerWidth;
+      })
+
+      preBtn[i].addEventListener('click', () => {
+        item.scrollLeft -= containerWidth;
+      })
+    })
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props.curProduct.data?.id !== prevProps.curProduct.data?.id) {
       getRelatedProducts.call(this, this.props.curProduct.data.id);
@@ -60,16 +80,16 @@ class RelatedProducts extends React.Component {
       // console.log('state to be rendered', this.state)
       var details = this.state.relatedProductDetail;
 
-      const a3 = this.state.relatedProductDetail.map(t1 => ({...t1, ...this.state.relatedImage.find(t2 => t2.id === t1.data.id)}))
+      const a3 = this.state.relatedProductDetail.map(t1 => ({ ...t1, ...this.state.relatedImage.find(t2 => t2.id === t1.data.id) }))
       // console.log('here is detail', a3);
 
       return (
-        <div className="relatedProducts">
+        <div className="productContainer">
           <h1>RELATED PRODUCTS</h1>
-          <button className='pre-btn'>Prev</button>
-          <button className='nxt-btn'>Next</button>
-          <div className="relatedCard">
+          <button className='pre-btn' onClick={this.scroll}><img src='https://i.imgur.com/XskcMGz.png' /></button>
+          <button className='nxt-btn' onClick={this.scroll}><img src='https://i.imgur.com/XskcMGz.png' /></button>
 
+          <div className="relatedCard">
             {a3.map((element, index) =>
             (
               <div key={index} element={element} id={element.data.id} className="individualCard">
@@ -83,6 +103,7 @@ class RelatedProducts extends React.Component {
               </div>
             ))}
           </div>
+
         </div>
       );
     }
