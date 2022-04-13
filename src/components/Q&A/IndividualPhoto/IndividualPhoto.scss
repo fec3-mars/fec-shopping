@@ -1,5 +1,10 @@
 .photo-button {
   background: none;
+  border: none;
+}
+
+.photo-button:hover {
+  cursor: pointer;
 }
 
 .thumbnail {
@@ -8,9 +13,6 @@
   display: inline;
 }
 
-.full-photo {
+img.full-photo {
   background-size: 100% auto;
-}
-
-li.thumbnails {
 }

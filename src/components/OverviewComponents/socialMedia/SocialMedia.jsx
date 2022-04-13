@@ -8,39 +8,31 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SocialMedia.css';
 
-function SocialMedia() {
-  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
-  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${window.location.href}`;
-  const pinterestShareUrl = `https://pinterest.com/pin/create/button/?url=${window.location.href}`;
+function SocialMedia({ productName }) {
 
   return (
     <div className="container social-media-container">
       <FontAwesomeIcon
         icon={faTwitterSquare}
-        color="black"
-        size="4x"
         className="btn__twitter"
-        href={twitterShareUrl}
+        onClick={(e) => {
+          window.open(`https://twitter.com/intent/tweet?text=${productName}&url=${document.location.href}`, '_blank');
+        }}
       />
       <FontAwesomeIcon
         icon={faFacebookSquare}
-        color="black"
-        size="4x"
         className="btn__facebook"
-        href={facebookShareUrl}
-      />
-      <FontAwesomeIcon
-        icon={faInstagramSquare}
-        color="black"
-        size="4x"
-        className="btn__instagram"
+        onClick={(e) => {
+          window.open(`https://www.facebook.com/sharer/sharer.php?u=${document.location.href}`, '_blank');
+        }}
+
       />
       <FontAwesomeIcon
         icon={faPinterestSquare}
-        color="black"
-        size="4x"
         className="btn__pinterest"
-        href={pinterestShareUrl}
+        onClick={(e) => {
+          window.open(`https://www.pinterest.com/pin/create/button/?url=${document.location.href}&media=&description=${productName}`, '_blank');
+        }}
       />
     </div>
   );

@@ -1,10 +1,49 @@
 .modal-container {
-  /* position: "fixed";
+  position: "fixed";
   top: "50%";
-  left: "50%", */
-  /* transform: "translate(-50%, -50%)",
-  backgroundColor: "#02075d",
-  padding: "50px",
-  zIndex: 1000, */
+  left: "50%";
+  transform: "translate(-50%, -50%)";
+  background-color: "#02075d";
+  padding: "50px";
+  z-Index: 1000;
   background-color: rebeccapurple;
+  color: #000;
+}
+
+
+.form-control {
+  margin: 5px;
+}
+
+
+.form-control {
+  border: 1px solid #777;
+  background-color: #eee;
+}
+
+.input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 270px;
+}
+
+.input-container {
+  margin-top: 25px;
+}
+
+.recommend-container {
+  margin-top: 25px;
+}
+
+.characteristic-container {
+  margin-top: 25px;
+}
+
+.overall-rating-container {
+  margin-top: 25px;
+}
+
+.modal-content {
+  background-color: #fff;
 }

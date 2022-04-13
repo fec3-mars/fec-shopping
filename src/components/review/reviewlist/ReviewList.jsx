@@ -5,6 +5,7 @@ import "./ReviewList.css";
 import Sort from "../sort/Sort.jsx";
 import StarRatings from "react-star-ratings";
 import moment from "moment";
+import { getSortNewest, getSortHelpful, getSortRelevant } from "../../axios.js";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -23,8 +24,33 @@ export default class ReviewList extends Component {
       visible: 2,
       hideReviewButton: false,
       averageRating: 0,
+      sortNewest: {},
+      sortRelevant: {},
+      sortHelpful: {},
     };
   }
+
+  getSortDataNewest = () => {
+    getSortNewest().then((result) => {
+      this.setState({ sortNewest: result.data.results });
+    });
+  };
+
+  componentDidMount() {
+    this.getSortDataNewest();
+    this.getSortDataHelpful();
+  }
+  getSortDataHelpful = () => {
+    getSortHelpful().then((result) => {
+      this.setState({ sortHelpful: result.data.results });
+    });
+  };
+
+  getSortDataRelevant = () => {
+    getSortRelevant().then((result) => {
+      this.setState({ sortRelevant: result.data.results });
+    });
+  };
 
   showMoreItems = () => {
     const updatedList = this.state.visible + 2;
@@ -43,44 +69,34 @@ export default class ReviewList extends Component {
       this.props.currentProductReview &&
       this.props.currentProductReview.length !== 0
     ) {
-      // console.log(
-      //   "CurrentList: ",
-      //   this.props.currentProductReview[2].photos[0].url
-      // );
       return (
         <div className="reviewlist-container">
-          {/* <Sort
-            className="sort-container"
-            // SORT BY HELPFULNESS, DATE
-          /> */}
           <ul className="review-list">
             {this.props.currentProductReview
               .slice(0, this.state.visible)
               .map((review, index) => {
                 return (
-                  <ul key={index}>
+                  <ul key={index} className="review-list-item">
                     <span className="reviewer_name">
                       {review.reviewer_name}
-                      <br></br>
                       {moment(review.date).utc().format("YYYY-MM-DD")}
                     </span>
-                    <br></br>
                     <StarRatings
                       rating={review.rating}
                       starRatedColor="yellow"
                       numberOfStars={5}
                       name="rating"
+                      width="75px"
                       starDimension="15px"
-                      starSpacing="1px"
+                      // starSpacing="-10px"
+                      className='stars'
                     />
-                    <br></br>
                     <span className="review-body">{review.body}</span>
-                    <br></br>
-                    <span>{review.summary}</span>
-                    <br></br>
-                    Helpful? Yes ({review.helpfulness})<br></br>
-                    Report
-                    <br></br>
+                    <span className="review-summary">{review.summary}</span>
+                    <div className='helpful-report-container'>
+                      <span className="helpful">Helpful? Yes ({review.helpfulness})</span>
+                      <a className="report-link">Report</a>
+                    </div>
                     {review.photos[0] ? (
                       <img
                         className="photo"
@@ -88,7 +104,6 @@ export default class ReviewList extends Component {
                         alt="photo"
                       />
                     ) : null}
-                    {/* Photo: <img src={review.photos[0]} alt="photo" /> */}
                     <hr />
                   </ul>
                 );
@@ -101,7 +116,7 @@ export default class ReviewList extends Component {
               </button>
             )}
           </div>
-        </div>
+        </div >
       );
     }
   }

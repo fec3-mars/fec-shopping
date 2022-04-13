@@ -77,8 +77,15 @@ class IndividualAnswer extends React.Component {
     }
 
     let photoGallery;
-    if (photos) {
+    let photoDisplay;
+    if (photos.length >= 1) {
       photoGallery = photos.map((photo, idx) => <IndividualPhoto photo={photo} key={idx} />);
+
+      photoDisplay = (
+        <ul className="thumbnails">
+          { photoGallery }
+        </ul>
+      );
     }
 
     let header;
@@ -124,17 +131,25 @@ class IndividualAnswer extends React.Component {
             { body }
           </p>
         </div>
-        <p className="answerer-text">
-          by
-          {` ${name}`}
-          ,
-          {formattedDate.toDateString()}
-        </p>
-        {helpfulButton}
-        <button type="button" className="answer-report" onClick={this.answerReport.bind(this)}>Report</button>
-        <ul className="thumbnails">
-          {photoGallery}
-        </ul>
+        <div className="bottom-of-answer">
+          <p className="answerer-text">
+            by
+            {' '}
+            {name}
+            ,
+            {' '}
+            {formattedDate.toDateString()}
+          </p>
+          <span className="divider">
+            {'|'}
+          </span>
+          {helpfulButton}
+          <span className="divider">
+            {'|'}
+          </span>
+          <button type="button" className="answer-report" onClick={this.answerReport.bind(this)}>Report</button>
+        </div>
+        {photoDisplay}
       </div>
     );
   }

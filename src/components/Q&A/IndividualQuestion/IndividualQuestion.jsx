@@ -22,13 +22,13 @@ class IndividualQuestion extends React.Component {
   }
 
   componentDidMount() {
-    const { answers, question_body } = this.props.question;
+    const { answers, question_body, question_id } = this.props.question;
 
     this.formatAnswers(answers);
 
     this.setState({
       question_body,
-    });
+    }, () => this.props.reloadPage());
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -102,7 +102,7 @@ class IndividualQuestion extends React.Component {
       })
       .catch((err) => {
         console.log('err in reporting a question', err);
-      })
+      });
   }
 
   questionHelpful() {
@@ -132,7 +132,7 @@ class IndividualQuestion extends React.Component {
   changeExpanded() {
     this.setState({
       expanded: !this.state.expanded,
-    });
+    }, () => this.props.reloadPage);
   }
 
   buildAnswers(arr) {
@@ -197,6 +197,7 @@ class IndividualQuestion extends React.Component {
       photos,
       helpful,
     } = this.state;
+
     //---------------------------------------------------------------------------------------------
     let answersText = answers;
     let expandButton = <button type="button" className="load-questions-button" onClick={this.changeExpanded.bind(this)}> Collapse answers </button>;
@@ -208,13 +209,18 @@ class IndividualQuestion extends React.Component {
     };
 
     if (!expanded) {
-      answersText = answers.slice(0, 2);
-      expandButton = <button className="load-questions-button" type="button" onClick={this.changeExpanded.bind(this)}> Load more answers </button>;
+      answersText = answers.length === 2 ? answers : answers.slice(0, 2);
+      expandButton = answers.length === 2 ? '' : <button className="load-questions-button" type="button" onClick={this.changeExpanded.bind(this)}> Load more answers </button>;
       answerStyle = {};
     }
 
-    if (answers.length === 0 || answers.length === 1) {
+    if (answers.length === 0) {
       answersText = <h3 className="no-answer-body"> No answers, yet </h3>;
+      expandButton = null;
+      answerStyle = {};
+    }
+
+    if (answers.length === 1) {
       expandButton = null;
       answerStyle = {};
     }
@@ -258,17 +264,27 @@ class IndividualQuestion extends React.Component {
     //------------------------------------------------------------------------------------------
     return (
       <div className="individual-question">
-        <h3 className="question-header">
-          { 'Q: ' }
-          {body}
-        </h3>
-        <div className="question-helpful">
-          {helpfulButton}
+        <div className="top-question-line">
+          <h3 className="question-header">
+            { 'Q: ' }
+            {body}
+          </h3>
+          <div className="question-buttons">
+            <div className="question-helpful">
+              {helpfulButton}
+            </div>
+            <span className="divider">
+              { '|' }
+            </span>
+            <button className="question-add-answer-button" type="button" onClick={this.showModal}>
+              Add an answer
+            </button>
+            <span className="divider">
+              { '|' }
+            </span>
+            <button type="button" className="question-report-button" onClick={this.questionReport.bind(this)}>Report this Question</button>
+          </div>
         </div>
-        <button className="question-add-answer-button" type="button" onClick={this.showModal}>
-          Add an answer
-        </button>
-        <button type="button" className="question-report-button" onClick={this.questionReport.bind(this)}>Report this Question</button>
         <div className="answer" style={answerStyle}>
           {answersText}
         </div>
