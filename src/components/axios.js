@@ -116,36 +116,35 @@ export function getRelatedDetail() {
 
 export function getRelatedImage() {
   const product = arguments[0];
-  // console.log('product at getimage', arguments);
+  // console.log('product at getimage', this.state);
   for (var i = 0; i < product.length; i++) {
     var imageUrl = [];
+    var relatedPic = [];
     axios
       .get(`/products/${product[i]}/styles`)
       .then((results) => {
         // console.log('product at related image', results.data.product_id);
         // console.log('product at related image', results.data);
-        var imageObj = [
-          {
-            product_id: "",
-            imageUrl: "",
-          },
-        ];
-
+var imageObj={};
         var key = product[i];
         var value = results.data.product_id;
-        imageObj.product_id = results.data.product_id;
+        imageObj.id = parseInt(results.data.product_id);
         imageObj.picUrl = results.data.results[0].photos[0].thumbnail_url;
         // console.log(imageObj);
         imageUrl.push(results.data.results[0].photos[0].thumbnail_url);
+        relatedPic.push(imageObj);
         this.setState({
+          // curCardAllInfo: {...this.state.curProduct.data, ...{imageUrl: imageUrl}},
           relatedProductImage: imageUrl,
-          relatedImage: imageObj,
+          relatedImage: relatedPic,
+          allInfo: {...this.props.curProduct.data, ...{imageUrl: imageUrl}}
         });
       })
       .catch((err) => {
         console.log("error in axios.js getRelatedImage req", err);
       });
   }
+  // console.log('imageObj', imageObj);
 }
 
 //--------------------------------------Q&A------------------------------
