@@ -20,13 +20,13 @@ class OutfitList extends React.Component {
     this.toupdatestate = this.toupdatestate.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.curProduct.data?.id !== prevProps.curProduct.data?.id) {
       getRelatedImage.call(this, [this.props.curProduct.data.id]);
     }
   }
 
-  toupdatestate(){
+  toupdatestate() {
     this.setState({
       curProduct: curCard,
     })
@@ -66,26 +66,34 @@ class OutfitList extends React.Component {
     // console.log('outfit props to be rendered', this.props);
     // console.log('outfit state to be rendered', this.state);
     return (
-      <div className='outfitcontainer'>
+      <div >
         <h1>YOUR OUTFIT</h1>
-        <button className='addbutton' onClick={this.handleClick}>
-          Add Current Product to Outfit List
+        <div className='outfitcontainer'>
+          <button className='addbutton' onClick={this.handleClick}>
+            Add Current Product to Outfit List
           </button>
-        <div className='alloutfitcards'>{this.state.allOutfits.map(element => {
-          return (
-            <div key={element.id} element={element} className='individualCard'>
-              <img src={element.imageUrl} className='image'></img>
-              <h2 className='category'>{element.category}</h2>
-              <div className='name'>{element.name}</div>
-              <div className='price'>${element.default_price}</div>
-              <div className='rating'>rating will go here</div>
-              <button
-                onClick={() => this.removeCard({ element })}
-              >&times;</button>
-            </div>
-          )
-        })}
+          <div className='alloutfitcards'>{this.state.allOutfits.map(element => {
+            return (
+              <div key={element.id} element={element} className='individualCard'>
+                <img src={element.imageUrl} className='image'></img>
+                <div className='contents'>
+                <h2 className='category'>{element.category}</h2>
+                <div className='name'>{element.name}</div>
+                <div className='price'>${element.default_price}</div>
+                <div className='rating'>rating will go here</div>
+                </div>
+
+                <button className='closeButton'
+                  onClick={() => this.removeCard({ element })}
+                >&times;</button>
+
+              </div>
+
+            )
+          })}
+          </div>
         </div>
+
       </div>
     )
   }

@@ -1,10 +1,18 @@
+html {
+  font-size: 62.5%;
+}
+
 .individualCard {
   border: solid 2px white;
   position: relative;
+  width: 21%;
+  height: 300px;
+  display: flex;
+  align-items: flex-end;
 
 }
 
-.productContainer {
+.relatedProducts {
   width: 100%;
   align-items: center;
   /* display:table-cell */
@@ -12,62 +20,66 @@
 
 .relatedButton {
   border: none;
-  background: none;
-  /* width: 3px;
-  height: 3px; */
-  display: inline-block;
-  max-width: 10%;
-  max-height: 10%;
-  /* border: none;
-  padding: none;
-  margin: 0;
-  padding: 0;
-  background: none;
-  width: 10px;
-  height: 10px;
-  display: inline-block;
-  position: relative;
-  transform: translate(-50%, -50%); */
-}
-
-.individualCard .relatedButton {
   position: absolute;
-  top: 3%;
-  left: 80%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  /* background-color: #555; */
-  /* color: white; */
-  font-size: 16px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  border-radius: 3px;
+  top: 0px;
+  right: 10px;
+  font-size: 25px;
+  color: gold;
 }
 
 .relatedCard {
-  display: grid;
-  color: white;
-  border: solid 2px #fff;
+  display: flex;
   justify-content: center;
-  align-content: center;
-  gap: 2px;
-  grid-auto-flow: column;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: auto;
-  grid-gap: 1rem;
+  gap: 30px;
+  padding: 0 40px;
+  position: relative;
 }
 
-
-
-
+.content {
+  padding-left: 10px;
+}
 
 .relatedImage {
   object-fit: cover;
-  width: 200px;
-  height: 200px;
+  width: 170px;
+  height: 170px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
 }
 
 .relatedName:hover {
   text-decoration: underline;
+}
+
+.arrow-prev__btn {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  padding: .5rem;
+  font-size: 1.2rem;
+  color: #000;
+  background-color: #fff;
+  box-shadow: 2px 2px 4px #000;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.arrow-next__btn {
+  position: absolute;
+  padding: .5rem;
+  font-size: 1.2rem;
+  color: #000;
+  background-color: #fff;
+  box-shadow: 2px 2px 4px #000;
+  border-radius: 50%;
+  z-index: 2;
+  right: 10px;
+  top: 50%;
+}
+
+.hidden {
+  display: none;
 }

@@ -31,7 +31,7 @@ class RelatedProducts extends React.Component {
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
-    this.scroll = this.scroll.bind(this);
+    // this.scroll = this.scroll.bind(this);
   }
 
   showModal = (e) => {

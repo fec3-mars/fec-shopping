@@ -1,31 +1,48 @@
-.alloutfitcards {
-  display: grid;
-  /* background-color: white; */
-  color: white;
-  border: solid 2px #fff;
-  justify-content: center;
-  align-content: center;
-  gap: 2px;
-  grid-auto-flow: column;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: auto;
-  grid-gap: 1rem;
-}
-
-.outfitcontainer {
-  border: solid 2px white;
-  position: relative;
-  margin: 50px 0 100px 0;
-
-}
-
 .addbutton {
+  /* border: solid 2px white;
+  position: relative;
+  width: 21%;
+  height: 300px;
+  background: white; */
+}
+
+.alloutfitcards{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 0 40px;
+  position: relative;
+}
+
+.individualCard {
   border: solid 2px white;
   position: relative;
+  width: 21%;
+  height: 300px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.contents{
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.closeButton {
+  border: none;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 25px;
+  /* color: gold; */
 }
 
 .image {
   object-fit: cover;
-  width: 230px;
-  height: 230px;
+  width: 170px;
+  height: 170px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
