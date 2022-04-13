@@ -24,13 +24,6 @@ class OutfitList extends React.Component {
     if (this.props.curProduct.data?.id !== prevProps.curProduct.data?.id) {
       getRelatedImage.call(this, [this.props.curProduct.data.id]);
     }
-    // console.log('state at componeentupdate', this.state);
-    // console.log('props at componeentupdate', this.props);
-    var curCard =  [{...this.props.curProduct.data, ...{imageUrl: this.state.relatedProductImage}}];
-    // this.setState({
-    //   curProduct: curCard,
-    // })
-    console.log('curCard', curCard);
   }
 
   toupdatestate(){
@@ -41,7 +34,7 @@ class OutfitList extends React.Component {
 
 
   handleClick(e, data) {
-    console.log('fasdfas', this.state);
+    // console.log('fasdfas', this.state);
     var outfits = this.state.allOutfits;
     if (outfits.indexOf(this.state.allInfo) !== -1) {
       alert('Product already saved in Your Outfits');
@@ -73,15 +66,15 @@ class OutfitList extends React.Component {
     // console.log('outfit props to be rendered', this.props);
     // console.log('outfit state to be rendered', this.state);
     return (
-      <div>
+      <div className='outfitcontainer'>
         <h1>YOUR OUTFIT</h1>
-        <button onClick={this.handleClick}>
+        <button className='addbutton' onClick={this.handleClick}>
           Add Current Product to Outfit List
           </button>
         <div className='alloutfitcards'>{this.state.allOutfits.map(element => {
           return (
             <div key={element.id} element={element} className='individualCard'>
-              <img src={element.imageUrl}></img>
+              <img src={element.imageUrl} className='image'></img>
               <h2 className='category'>{element.category}</h2>
               <div className='name'>{element.name}</div>
               <div className='price'>${element.default_price}</div>

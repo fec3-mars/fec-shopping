@@ -3,7 +3,7 @@ html {
 }
 
 .individualCard {
-  border: solid 2px black;
+  border: solid 2px white;
   position: relative;
 }
 
@@ -50,8 +50,9 @@ html {
 
 .relatedCard {
   display: grid;
-  background-color: white;
-  color: brown;
+  /* background-color: white; */
+  color: white;
+  border: solid 2px #fff;
   justify-content: center;
   align-content: center;
   gap: 2px;
