@@ -1,0 +1,12 @@
+.alloutfitcards {
+  display: grid;
+  background-color: white;
+  color: brown;
+  justify-content: center;
+  align-content: center;
+  gap: 2px;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 1rem;
+}
