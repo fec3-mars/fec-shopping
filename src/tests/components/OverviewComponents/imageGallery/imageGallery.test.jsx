@@ -9,7 +9,7 @@ const sleep = (ms) => new Promise((res, rej) => {
   }, ms);
 })
 
-describe.only("ImageGallery", () => {
+describe("ImageGallery", () => {
   const mount = (overrides = {}) => {
     const testData = {
       selectedStyle: { photos: [{ url: 'asdf', thumbnail_url: 'lkjh' }, { url: 'qwer', thumbnail_url: 'poiu' }, { url: 'zxcv', thumbnail_url: 'mnbv' }], style_id: 'not equal' },
@@ -41,19 +41,19 @@ describe.only("ImageGallery", () => {
     fireEvent.click(mainImage);
 
     await screen.findByAltText("zoomed image");
-  })
 
-  it('should toggle from ModalZoom to DefaultView when closed', async () => {
-    const { container, debug } = mount({ expanded: true });
-    // debug()
-    const closeBtn = container.getElementsByClassName("btn__close-modal")[0];
-    const modal = screen.getByRole("main-image-modal");
-    console.log(closeBtn)
-    console.log(modal)
-
+    const modal = screen.getByTestId("main-image-modal");
+    const closeBtn = screen.getByTestId("btn__close-modal");
     fireEvent.click(closeBtn);
-    debug();
-
-    // await expect(screen.queryByRole("main-image-modal")).toBeTruthy();
+    expect(screen.queryByTestId("main-image-modal")).toBeNull();
   })
+
+  // it('should toggle from ModalZoom to DefaultView when closed', async () => {
+  //   const { container, debug } = mount({ expanded: true });
+  //   // debug()
+
+  //   // debug();
+  //   await sleep(2000);
+
+  // })
 })

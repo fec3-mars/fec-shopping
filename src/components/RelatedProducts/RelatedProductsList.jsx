@@ -9,6 +9,13 @@ import './Related.css';
 import './Carousal.css';
 import Modal from './Modal.js';
 
+import {
+  faArrowLeft,
+  faArrowRight,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
 // this RelatedProductsList should stay the same for each currentproduct
 // this list should gather all elements/component of related products to be rendered
 class RelatedProducts extends React.Component {
@@ -20,6 +27,7 @@ class RelatedProducts extends React.Component {
       relatedProductImage: {},
       relatedImage: [],
       show: false,
+      set: 1,
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
@@ -42,6 +50,13 @@ class RelatedProducts extends React.Component {
     });
   };
 
+  shiftRelatedPhotos = (shift) => {
+    const { set } = this.state;
+    this.setState({
+      set: set + shift,
+    })
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props.curProduct.data?.id !== prevProps.curProduct.data?.id) {
       getRelatedProducts.call(this, this.props.curProduct.data.id);
@@ -55,22 +70,24 @@ class RelatedProducts extends React.Component {
   }
 
   render() {
+    const { set } = this.state;
     // console.log('state to be rendered', this.state)
     if (this.state.relatedProductDetail.length === this.state.relatedProducts.length && this.state.relatedProductImage.length === this.state.relatedProducts.length) {
       // console.log('state to be rendered', this.state)
+      const a3 = this.state.relatedProductDetail.map(t1 => ({ ...t1, ...this.state.relatedImage.find(t2 => t2.id === t1.data.id) }))
       var details = this.state.relatedProductDetail;
 
-      const a3 = this.state.relatedProductDetail.map(t1 => ({...t1, ...this.state.relatedImage.find(t2 => t2.id === t1.data.id)}))
+      const prevArrowClass = (set * 4 - 4 > 0) ? "arrow-prev__btn" : "arrow-prev__btn hidden"
+      const nextArrowClass = (4 * (set + 1) - 4) < a3.length ? "arrow-next__btn" : "arrow-next__btn hidden"
       // console.log('here is detail', a3);
+
 
       return (
         <div className="relatedProducts">
           <h1>RELATED PRODUCTS</h1>
-          <button className='pre-btn'>Prev</button>
-          <button className='nxt-btn'>Next</button>
           <div className="relatedCard">
 
-            {a3.map((element, index) =>
+            {a3.slice((set * 4 - 4), (4 * (set + 1) - 4)).map((element, index) =>
             (
               <div key={index} element={element} id={element.data.id} className="individualCard">
                 <IndividualProduct
@@ -82,6 +99,16 @@ class RelatedProducts extends React.Component {
                 />
               </div>
             ))}
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              onClick={() => this.shiftRelatedPhotos(-1)}
+              className={prevArrowClass}
+            />
+            <FontAwesomeIcon
+              icon={faArrowRight}
+              onClick={() => this.shiftRelatedPhotos(1)}
+              className={nextArrowClass}
+            />
           </div>
         </div>
       );
