@@ -3,7 +3,7 @@
 }
 
 .question-search-bar {
-  width: 900px;
+  width: 1000px;
   padding: 10px;
   margin-bottom: 15px;
 }
@@ -12,12 +12,12 @@
   color: white;
   background: none;
   padding: 20px;
-  margin: 10px;
+  margin: 10px 10px 10px 0;
   font-size: 15px;
   width: 250px;
   height: 70px;
   border: solid white 1px;
-  border-radius: 10px;
+  // border-radius: 10px;
 }
 
 .large-style-button:hover {

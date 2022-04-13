@@ -4,13 +4,13 @@ import ImageThumbnail from './ImageThumbnail.jsx';
 
 function DefaultView({
   parentState,
+  styleImages,
   updateMainImageHandler,
   scrollThumbnails,
   scrollMainImages,
   toggleExpanded,
 }) {
   const {
-    styleImages,
     thumbnailStart,
     thumbnailEnd,
     mainImageIdx,
@@ -19,7 +19,7 @@ function DefaultView({
   return (
     (
       <>
-        <img onClick={(e) => { toggleExpanded(e) }} src={`${styleImages[mainImageIdx]?.url}`} alt="" className="main-img" />
+        <img onClick={(e) => { toggleExpanded(e) }} src={`${styleImages[mainImageIdx]?.url}`} alt="selected image" className="main-img" />
         <div className="thumbnail-list-container">
           {thumbnailStart > 0 && <Arrow type="up" scrollThumbnails={scrollThumbnails} />}
           <ul className="thumbnail-list">

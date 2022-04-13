@@ -2,8 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-top: 2px solid #000;
-  border-bottom: 2px solid #000;
+  border-top: 2px solid #fff;
   padding: 0.5rem 0 0.5rem 0;
   width: 100%;
+  color: #fff;
+  font-size: 3.6rem;
+}
+
+.btn__twitter:hover {
+  color: #00ACEE;
+  cursor: pointer;
+}
+
+.btn__facebook:hover {
+  color: #3b5998;
+  cursor: pointer;
+}
+
+.btn__pinterest:hover {
+  color: #c8232c;
+  cursor: pointer;
 }

@@ -24,7 +24,11 @@ export function makeReviewRequest() {
   axios
     .get(`/reviews/?product_id=${id}`)
     .then((results) => {
-      const avgRating = results.data.results.reduce((acc, item) => acc = acc + item.rating, 0) / results.data.count
+      const avgRating =
+        results.data.results.reduce(
+          (acc, item) => (acc = acc + item.rating),
+          0
+        ) / results.data.count;
       this.setState({
         totalReviews: results.data.count,
         curProductReview: results,
@@ -121,7 +125,7 @@ export function getRelatedImage() {
       .then((results) => {
         // console.log('product at related image', results.data.product_id);
         // console.log('product at related image', results.data);
-        var imageObj={};
+var imageObj={};
         var key = product[i];
         var value = results.data.product_id;
         imageObj.id = parseInt(results.data.product_id);
@@ -203,27 +207,40 @@ export function reportAnswer(id) {
 export function getMetaData() {
   return axios.get(`/reviews/meta/?product_id=66643`);
 }
+
+export function postReview(obj) {
+  return axios.post(`/reviews`, obj);
+}
+
+export function getSortNewest(obj) {
+  return axios.get(`/reviews?count=50&sort=newest&product_id=66643`, obj);
+}
+export function getSortHelpful(obj) {
+  return axios.get(`/reviews?count=50&sort=helpful&product_id=66643`, obj);
+}
+export function getSortRelevant(obj) {
+  return axios.get(`/reviews?count=50&sort=relevant&product_id=66643`, obj);
+}
 //--------------------------------------Reviews------------------------------
-
-
 
 //--------------------------------------Interations------------------------------
 export function postInteraction(e, widget) {
+
   const obj = {
     element: e.target.outerHTML,
     widget: widget,
-    time: `${new Date()}`
-  }
-  console.log(obj);
-  axios.post(`/interactions`, obj).then(res => {
-    console.log('posted interaction');
-  }).catch(err => {
-    console.log('error posting interaction');
-  })
+    time: `${new Date()}`,
+  };
+
+  axios
+    .post(`/interactions`, obj)
+    .then((res) => {
+      console.log("posted interaction");
+    })
+    .catch((err) => {
+      console.log("error posting interaction");
+    });
 }
 //--------------------------------------Interations------------------------------
-
-
-
 
 export default axios;

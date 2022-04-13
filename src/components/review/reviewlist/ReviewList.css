@@ -1,22 +1,34 @@
 .reviewlist-container {
-  background-color: black;
+  /* background-color: black; */
   width: 100%;
 }
 
-.sort-container {
-}
+.sort-container {}
 
 .review-list {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .review-body {
-  font-weight: bold;
-  font-size: large;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .5px;
+  padding-bottom: 15px;
+
 }
 
-.reviewer-name {
+.review-summary {
+  padding-bottom: 20px;
+}
+
+.reviewer_name {
   text-align: justify;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .moreReviews {
@@ -29,4 +41,46 @@
 .photo {
   height: 80px;
   width: 80px;
+}
+
+.review-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  padding: 15px;
+  border: 1px solid #fff;
+  margin-right: 10px;
+
+}
+
+.helpful-report-container {
+  display: flex;
+}
+
+.helpful {
+  padding-right: 10px;
+}
+
+.report-link {
+  padding-left: 10px;
+  border-left: 1px solid #fff;
+}
+
+.moreReviews {
+  position: absolute;
+  left: 260px;
+  bottom: 10px;
+  color: white;
+  background: none;
+  padding: 20px;
+  margin: 10px 10px 10px 0;
+  font-size: 15px;
+  width: 250px;
+  height: 70px;
+  border: solid white 1px;
+}
+
+.star-container {
+  width: auto;
 }

@@ -8,7 +8,7 @@
   border: none;
   color: white;
   font-size: 13px;
-  margin-right: 3rem;
+  margin-right: .5rem;
 }
 
 @mixin header() {
@@ -21,11 +21,21 @@
   padding-top: 1px;
 }
 
+.top-question-line {
+  position: relative;
+}
+
+.question-buttons {
+  position: absolute;
+  right: 0;
+  top: 15px;
+}
+
 .no-answer-body {
   @include spacing;
   display: inline-block;
   font-size: 13px;
-  border-radius: 10px;
+  // border-radius: 10px;
   padding: 10px;
   padding-bottom: 4px;
   padding-top: 1px;
@@ -33,18 +43,27 @@
 
 .load-questions-button {
   @include bttn;
+  font-weight: 550;
+  padding-top: 2px;
 }
 
 .load-questions-button:hover {
   cursor: pointer;
 }
 
+.divider {
+  font-size: 15px;
+  font-weight: 500;
+  margin-right: .5rem;
+}
+
 div.add-an-answer {
   color: black;
 }
 
-div.individual_question {
+div.individual-question {
   border-style: solid white;
+  margin-bottom: 40px;
 }
 
 span.highlight {
