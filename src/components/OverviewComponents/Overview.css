@@ -21,6 +21,7 @@ body {
   gap: 2rem;
   min-width: 85rem;
   overflow: hidden;
+  margin-bottom: 100px;
 }
 
 .image-gallery-container {

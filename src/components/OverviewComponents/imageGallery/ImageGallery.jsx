@@ -31,7 +31,6 @@ class ImageGallery extends React.Component {
     };
 
     if (prevProps.selectedStyle.style_id !== selectedStyle.style_id) {
-      console.log('inside setState')
       this.setState((prevState) => ({
         mainImageIdx: getIdx(prevState.styleHistory),
         styleHistory: {
@@ -92,9 +91,6 @@ class ImageGallery extends React.Component {
       expanded,
       mainImageIdx,
     } = this.state;
-    const { expanded: propsExpanded } = this.props;
-
-    expanded = propsExpanded ? propsExpanded : expanded;
 
     return (
       (!expanded

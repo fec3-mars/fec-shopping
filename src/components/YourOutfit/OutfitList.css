@@ -15,9 +15,11 @@
 .outfitcontainer {
   border: solid 2px white;
   position: relative;
+  margin: 50px 0 100px 0;
+
 }
 
-.addbutton{
+.addbutton {
   border: solid 2px white;
   position: relative;
 }
