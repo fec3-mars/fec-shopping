@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component } from "react";
 import Filler from "./Filler.jsx";
-// import "./BarGraph.css";
+import "./BarGraph.css";
 
 const BarGraph = (props) => {
   return (
