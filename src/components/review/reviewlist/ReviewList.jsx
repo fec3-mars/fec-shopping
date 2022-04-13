@@ -38,18 +38,20 @@ export default class ReviewList extends Component {
 
   componentDidMount() {
     this.getSortDataNewest();
+    this.getSortDataHelpful();
+    this.getSortDataRelevant();
   }
-  // getSortDataHelpful = () => {
-  //   getSortHelpful().then((result) => {
-  //     this.setState({ sortHelpful: result.data.results });
-  //   });
-  // };
+  getSortDataHelpful = () => {
+    getSortHelpful().then((result) => {
+      this.setState({ sortHelpful: result.data.results });
+    });
+  };
 
-  // getSortDataRelevant = () => {
-  //   getSortRelevant().then((result) => {
-  //     this.setState({ sortRelevant: result.data.results });
-  //   });
-  // };
+  getSortDataRelevant = () => {
+    getSortRelevant().then((result) => {
+      this.setState({ sortRelevant: result.data.results });
+    });
+  };
 
   showMoreItems = () => {
     const updatedList = this.state.visible + 2;
