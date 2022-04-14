@@ -213,16 +213,19 @@ export function postReview(obj) {
 }
 
 export function getSortNewest(obj) {
-  return axios.get(`/reviews?count=50&sort=newest&product_id=66643`, obj);
+  return axios.get(`/reviews?count=50&sort=newest&product_id=66644`, obj);
 }
 export function getSortHelpful(obj) {
-  return axios.get(`/reviews?count=50&sort=helpful&product_id=66643`, obj);
+  return axios.get(`/reviews?count=50&sort=helpful&product_id=66644`, obj);
 }
 export function getSortRelevant(obj) {
-  return axios.get(`/reviews?count=50&sort=relevant&product_id=66643`, obj);
+  return axios.get(`/reviews?count=50&sort=relevant&product_id=66644`, obj);
 }
 export function markReviewHelpful() {
-  return axios.put(`reviews/1155759/helpful`);
+  return axios.put(`reviews/1175976/helpful`);
+}
+export function reportReview(id) {
+  return axios.put(`/reviews/${id}/report`);
 }
 //--------------------------------------Reviews------------------------------
 

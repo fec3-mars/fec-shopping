@@ -5,7 +5,7 @@ import "./ReviewList.css";
 import Sort from "../sort/Sort.jsx";
 import StarRatings from "react-star-ratings";
 import moment from "moment";
-import { markReviewHelpful } from "../../axios.js";
+import { markReviewHelpful, reportReview } from "../../axios.js";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -27,10 +27,16 @@ export default class ReviewList extends Component {
     };
   }
 
+  handleReportReview = (id) => {
+    reportReview(id).then(() => console.log("removed"));
+  };
+
   handleHelpfulnessClick = () => {
-    const { fetchReviews } = this.props;
+    // const { fetchReviews } = this.props;
     // Send Put request to server to update helpfulness
-    markReviewHelpful().then(() => fetchReviews());
+    markReviewHelpful()
+      .then(() => console.log("hi"))
+      .then(() => this.props.reload());
   };
 
   showMoreItems = () => {
@@ -85,7 +91,14 @@ export default class ReviewList extends Component {
                     >
                       Helpful? Yes ({review.helpfulness})
                     </span>
-                    <a className="report-link">Report</a>
+                    <a
+                      className="report-link"
+                      onClick={() => {
+                        this.handleReportReview(review.review_id);
+                      }}
+                    >
+                      Report
+                    </a>
                   </div>
                   {review.photos[0] ? (
                     <img
