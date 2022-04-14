@@ -1,10 +1,16 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import App from '../App.js';
+import IndividualOutfit from './IndividualOutfit';
 import {
-  axios, makeRequest, getRelatedProducts, getRelatedDetail, getRelatedImage,
+  axios, makeRequest, getRelatedProducts, getRelatedDetail, getRelatedImage, makeReviewRequest
 } from '../axios.js';
 import './OutfitList.css';
+import {
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 //the outfitList should gather all componenet/element in the "Your Outfit" comoponent of the website
 //onClick, it should go to the detailed page of clicked target product
 
@@ -12,8 +18,10 @@ class OutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
-      allOutfits: []
+      allOutfits: [],
+      // avgRating: 0,
+      // totalReviews: 0,
+      // curProductReview: 0,
     }
     this.handleClick = this.handleClick.bind(this);
     this.removeCard = this.removeCard.bind(this);
@@ -47,7 +55,7 @@ class OutfitList extends React.Component {
   }
 
   removeCard(e) {
-    // console.log('cur state at removeCard', this.state);
+    // console.log('eeee', e);
     var curCollection = this.state.allOutfits;
     for (var i = 0; i < this.state.allOutfits.length; i++) {
       if (curCollection[i].id === e.element.id) {
@@ -69,19 +77,32 @@ class OutfitList extends React.Component {
       <div >
         <h1>YOUR OUTFIT</h1>
         <div className='outfitcontainer'>
-          <button className='addbutton' onClick={this.handleClick}>
-            Add Current Product to Outfit List
-          </button>
+          <div className='addbutton'>
+          <FontAwesomeIcon
+          icon={faPlus}
+          onClick={this.handleClick}
+          className="theactualaddbutton"
+          />
+          <div className="addbuttonmessage">Add Current Product to Outfit List</div>
+            {/* <button onClick={this.handleClick}>
+              Add Current Product to Outfit List
+            </button> */}
+          </div>
+
           <div className='alloutfitcards'>{this.state.allOutfits.map(element => {
             return (
               <div key={element.id} element={element} className='individualCard'>
-                <img src={element.imageUrl} className='image'></img>
+                <IndividualOutfit
+                  element={element}
+
+                />
+                {/* <img src={element.imageUrl} className='image'></img>
                 <div className='contents'>
                 <h2 className='category'>{element.category}</h2>
                 <div className='name'>{element.name}</div>
                 <div className='price'>${element.default_price}</div>
                 <div className='rating'>rating will go here</div>
-                </div>
+                </div> */}
 
                 <button className='closeButton'
                   onClick={() => this.removeCard({ element })}
