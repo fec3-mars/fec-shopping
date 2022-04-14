@@ -56,6 +56,7 @@ class App extends React.Component {
         />
         <OutfitList curProduct={this.state.curProduct} />
         <Review curProduct={this.state.curProductReview} />
+        =
         <QuestionList curProduct={this.state.curProduct} />
       </div>
     );

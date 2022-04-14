@@ -46,6 +46,7 @@ export default class ProductBreakdown extends Component {
               : 1
           }
         />
+        <p>Too Small Perfect Too Large</p>
         comfort
         <Filler
           className="productbreakdown-comfort"
