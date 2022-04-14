@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { Component } from "react";
 import { getSort } from "../../axios.js";
+import { changeShowing } from "../Review.jsx";
 
 export default class Sort extends Component {
   constructor(props) {
@@ -10,11 +11,11 @@ export default class Sort extends Component {
     };
   }
 
-  handleChange = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
-  };
+  // handleChange = (event) => {
+  //   this.setState({
+  //     value: event.target.value,
+  //   });
+  // };
 
   // getSortData = () => {
   //   getSort().then((result) => {
@@ -27,23 +28,16 @@ export default class Sort extends Component {
   // }
 
   render() {
-    if (this.state.value === "Relevant") {
-      //TODO:
-    } else if (this.state.value === "Newest") {
-      //TODO:
-    } else if (this.state.value === "Helpful") {
-      //TODO:
-    }
     return (
       <div>
         <select
           defaultValue="Relevant"
-          onChange={this.handleChange}
+          onChange={this.props.changeShowing}
           value={this.state.value}
         >
+          <option value="Relevant">Relevant</option>
           <option value="Helpful">Helpful</option>
           <option value="Newest">Newest</option>
-          <option value="Relevant">Relevant</option>
         </select>
       </div>
     );

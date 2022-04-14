@@ -36,15 +36,20 @@ class App extends React.Component {
     });
   }
 
+  reviewReload() {
+    makeReviewRequest.call(this, 66644);
+  }
+
   componentDidMount() {
     makeRequest.call(this, 66642);
-    makeReviewRequest.call(this, 66642);
+    // makeReviewRequest.call(this, 66644);
+    this.reviewReload();
   }
 
   render() {
     return (
       <div className="app">
-        <h1>Hello World</h1>
+        <h1>Product Overview</h1>
         <Overview
           curProduct={this.state.curProduct}
           totalReviews={this.state.totalReviews}
@@ -55,7 +60,11 @@ class App extends React.Component {
           handleChange={this.handleChange}
         />
         <OutfitList curProduct={this.state.curProduct} />
-        <Review curProduct={this.state.curProductReview} />
+        <Review
+          reload={this.reviewReload.bind(this)}
+          curProduct={this.state.curProductReview}
+        />
+        =
         <QuestionList curProduct={this.state.curProduct} />
       </div>
     );

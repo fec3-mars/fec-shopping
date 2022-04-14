@@ -71,7 +71,7 @@ export default class Breakdown extends Component {
               name="rating"
               starDimension="8px"
               starSpacing="0px"
-              style={{ width: '85%' }}
+              style={{ width: "85%" }}
             />
           </div>
           <h3>74% of reviews recommend this product</h3>
