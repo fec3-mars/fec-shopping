@@ -92,24 +92,29 @@ export default class AddReview extends Component {
   };
 
   handleSubmit = () => {
+    // const { product_id } = this.props;
+
+    // const { photos } = this.state;
+
     const postRequest = {
-      product_id: null,
+      product_id: 66644,
       rating: this.state.rating,
       summary: this.state.ReviewSummary,
       body: this.state.ReviewBody,
+      recommend: true,
       name: this.state.NickName,
       email: this.state.Email,
-      photos: null,
-      characteristics: null,
+      photos: [],
+      characteristics: { 223579: 3.0 },
     };
-
-    postReview(postRequest)
-      .then((result) => {
-        console.log("post review result", result);
-      })
-      .catch((err) => {
-        console.log("error in post question", err);
-      });
+    postReview(postRequest).then(console.log("worked"));
+    // postReview(postRequest)
+    //   .then((result) => {
+    //     console.log("post review result", postRequest);
+    //   })
+    //   .catch((err) => {
+    //     console.log("error in post question", err);
+    //   });
   };
 
   setChangedSize = (e) => {
