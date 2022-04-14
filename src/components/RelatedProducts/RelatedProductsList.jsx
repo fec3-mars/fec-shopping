@@ -31,6 +31,7 @@ class RelatedProducts extends React.Component {
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    // this.scroll = this.scroll.bind(this);
   }
 
   showModal = (e) => {
@@ -83,7 +84,7 @@ class RelatedProducts extends React.Component {
 
 
       return (
-        <div className="relatedProducts">
+        <div className="productContainer">
           <h1>RELATED PRODUCTS</h1>
           <div className="relatedCard">
 
@@ -110,6 +111,7 @@ class RelatedProducts extends React.Component {
               className={nextArrowClass}
             />
           </div>
+
         </div>
       );
     }
