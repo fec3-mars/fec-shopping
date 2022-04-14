@@ -61,9 +61,10 @@
     }
   },
   "scripts": {
-    "start": "webpack --mode=development",
+    "start": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
-    "dev": "webpack serve --open",
-    "test": "jest"
+    "test": "jest",
+    "server": "node server/index.js",
+    "dev": "webpack serve --open"
   }
 }
