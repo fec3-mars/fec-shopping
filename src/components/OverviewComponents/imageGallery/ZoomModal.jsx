@@ -19,6 +19,7 @@ class ZoomModal extends React.Component {
 
     this.toggleZoom = this.toggleZoom.bind(this);
     this.toggleZoomMouseOut = this.toggleZoomMouseOut.bind(this);
+    this.keyPressHandler = this.keyPressHandler.bind(this);
   }
 
   toggleZoom(e) {
@@ -38,6 +39,11 @@ class ZoomModal extends React.Component {
     });
   }
 
+  keyPressHandler(e) {
+    console.log(e);
+    // if ()
+  }
+
   render() {
     const {
       styleImages,
@@ -51,7 +57,7 @@ class ZoomModal extends React.Component {
         <div className="modal-relative-positioning">
           <div className="relative-positioning">
             {!this.state.zoomedIn && mainImageIdx > 0 && <Arrow type="left" scrollMainImages={scrollMainImages} modal="yes" />}
-            <div onClick={e => this.toggleZoom(e)} className="main-image-container">
+            <div tabIndex={0} role="button" onKeyDown={(e) => this.keyPressHandler(e)} onClick={(e) => this.toggleZoom(e)} className="main-image-container">
               <InnerImageZoom
                 src={`${styleImages[mainImageIdx]?.url}`}
                 zoomScale={2.5}
@@ -71,6 +77,7 @@ class ZoomModal extends React.Component {
                 key={img.url}
                 img={img}
                 idx={idx}
+                keyPressHandler={this.keyPressHandler}
                 mainImageIdx={mainImageIdx}
                 updateMainImageHandler={updateMainImageHandler}
               />
