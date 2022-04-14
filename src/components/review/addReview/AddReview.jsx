@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/button";
+import Button from "react-bootstrap/Button";
 import React, { Component } from "react";
 import "./AddReview.css";
 import StarRatings from "react-star-ratings";

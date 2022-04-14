@@ -37,14 +37,13 @@ describe("DefaultView", () => {
 
   it("should fire toggleZoom", () => {
     const { container, debug } = mount();
-    // debug();
     const mainImage = container.getElementsByClassName('main-img')[0];
+
     expect(mainImage).toBeTruthy();
 
     fireEvent.click(mainImage);
-    expect(toggleExpanded).toHaveBeenCalled();
 
-    // toBe
+    expect(toggleExpanded).toHaveBeenCalled();
 
   });
 
@@ -52,40 +51,48 @@ describe("DefaultView", () => {
   // up
   it("should display up arrow when thumbnail is greater than 0", () => {
     const { container, debug } = mount({}, { thumbnailStart: 0 });
+
     expect(container.getElementsByClassName('btn__pan-up')[0]).toBeFalsy();
   });
   it("should display up arrow when thumbnail is greater than 1", () => {
     const { container, debug } = mount();
+
     expect(container.getElementsByClassName('btn__pan-up')[0]).toBeTruthy();
   });
 
   // down
   it("should display down arrow when thumbnail is not last thumbnail", () => {
     const { container } = mount();
+
     expect(container.getElementsByClassName('btn__pan-down')[0]).toBeTruthy();
   });
   it("should not display down arrow when thumbnail is last thumbnail", () => {
     const { container } = mount({}, { thumbnailEnd: 2 });
+
     expect(container.getElementsByClassName('btn__pan-down')[0]).toBeFalsy();
   });
 
   // left
   it("should display left arrow when main image is not first thumbnail", () => {
     const { container } = mount();
+
     expect(container.getElementsByClassName('btn__arrow-left')[0]).toBeTruthy();
   });
   it("should not display left arrow when main image is first thumbnail", () => {
     const { container } = mount({}, { mainImageIdx: 0 });
+
     expect(container.getElementsByClassName('btn__arrow-left')[0]).toBeFalsy();
   });
 
   // right
   it("should display right arrow when main image is not last thumbnail", () => {
     const { container, debug } = mount({}, { mainImageIdx: 0 });
+
     expect(container.getElementsByClassName('btn__arrow-right')[0]).toBeTruthy();
   });
   it("should not display right arrow when main image is last thumbnail", () => {
     const { container } = mount({}, { thumbnailEnd: 2 });
+
     expect(container.getElementsByClassName('btn__arrow-right')[0]).toBeFalsy();
   });
 
@@ -98,16 +105,15 @@ describe("DefaultView", () => {
       thumbnailEnd: 7,
     });
     const thumbnailImages = container.getElementsByClassName('img-thumbnail-container');
+
     expect(thumbnailImages.length).toBe(7);
   })
 
   it("should display the number of thumbnails available if less than 7 thumbnails", () => {
     const { container, debug } = mount({}, { thumbnailEnd: 2, thumbnailStart: 0 });
     const thumbnailImages = container.getElementsByClassName('img-thumbnail-container');
+
     expect(thumbnailImages.length).toBe(3);
   })
-
-  // screen getByText(sync), findByText(async) (it block needs to be async and the findByText awaited)
-  // toHavebeenCalled
 
 })
