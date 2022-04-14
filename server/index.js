@@ -13,7 +13,6 @@ app.use(express.urlencoded({ extended: true }));
 axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc";
 
 app.get('/*', (req, res) => {
-  console.log('get method: ', req.method);
   axios({
     method: req.method,
     url: req.url,
@@ -22,16 +21,14 @@ app.get('/*', (req, res) => {
     },
   })
     .then((results) => {
-      console.log('get results: ', results.data);
       res.send(results.data);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
 });
 
 app.post('/*', (req, res) => {
-  console.log(req.body);
   axios({
     method: req.method,
     url: req.url,
