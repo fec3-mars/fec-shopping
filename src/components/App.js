@@ -64,6 +64,7 @@ class App extends React.Component {
           reload={this.reviewReload.bind(this)}
           curProduct={this.state.curProductReview}
         />
+
         <QuestionList curProduct={this.state.curProduct} />
       </div>
     );
