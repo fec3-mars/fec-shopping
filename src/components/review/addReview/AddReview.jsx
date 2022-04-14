@@ -97,7 +97,7 @@ export default class AddReview extends Component {
     // const { photos } = this.state;
 
     const postRequest = {
-      product_id: 66644,
+      product_id: 66642,
       rating: this.state.rating,
       summary: this.state.ReviewSummary,
       body: this.state.ReviewBody,

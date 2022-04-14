@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   reviewReload() {
-    makeReviewRequest.call(this, 66644);
+    makeReviewRequest.call(this, 66642);
   }
 
   componentDidMount() {

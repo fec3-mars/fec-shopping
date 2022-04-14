@@ -44,10 +44,12 @@ export default class ReviewList extends Component {
     this.setState({
       visible: updatedList,
     });
-    if (this.state.visible > this.state.currentProductReview.length + 2) {
-      this.setState({
-        hideReviewButton: true,
-      });
+    if (this.state.currentProductReview !== undefined) {
+      if (this.state.visible > this.state.currentProductReview.length + 2) {
+        this.setState({
+          hideReviewButton: true,
+        });
+      }
     }
   };
 

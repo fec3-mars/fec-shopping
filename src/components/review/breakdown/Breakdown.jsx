@@ -39,13 +39,14 @@ export default class Breakdown extends Component {
         temp += this.props.currentProductRating[i].rating;
       }
       temp = temp / this.props.currentProductRating.length;
+
       this.setState({
         averageRating: temp,
-        one: 40,
-        two: Number(Object.values(this.state.ratings.ratings)[0]) * 10,
-        three: Number(Object.values(this.state.ratings.ratings)[1]) * 10,
-        four: Number(Object.values(this.state.ratings.ratings)[2]) * 10,
-        five: Number(Object.values(this.state.ratings.ratings)[3]) * 10,
+        // one: Number(Object.values(this.state.ratings.ratings)[0]) * 10 || 0,
+        two: Number(Object.values(this.state.ratings.ratings)[0]) * 10 || 0,
+        three: Number(Object.values(this.state.ratings.ratings)[1]) * 10 || 0,
+        four: Number(Object.values(this.state.ratings.ratings)[2]) * 10 || 0,
+        five: Number(Object.values(this.state.ratings.ratings)[3]) * 10 || 0,
       });
       // console.log("Changed State");
     } catch (e) {
