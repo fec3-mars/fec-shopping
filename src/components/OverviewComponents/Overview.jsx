@@ -45,7 +45,6 @@ class Overview extends React.Component {
 
     return (
       <div onClick={(e) => { postInteraction(e, 'Overview') }}>
-
         <div className="overview-container">
           <div className="image-gallery-container">
             <ImageGallery loaded={loaded} productId={product.id} selectedStyle={selectedStyle} className="image-gallery" />
