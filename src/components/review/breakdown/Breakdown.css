@@ -1,10 +1,32 @@
 .breakdown-container {
-  background-color: black;
+  /* background-color: black; */
+  border: 1px solid #fff;
+  padding-left: 10px;
+  height: 400px;
 }
 
 .ratingNum {
-  width: 60px;
+  width: 15%;
 }
 
 .starNum {
+  width: 85%;
+}
+
+.star-ratings {
+  width: 85%;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.star-review-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
 }

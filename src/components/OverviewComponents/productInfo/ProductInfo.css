@@ -52,4 +52,9 @@
 
 .read-all-review {
   width: 40%;
+  color: #fff;
+}
+
+.read-all-review:hover {
+  cursor: pointer;
 }

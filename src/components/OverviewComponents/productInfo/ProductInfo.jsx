@@ -18,7 +18,7 @@ function ProductInfo({ product, selectedStyle, reviewsInfo }) {
           starSpacing="-10px"
           className="star-rating"
         />
-        <span className="read-all-review">READ ALL {reviewsInfo.totalReviews} REVIEWS </span>
+        <a className="read-all-review" href="#reviewsID">READ ALL {reviewsInfo.totalReviews} REVIEWS </a>
       </div>
       <p className="category">
         CATEGORY:

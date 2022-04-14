@@ -34,7 +34,6 @@ export default function submitReview() {
           setRatingFit={setRatingFit}
           setStarRating={setStarRating}
         >
-          <br></br>
           DONT PUT PERSONAL INFO IN HERE!
         </Modal>
       </div>

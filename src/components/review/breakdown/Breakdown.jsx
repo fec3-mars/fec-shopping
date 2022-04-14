@@ -59,34 +59,44 @@ export default class Breakdown extends Component {
     if (this.state.averageRating) {
       return (
         <div className="breakdown-container">
-          <span>
-            <br></br>
+          <div className="rating-container">
             <h1 className="ratingNum">
               {Math.round(this.state.averageRating * 100) / 100}
             </h1>
-          </span>
-          <br></br>
-          <StarRatings
-            className="starNum"
-            rating={this.state.averageRating}
-            starRatedColor="yellow"
-            numberOfStars={5}
-            name="rating"
-            starDimension="8px"
-            starSpacing="5px"
-          />
+            <StarRatings
+              className="starNum"
+              rating={this.state.averageRating}
+              starRatedColor="yellow"
+              numberOfStars={5}
+              name="rating"
+              starDimension="8px"
+              starSpacing="0px"
+              style={{ width: "85%" }}
+            />
+          </div>
           <h3>74% of reviews recommend this product</h3>
-          <br></br>
-          1 Star:
-          <BarGraph className="bar-graph" percentage={this.state.one} />
-          2 Stars:
-          <BarGraph className="bar-graph" percentage={this.state.two} />
-          3 Stars:
-          <BarGraph className="bar-graph" percentage={this.state.three} />
-          4 Stars:
-          <BarGraph className="bar-graph" percentage={this.state.four} />
-          5 Stars:
-          <BarGraph className="bar-graph" percentage={this.state.five} />
+          <div className="star-review-bar">
+            <div className="star-bar">
+              1 Star:
+              <BarGraph className="bar-graph" percentage={this.state.one} />
+            </div>
+            <div className="star-bar">
+              2 Stars:
+              <BarGraph className="bar-graph" percentage={this.state.two} />
+            </div>
+            <div className="star-bar">
+              3 Stars:
+              <BarGraph className="bar-graph" percentage={this.state.three} />
+            </div>
+            <div className="star-bar">
+              4 Stars:
+              <BarGraph className="bar-graph" percentage={this.state.four} />
+            </div>
+            <div className="star-bar">
+              5 Stars:
+              <BarGraph className="bar-graph" percentage={this.state.five} />
+            </div>
+          </div>
         </div>
       );
     }

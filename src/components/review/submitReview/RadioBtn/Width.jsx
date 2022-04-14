@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function RadioBtn_Width(props) {
   return (
-    <div>
+    <div >
       <input
         type="radio"
         name="fit"

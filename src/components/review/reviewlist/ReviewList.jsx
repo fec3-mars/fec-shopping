@@ -5,7 +5,7 @@ import "./ReviewList.css";
 import Sort from "../sort/Sort.jsx";
 import StarRatings from "react-star-ratings";
 import moment from "moment";
-import { getSortNewest, getSortHelpful, getSortRelevant } from "../../axios.js";
+import { markReviewHelpful } from "../../axios.js";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -20,37 +20,17 @@ export default class ReviewList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProductReview: [],
+      currentProductReviewList: [],
       visible: 2,
       hideReviewButton: false,
       averageRating: 0,
-      sortNewest: {},
-      sortRelevant: {},
-      sortHelpful: {},
     };
   }
 
-  getSortDataNewest = () => {
-    getSortNewest().then((result) => {
-      this.setState({ sortNewest: result.data.results });
-    });
-  };
-
-  componentDidMount() {
-    this.getSortDataNewest();
-    this.getSortDataHelpful();
-    this.getSortDataRelevant();
-  }
-  getSortDataHelpful = () => {
-    getSortHelpful().then((result) => {
-      this.setState({ sortHelpful: result.data.results });
-    });
-  };
-
-  getSortDataRelevant = () => {
-    getSortRelevant().then((result) => {
-      this.setState({ sortRelevant: result.data.results });
-    });
+  handleHelpfulnessClick = () => {
+    const { fetchReviews } = this.props;
+    // Send Put request to server to update helpfulness
+    markReviewHelpful().then(() => fetchReviews());
   };
 
   showMoreItems = () => {
@@ -65,63 +45,69 @@ export default class ReviewList extends Component {
     }
   };
 
-  render(props) {
-    if (
-      this.props.currentProductReview &&
-      this.props.currentProductReview.length !== 0
-    ) {
-      return (
-        <div className="reviewlist-container">
-          <ul className="review-list">
-            {this.props.currentProductReview
-              .slice(0, this.state.visible)
-              .map((review, index) => {
-                return (
-                  <ul key={index}>
-                    <span className="reviewer_name">
-                      {review.reviewer_name}
-                      <br></br>
-                      {moment(review.date).utc().format("YYYY-MM-DD")}
-                    </span>
-                    <br></br>
-                    <StarRatings
-                      rating={review.rating}
-                      starRatedColor="yellow"
-                      numberOfStars={5}
-                      name="rating"
-                      starDimension="15px"
-                      starSpacing="1px"
-                    />
-                    <br></br>
-                    <span className="review-body">{review.body}</span>
-                    <br></br>
-                    <span>{review.summary}</span>
-                    <br></br>
-                    Helpful? Yes ({review.helpfulness})<br></br>
-                    Report
-                    <br></br>
-                    {review.photos[0] ? (
-                      <img
-                        className="photo"
-                        src={review.photos[0].url}
-                        alt="photo"
-                      />
-                    ) : null}
-                    <hr />
-                  </ul>
-                );
-              })}
-          </ul>
-          <div className="view-more-button">
-            {this.state.hideReviewButton ? null : (
-              <button className="moreReviews" onClick={this.showMoreItems}>
-                View more...
-              </button>
-            )}
-          </div>
-        </div>
-      );
+  componentDidUpdate(prevProps) {
+    if (this.props.currentProductReview !== prevProps.currentProductReview) {
+      this.setState({
+        currentProductReviewList: [...this.props.currentProductReview],
+      });
     }
+  }
+
+  render(props) {
+    return (
+      <div className="reviewlist-container">
+        <ul className="review-list">
+          {this.state.currentProductReviewList
+            .slice(0, this.state.visible)
+            .map((review, index) => {
+              return (
+                <ul key={index} className="review-list-item">
+                  <span className="reviewer_name">
+                    {review.reviewer_name}
+                    {moment(review.date).utc().format("YYYY-MM-DD")}
+                  </span>
+                  <StarRatings
+                    rating={review.rating}
+                    starRatedColor="yellow"
+                    numberOfStars={5}
+                    name="rating"
+                    width="75px"
+                    starDimension="15px"
+                    // starSpacing="-10px"
+                    className="stars"
+                  />
+                  <span className="review-body">{review.body}</span>
+                  <span className="review-summary">{review.summary}</span>
+                  <div className="helpful-report-container">
+                    <span
+                      className="helpful"
+                      onClick={() => this.handleHelpfulnessClick()}
+                    >
+                      Helpful? Yes ({review.helpfulness})
+                    </span>
+                    <a className="report-link">Report</a>
+                  </div>
+                  {review.photos[0] ? (
+                    <img
+                      className="photo"
+                      src={review.photos[0].url}
+                      alt="photo"
+                    />
+                  ) : null}
+                  <hr />
+                </ul>
+              );
+            })}
+        </ul>
+        <div className="view-more-button">
+          {this.state.hideReviewButton ? null : (
+            <button className="moreReviews" onClick={this.showMoreItems}>
+              View more...
+            </button>
+          )}
+        </div>
+      </div>
+    );
   }
 }
 

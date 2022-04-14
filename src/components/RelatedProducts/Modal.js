@@ -5,7 +5,7 @@ import React from 'react';
 function Modal({
   handleClose, show, children, curProduct, curCard,
 }) {
-  const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+  const showHideClassName = show ? 'related-modal display-block' : 'related-modal display-none';
 
   var arrayOfFeature = children.props.children.features;
   var curProductFeature = curProduct.data.features;
@@ -15,19 +15,19 @@ function Modal({
 
   for (var i = 0; i < commonFeature.length; i++) {
     if (arrayOfFeature.indexOf(commonFeature[i]) !== -1) {
-      comparisonModal[i].cardFeatureCheck = 'true';
+      comparisonModal[i].cardFeatureCheck = '✓';
     }
     else {
-      comparisonModal[i].cardFeatureCheck = 'false';
+      comparisonModal[i].cardFeatureCheck = 'X';
     }
   }
 
   for (var j = 0; j < commonFeature.length; j++) {
     if (curProductFeature.indexOf(commonFeature[j]) !== -1) {
-      comparisonModal[j].curFeatureCheck = 'true';
+      comparisonModal[j].curFeatureCheck = '✓';
     }
     else {
-      comparisonModal[j].curFeatureCheck = 'false';
+      comparisonModal[j].curFeatureCheck = 'X';
     }
   }
 

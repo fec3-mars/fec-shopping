@@ -27,15 +27,16 @@ class IndividualProduct extends React.Component {
   };
 
   render() {
-    // console.log('props at individualcard', this.props.curCard.data);
+    // console.log('props at individualcard', this.props);
+
     return (
       <div>
-        <img className='relatedImage' src={this.props.curPic} onClick={() => { this.props.handleChang(this.props.curCard) }}></img>
+        <img className='relatedImage' src={this.props.curCard.picUrl}  onClick={() => { this.props.handleChang(this.props.curCard) }}></img>
         <h2 className='relatedCategory'>{this.props.curCard.data.category}</h2>
         <div className='relatedName' onClick={() => { this.props.handleChang(this.props.curCard) }}>{this.props.curCard.data.name}</div>
         <div className='relatedPrice'>${this.props.curCard.data.default_price}</div>
         <div className='relatedRating'>rating will go here</div>
-
+        <br></br>
         <Modal
           show={this.state.show}
           handleClose={this.hideModal}
@@ -45,7 +46,7 @@ class IndividualProduct extends React.Component {
           <p>{this.props.curCard.data}</p>
         </Modal>
 
-        <button type="button" onClick={this.showModal}>
+        <button type="button" className="relatedButton" onClick={this.showModal}>
           <img src='http://imgur.com/I0EwG.png' />
         </button>
       </div>
