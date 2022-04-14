@@ -1,7 +1,7 @@
 /* eslint-disable */
 export const axios = require("axios");
 // axios.defaults.headers.common["Authorization"] = process.env.TOKEN;
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "3.139.94.89:3000";
 
 export function makeRequest() {
   const id = arguments[0];

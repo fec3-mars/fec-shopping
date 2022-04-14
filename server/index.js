@@ -15,7 +15,6 @@ app.use(cors());
 axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc";
 
 app.get('/*', (req, res) => {
-  console.log('get method: ', req.method);
   axios({
     method: req.method,
     url: req.url,
@@ -28,7 +27,7 @@ app.get('/*', (req, res) => {
       res.send(results.data);
     })
     .catch((err) => {
-      console.log(err);
+      res.send(err);
     });
 });
 
