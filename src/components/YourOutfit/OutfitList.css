@@ -1,9 +1,33 @@
 .addbutton {
-  /* border: solid 2px white;
+  border: solid 2px white;
   position: relative;
-  width: 21%;
+  width: 202px;
   height: 300px;
-  background: white; */
+  background: lightgray;
+  text-decoration-color: brown;
+}
+
+.theactualaddbutton {
+  color: white;
+  margin-left: 40px;
+  margin-top: 55px;
+  height: 150px;
+}
+
+.theactualaddbutton:hover{
+  cursor: pointer;
+}
+
+.addbuttonmessage{
+  display: none;
+}
+.theactualaddbutton:hover + .addbuttonmessage{
+  display: block;
+  color: rgb(69, 67, 67);
+  border-radius: 5px;
+  text-align: center;
+  font-size: 13px;
+  background-color: whitesmoke;
 }
 
 .alloutfitcards{
@@ -12,6 +36,7 @@
   gap: 30px;
   padding: 0 40px;
   position: relative;
+  /* display: inline-block; */
 }
 
 .individualCard {

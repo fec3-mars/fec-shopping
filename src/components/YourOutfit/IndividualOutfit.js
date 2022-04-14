@@ -33,17 +33,19 @@ class IndividualOutfit extends React.Component {
           <h2 className='category'>{this.props.element.category}</h2>
           <div className='name'>{this.props.element.name}</div>
           <div className='price'>${this.props.element.default_price}</div>
-          <div className='rating'>{this.state.avgRating}</div>
-          <StarRatings
-            // className="starNum"
-            rating={this.state.averageRating}
-            className='relatedRating3'
-            starRatedColor="gold"
-            numberOfStars={5}
-            name="rating"
-            starDimension="14px"
-            starSpacing="-10px"
-          />
+          {/* <div className='rating'>{this.state.avgRating}</div> */}
+          <div className='relatedStarContainer'>
+        <StarRatings
+          className="relatedStar"
+          rating={this.state.avgRating}
+
+          starRatedColor="gold"
+          numberOfStars={5}
+          name="rating"
+          starDimension="10px"
+          starSpacing="1px"
+        />
+        </div>
         </div>
       </div>
 

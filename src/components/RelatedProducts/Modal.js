@@ -35,20 +35,26 @@ function Modal({
 
   return (
     <div className={showHideClassName}>
-      <h2>Comparing</h2>
-      {comparisonModal.map((element, index) =>
-        <p key={index} >
-          {/* <div type="check">{element.cardFeatureCheck}</div> */}
-          {element.cardFeatureCheck}
-          ---
-          {element.feature}: {element.value}
-          ---
-          {element.curFeatureCheck}
-        </p>
-      )}
-      <button type="button" onClick={handleClose}>
-        &times;
-      </button>
+
+      <div className="modal-header">
+        <h2 className='comparingtitle'>Comparing Features</h2>
+        <button type="button" className="close-button" onClick={handleClose}>
+          &times;
+        </button>
+      </div>
+
+      <div className='modal-body'>
+        {comparisonModal.map((element, index) =>
+          <p key={index} >
+            {/* <div type="check">{element.cardFeatureCheck}</div> */}
+            <div className='column1'>{element.cardFeatureCheck}</div>
+
+            <div className='column2'>{element.feature}: {element.value}</div>
+
+            <div className='column3'>{element.curFeatureCheck}</div>
+          </p>
+        )}
+      </div>
 
     </div>
   );

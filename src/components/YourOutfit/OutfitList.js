@@ -6,6 +6,11 @@ import {
   axios, makeRequest, getRelatedProducts, getRelatedDetail, getRelatedImage, makeReviewRequest
 } from '../axios.js';
 import './OutfitList.css';
+import {
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 //the outfitList should gather all componenet/element in the "Your Outfit" comoponent of the website
 //onClick, it should go to the detailed page of clicked target product
 
@@ -66,15 +71,24 @@ class OutfitList extends React.Component {
     if (this.state.allOutfits.length) {
       // console.log('outfit state to be rendered', this.state);
     }
-    console.log('outfit props to be rendered', this.props);
-    console.log('outfit state to be rendered', this.state);
+    // console.log('outfit props to be rendered', this.props);
+    // console.log('outfit state to be rendered', this.state);
     return (
       <div >
         <h1>YOUR OUTFIT</h1>
         <div className='outfitcontainer'>
-          <button className='addbutton' onClick={this.handleClick}>
-            Add Current Product to Outfit List
-          </button>
+          <div className='addbutton'>
+          <FontAwesomeIcon
+          icon={faPlus}
+          onClick={this.handleClick}
+          className="theactualaddbutton"
+          />
+          <div className="addbuttonmessage">Add Current Product to Outfit List</div>
+            {/* <button onClick={this.handleClick}>
+              Add Current Product to Outfit List
+            </button> */}
+          </div>
+
           <div className='alloutfitcards'>{this.state.allOutfits.map(element => {
             return (
               <div key={element.id} element={element} className='individualCard'>

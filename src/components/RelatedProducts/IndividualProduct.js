@@ -10,6 +10,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StarRatings from "react-star-ratings";
 import { makeReviewRequest } from "../axios.js";
+import './Related.css';
 
 //IndividualRelatedProduct should display category, picture, name, price, rating of related products
 //number of related products is fixed for each product.
@@ -51,17 +52,20 @@ class IndividualProduct extends React.Component {
         <h2 className='relatedCategory'>{this.props.curCard.data.category}</h2>
         <div className='relatedName' onClick={() => { this.props.handleChang(this.props.curCard) }}>{this.props.curCard.data.name}</div>
         <div className='relatedPrice'>${this.props.curCard.data.default_price}</div>
-        <div className='relatedRating'>{this.state.avgRating}</div>
+        {/* <div className='relatedRating'>{this.state.avgRating}</div> */}
+        <div className='relatedStarContainer'>
         <StarRatings
-          // className="starNum"
-          rating={this.state.averageRating}
-          className='relatedRating2'
+          className="relatedStar"
+          rating={this.state.avgRating}
+
           starRatedColor="gold"
           numberOfStars={5}
           name="rating"
-          starDimension="14px"
-          starSpacing="-10px"
+          starDimension="10px"
+          starSpacing="1px"
         />
+        </div>
+
 
 
         <br></br>

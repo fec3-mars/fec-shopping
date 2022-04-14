@@ -122,7 +122,8 @@ export function getRelatedImage() {
     axios
       .get(`/products/${product[i]}/styles`)
       .then((results) => {
-var imageObj={};
+        console.log('results at styles,', results)
+        var imageObj = {};
         var key = product[i];
         var value = results.data.product_id;
         imageObj.id = parseInt(results.data.product_id);
@@ -132,7 +133,7 @@ var imageObj={};
         this.setState({
           relatedProductImage: imageUrl,
           relatedImage: relatedPic,
-          allInfo: {...this.props.curProduct.data, ...{imageUrl: imageUrl}}
+          allInfo: { ...this.props.curProduct.data, ...{ imageUrl: imageUrl } }
         });
       })
       .catch((err) => {
