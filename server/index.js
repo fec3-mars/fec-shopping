@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc";
 
 app.get('/*', (req, res) => {
