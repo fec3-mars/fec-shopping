@@ -94,15 +94,7 @@ class OutfitList extends React.Component {
               <div key={element.id} element={element} className='individualCard'>
                 <IndividualOutfit
                   element={element}
-
                 />
-                {/* <img src={element.imageUrl} className='image'></img>
-                <div className='contents'>
-                <h2 className='category'>{element.category}</h2>
-                <div className='name'>{element.name}</div>
-                <div className='price'>${element.default_price}</div>
-                <div className='rating'>rating will go here</div>
-                </div> */}
 
                 <button className='closeButton'
                   onClick={() => this.removeCard({ element })}

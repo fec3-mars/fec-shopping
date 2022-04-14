@@ -48,9 +48,7 @@ function Modal({
           <p key={index} >
             {/* <div type="check">{element.cardFeatureCheck}</div> */}
             <div className='column1'>{element.cardFeatureCheck}</div>
-
             <div className='column2'>{element.feature}: {element.value}</div>
-
             <div className='column3'>{element.curFeatureCheck}</div>
           </p>
         )}
