@@ -1,7 +1,5 @@
 /* eslint-disable */
 export const axios = require("axios");
-axios.defaults.headers.common["Authorization"] = process.env.TOKEN;
-axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/";
 
 export function makeRequest() {
   const id = arguments[0];
@@ -65,9 +63,6 @@ export function postToBag(data, selectedSize) {
   axios
     .post("/cart", data)
     .then((result) => {
-      axios.get("/cart").then((res) => {
-        console.log(res);
-      });
       console.log(result);
     })
     .catch((err) => {
@@ -137,7 +132,7 @@ export function getRelatedImage() {
           // curCardAllInfo: {...this.state.curProduct.data, ...{imageUrl: imageUrl}},
           relatedProductImage: imageUrl,
           relatedImage: relatedPic,
-          allInfo: { ...this.props.curProduct.data, ...{ imageUrl: imageUrl } },
+          allInfo: { ...this.props.curProduct.data, ...{ imageUrl: imageUrl } }
         });
       })
       .catch((err) => {
