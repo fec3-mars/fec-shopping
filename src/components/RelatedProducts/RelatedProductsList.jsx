@@ -31,11 +31,9 @@ class RelatedProducts extends React.Component {
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
-    // this.scroll = this.scroll.bind(this);
   }
 
   showModal = (e) => {
-    // console.log('e at shgowmodal', e);
     this.setState({
       show: true,
       clickedItem: e,
@@ -43,8 +41,6 @@ class RelatedProducts extends React.Component {
   };
 
   hideModal = (e) => {
-    // console.log('state at hide', this.state);
-    // console.log('e at hidemodal', e);
     this.setState({
       show: false,
       clickedItem: this.state.clickedItem,
@@ -74,14 +70,13 @@ class RelatedProducts extends React.Component {
     const { set } = this.state;
     // console.log('state to be rendered', this.state)
     if (this.state.relatedProductDetail.length === this.state.relatedProducts.length && this.state.relatedProductImage.length === this.state.relatedProducts.length) {
-      // console.log('state to be rendered', this.state)
+      console.log('state to be rendered', this.state)
       const a3 = this.state.relatedProductDetail.map(t1 => ({ ...t1, ...this.state.relatedImage.find(t2 => t2.id === t1.data.id) }))
       var details = this.state.relatedProductDetail;
 
       const prevArrowClass = (set * 4 - 4 > 0) ? "arrow-prev__btn" : "arrow-prev__btn hidden"
       const nextArrowClass = (4 * (set + 1) - 4) < a3.length ? "arrow-next__btn" : "arrow-next__btn hidden"
-      // console.log('here is detail', a3);
-
+      console.log('here is detail', a3);
 
       return (
         <div className="productContainer">
@@ -93,7 +88,6 @@ class RelatedProducts extends React.Component {
               <div key={index} element={element} id={element.data.id} className="individualCard">
                 <IndividualProduct
                   curCard={element}
-                  // curPic={this.state.relatedProductImage[index]}
                   curThumb={this.state.relatedImage}
                   handleChang={this.props.handleChange}
                   curProduct={this.props.curProduct}
