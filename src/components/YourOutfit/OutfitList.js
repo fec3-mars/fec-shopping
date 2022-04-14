@@ -74,24 +74,24 @@ class OutfitList extends React.Component {
     // console.log('outfit props to be rendered', this.props);
     // console.log('outfit state to be rendered', this.state);
     return (
-      <div >
+      <div className="main-outfit-container" >
         <h1>YOUR OUTFIT</h1>
         <div className='outfitcontainer'>
           <div className='addbutton'>
-          <FontAwesomeIcon
-          icon={faPlus}
-          onClick={this.handleClick}
-          className="theactualaddbutton"
-          />
-          <div className="addbuttonmessage">Add Current Product to Outfit List</div>
+            <FontAwesomeIcon
+              icon={faPlus}
+              onClick={this.handleClick}
+              className="theactualaddbutton"
+            />
+            <div className="addbuttonmessage">Add Current Product to Outfit List</div>
             {/* <button onClick={this.handleClick}>
               Add Current Product to Outfit List
             </button> */}
           </div>
 
-          <div className='alloutfitcards'>{this.state.allOutfits.map(element => {
+          {this.state.allOutfits.map(element => {
             return (
-              <div key={element.id} element={element} className='individualCard'>
+              <div key={element.id} element={element} className='individualOutfitCard'>
                 <IndividualOutfit
                   element={element}
 
@@ -112,7 +112,6 @@ class OutfitList extends React.Component {
 
             )
           })}
-          </div>
         </div>
 
       </div>
