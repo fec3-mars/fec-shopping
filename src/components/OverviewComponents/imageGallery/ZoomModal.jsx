@@ -60,7 +60,7 @@ class ZoomModal extends React.Component {
             <div tabIndex={0} role="button" onKeyDown={(e) => this.keyPressHandler(e)} onClick={(e) => this.toggleZoom(e)} className="main-image-container">
               <InnerImageZoom
                 src={`${styleImages[mainImageIdx]?.url}`}
-                zoomScale={2.5}
+                zoomScale={1.5}
                 width={300}
                 // width={this.state.imageWidth}
                 imgAttributes={{ alt: "zoomed image" }}
