@@ -1,5 +1,7 @@
 const path = require("path");
 const Dotenv = require('dotenv-webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
 
 module.exports = {
   mode: "development",
@@ -10,6 +12,10 @@ module.exports = {
   },
   plugins: [
     new Dotenv(),
+    new CompressionPlugin({
+      algorithm: "gzip"
+    }),
+    new BrotliPlugin(),
   ],
   resolve: {
     extensions: ["", ".webpack.js", ".web.js", ".js", ".json", ".jsx"],
