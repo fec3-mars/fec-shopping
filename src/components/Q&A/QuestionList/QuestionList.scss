@@ -23,3 +23,15 @@
 .large-style-button:hover {
   cursor: pointer;
 }
+
+.search-bar {
+  position: relative;
+}
+
+.search-glass {
+  font-size: 2rem;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: black;
+}

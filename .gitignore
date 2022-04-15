@@ -114,3 +114,6 @@ yarn.lock
 #ds store
 .DS_STORE
 
+
+#bundle.js
+public/bundle.js

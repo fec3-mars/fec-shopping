@@ -49,6 +49,23 @@ app.post('/*', (req, res) => {
     });
 });
 
+app.put('/*', (req, res) => {
+  axios({
+    method: req.method,
+    url: req.url,
+    data: req.body,
+    headers: {
+      Authorization: process.env.TOKEN,
+    },
+  })
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => {
+      // console.log('====asan error')
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

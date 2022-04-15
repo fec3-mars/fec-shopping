@@ -111,7 +111,7 @@ class IndividualQuestion extends React.Component {
     this.setState({
       helpful: true,
     });
-
+    console.log(question_id);
     markQuestionHelpful(question_id)
       .then(() => {
         console.log('success marking question helpful');
