@@ -1,12 +1,15 @@
 .breakdown-container {
   /* background-color: black; */
-  border: 1px solid #fff;
+  /* border: 1px solid #fff; */
+  margin: 10px;
   padding-left: 10px;
-  height: 400px;
+  height: 447px;
+  width: 220px;
 }
 
 .ratingNum {
   width: 15%;
+  margin: 0;
 }
 
 .starNum {
@@ -29,4 +32,5 @@
   align-items: flex-start;
   justify-content: center;
   gap: 10px;
+  padding-bottom: 40px;
 }

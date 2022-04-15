@@ -62,6 +62,12 @@ export default class ReviewList extends Component {
   render(props) {
     return (
       <div className="reviewlist-container">
+        <div className="sort-container">
+          <span className="sort-by">Sort By:</span>
+          <Sort
+            changeShowing={this.setCurrentShowing}
+          />
+        </div>
         <ul className="review-list">
           {this.state.currentProductReviewList
             .slice(0, this.state.visible)
