@@ -1,5 +1,5 @@
-import React from "react";
+// import React from "react";
 
-export default function Filler(props) {
-  return <div className="filler" style={{ width: `${props.percentage}%` }} />;
-}
+// export default function Filler(props) {
+//   return <div className="filler" style={{ width: `${props.percentage}%` }} />;
+// }

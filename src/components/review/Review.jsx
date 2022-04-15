@@ -91,14 +91,15 @@ export default class Review extends Component {
           className="review-container"
           id="reviewsID"
         >
-          <Sort
+          {/* <Sort
             className="sort-container"
             changeShowing={this.setCurrentShowing}
-          />
-          <h1 className="rating-header">Ratings & Reviews</h1>
+          /> */}
+          <div className="title-container">
+            <h1 className="rating-header">Ratings & Reviews</h1>
+          </div>
           <div className="breakdown-reviewList">
             <Breakdown currentProductRating={this.state.sortRelevant} />
-            <ProductBreakdown />
             <ReviewList
               fetchReviews={this.fetchReviews}
               currentProductReview={this.state.sortRelevant}

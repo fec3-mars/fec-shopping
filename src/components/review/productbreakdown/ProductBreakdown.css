@@ -1,0 +1,53 @@
+.progress-bar2 {
+  /* border-top: solid 2px #fff; */
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  position: relative;
+}
+
+.breakdown-title {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  padding-bottom: 10px;
+  margin: 0;
+  font-size: 10px;
+  transform: translateX(-50%);
+  text-decoration: underline;
+  /* border-bottom: 1px solid #fff; */
+
+}
+
+.individual-breakdown {
+  position: relative;
+  height: 8px;
+  width: 150px;
+  border-radius: 50px;
+  border: 1px solid #333;
+}
+
+.individual-filler {
+  background: white;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.2s ease-in;
+}
+
+.breakdown-label {
+  margin: 0;
+}
+
+.productbreakdown-size {}
+
+.productbreakdown-comfort {}
+
+.productbreakdown-width {}
+
+.productbreakdown-quality {}
+
+.productbreakdown-length {}
+
+.productbreakdown-fit {}

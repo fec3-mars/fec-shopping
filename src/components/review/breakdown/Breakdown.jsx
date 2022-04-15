@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./Breakdown.css";
 import BarGraph from "./BarGraph.jsx";
 import StarRatings from "react-star-ratings";
+import ProductBreakdown from '../ProductBreakdown/ProductBreakdown.jsx'
 import { getMetaData, metaData } from "../../axios.js";
 
 export default class Breakdown extends Component {
@@ -97,6 +98,7 @@ export default class Breakdown extends Component {
               <BarGraph className="bar-graph" percentage={this.state.five} />
             </div>
           </div>
+          <ProductBreakdown />
         </div>
       );
     }
