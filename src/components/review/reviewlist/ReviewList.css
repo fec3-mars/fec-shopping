@@ -4,17 +4,6 @@
   display: relative;
 }
 
-.sort-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(50%, 150%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
 .review-list {
   text-align: center;
   display: flex;

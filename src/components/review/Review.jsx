@@ -91,10 +91,13 @@ export default class Review extends Component {
           className="review-container"
           id="reviewsID"
         >
-          {/* <Sort
-            className="sort-container"
-            changeShowing={this.setCurrentShowing}
-          /> */}
+          <div className="sort-container">
+            <span className="sort-by">Sort By:</span>
+            <Sort
+              // className="sort-container"
+              changeShowing={this.setCurrentShowing}
+            />
+          </div>
           <div className="title-container">
             <h1 className="rating-header">Ratings & Reviews</h1>
           </div>
@@ -122,77 +125,83 @@ export default class Review extends Component {
         </div>
       );
     }
-    // else if (this.state.currentShowing === "Newest") {
-    //   return (
-    //     <div
-    //       onClick={(e) => {
-    //         postInteraction(e, "Reviews");
-    //       }}
-    //       className="review-container"
-    //       id="reviewsID"
-    //     >
-    //       <h1 className="rating-header">Ratings & Reviews</h1>
-    //       <Sort
-    //         className="sort-container"
-    //         changeShowing={this.setCurrentShowing}
-    //       />
-    //       <div className="breakdown-reviewList">
-    //         <Breakdown currentProductRating={this.state.sortNewest} />
-    //         <ReviewList currentProductReview={this.state.sortNewest} />
-    //       </div>
-    //       {/* <AddReview className="AddReview" /> */}
-    //       <button className="submit-review" onClick={this.openModal}>
-    //         Submit New Review
-    //       </button>
-    //       {this.state.isOpen ? (
-    //         <AddReview
-    //           closeModal={this.closeModal}
-    //           isOpen={this.state.isOpen}
-    //           handleSubmit={this.handleSubmit}
-    //         />
-    //       ) : null}
-    //       <div className="button-container"></div>
-    //     </div>
-    //   );
-    // }
-    // else if (this.state.currentShowing === "Helpful") {
-    //   return (
-    //     <div
-    //       onClick={(e) => {
-    //         postInteraction(e, "Reviews");
-    //       }}
-    //       className="review-container"
-    //       id="reviewsID"
-    //     >
-    //       <h1 className="rating-header">Ratings & Reviews</h1>
-    //       <Sort
-    //         className="sort-container"
-    //         changeShowing={this.setCurrentShowing}
-    //       />
-    //       <div className="breakdown-reviewList">
-    //         <Breakdown currentProductRating={this.state.sortHelpful} />
-    //         <ReviewList currentProductReview={this.state.sortHelpful} />
-    //       </div>
-    //       {/* <AddReview className="AddReview" /> */}
-    //       <button className="submit-review" onClick={this.openModal}>
-    //         Submit New Review
-    //       </button>
-    //       {this.state.isOpen ? (
-    //         <AddReview
-    //           closeModal={this.closeModal}
-    //           isOpen={this.state.isOpen}
-    //           handleSubmit={this.handleSubmit}
-    //         />
-    //       ) : null}
-    //       <div className="button-container"></div>
-    //     </div>
-    //   );
-    // } else {
-    //   return (
-    //     <div>
-    //       <h1>Unavailable</h1>
-    //     </div>
-    //   );
-    // }
+    else if (this.state.currentShowing === "Newest") {
+      return (
+        <div
+          onClick={(e) => {
+            postInteraction(e, "Reviews");
+          }}
+          className="review-container"
+          id="reviewsID"
+        >
+          <h1 className="rating-header">Ratings & Reviews</h1>
+          <div className="sort-container">
+            <span className="sort-by">Sort By:</span>
+            <Sort
+              // className="sort-container"
+              changeShowing={this.setCurrentShowing}
+            />
+          </div>
+          <div className="breakdown-reviewList">
+            <Breakdown currentProductRating={this.state.sortNewest} />
+            <ReviewList currentProductReview={this.state.sortNewest} />
+          </div>
+          {/* <AddReview className="AddReview" /> */}
+          <button className="submit-review" onClick={this.openModal}>
+            Submit New Review
+          </button>
+          {this.state.isOpen ? (
+            <AddReview
+              closeModal={this.closeModal}
+              isOpen={this.state.isOpen}
+              handleSubmit={this.handleSubmit}
+            />
+          ) : null}
+          <div className="button-container"></div>
+        </div>
+      );
+    }
+    else if (this.state.currentShowing === "Helpful") {
+      return (
+        <div
+          onClick={(e) => {
+            postInteraction(e, "Reviews");
+          }}
+          className="review-container"
+          id="reviewsID"
+        >
+          <h1 className="rating-header">Ratings & Reviews</h1>
+          <div className="sort-container">
+            <span className="sort-by">Sort By:</span>
+            <Sort
+              // className="sort-container"
+              changeShowing={this.setCurrentShowing}
+            />
+          </div>
+          <div className="breakdown-reviewList">
+            <Breakdown currentProductRating={this.state.sortHelpful} />
+            <ReviewList currentProductReview={this.state.sortHelpful} />
+          </div>
+          {/* <AddReview className="AddReview" /> */}
+          <button className="submit-review" onClick={this.openModal}>
+            Submit New Review
+          </button>
+          {this.state.isOpen ? (
+            <AddReview
+              closeModal={this.closeModal}
+              isOpen={this.state.isOpen}
+              handleSubmit={this.handleSubmit}
+            />
+          ) : null}
+          <div className="button-container"></div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>Unavailable</h1>
+        </div>
+      );
+    }
   }
 }
