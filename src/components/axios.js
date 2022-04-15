@@ -30,7 +30,7 @@ export function makeReviewRequest() {
       this.setState({
         totalReviews: results.data.count,
         curProductReview: results,
-        avgRating: Math.round(avgRating * 100) / 100 || 0
+        avgRating: Math.round(avgRating * 100) / 100 || 0,
       });
     })
     .catch((err) => {
@@ -127,7 +127,7 @@ export function getRelatedImage() {
         this.setState({
           relatedProductImage: imageUrl,
           relatedImage: relatedPic,
-          allInfo: { ...this.props.curProduct.data, ...{ imageUrl: imageUrl } }
+          allInfo: { ...this.props.curProduct.data, ...{ imageUrl: imageUrl } },
         });
       })
       .catch((err) => {
