@@ -1,7 +1,5 @@
 /* eslint-disable */
 export const axios = require("axios");
-axios.defaults.headers.common["Authorization"] = process.env.TOKEN;
-axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc/";
 
 export function makeRequest() {
   const id = arguments[0];
@@ -28,11 +26,11 @@ export function makeReviewRequest() {
         results.data.results.reduce(
           (acc, item) => (acc = acc + item.rating),
           0
-        ) / results.data.count;
+        ) / results.data.results.length;
       this.setState({
         totalReviews: results.data.count,
         curProductReview: results,
-        avgRating: avgRating,
+        avgRating: Math.round(avgRating * 100) / 100 || 0
       });
     })
     .catch((err) => {
@@ -65,9 +63,6 @@ export function postToBag(data, selectedSize) {
   axios
     .post("/cart", data)
     .then((result) => {
-      axios.get("/cart").then((res) => {
-        console.log(res);
-      });
       console.log(result);
     })
     .catch((err) => {
@@ -116,35 +111,33 @@ export function getRelatedDetail() {
 
 export function getRelatedImage() {
   const product = arguments[0];
-  // console.log('product at getimage', this.state);
   for (var i = 0; i < product.length; i++) {
     var imageUrl = [];
     var relatedPic = [];
     axios
       .get(`/products/${product[i]}/styles`)
       .then((results) => {
-        // console.log('product at related image', results.data.product_id);
-        // console.log('product at related image', results.data);
         var imageObj = {};
         var key = product[i];
         var value = results.data.product_id;
         imageObj.id = parseInt(results.data.product_id);
         imageObj.picUrl = results.data.results[0].photos[0].thumbnail_url;
-        // console.log(imageObj);
         imageUrl.push(results.data.results[0].photos[0].thumbnail_url);
         relatedPic.push(imageObj);
         this.setState({
-          // curCardAllInfo: {...this.state.curProduct.data, ...{imageUrl: imageUrl}},
           relatedProductImage: imageUrl,
           relatedImage: relatedPic,
-          allInfo: { ...this.props.curProduct.data, ...{ imageUrl: imageUrl } },
+          allInfo: { ...this.props.curProduct.data, ...{ imageUrl: imageUrl } }
         });
       })
       .catch((err) => {
         console.log("error in axios.js getRelatedImage req", err);
       });
   }
-  // console.log('imageObj', imageObj);
+}
+
+export function getRatings(id) {
+  return axios.get(`/reviews/?product_id=${id}`);
 }
 
 //--------------------------------------Q&A------------------------------

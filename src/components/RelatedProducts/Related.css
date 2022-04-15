@@ -49,9 +49,13 @@ html {
   transform: translateX(-50%);
 
 }
+.relatedImage:hover{
+  cursor: pointer;
 
+}
 .relatedName:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .arrow-prev__btn {
@@ -82,4 +86,9 @@ html {
 
 .hidden {
   display: none;
+}
+
+.relatedStarContainer {
+  background-color: none;
+  width: 120px;
 }
