@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  faMagnifyingGlass,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import IndividualQuestion from '../IndividualQuestion/IndividualQuestion';
 import Modal from '../Modal/Modal.jsx';
 import './QuestionList.scss';
@@ -193,15 +197,21 @@ class QuestionList extends React.Component {
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
     return (
-      <div onClick={(e) => {postInteraction(e, 'Question and Answer')}}>
+      <div onClick={(e) => {postInteraction(e, 'Question and Answer')}} className="question-container">
         <div className="questionList">
           <h2>{"Questions & Answers"}</h2>
-          <input
-            type="text"
-            className="question-search-bar"
-            placeholder="Have a question? Search for answers..."
-            onChange={this.handleSearch.bind(this)}
-          />
+          <div className="search-bar">
+            <input
+              type="text"
+              className="question-search-bar"
+              placeholder="Have a question? Search for answers..."
+              onChange={this.handleSearch.bind(this)}
+            />
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className="search-glass"
+            />
+          </div>
           {displayQuestions}
 
         <Modal show={this.state.show} handleClose={this.hideModal}>
