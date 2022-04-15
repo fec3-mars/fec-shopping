@@ -1,4 +1,5 @@
 const express = require('express');
+const expressStaticGzip = require('express-static-gzip');
 const path = require('path');
 const axios = require('axios');
 require('dotenv').config();
@@ -7,8 +8,11 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, '../public')));
+// app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
+app.use(expressStaticGzip(path.join(__dirname, '../public'), {
+  enableBrotli: true,
+}));
 app.use(express.urlencoded({ extended: true }));
 axios.defaults.baseURL = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfc";
 

@@ -1,9 +1,8 @@
 .reviewlist-container {
   /* background-color: black; */
   width: 100%;
+  display: relative;
 }
-
-.sort-container {}
 
 .review-list {
   text-align: center;
