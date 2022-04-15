@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import Review from "./review/Review.jsx";
-
+import "./App.css";
 import Overview from "./OverviewComponents/Overview.jsx";
 import QuestionList from "./Q&A/QuestionList/QuestionList.jsx";
 import RelatedProducts from "./RelatedProducts/RelatedProductsList.jsx";
@@ -49,7 +49,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <h1>Product Overview</h1>
+        <img
+          src="https://preview.redd.it/qbh4tjh310211.jpg?auto=webp&s=81e3af80ce1d7173fd6e70a8df635e03b9a2677a"
+          className="logo"
+        />
         <Overview
           curProduct={this.state.curProduct}
           totalReviews={this.state.totalReviews}

@@ -199,7 +199,9 @@ class QuestionList extends React.Component {
     return (
       <div onClick={(e) => {postInteraction(e, 'Question and Answer')}} className="question-container">
         <div className="questionList">
-          <h2>{"Questions & Answers"}</h2>
+          <h2 className='qa-title'>
+            {"QUESTIONS & ANSWERS"}
+          </h2>
           <div className="search-bar">
             <input
               type="text"
