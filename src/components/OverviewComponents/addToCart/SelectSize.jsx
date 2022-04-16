@@ -11,7 +11,7 @@ function SelectSize({
     <div className="size-select-container">
       {selectSize && <p className="size-warning">Please select size</p>}
       {(skus.length && (
-        <select value={selectedSize} name="size" className="size-input" onChange={changeState}>
+        <select value={selectedSize} name="size" className="size-input" data-testid="size-input" onChange={changeState}>
           <option>SELECT SIZE</option>
           {skus.map(([k, v]) => {
             if (v.size !== null) {

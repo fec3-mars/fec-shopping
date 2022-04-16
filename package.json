@@ -60,7 +60,7 @@
   "jest": {
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
-      "^.+\\.(css|less)$": "<rootDir>/config/CSSStub.js"
+      "^.+\\.(css|scss)$": "<rootDir>/config/CSSStub.js"
     }
   },
   "scripts": {
