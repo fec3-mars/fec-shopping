@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import {
   faCircleXmark,
 } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,10 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import Arrow from './Arrow.jsx';
 import SmallImage from './SmallImage.jsx';
+
+// const InnerImageZoom = lazy(() => import('react-inner-image-zoom'))
+// const Arrow = lazy(() => import('./Arrow.jsx'))
+// const SmallImage = lazy(() => import('./SmallImage.jsx'))
 
 class ZoomModal extends React.Component {
   constructor(props) {

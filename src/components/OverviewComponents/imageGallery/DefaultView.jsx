@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import Arrow from './Arrow.jsx';
 import ImageThumbnail from './ImageThumbnail.jsx';
+
+// const Arrow = lazy(() => import('./Arrow.jsx'));
+// const ImageThumbnail = lazy(() => import('./ImageThumbnail.jsx'));
 
 function DefaultView({
   parentState,

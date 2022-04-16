@@ -1,13 +1,22 @@
-import React from "react";
-import ImageGallery from "./imageGallery/ImageGallery.jsx";
-import AddToCart from "./addToCart/AddToCart.jsx";
-import ProductSlogan from "./productInfo/ProductSlogan.jsx";
-import ProductInfo from "./productInfo/ProductInfo.jsx";
-import Styles from "./styles/Styles.jsx";
-import SocialMedia from "./socialMedia/SocialMedia.jsx";
-import Feature from "./productInfo/Feature.jsx";
+import React, { lazy } from "react";
+// import ImageGallery from "./imageGallery/ImageGallery.jsx";
+// import AddToCart from "./addToCart/AddToCart.jsx";
+// import ProductSlogan from "./productInfo/ProductSlogan.jsx";
+// import ProductInfo from "./productInfo/ProductInfo.jsx";
+// import Styles from "./styles/Styles.jsx";
+// import SocialMedia from "./socialMedia/SocialMedia.jsx";
+// import Feature from "./productInfo/Feature.jsx";
 import { getProductStyles, postInteraction } from "../axios";
 import "./Overview.css";
+
+
+const ImageGallery = lazy(() => import('./imageGallery/ImageGallery.jsx'));
+const AddToCart = lazy(() => import('./addToCart/AddToCart.jsx'));
+const ProductSlogan = lazy(() => import('./productInfo/ProductSlogan.jsx'));
+const ProductInfo = lazy(() => import('./productInfo/ProductInfo.jsx'));
+const Styles = lazy(() => import('./styles/Styles.jsx'));
+const SocialMedia = lazy(() => import('./socialMedia/SocialMedia.jsx'));
+const Feature = lazy(() => import('./productInfo/Feature.jsx'));
 
 class Overview extends React.Component {
   constructor(props) {

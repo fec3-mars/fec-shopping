@@ -1,11 +1,15 @@
 /* eslint-disable */
-import React from "react";
-import Review from "./review/Review.jsx";
+import React, { lazy } from "react";
 import "./App.css";
-import Overview from "./OverviewComponents/Overview.jsx";
-import QuestionList from "./Q&A/QuestionList/QuestionList.jsx";
-import RelatedProducts from "./RelatedProducts/RelatedProductsList.jsx";
-import OutfitList from "./YourOutfit/OutfitList.js";
+// import Review from "./review/Review.jsx";
+// import RelatedProducts from "./RelatedProducts/RelatedProductsList.jsx";
+// import OutfitList from "./YourOutfit/OutfitList.js";
+
+const RelatedProducts = lazy(() => import('./RelatedProducts/RelatedProductsList.jsx'));
+const OutfitList = lazy(() => import('./YourOutfit/OutfitList.js'));
+const QuestionList = lazy(() => import('./Q&A/QuestionList/QuestionList.jsx'));
+const Overview = lazy(() => import('./OverviewComponents/Overview.jsx'));
+const Review = lazy(() => import('./review/Review.jsx'));
 
 import {
   axios,

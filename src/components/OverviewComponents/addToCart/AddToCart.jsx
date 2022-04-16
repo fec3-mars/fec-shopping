@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import './AddToCart.css';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { postToBag } from '../../axios';
-import SelectSize from './SelectSize.jsx';
-import SelectQty from './SelectQty.jsx';
-import ButtonAddToBag from './ButtonAddToBag.jsx';
+// import SelectSize from './SelectSize.jsx';
+// import SelectQty from './SelectQty.jsx';
+// import ButtonAddToBag from './ButtonAddToBag.jsx';
+const SelectSize = lazy(() => import('./SelectSize.jsx'));
+const SelectQty = lazy(() => import('./SelectQty.jsx'));
+const ButtonAddToBag = lazy(() => import('./ButtonAddToBag.jsx'));
 
 class AddToCart extends React.Component {
   constructor(props) {

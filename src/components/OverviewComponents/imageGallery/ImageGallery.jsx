@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import './ImageGallery.css';
 import NoImage from '../noImageWarning/NoImage.jsx';
 import DefaultView from './DefaultView.jsx';
 import ZoomModal from './ZoomModal.jsx';
+
+// const NoImage = lazy(() => import('../noImageWarning/NoImage.jsx'));
+// const DefaultView = lazy(() => import('./DefaultView.jsx'));
+// const ZoomModal = lazy(() => import('./ZoomModal.jsx'));
 
 class ImageGallery extends React.Component {
   constructor(props) {

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import './Styles.css';
-import SingleStyle from './SingleStyle.jsx';
+// import SingleStyle from './SingleStyle.jsx';
+
+const SingleStyle = lazy(() => import('./SingleStyle.jsx'));
 
 function Styles({ styles, selectedStyle, styleChangeHandler }) {
   return (
