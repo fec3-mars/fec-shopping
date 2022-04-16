@@ -62,6 +62,8 @@ Our application requests data from existing API hosted on herouku. Express acts 
 - Renders two initial reviews, populates a "view more reviews" button. Upon click, renders out two additional reviews as long as there are additional reviews exisiting, and if there are no more reviews, the button disappears.
 - Submit Review will render a modal that saves the data inputs. Once "submit review" button is clicked, it will send a POST request to the API, and the new review will be saved onto the database.
 - Dynmically renders the average product rating, number of stars that review has, and characteristics that the product has.
+- 
+![Shopping_review](https://user-images.githubusercontent.com/82802060/163690851-ed52a810-c005-4290-97c8-1e11bf240e8b.gif)
 
 
 **Installation:**
