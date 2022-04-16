@@ -30,6 +30,7 @@ Our application requests data from existing API hosted on herouku. Express acts 
 - Purchasing the item has a series of checks that require the use to first, select the size of the product they're interested in purchasing. Next, after selecting a size, the user can select a quantity (which will only allow the user to buy the amount that is in-stock, no more). Finally, having selected a qty and size, the user can purchase the product (the purchase button dissapears to keep the user from purchasing multiple times).
 - Lastly, at the bottom of the overview section, is the portion of the product overview where a user can share the given product through a social media outlet (facebook, pinterest, twitter links provided).
 
+![Shopping Overview Gif](https://user-images.githubusercontent.com/58870346/163690829-073f6679-b673-4bff-8aaf-68a8ea9100ca.gif)
 
 **Questions and Answers:**
 
