@@ -1,3 +1,45 @@
+Project Title: Front End Capston Shopping Website
+
+Overview: This is a fully functional web application that meets the specifications and requirements outlined by project stakeholders. Each member of the team worked on one widget that contributed towards entirety of the web application. This is an mock e-comemerce application that interacts with an existing API.  
+
+BRD Link:
+Project Folder: 
+
+Table of Contents: 
+- Team Members
+- Description:
+- Installation
+- Usage
+
+
+Team Members:
+Zach Carpenter: Product Overview
+Lucas Bonner: Question and Answers 
+Wendy Zhang: Related Products
+Paul Koh: Ratings and Reviews
+
+Description: 
+Our application requests data from existing API hosted on herouku. Express acts as the middleware It dynamically renders data according to user inputs. Certain feature are based on user inputs, such as, submitting a new question/answer, writing a new product review, or keeping an outfit list.
+ 
+
+Product Overview:
+
+Questions and Answers:
+
+Related Products:
+
+Ratings and Reviews:
+
+
+Installation:
+
+Usage:
+
+ 
+ 
+
+
+
 # HOW TO: React Setup with Webpack and Babel 
 In this breakdown we will be going over how to setup a react development enviroment from scratch. This enviroment will include Webpack and Babel for easy development that will include hot reloading. 
 
