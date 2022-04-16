@@ -24,6 +24,12 @@ Our application requests data from existing API hosted on herouku. Express acts 
 
 **Product Overview:**
 
+- Provides a location for the user to look at product information through images, pricing, features, and discription. 
+- Provides the user with the ability to look at different styles of the same product and each style renders out new pictures representing the respective style
+- Clicking on the main image allows the user an experience of focusing only on the images for a given style in a separate, blacked out modal. Inside the modal, the user can toggle between the selected styles thumbnails and can zoom into the currently selected image by clicking on the image. (To exit the modal, the user must click the close button located in the top right corner.
+- Purchasing the item has a series of checks that require the use to first, select the size of the product they're interested in purchasing. Next, after selecting a size, the user can select a quantity (which will only allow the user to buy the amount that is in-stock, no more). Finally, having selected a qty and size, the user can purchase the product (the purchase button dissapears to keep the user from purchasing multiple times).
+- Lastly, at the bottom of the overview section, is the portion of the product overview where a user can share the given product through a social media outlet (facebook, pinterest, twitter links provided).
+
 
 **Questions and Answers:**
 
