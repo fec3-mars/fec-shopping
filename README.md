@@ -65,7 +65,7 @@ Our application requests data from existing API hosted on herouku. Express acts 
 
 **Installation:**
 
-Our appliation uses Express, React, Axios, Webpack, and Babel. The developer would need to run:
+Our appliation uses Express, React, Axios, Webpack, Jest, and Babel. The developer would need to run:
 1. yarn install
 2. create config.js
 3. Create token on Github, and put the token into .env
