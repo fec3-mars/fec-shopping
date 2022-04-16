@@ -41,6 +41,8 @@ Our application requests data from existing API hosted on herouku. Express acts 
 - Add an answer modal supports image uploads that persist.
 - Answers support thumbnail images that when click open a modal window at full-resolution.
 
+![OpAvgOG93s](https://user-images.githubusercontent.com/66486962/163690529-f6f6cd41-fd60-498f-a497-cca35a0229b2.gif)
+
 **Related Products:**
 
 - Displays cards of related products that contains product thumbnail, category, product name, price, as well as ratings, which originates from 3 different APIS. There is also a comparison feature, which on click would display a modal of feature comparison between selected card and current product on display.
