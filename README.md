@@ -41,7 +41,8 @@ Our application requests data from existing API hosted on herouku. Express acts 
 - Add an answer modal supports image uploads that persist.
 - Answers support thumbnail images that when click open a modal window at full-resolution.
 
-![OpAvgOG93s](https://user-images.githubusercontent.com/66486962/163690529-f6f6cd41-fd60-498f-a497-cca35a0229b2.gif)
+![q a](https://user-images.githubusercontent.com/66486962/163690654-e768b234-34ce-4696-a5aa-ca904cf147f8.gif)
+
 
 **Related Products:**
 
