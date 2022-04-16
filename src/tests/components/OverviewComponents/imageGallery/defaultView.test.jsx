@@ -27,9 +27,9 @@ describe("DefaultView", () => {
     return render(
       <DefaultView
         {...props}
-      />
-    )
-  }
+      />,
+    );
+  };
 
   beforeEach(() => {
     toggleExpanded = jest.fn();
