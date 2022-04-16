@@ -47,8 +47,12 @@ Our application requests data from existing API hosted on herouku. Express acts 
 
 - Displays cards of related products that contains product thumbnail, category, product name, price, as well as ratings, which originates from 3 different APIS. There is also a comparison feature, which on click would display a modal of feature comparison between selected card and current product on display.
 
+![PlKvGk8jeh](https://user-images.githubusercontent.com/96356348/163690549-d1e80f8e-1eb6-4e7f-9b1b-ab6bffed8634.gif)
+
+
 **Your Outfit**
 - This is a list that user can customize themselves. There is a button that allows user to add current product on display onto the outfit list. User can only add one product once, or else the window will have popup message telling user that product has been saved. Each card also has a button to remove an item from the list. The cards in Outfit List is contains the same information as Related Products.
+- 
 ![EyIDVl9gf8](https://user-images.githubusercontent.com/96356348/163690276-70598c35-4313-4faa-b95e-21687498d70a.gif)
 
 **Ratings and Reviews:**
