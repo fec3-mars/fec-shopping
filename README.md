@@ -70,7 +70,7 @@ Our appliation uses Express, React, Axios, Webpack, and Babel. The developer wou
 2. create config.js
 3. Create token on Github, and put the token into .env
 4. yarn start to bundle the webpack
-5. yarn start to start the server. 
+5. yarn server to start the server. 
 
 
 
