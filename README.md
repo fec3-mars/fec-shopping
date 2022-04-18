@@ -19,7 +19,7 @@ Wendy Zhang: Related Products
 Paul Koh: Ratings and Reviews
 
 Description: 
-Our application requests data from existing API hosted on herouku. Express acts as the middleware between the application and the API, providing authorization through Github token. It dynamically renders data according to user interaction - certain features are solely based on user inputs, such as, submitting a new question/answer, writing a new product review, or customizing an outfit list.
+Our application requests data from existing API hosted on Heroku. Express acts as the middleware between the application and the API, providing authorization through Github token. It dynamically renders data according to user interaction, while certain features are solely based on user inputs, such as, submitting a new question/answer, writing a new product review, or customizing an outfit list.
  
 
 **Product Overview:**
