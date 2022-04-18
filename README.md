@@ -1,22 +1,15 @@
 Project Title: Front End Capston Shopping Website
 
-Overview: This is a fully functional web application that meets the specifications and requirements outlined by project stakeholders. Each member of the team worked on one widget that contributed towards entirety of the web application. This is an mock e-comemerce application that interacts with an existing API.  
+Overview: This is a fully functional web application that meets the specifications and requirements outlined by project stakeholders. Each member of the team worked on one widget that contributed towards entirety of the web application. This is a mock e-commerce application that interacts with an existing API.  
 
-BRD Link:
-Project Folder: 
+BRD Link: https://docs.google.com/document/d/1KAqduzY8ae3DYrSoCL1i23qHe95zJRYFulqMk-sGLWY/edit#
 
 Table of Contents: 
-- Team Members
+
 - Description
 - Installation
 - Usage
-
-
-Team Members:
-Zach Carpenter: Product Overview
-Lucas Bonner: Question and Answers 
-Wendy Zhang: Related Products
-Paul Koh: Ratings and Reviews
+- Team Members
 
 Description: 
 Our application requests data from existing API hosted on Heroku. Express acts as the middleware between the application and the API, providing authorization through Github token. It dynamically renders data according to user interaction, while certain features are solely based on user inputs, such as, submitting a new question/answer, writing a new product review, or customizing an outfit list.
@@ -75,5 +68,10 @@ Our appliation uses Express, React, Axios, Webpack, Jest, and Babel. The develop
 4. yarn start to bundle the webpack
 5. yarn server to start the server. 
 
+**Team Members:**
 
+Zach Carpenter: Product Overview
+Lucas Bonner: Question and Answers 
+Wendy Zhang: Related Products
+Paul Koh: Ratings and Reviews
 
